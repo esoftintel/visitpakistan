@@ -11,4 +11,8 @@ class admin extends Controller
     {
         
     }
+    public function add()
+    {
+        
+    }
 }
