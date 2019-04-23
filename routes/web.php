@@ -21,3 +21,7 @@ Route::get('profile', function () {
 })->middleware('verified');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/otherdatabase','MultidatabaseController@fetchDataFromOtherDatabase');
+
+Route::get('/dashboard','admin@index');
