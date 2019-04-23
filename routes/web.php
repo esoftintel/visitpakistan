@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('header');
 });
 
 Auth::routes(['verify' => true]);
