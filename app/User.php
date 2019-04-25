@@ -37,7 +37,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    function colors() {
+    function multidatabases() {
         return $this->hasOne('App\multidatabase');
     }
 

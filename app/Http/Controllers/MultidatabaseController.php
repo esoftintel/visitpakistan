@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\multidatabase;
 use Illuminate\Http\Request;
+use App\products; 
 
 class MultidatabaseController extends Controller
 {
@@ -17,12 +18,14 @@ class MultidatabaseController extends Controller
         //
     }
 
-    public function fetchDataFromOtherDatabase($user_id)
+    public function fetchDataFromOtherDatabase()
     {
-       
-        $user = User::find($user_id);
+        $user_id=1;
+        $products = products::find($user_id)
+                    ->with('users','user.id','products.c_id')
+                    ->first();
         echo '<pre>';
-        print_r($user); exit;
+        print_r($products); exit;
     
     }
 

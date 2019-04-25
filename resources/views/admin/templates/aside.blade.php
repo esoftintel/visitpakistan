@@ -17,63 +17,63 @@
               <i class="tim-icons icon-chart-pie-36"></i>
               <p>Dashboard</p>
             </a> -->
-            <a href="{{url('/users')}}">
+            <a href="{{url('/dashboard')}}">
             <i class='tim-icons icon-single-02'></i>
               <!-- <i class="tim-icons icon-atom"></i> -->
-              <p>Users</p>
+              <p>setLink</p>
             </a>
           </li>
           <li>
-            <a href="{{url('/categories')}}">
+            <a href="{{url('/setLink')}}">
             <i class='tim-icons icon-align-center'></i>
               <!-- <i class="tim-icons icon-atom"></i> -->
-              <p>Catagories</p>
+              <p>setLink</p>
             </a>
           </li>
           <li>
-            <a href="{{url('/subcategories')}}">
+            <a href="{{url('/setLink')}}">
             <i class='tim-icons icon-align-center'></i>
               <!-- <i class="tim-icons icon-atom"></i> -->
-              <p>Subcategories</p>
+              <p>setLink</p>
             </a>
           </li>
 
            <li>
-            <a href="{{url('/posts')}}">
+            <a href="{{url('/setLink')}}">
             <i class='tim-icons icon-align-center'></i>
               <!-- <i class="tim-icons icon-atom"></i> -->
-              <p>Posts</p>
+              <p>setLink</p>
             </a>
           </li>
           
           <li>
-            <a href="{{url('/comments')}}">
+            <a href="{{url('/setLink')}}">
               <i class="tim-icons icon-pin"></i>
-              <p>Comments</p>
+              <p>setLink</p>
             </a>
           </li>
           <li>
-            <a href="{{url('/messages')}}">
+            <a href="{{url('/setLink')}}">
               <i class="tim-icons icon-bell-55"></i>
-              <p>Massages</p>
+              <p>setLink</p>
             </a>
           </li>
           <li>
-            <a href="{{url('/countries')}}">
+            <a href="{{url('/setLink')}}">
               <i class="tim-icons icon-bell-55"></i>
-              <p>Countries</p>
+              <p>setLink</p>
             </a>
           </li>
           <li>
-            <a href="{{url('/States')}}">
+            <a href="{{url('/setLink')}}">
               <i class="tim-icons icon-bell-55"></i>
-              <p>States</p>
+              <p>setLink</p>
             </a>
           </li>
           <li>
-            <a href="{{url('/cities')}}">
+            <a href="{{url('/setLink')}}">
               <i class="tim-icons icon-bell-55"></i>
-              <p>Cities</p>
+              <p>setLink</p>
             </a>
           </li>
           <!-- <li>
@@ -82,12 +82,12 @@
               <p>User Profile</p>
             </a>
           <!-- </li> -->
-          <li>
+          <!-- <li>
             <a href="./tables.html">
               <i class="tim-icons icon-puzzle-10"></i>
               <p>Table List</p>
             </a>
-          </li> -->
+          </li> --> -->
           <!-- <li>
             <a href="./typography.html">
               <i class="tim-icons icon-align-center"></i>
