@@ -12,12 +12,24 @@
 */
 
 Route::get('/', function () {
-    return view('header');
+    return view('welcome');
 });
 
 Auth::routes(['verify' => true]);
 Route::get('profile', function () {
     // Only verified users may enter...
 })->middleware('verified');
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('users', 'UserController');
+
+Route::resource('roles', 'RoleController');
+
+Route::resource('permissions', 'PermissionController');
+
+Route::resource('posts', 'PostController');
+
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
