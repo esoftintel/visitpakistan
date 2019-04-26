@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Gawadar Hub</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -33,7 +33,7 @@
                 <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                    <button type="button" class="navbar-toggle collapsed">
                         <span class="sr-only">Toggle Navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -41,15 +41,13 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
+                    
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ url('/') }}">Home</a></li>
+                        <li><a href="{{ url('/login') }}"><b>Gawadar Hub</b></a></li>
                         @if (!Auth::guest())
                             <li><a href="{{ route('posts.create') }}">New Article</a></li>
                          @endif
@@ -59,8 +57,10 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                        <div class='row'>
+                            <a href="{{ route('login') }}" class='btn btn-primary btn-sm'>Login</a>
+                            <a href="{{ route('register') }}" class='btn btn-success btn-sm'>Register</a>
+                            </div>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -70,7 +70,7 @@
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         @role('Admin') {{-- Laravel-permission blade helper --}}
-                                        <a href="#"><i class="fa fa-btn fa-unlock"></i>Admin</a>
+                                        <a href="#"><i class="fa fa-btn"></i>Admin</a>
                                         @endrole
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

@@ -24,7 +24,9 @@ class PermissionController extends Controller {
     * @return \Illuminate\Http\Response
     */
     public function index() {
-        $permissions = Permission::all(); //Get all permissions
+        $permissions = Permission::all(); 
+        //Get all permissions
+        print_r($permissions); exit;
 
         return view('admin.permissions.index')->with('permissions', $permissions);
     }
