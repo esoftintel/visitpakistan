@@ -22,11 +22,9 @@ Route::get('profile', function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-<<<<<<< HEAD
 Route::get('/otherdatabase','MultidatabaseController@fetchDataFromOtherDatabase');
 
 Route::get('/dashboard','admin@index');
-=======
 Route::resource('users', 'UserController');
 
 Route::resource('roles', 'RoleController');
@@ -38,4 +36,3 @@ Route::resource('posts', 'PostController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
->>>>>>> 05cbf96646fe3a1dc7f95feb96cbadea9df2f373
