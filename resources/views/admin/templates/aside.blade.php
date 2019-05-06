@@ -17,24 +17,24 @@
               <i class="tim-icons icon-chart-pie-36"></i>
               <p>Dashboard</p>
             </a> -->
-            <a href="{{url('/dashboard')}}">
+            <a href="{{url('/category')}}">
             <i class='tim-icons icon-single-02'></i>
               <!-- <i class="tim-icons icon-atom"></i> -->
-              <p>setLink</p>
+              <p>Category</p>
             </a>
           </li>
           <li>
-            <a href="{{url('/setLink')}}">
+            <a href="{{url('/attribute')}}">
             <i class='tim-icons icon-align-center'></i>
               <!-- <i class="tim-icons icon-atom"></i> -->
-              <p>setLink</p>
+              <p>Attribute</p>
             </a>
           </li>
           <li>
-            <a href="{{url('/setLink')}}">
+            <a href="{{url('/AttributeValue')}}">
             <i class='tim-icons icon-align-center'></i>
               <!-- <i class="tim-icons icon-atom"></i> -->
-              <p>setLink</p>
+              <p>Attribute Value</p>
             </a>
           </li>
 

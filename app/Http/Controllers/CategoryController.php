@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $data = category::get();
+        return view('admin.category.category_list')->with('category_data',$data);
     }
 
     /**
@@ -24,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.category.category_create');
     }
 
     /**
@@ -35,7 +36,25 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $this->validate($request, [
+            'userfile' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+    
+        if ($request->hasFile('userfile')) {
+           $image = $request->file('userfile');
+            $ctname = $request->input('name');
+            $name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+            $data =array(
+                     'ct_name' => $ctname,                   
+                     'ct_icone' => $name                   
+                   );
+                   
+              category::create($data);  
+            return back()->with('success','Image Upload successfully');
+        }
     }
 
     /**
