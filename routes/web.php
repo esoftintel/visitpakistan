@@ -37,6 +37,7 @@ Route::resource('posts', 'PostController');
 
 Auth::routes();
 
+<<<<<<< HEAD
 Route::get('/attribute', 'AttributeController@index')->name('attribute');
 Route::get('/attribute_create', 'AttributeController@create')->name('attribute_create');
 Route::post('/attribute_store', 'AttributeController@store')->name('attribute_store');
@@ -51,3 +52,6 @@ Route::post('/category_update', 'CategoryController@update')->name('category_upd
 
 Route::get('/AttributeValue', 'AttributeValueController@index')->name('AttributeValue');
 
+=======
+Route::get('/home', 'HomeController@index')->name('home');
+>>>>>>> 14d1ace3221f02f9e949322be7cf1a92ed0e4484
