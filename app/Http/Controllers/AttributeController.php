@@ -3,18 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\attribute;
+use App\category;
 use Illuminate\Http\Request;
 
 class AttributeController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * 
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $attribute = attribute::get();
+      
+        return view('admin.attribute.attribute_list')->with('attribute_data',$attribute);
     }
 
     /**
@@ -23,8 +26,9 @@ class AttributeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {  
+        $data = category::get();
+        return view('admin.attribute.attribute_create')->with('category_data',$data);
     }
 
     /**

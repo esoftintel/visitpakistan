@@ -14,7 +14,8 @@ class AttributeValueController extends Controller
      */
     public function index()
     {
-        //
+       $attribute_value = attribute_value::get();
+       return view('admin.attributevalue.attribute_value_list')->with('attributevalue_data',$attribute_value);
     }
 
     /**

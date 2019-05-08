@@ -9,10 +9,10 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+*/ 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('header');
 });
 
 Auth::routes(['verify' => true]);
@@ -33,4 +33,28 @@ Route::resource('permissions', 'PermissionController');
 
 Route::resource('posts', 'PostController');
 
+<<<<<<< HEAD
+=======
+
+
+Auth::routes();
+
+<<<<<<< HEAD
+Route::get('/attribute', 'AttributeController@index')->name('attribute');
+Route::get('/attribute_create', 'AttributeController@create')->name('attribute_create');
+Route::post('/attribute_store', 'AttributeController@store')->name('attribute_store');
+Route::get('/attribute_edit/{id}', 'AttributeController@edit')->name('attribute_edit');
+Route::post('/attribute_update', 'AttributeController@update')->name('attribute_update');
+
+Route::get('/category', 'CategoryController@index')->name('category');
+Route::get('/category_create', 'CategoryController@create')->name('category_create');
+Route::post('/category_store', 'CategoryController@store')->name('category_store');
+Route::get('/category_edit', 'CategoryController@edit')->name('category_edit');
+Route::post('/category_update', 'CategoryController@update')->name('category_update');
+
+Route::get('/AttributeValue', 'AttributeValueController@index')->name('AttributeValue');
+
+=======
+>>>>>>> 5d427706c02254dfb7f816889f35740d1c8f2df8
 Route::get('/home', 'HomeController@index')->name('home');
+>>>>>>> 14d1ace3221f02f9e949322be7cf1a92ed0e4484
