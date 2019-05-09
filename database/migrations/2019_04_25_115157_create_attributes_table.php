@@ -18,7 +18,7 @@ class CreateAttributesTable extends Migration
             $table->string('at_name');
             $table->enum('status',['active','deactive']);
             $table->biginteger('at_st_id')->unsigned();
-            $table->foreign('at_st_id')->references('st_id')->on('subcategories')->onDelete('cascade');
+            $table->foreign('at_st_id')->references('st_id')->on('subcategories');
             $table->softDeletes();
             $table->timestamps();
         });

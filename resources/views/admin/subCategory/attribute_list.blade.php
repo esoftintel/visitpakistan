@@ -11,17 +11,13 @@
        
         <div class="row">
         <div class="col-lg-12 col-md-12">
-        @if (session('info'))
-          <div class="alert alert-success">
-              {{ session('info') }}
-          </div>
-          @endif
             <div class="card ">
               <div class="card-header">
               <div class="row"> 
-                <div class="col-lg-6"><h4 class="card-title"> Categories</h4></div>
-                <div class="col-lg-6"> <a class="btn btn-primary pull-right btn-sm" href="{{url('/category_create')}}" role="button">add Categories</a></div>
+                <div class="col-lg-6"><h4 class="card-title"> Attribute</h4></div>
+                <div class="col-lg-6"> <a class="btn btn-primary" href="{{url('/attribute_create')}}" role="button">add Attribute</a></div>
                 </div>
+               
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -30,23 +26,23 @@
                       <tr>
                         <th>Id</th>
                         <th>Name</th>
-                        <th>icon</th>
                         <th>Status</th>
+                        <th>Category Name</th>
                         <th>Created</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                    @foreach($category_data as $key)
+                    @foreach($attribute_data as $key)
                       <tr>
-                        <td> {{$key->ct_id}} </td>
-                        <td>{{$key->ct_name}}</td>
-                        <td><img src="<?php echo  url('/images')."/".$key->ct_icone; ?>" class="img-thumbnail" width="100"></td>
-                        <td>{{$key->ct_status}}</td>
+                        <td> {{$key->at_id}} </td>
+                        <td>{{$key->at_name}}</td>
+                        <td>{{$key->status}}</td>
+                        <td>{{$key->at_st_id}}</td>
                         <td>{{$key->created_at}}</td>
                         <td>
-                           <a class="btn btn-primary" href="{{url('/category_edit',$key->ct_id)}}" role="button">Update</a>
-                           <a class="btn btn-primary" href="{{url('category_delete',$key->ct_id)}}" role="button">Delete</a> 
+                           <a class="btn btn-primary" href="{{url('/attribute')}}" role="button">Update</a>
+                           <a class="btn btn-primary" href="{{url('/attribute')}}" role="button">Delete</a> 
                          </td>
                       </tr>
                       @endforeach

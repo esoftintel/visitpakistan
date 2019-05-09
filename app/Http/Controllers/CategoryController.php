@@ -14,11 +14,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $data = category::where('ct_status','active')->get();
-        
+        $data = category::get();
         return view('admin.category.category_list')->with('category_data',$data);
     }
-    
 
     /**
      * Show the form for creating a new resource.
@@ -55,7 +53,7 @@ class CategoryController extends Controller
                    );
                    
               category::create($data);  
-              return redirect('category')->with('info','Data is Added Successfully!');
+            return back()->with('success','Image Upload successfully');
         }
     }
 
@@ -76,11 +74,9 @@ class CategoryController extends Controller
      * @param  \App\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $id)
+    public function edit(category $category ,$id)
     {
-     
-     
-        $data['category_data'] = category::findOrFail($id);
+        $data['category_data'] = category::where('ct_id',$id)->first();
         return view('admin.category.category_update',$data);
     }
 
@@ -91,31 +87,35 @@ class CategoryController extends Controller
      * @param  \App\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, category $category)
+    public function update(Request $request)
     {
-        
-        $id=$category->ct_id;
-
-        if($image= $request->file('userfile')){
-            $new_name=rand().'.'. $image->getClientOriginalExtension();
-            $image->move(public_path('images'),$new_name);
-            $form_data=array(
-                'ct_name'          =>$request->name,
-                'ct_icone'         =>$new_name
+      
+        $this->validate($request, [
+            'userfile' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
     
-               );
+        if ($request->hasFile('userfile')) {
+           $image = $request->file('userfile');
+            $ctname = $request->input('name');
+            $name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+            $data =array(
+                     'ct_name' => $ctname,                   
+                     'ct_icone' => $name                   
+                   );
         }
         else{
-            $form_data=array(
-                'ct_name'    =>$request->name,
-                'image'      =>$request->oldimage
-    
-               );
-        }
-       
-        category::wherect_id($id)->update($form_data);
-        return redirect('category')->with('info','Data is Updated Successfully!');
-        //
+            $data =array(
+                'ct_name' =>  $request->input('name'),                   
+                'ct_icone' => $request->input('oldimg')                 
+              );
+            }
+          
+         category::where('ct_id',$request->input('ctid'))->update($data);  
+       return back()->with('success','Image Upload successfully');
+  
+        
     }
 
     /**
@@ -127,14 +127,5 @@ class CategoryController extends Controller
     public function destroy(category $category)
     {
         //
-    }
-
-    public function category_delete($id)
-    {
-        $delete_data=array(
-            'ct_status'=>'deactive'
-        );
-        category::wherect_id($id)->update($delete_data);
-        return redirect('category')->with('info','Data is Deleted Successfully!');
     }
 }

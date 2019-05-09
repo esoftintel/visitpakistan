@@ -18,7 +18,7 @@ class CreateAttributeValuesTable extends Migration
             $table->string('atv_name');
             $table->enum('atv_status',['active','deactive']);
             $table->biginteger('atv_at_id')->unsigned();
-            $table->foreign('atv_at_id')->references('at_id')->on('attributes')->onDelete('cascade');
+            $table->foreign('atv_at_id')->references('at_id')->on('attributes');
             $table->softDeletes();
             $table->timestamps();
         });

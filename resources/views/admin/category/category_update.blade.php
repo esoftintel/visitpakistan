@@ -23,6 +23,11 @@
               </div>
               <div class="card-body">
                 <div class="table-responsive">
+                <form action="{{url('category_update')}}" method="post" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Name</label>
+                        <input type="text" name="name" class="form-control"  placeholder="Attribute Name" value="{{$category_data->ct_name}}">
                 
                 <form method='post' action='{{route("category.update",$category_data->ct_id)}}' enctype="multipart/form-data">
                 @csrf
@@ -40,10 +45,18 @@
                     </div>
                        
                     <div class="form-group">
+                        <label for="exampleInputPassword1">Image</label>
+                        <input type="file", name="userfile">
+                        <input type="hidden" name="oldimg" value="{{$category_data->ct_icone}}">
+                        <input type="hidden" name="ctid" value="{{$category_data->ct_id}}">
                         <label>Old Icon </label>
                         
                         <img src="{{URL::to('/')}}/images/{{$category_data->ct_icone}}" class="img-thumbnail" width="100">
                     </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">old Image</label>
+                     <img src="<?php echo  url('/images')."/".$category_data->ct_icone; ?>" alt="">    
+                     </div>
                     
                     <button type="submit" class="btn btn-primary from-control">Submit</button>
                  </form>

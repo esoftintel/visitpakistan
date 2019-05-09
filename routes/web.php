@@ -45,6 +45,8 @@ Route::resource('category','CategoryController');
 Route::get('/category_list', 'CategoryController@index')->name('category');
 Route::get('/category_create', 'CategoryController@create')->name('category_create');
 Route::post('/category_store', 'CategoryController@store')->name('category_store');
+Route::get('/category_edit/{id}', 'CategoryController@edit')->name('category_edit');
+Route::post('/category_update', 'CategoryController@update')->name('category_update');
 Route::get('/category_delete/{id}','CategoryController@category_delete');
 
 Route::resource('subcategory','SubcategoryController');
