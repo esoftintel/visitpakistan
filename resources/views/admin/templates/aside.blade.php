@@ -34,13 +34,7 @@
               <p>SubCategory</p>
             </a>
           </li>
-          <li>
-            <a href="{{url('/subcategory')}}">
-            <i class='tim-icons icon-align-center'></i>
-              <!-- <i class="tim-icons icon-atom"></i> -->
-              <p>SubCategories</p>
-            </a>
-          </li>
+         
           <li>
             <a href="{{url('/attribute')}}">
             <i class='tim-icons icon-align-center'></i>
