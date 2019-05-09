@@ -74,9 +74,10 @@ class CategoryController extends Controller
      * @param  \App\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(category $category)
+    public function edit(category $category ,$id)
     {
-        //
+        $data['category_data'] = category::where('ct_id',$id)->first();
+        return view('admin.category.category_update',$data);
     }
 
     /**
@@ -86,9 +87,35 @@ class CategoryController extends Controller
      * @param  \App\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, category $category)
+    public function update(Request $request)
     {
-        //
+      
+        $this->validate($request, [
+            'userfile' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+    
+        if ($request->hasFile('userfile')) {
+           $image = $request->file('userfile');
+            $ctname = $request->input('name');
+            $name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+            $data =array(
+                     'ct_name' => $ctname,                   
+                     'ct_icone' => $name                   
+                   );
+        }
+        else{
+            $data =array(
+                'ct_name' =>  $request->input('name'),                   
+                'ct_icone' => $request->input('oldimg')                 
+              );
+            }
+          
+         category::where('ct_id',$request->input('ctid'))->update($data);  
+       return back()->with('success','Image Upload successfully');
+  
+        
     }
 
     /**

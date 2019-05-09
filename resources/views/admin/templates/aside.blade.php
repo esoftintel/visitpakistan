@@ -23,6 +23,17 @@
               <p>Category</p>
             </a>
           </li>
+          <li >
+            <!-- <a href="/dashboard">
+              <i class="tim-icons icon-chart-pie-36"></i>
+              <p>Dashboard</p>
+            </a> -->
+            <a href="{{url('/subcategory')}}">
+            <i class='tim-icons icon-single-02'></i>
+              <!-- <i class="tim-icons icon-atom"></i> -->
+              <p>SubCategory</p>
+            </a>
+          </li>
           <li>
             <a href="{{url('/attribute')}}">
             <i class='tim-icons icon-align-center'></i>
