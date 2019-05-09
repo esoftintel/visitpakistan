@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\subcategory;
+use App\category;
 use Illuminate\Http\Request;
 
 class SubcategoryController extends Controller
@@ -15,6 +16,10 @@ class SubcategoryController extends Controller
     public function index()
     {
         //
+        
+        $data = subcategory::where('st_status','active')->get();
+        
+        return view('admin.subCategory.subCategory_list')->with('subCategory_data',$data);
     }
 
     /**
@@ -25,6 +30,8 @@ class SubcategoryController extends Controller
     public function create()
     {
         //
+        $data = category::where('ct_status','active')->get();
+        return view('admin.subCategory.subCategory_add')->with('category_data',$data);
     }
 
     /**
@@ -36,6 +43,14 @@ class SubcategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $post=$request->input();
+        $data =array(
+            'st_name' => $request->st_name,                   
+            'st_ct_id' => $request->subcategory                   
+          );
+          
+     subcategory::create($data);  
+     return redirect('subcategory')->with('info','Data is Added Successfully!');
     }
 
     /**

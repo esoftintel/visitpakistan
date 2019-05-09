@@ -29,6 +29,7 @@ class UserController extends Controller {
     //Get all users and pass it to the view
         $users = User::all(); 
        
+       
         return view('admin.users.index')->with('users', $users);
     }
 

@@ -7,4 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class subcategory extends Model
 {
     //
+    protected $fillable = [
+        'st_name','st_status',
+    ];
+    protected  $primaryKey = 'st_id';
 }

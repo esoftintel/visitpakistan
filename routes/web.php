@@ -43,11 +43,16 @@ Route::post('/attribute_store', 'AttributeController@store')->name('attribute_st
 Route::get('/attribute_edit/{id}', 'AttributeController@edit')->name('attribute_edit');
 Route::post('/attribute_update', 'AttributeController@update')->name('attribute_update');
 
-Route::get('/category', 'CategoryController@index')->name('category');
+Route::resource('category','CategoryController');
+Route::get('/category_list', 'CategoryController@index')->name('category');
 Route::get('/category_create', 'CategoryController@create')->name('category_create');
 Route::post('/category_store', 'CategoryController@store')->name('category_store');
 Route::get('/category_edit/{id}', 'CategoryController@edit')->name('category_edit');
 Route::post('/category_update', 'CategoryController@update')->name('category_update');
+Route::get('/category_delete/{id}','CategoryController@category_delete');
+
+Route::resource('subcategory','SubcategoryController');
+
 
 Route::get('/subcategory', 'SubcategoryController@index')->name('subcategory');
 Route::get('/subcategory_create', 'SubcategoryController@create')->name('subcategory_create');
@@ -57,4 +62,5 @@ Route::post('/subcategory_update', 'SubcategoryController@update')->name('subcat
 
 Route::get('/AttributeValue', 'AttributeValueController@index')->name('AttributeValue');
 
+Route::get('/home', 'HomeController@index')->name('home');
 
