@@ -15,7 +15,7 @@
               <div class="card-header">
               <div class="row"> 
                 <div class="col-lg-6"><h4 class="card-title"> Attribute</h4></div>
-                <div class="col-lg-6"> <a class="btn btn-primary" href="{{url('/attribute_create')}}" role="button">add Attribute</a></div>
+                <div class="col-lg-6"> <a class="btn btn-primary pull-right btn-sm" href="{{url('/attribute_create')}}" role="button">add Attribute</a></div>
                 </div>
                
               </div>
@@ -27,7 +27,8 @@
                         <th>Id</th>
                         <th>Name</th>
                         <th>Status</th>
-                        <th>Category Name</th>
+                        <th>Subcategory Name</th>
+                        
                         <th>Created</th>
                         <th>Action</th>
                       </tr>
@@ -39,10 +40,11 @@
                         <td>{{$key->at_name}}</td>
                         <td>{{$key->status}}</td>
                         <td>{{$key->at_st_id}}</td>
+                      
                         <td>{{$key->created_at}}</td>
                         <td>
-                           <a class="btn btn-primary" href="{{url('/attribute')}}" role="button">Update</a>
-                           <a class="btn btn-primary" href="{{url('/attribute')}}" role="button">Delete</a> 
+                           <a class="btn btn-primary btn-sm" href="{{url('/attribute')}}" role="button">Update</a>
+                           <a class="btn btn-primary btn-sm" href="{{url('/attribute')}}" role="button">Delete</a> 
                          </td>
                       </tr>
                       @endforeach

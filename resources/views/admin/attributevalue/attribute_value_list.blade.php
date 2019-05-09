@@ -15,7 +15,7 @@
               <div class="card-header">
               <div class="row"> 
                 <div class="col-lg-6"><h4 class="card-title"> Attribute Values</h4></div>
-                <div class="col-lg-6"> <a class="btn btn-primary" href="#" role="button">add Attribute_Values</a></div>
+                <div class="col-lg-6"> <a class="btn btn-primary btn-sm pull-right" href="{{route('attribute_value.create')}}" role="button">add Attribute_Values</a></div>
                 </div>
                 <h4 class="card-title"> </h4>
               </div>
@@ -25,9 +25,9 @@
                     <thead class=" text-primary">
                       <tr>
                         <th>Id</th>
-                        <th>Name</th>
+                        <th>Value Name</th>
                         <th>Status</th>
-                        <th>Category Name</th>
+                        <th>Attribute Name</th>
                         <th>Created</th>
                         <th>Action</th>
                       </tr>

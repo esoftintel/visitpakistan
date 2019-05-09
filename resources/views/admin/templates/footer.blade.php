@@ -203,78 +203,12 @@
     });
   </script>
 
-<script type="text/javascript">
-                $(document).ready(function(){
-                    $('#country').on('change',function(){
-                        var country_id=$(this).val();
-                        // alert(country_id);
-                        if(country_id)
-                        {
-                            $.ajax({
-                                url:'/getstate/'+country_id,
-                                type:'GET',
-                                dataType:'json',
-                                success:function(data){
-                                   //var select=document.getElementById('subcategory'),
-                                    console.log(data); 
-                                    $('#state').empty();
-                                    $('#state').html('<option value="">Select one</option>');
-                                    $('#city').html('<option value="">Select City</option>');
-                                    
-                                    $.each(data,function(key,value){
-                                       // alert(value.id);
-                    
-                                     $('#state').append('<option value="'+value.id+'">'+value.state_name+'</option>');
-                                    });
-                                
-                                    
-                                    }
-                                });
-                        }
-                        else
-                            {
-                            $('#state').html('<option value="">Select State</option>');
-                            $('#city').html('<option value="">Select City</option>');
-                            }
-                    });
-                    $('#state').change(function(){
-                    var state_id = $('#state').val();
-                        // alert(state_id);
-                        if(state_id)
-                        {
-                            $.ajax({
-                                url:'/getcity/'+state_id,
-                                type:'GET',
-                                dataType:'json',
-                                success:function(data){
-                                   //var select=document.getElementById('subcategory'),
-                                    console.log(data); 
-                                    $('#city').empty();
-                                    $('#city').html('<option value="">Select City</option>');
-                                    
-                                    $.each(data,function(key,value){
-                                    //     alert(key);
-                    
-                                     $('#city').append('<option value="'+value.id+'">'+value.city_name+'</option>');
-                                    });
-                                
-                                    
-                                    }
-                                });
-                        }
-                        else
-                            {
-                            $('#city').html('<option value="">Select City</option>');
-                            }
-                    });
 
-                    
-                });
-        </script>
-           <script>
+         <script>
                 $(document).ready(function(){
                     $('#category').on('change',function(){
                         var category_id=$(this).val();
+                        //alert('category_id');
                         if(category_id)
                         {
                             $.ajax({
@@ -287,9 +221,9 @@
                                     $('#subcategory').empty();
                                     
                                     $.each(data,function(key,value){
-                                    //     alert(key);
+                                        // alert(key);
                                     // alert(value);
-                                     $('#subcategory').append('<option value="'+value.id+'">'+value.subcat_name+'</option>');
+                                     $('#subcategory').append('<option value="'+value.st_id+'">'+value.st_name+'</option>');
                                     });
                                 
                                     
@@ -298,7 +232,81 @@
                         }
                     });
                 });
+        </script>
+
+        <script type="text/javascript">
+                $(document).ready(function(){
+                    $('#category1').on('change',function(){
+                        var category_id=$(this).val();
+                        //alert(category_id);
+                  
+                        if(category_id)
+                        {
+                            $.ajax({
+                                url:'/getsubcategory/'+category_id,
+                                type:'GET',
+                                dataType:'json',
+                                success:function(data){
+                                   //var select=document.getElementById('subcategory'),
+                                    console.log(data); 
+                                    $('#subcategory1').empty();
+                                    
+                                    $.each(data,function(key,value){
+                                        // alert(key);
+                                    // alert(value);
+                                     $('#subcategory1').append('<option value="'+value.st_id+'">'+value.st_name+'</option>');
+                                    });
+                                
+                                    
+                                    }
+                                });
+                        }
+                        else
+                            {
+                            $('#subcategory1').html('<option value="">Select Subcategory</option>');
+                            $('#category1').html('<option value="">Select Category</option>');
+                            }
+                    });
+
+                    $('#subcategory1').change(function(){
+                    var subcategory_id = $('#subcategory1').val();
+                         //alert(subcategory_id);
+                        if(subcategory_id)
+                        {
+                            $.ajax({
+                                url:'/getattribute/'+subcategory_id,
+                                type:'GET',
+                                dataType:'json',
+                                success:function(data){
+                                   //var select=document.getElementById('subcategory'),
+                                    // console.log(data); 
+                                    // $('#subcategory1').empty();
+                                    // $('#attribute').html('<option value="">Select Attribute</option>');
+                                    console.log(data); 
+                                    $('#subcategory1').empty();
+                                    $('#subcategory1').html('<option value="">Select Subcategory</option>');
+                                    $('#attribute').html('<option value="">Select Attribute of sub Category</option>');
+                                    
+                                    $.each(data,function(key,value){
+                                    //     alert(key);
+                    
+                                     $('#attribute').append('<option value="'+value.at_id+'">'+value.at_name+'</option>');
+                                    });
+                                
+                                    
+                                    }
+                                });
+                        }
+                        else
+                            {
+                            $('#attribute').html('<option value="">Select Attribute</option>');
+                            }
+                    });
+
+                    
+                });
         </script> 
+      
 
 </body>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\attribute;
+use App\subcategory;
 use App\category;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,7 @@ class AttributeController extends Controller
      */
     public function create()
     {  
-        $data = category::get();
+        $data = category::where('ct_status','active')->get();
         return view('admin.attribute.attribute_create')->with('category_data',$data);
     }
 
@@ -40,6 +41,20 @@ class AttributeController extends Controller
     public function store(Request $request)
     {
         //
+        $attribute=$request->input('attribute');
+        $subcategory=$request->input('subcategory');
+        //$category=$request->input('category');
+       
+        $data =array(
+            'at_name' => $attribute,                   
+            'at_st_id' => $subcategory                   
+          );
+        
+          
+     attribute::create($data);  
+     return redirect('attribute')->with('info','Data is Added Successfully!');
+       // $post=$request->input();
+       // print_r($post); exit;
     }
 
     /**
@@ -85,5 +100,26 @@ class AttributeController extends Controller
     public function destroy(attribute $attribute)
     {
         //
+    }
+
+    public function attribute_store(Request $request)
+    {
+        $post=$request->post();
+        print_r($post); exit;
+    }
+
+    public function getcategory($id)
+    {
+        $subcategories = subcategory::where('st_ct_id', $id)->get();
+        //print_r($subcategories) ; exit;     
+        return json_encode($subcategories);
+
+    }
+
+    public function getattribute($id)
+    {
+        $attribute = attribute::where('at_st_id', $id)->get();
+        //print_r($attribute) ; exit;     
+        return json_encode($attribute);
     }
 }

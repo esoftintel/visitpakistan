@@ -15,33 +15,39 @@
             <div class="card ">
               <div class="card-header">
               <div class="row"> 
-                <div class="col-lg-6"><h4 class="card-title">Add Attribute</h4></div>
-                <div class="col-lg-6"> <a class="btn btn-primary btn-sm pull-right" href="{{url('/attribute_list')}}" role="button">Attributes</a></div>
+                <div class="col-lg-6"><h4 class="card-title">Add Attribute Value</h4></div>
+                <div class="col-lg-6"> <a class="btn btn-primary btn-sm pull-right" href="{{route('attribute_value.index')}}" role="button">Attributes</a></div>
                 </div>
                
               </div>
               <div class="card-body">
                 <div class="table-responsive">
-                <form action='{{route("attributer.store")}}' method="post" enctype="multipart/form-data">
+                <form action='{{route("attribute_value.store")}}' method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Name</label>
-                        <input type="text" class="form-control" name="attribute"  placeholder="Attribute Name">
+                        <label for="exampleInputEmail1">Attribute Value Name</label>
+                        <input type="text" class="form-control" name="value"  placeholder="Attribute Name">
                      </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Category </label>
-                        <select name="category" id="category" class="form-control" required>
+                        <select name="category" id="category1" class="form-control" required>
                           <option value="">Select category</option>
-                            @foreach($category_data as $key)
+                            @foreach($category as $key)
                             <option value='{{$key->ct_id}}'>{{$key->ct_name}}</option>
                              @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Subcategory </label>
-                        <select name="subcategory" id="subcategory" class="form-control">
-                                <option value="">Select Subcategory</option>
+                        <select name="subcategory" id="subcategory1" class="form-control">
+                                <option value="">Select Sub_Category</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                    <label>Attribute</label>
+                        <select name="attribute" id="attribute" class="form-control">
+                            <option value="">Select Attribute</option>
                         </select>
                     </div>
                     

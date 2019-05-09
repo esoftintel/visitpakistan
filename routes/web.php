@@ -34,10 +34,10 @@ Route::resource('permissions', 'PermissionController');
 Route::resource('posts', 'PostController');
 
 
-
+Route::resource('attributer','AttributeController');
 Route::get('/attribute', 'AttributeController@index')->name('attribute');
 Route::get('/attribute_create', 'AttributeController@create')->name('attribute_create');
-Route::post('/attribute_store', 'AttributeController@store')->name('attribute_store');
+Route::post('/attribute_store', 'AttributeController@attribute_store')->name('attribute_store');
 Route::get('/attribute_edit/{id}', 'AttributeController@edit')->name('attribute_edit');
 Route::post('/attribute_update', 'AttributeController@update')->name('attribute_update');
 
@@ -49,8 +49,13 @@ Route::get('/category_delete/{id}','CategoryController@category_delete');
 
 Route::resource('subcategory','SubcategoryController');
 
-
+Route::resource('attribute_value','AttributeValueController');
 Route::get('/AttributeValue', 'AttributeValueController@index')->name('AttributeValue');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+///rout for get dynamic value for subcategory
+Route::get('/getsubcategory/{id}', 'AttributeController@getcategory');
+Route::get('/getattribute/{id}', 'AttributeController@getattribute');
+
 

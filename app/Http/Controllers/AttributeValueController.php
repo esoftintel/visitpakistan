@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\attribute_value;
+use App\attribute;
+use App\subcategory;
+use App\category;
 use Illuminate\Http\Request;
 
 class AttributeValueController extends Controller
@@ -26,6 +29,11 @@ class AttributeValueController extends Controller
     public function create()
     {
         //
+        $data['category'] = category::where('ct_status','active')->get();
+        
+        //$data['attribute']=attribute::where('at_status','active')->get();
+        return view('admin.attributevalue.attribute_value_add')->with($data);
+
     }
 
     /**
@@ -37,6 +45,18 @@ class AttributeValueController extends Controller
     public function store(Request $request)
     {
         //
+        $attribute_value=$request->input('value');
+        $attribute=$request->input('attribute');
+        
+       
+        $data =array(
+            'atv_name' => $attribute_value,                   
+            'atv_at_id' => $attribute                   
+          );
+        
+          
+          attribute_value::create($data);  
+     return redirect('AttributeValue')->with('info','Data is Added Successfully!');
     }
 
     /**

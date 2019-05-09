@@ -43,11 +43,15 @@ class SubcategoryController extends Controller
     public function store(Request $request)
     {
         //
-        $post=$request->input();
+        $post =$request->input();
+        $subcategory=$request->input('name');
+        $category=$request->input('category');
+       
         $data =array(
-            'st_name' => $request->st_name,                   
-            'st_ct_id' => $request->subcategory                   
+            'st_name' => $subcategory,                   
+            'st_ct_id' => $category                   
           );
+        
           
      subcategory::create($data);  
      return redirect('subcategory')->with('info','Data is Added Successfully!');
