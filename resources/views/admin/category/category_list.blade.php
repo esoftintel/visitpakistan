@@ -45,14 +45,8 @@
                         <td>{{$key->ct_status}}</td>
                         <td>{{$key->created_at}}</td>
                         <td>
-<<<<<<< HEAD
                            <a class="btn btn-primary" href="{{url('/category_edit',$key->ct_id)}}" role="button">Update</a>
                            <a class="btn btn-primary" href="{{url('category_delete',$key->ct_id)}}" role="button">Delete</a> 
-=======
-                    
-                           <a class="btn btn-primary btn-sm" href="{{route('category.edit',$key->ct_id)}}">Update</a>
-                           <a class="btn btn-primary btn-sm" href="{{url('/category_delete/'.$key->ct_id)}}" role="button">Delete</a> 
->>>>>>> 083b616025edaf3085b4d8bec4112367c3635d26
                          </td>
                       </tr>
                       @endforeach
