@@ -19,8 +19,8 @@
             <div class="card ">
               <div class="card-header">
               <div class="row"> 
-                <div class="col-lg-6"><h4 class="card-title"> Categories</h4></div>
-                <div class="col-lg-6"> <a class="btn btn-primary pull-right btn-sm" href="{{url('/category_create')}}" role="button">add Categories</a></div>
+                <div class="col-lg-6"><h4 class="card-title">Sub Categories</h4></div>
+                <div class="col-lg-6"> <a class="btn btn-primary pull-right btn-sm" href="{{route('subcategory.create')}}" role="button">add Categories</a></div>
                 </div>
               </div>
               <div class="card-body">
@@ -30,24 +30,25 @@
                       <tr>
                         <th>Id</th>
                         <th>Name</th>
-                        <th>icon</th>
                         <th>Status</th>
+                        <th>Category_id</th>
                         <th>Created</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                    @foreach($category_data as $key)
+                    @foreach($subCategory_data as $key)
                       <tr>
-                        <td> {{$key->ct_id}} </td>
-                        <td>{{$key->ct_name}}</td>
-                        <td><img src="<?php echo  url('/images')."/".$key->ct_icone; ?>" class="img-thumbnail" width="100"></td>
-                        <td>{{$key->ct_status}}</td>
+                        <td> {{$key->st_id}} </td>
+                        <td>{{$key->st_name}}</td>
+                        
+                        <td>{{$key->st_status}}</td>
+                        <td>{{$key->st_ct_id}}</td>
                         <td>{{$key->created_at}}</td>
                         <td>
                     
-                           <a class="btn btn-primary btn-sm" href="{{route('category.edit',$key->ct_id)}}">Update</a>
-                           <a class="btn btn-primary btn-sm" href="{{url('/category_delete/'.$key->ct_id)}}" role="button">Delete</a> 
+                           <a class="btn btn-primary btn-sm" href="{{route('subcategory.edit',$key->st_id)}}">Update</a>
+                           <a class="btn btn-primary btn-sm" href="{{url('/subcategory_delete/'.$key->st_id)}}" role="button">Delete</a> 
                          </td>
                       </tr>
                       @endforeach

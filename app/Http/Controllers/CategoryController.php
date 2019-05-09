@@ -14,9 +14,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $data = category::get();
+        $data = category::where('ct_status','active')->get();
+        
         return view('admin.category.category_list')->with('category_data',$data);
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -53,7 +55,7 @@ class CategoryController extends Controller
                    );
                    
               category::create($data);  
-            return back()->with('success','Image Upload successfully');
+              return redirect('category')->with('info','Data is Added Successfully!');
         }
     }
 
@@ -74,9 +76,12 @@ class CategoryController extends Controller
      * @param  \App\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(category $category)
+    public function edit(Request $request, $id)
     {
-        //
+     
+     
+        $data['category_data'] = category::findOrFail($id);
+        return view('admin.category.category_update',$data);
     }
 
     /**
@@ -88,6 +93,28 @@ class CategoryController extends Controller
      */
     public function update(Request $request, category $category)
     {
+        
+        $id=$category->ct_id;
+
+        if($image= $request->file('userfile')){
+            $new_name=rand().'.'. $image->getClientOriginalExtension();
+            $image->move(public_path('images'),$new_name);
+            $form_data=array(
+                'ct_name'          =>$request->name,
+                'ct_icone'         =>$new_name
+    
+               );
+        }
+        else{
+            $form_data=array(
+                'ct_name'    =>$request->name,
+                'image'      =>$request->oldimage
+    
+               );
+        }
+       
+        category::wherect_id($id)->update($form_data);
+        return redirect('category')->with('info','Data is Updated Successfully!');
         //
     }
 
@@ -100,5 +127,14 @@ class CategoryController extends Controller
     public function destroy(category $category)
     {
         //
+    }
+
+    public function category_delete($id)
+    {
+        $delete_data=array(
+            'ct_status'=>'deactive'
+        );
+        category::wherect_id($id)->update($delete_data);
+        return redirect('category')->with('info','Data is Deleted Successfully!');
     }
 }
