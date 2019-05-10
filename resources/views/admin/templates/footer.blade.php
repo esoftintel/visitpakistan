@@ -238,8 +238,7 @@
                 $(document).ready(function(){
                     $('#category1').on('change',function(){
                         var category_id=$(this).val();
-                        //alert(category_id);
-                  
+                     
                         if(category_id)
                         {
                             $.ajax({
@@ -247,13 +246,10 @@
                                 type:'GET',
                                 dataType:'json',
                                 success:function(data){
-                                   //var select=document.getElementById('subcategory'),
-                                    console.log(data); 
-                                    $('#subcategory1').empty();
-                                    
+                                   $('#subcategory1').empty();
+                                    $('#attribute').empty();
                                     $.each(data,function(key,value){
-                                        // alert(key);
-                                    // alert(value);
+                                
                                      $('#subcategory1').append('<option value="'+value.st_id+'">'+value.st_name+'</option>');
                                     });
                                 
@@ -264,33 +260,22 @@
                         else
                             {
                             $('#subcategory1').html('<option value="">Select Subcategory</option>');
-                            $('#category1').html('<option value="">Select Category</option>');
                             }
                     });
 
                     $('#subcategory1').change(function(){
                     var subcategory_id = $('#subcategory1').val();
-                         //alert(subcategory_id);
-                        if(subcategory_id)
+                       if(subcategory_id)
                         {
                             $.ajax({
                                 url:'/getattribute/'+subcategory_id,
                                 type:'GET',
                                 dataType:'json',
-                                success:function(data){
-                                   //var select=document.getElementById('subcategory'),
-                                    // console.log(data); 
-                                    // $('#subcategory1').empty();
-                                    // $('#attribute').html('<option value="">Select Attribute</option>');
-                                    console.log(data); 
-                                    $('#subcategory1').empty();
-                                    $('#subcategory1').html('<option value="">Select Subcategory</option>');
-                                    $('#attribute').html('<option value="">Select Attribute of sub Category</option>');
-                                    
+                                success:function(data){ 
+                                    $('#attribute').empty();
+                                   
                                     $.each(data,function(key,value){
-                                    //     alert(key);
-                    
-                                     $('#attribute').append('<option value="'+value.at_id+'">'+value.at_name+'</option>');
+                                    $('#attribute').append('<option value="'+value.at_id+'">'+value.at_name+'</option>');
                                     });
                                 
                                     
