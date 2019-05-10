@@ -11,6 +11,11 @@
        
         <div class="row">
         <div class="col-lg-12 col-md-12">
+        @if (session('info'))
+          <div class="alert alert-success">
+              {{ session('info') }}
+          </div>
+          @endif
             <div class="card ">
               <div class="card-header">
               <div class="row"> 
@@ -43,8 +48,9 @@
                       
                         <td>{{$key->created_at}}</td>
                         <td>
-                           <a class="btn btn-primary btn-sm" href="{{url('/attribute')}}" role="button">Update</a>
-                           <a class="btn btn-primary btn-sm" href="{{url('/attribute')}}" role="button">Delete</a> 
+                           
+                           <a class="btn btn-primary btn-sm" href="{{route('attributer.edit',$key->at_id)}}">Update</a>
+                           <a class="btn btn-primary btn-sm" href="{{url('/attribute_delete/'.$key->at_id)}}" role="button">Delete</a> 
                          </td>
                       </tr>
                       @endforeach

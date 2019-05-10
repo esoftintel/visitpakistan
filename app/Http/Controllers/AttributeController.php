@@ -16,7 +16,7 @@ class AttributeController extends Controller
      */
     public function index()
     {
-        $attribute = attribute::get();
+        $attribute = attribute::where('status','active')->get();
       
         return view('admin.attribute.attribute_list')->with('attribute_data',$attribute);
     }
@@ -74,9 +74,12 @@ class AttributeController extends Controller
      * @param  \App\attribute  $attribute
      * @return \Illuminate\Http\Response
      */
-    public function edit(attribute $attribute)
+    public function edit($id)
     {
         //
+        //print_r($id); exit;
+        $data=attribute:: findOrFail($id);
+        return view('admin.attribute.attribute_update')->with('attribute_data',$data);
     }
 
     /**
@@ -86,9 +89,20 @@ class AttributeController extends Controller
      * @param  \App\attribute  $attribute
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, attribute $attribute)
+    public function update(Request $request,$id)
     {
         //
+        $attribute=$request->input('attribute');
+       
+       
+        $data =array(
+            'at_name' => $attribute  ,                                   
+          );
+        
+     attribute::whereat_id($id)->update($data);  
+     return redirect('attributer')->with('info','Data is updated Successfully!');
+
+        
     }
 
     /**
@@ -97,9 +111,16 @@ class AttributeController extends Controller
      * @param  \App\attribute  $attribute
      * @return \Illuminate\Http\Response
      */
-    public function destroy(attribute $attribute)
+    public function destroy($id)
     {
         //
+          $data =array(
+            'status' =>'deactive'                   
+                              
+          );
+        
+     attribute::whereat_id($id)->update($data);  
+     return redirect('attribute')->with('info','Data is Added Successfully!');
     }
 
     public function attribute_store(Request $request)

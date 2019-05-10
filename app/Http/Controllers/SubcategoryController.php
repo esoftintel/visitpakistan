@@ -77,6 +77,10 @@ class SubcategoryController extends Controller
     public function edit(subcategory $subcategory)
     {
         //
+        $data['category_data'] = category::where('ct_status','active')->get();
+        $data['subcategory']=$subcategory;
+     
+        return view('admin.subCategory.subCategory_update')->with($data);
     }
 
     /**
@@ -86,9 +90,21 @@ class SubcategoryController extends Controller
      * @param  \App\subcategory  $subcategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, subcategory $subcategory)
+    public function update(Request $request,$id)
     {
         //
+        
+        $subcategory=$request->input('subcategory');
+        $category=$request->input('category_id');
+       
+        $data =array(
+            'st_name' => $subcategory,                   
+            'st_ct_id' => $category                   
+          );
+        
+     subcategory::wherest_id($id)->update($data);  
+     return redirect('subcategory')->with('info','Data is updated Successfully!');
+        
     }
 
     /**
@@ -97,8 +113,15 @@ class SubcategoryController extends Controller
      * @param  \App\subcategory  $subcategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(subcategory $subcategory)
+    public function distory($id)
     {
         //
+        $data =array(
+            'st_status' =>'deactive'                   
+                              
+          );
+        
+     subcategory::wherest_id($id)->update($data);  
+     return redirect('subcategory')->with('info','Data is updated Successfully!');
     }
 }
