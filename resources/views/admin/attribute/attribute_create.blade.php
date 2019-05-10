@@ -16,7 +16,7 @@
               <div class="card-header">
               <div class="row"> 
                 <div class="col-lg-6"><h4 class="card-title">Add Attribute</h4></div>
-                <div class="col-lg-6"> <a class="btn btn-primary btn-sm pull-right" href="{{url('/attribute_list')}}" role="button">Attributes</a></div>
+                <div class="col-lg-6"> <a class="btn btn-primary btn-sm pull-right" href="{{route('attributer.index')}}" role="button">Attributes</a></div>
                 </div>
                
               </div>

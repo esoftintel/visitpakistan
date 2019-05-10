@@ -15,20 +15,20 @@
             <div class="card ">
               <div class="card-header">
               <div class="row"> 
-                <div class="col-lg-6"><h4 class="card-title">Add Attribute</h4></div>
-                <div class="col-lg-6"> <a class="btn btn-primary btn-sm pull-right" href="{{route('attributer.index')}}" role="button">Attributes</a></div>
+                <div class="col-lg-6"><h4 class="card-title">Update Attribute Value</h4></div>
+                <div class="col-lg-6"> <a class="btn btn-primary btn-sm pull-right" href="{{route('attribute_value.index')}}" role="button">Attributes</a></div>
                 </div>
                
               </div>
               <div class="card-body">
                 <div class="table-responsive">
-                <form action='{{route("attributer.update",$attribute_data->at_id)}}' method="post" enctype="multipart/form-data">
+                <form action='{{route("attribute_value.update",$attribute_value_data->atv_id)}}' method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
                 
                     <div class="form-group">
                         <label for="exampleInputEmail1">Name</label>
-                        <input type="text" class="form-control" value="{{$attribute_data->at_name}}" name="attribute"  placeholder="Attribute Name">
+                        <input type="text" class="form-control" value="{{$attribute_value_data->atv_name}}" name="value"  placeholder="Attribute value name">
                      </div>
                    
                    

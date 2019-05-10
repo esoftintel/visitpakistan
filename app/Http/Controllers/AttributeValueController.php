@@ -17,7 +17,7 @@ class AttributeValueController extends Controller
      */
     public function index()
     {
-       $attribute_value = attribute_value::get();
+       $attribute_value = attribute_value::where('atv_status','active')->get();
        return view('admin.attributevalue.attribute_value_list')->with('attributevalue_data',$attribute_value);
     }
 
@@ -76,9 +76,11 @@ class AttributeValueController extends Controller
      * @param  \App\attribute_value  $attribute_value
      * @return \Illuminate\Http\Response
      */
-    public function edit(attribute_value $attribute_value)
+    public function edit($id)
     {
         //
+        $data=attribute_value:: findOrFail($id);
+        return view('admin.attributevalue.attribute_value_update')->with('attribute_value_data',$data);
     }
 
     /**
@@ -88,9 +90,18 @@ class AttributeValueController extends Controller
      * @param  \App\attribute_value  $attribute_value
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, attribute_value $attribute_value)
+    public function update(Request $request, $id)
     {
         //
+        $attribute_value=$request->input('value');
+       
+       
+        $data =array(
+            'atv_name' => $attribute_value  ,                                   
+          );
+        
+     attribute_value::whereatv_id($id)->update($data);  
+     return redirect('attribute_value')->with('info','Data is updated Successfully!');
     }
 
     /**
@@ -99,8 +110,16 @@ class AttributeValueController extends Controller
      * @param  \App\attribute_value  $attribute_value
      * @return \Illuminate\Http\Response
      */
-    public function destroy(attribute_value $attribute_value)
+    public function destroy($id)
     {
         //
+        $data =array(
+            'atv_status' =>'deactive'                   
+                              
+          );
+        
+     attribute_value::whereatv_id($id)->update($data);  
+     return redirect('attribute_value')->with('info','Data is Deleted Successfully!');
+       
     }
 }

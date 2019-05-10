@@ -14,7 +14,7 @@
             <div class="card ">
               <div class="card-header">
               <div class="row"> 
-                <div class="col-lg-6"><h4 class="card-title"> Attribute</h4></div>
+                <div class="col-lg-6"><h4 class="card-title">All Attributes</h4></div>
                 <div class="col-lg-6"> <a class="btn btn-primary" href="{{url('/attribute_create')}}" role="button">add Attribute</a></div>
                 </div>
                
@@ -41,8 +41,8 @@
                         <td>{{$key->at_st_id}}</td>
                         <td>{{$key->created_at}}</td>
                         <td>
-                           <a class="btn btn-primary" href="{{url('/attribute')}}" role="button">Update</a>
-                           <a class="btn btn-primary" href="{{url('/attribute')}}" role="button">Delete</a> 
+                           <a class="btn btn-primary" href="{{route('attributer.edit',$key->at_id)}}" role="button">Update</a>
+                           <a class="btn btn-primary" href="{{url('/attribute_')}}" role="button">Delete</a> 
                          </td>
                       </tr>
                       @endforeach

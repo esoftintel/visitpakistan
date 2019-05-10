@@ -38,8 +38,8 @@ Route::resource('attributer','AttributeController');
 Route::get('/attribute', 'AttributeController@index')->name('attribute');
 Route::get('/attribute_create', 'AttributeController@create')->name('attribute_create');
 Route::post('/attribute_store', 'AttributeController@attribute_store')->name('attribute_store');
-Route::get('/attribute_edit/{id}', 'AttributeController@edit')->name('attribute_edit');
-Route::post('/attribute_update', 'AttributeController@update')->name('attribute_update');
+Route::get('/attribute_delete/{id}','AttributeController@destroy');
+
 
 Route::resource('category','CategoryController');
 Route::get('/category_list', 'CategoryController@index')->name('category');
@@ -50,9 +50,12 @@ Route::post('/category_update', 'CategoryController@update')->name('category_upd
 Route::get('/category_delete/{id}','CategoryController@category_delete');
 
 Route::resource('subcategory','SubcategoryController');
+Route:: get('/subcategory_delete/{id}','SubcategoryController@distory');
 
 Route::resource('attribute_value','AttributeValueController');
 Route::get('/AttributeValue', 'AttributeValueController@index')->name('AttributeValue');
+Route::get('/at_value_delete/{id}','AttributeValueController@destroy');
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
