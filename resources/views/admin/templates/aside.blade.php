@@ -20,7 +20,7 @@
             <a href="{{url('/category')}}">
             <i class='tim-icons icon-single-02'></i>
               <!-- <i class="tim-icons icon-atom"></i> -->
-              <p>Category</p>
+              <p>Categories</p>
             </a>
           </li>
           <li >
@@ -31,7 +31,7 @@
             <a href="{{url('/subcategory')}}">
             <i class='tim-icons icon-single-02'></i>
               <!-- <i class="tim-icons icon-atom"></i> -->
-              <p>SubCategory</p>
+              <p>SubCategories</p>
             </a>
           </li>
          
@@ -39,22 +39,22 @@
             <a href="{{url('/attribute')}}">
             <i class='tim-icons icon-align-center'></i>
               <!-- <i class="tim-icons icon-atom"></i> -->
-              <p>Attribute</p>
+              <p>Attributes</p>
             </a>
           </li>
           <li>
             <a href="{{url('/AttributeValue')}}">
             <i class='tim-icons icon-align-center'></i>
               <!-- <i class="tim-icons icon-atom"></i> -->
-              <p>Attribute Value</p>
+              <p>Attribute Values</p>
             </a>
           </li>
 
            <li>
-            <a href="{{url('/setLink')}}">
+            <a href="{{url('/packages')}}">
             <i class='tim-icons icon-align-center'></i>
               <!-- <i class="tim-icons icon-atom"></i> -->
-              <p>setLink</p>
+              <p>Packages</p>
             </a>
           </li>
           

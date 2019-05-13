@@ -115,10 +115,8 @@ class AttributeController extends Controller
     {
         //
           $data =array(
-            'status' =>'deactive'                   
-                              
+            'status' =>'deactive'                                      
           );
-        
      attribute::whereat_id($id)->update($data);  
      return redirect('attribute')->with('info','Data is Added Successfully!');
     }

@@ -56,8 +56,10 @@ Route::resource('attribute_value','AttributeValueController');
 Route::get('/AttributeValue', 'AttributeValueController@index')->name('AttributeValue');
 Route::get('/at_value_delete/{id}','AttributeValueController@destroy');
 
-///packages table oprations route
+///packages table oprations route(s)
 Route::resource('packages','PackagController');
+Route::get('/package_delete/{id}','PackagController@destroy');
+Route::get('/relation','PackagController@relation');
 
 
 Route::get('/home', 'HomeController@index')->name('home');
