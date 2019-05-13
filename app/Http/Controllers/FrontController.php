@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\post;
 use App\category;
+use App\subcategory;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class FrontController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +28,7 @@ class PostController extends Controller
     {
         $data['category'] = category::where('ct_status','active')->get();
         $data['subcategory'] = subcategory::where('st_status','active')->get();
-        return view('user.post.post_create')->with('attributevalue_data',$attribute_value);
+        return view('user.post.category_show',$data) ; //->with('category',$data);
     
     }
 

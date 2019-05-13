@@ -12,7 +12,7 @@
 */ 
 
 Route::get('/', function () {
-    return view('header');
+    return view('user.post.post_create');
 });
 
 Auth::routes(['verify' => true]);
@@ -65,5 +65,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 ///rout for get dynamic value for subcategory
 Route::get('/getsubcategory/{id}', 'AttributeController@getcategory');
 Route::get('/getattribute/{id}', 'AttributeController@getattribute');
+
+
+//////////////////////////////user side route here /////////////////////////
+Route::get('/category_show', 'FrontController@create')->name('category_show');
+
+
 
 
