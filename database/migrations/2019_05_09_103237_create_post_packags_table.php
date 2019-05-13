@@ -19,6 +19,10 @@ class CreatePostPackagsTable extends Migration
             $table->biginteger('psk_pk_id')->unsigned();
             $table->foreign('psk_pk_id')->references('pk_id')->on('packags');
 
+            $table->biginteger('psk_ps_id')->unsigned();
+            $table->foreign('psk_ps_id')->references('ps_id')->on('posts');
+
+
             $table->integer('psk_u_id')->unsigned();
             $table->foreign('psk_u_id')->references('id')->on('users');
 
