@@ -5009,6 +5009,116 @@ p {
   color: #555;
 }
 
+/*    manan bhai */
+.image-place{
+  height: 100px;
+  width: 100px;
+  border-radius: 100px
+ }
+.category-menu{
+  width:'50%'
+}
+#first-cat-bar{
+  list-style: none;
+  padding: 0;
+  width: 50%;
+}
+#first-cat-bar .parent{
+  
+  padding: 10px;
+  border-top: 1px solid;
+  border-left: 1px solid;
+  border-right: 1px solid;
+}
+#first-cat-bar .parent:last-child{
+  border-bottom: 1px solid;
+}
+#first-cat-bar .parent > a{
+font-size: 18px;
+display: inline-table;
+width: 100%;
+}
+#first-cat-bar .parent #child {
+  position: absolute;
+    right: 0;
+    width: 50%;
+    list-style: none;
+    margin-top: -38px;
+    padding: 0px;
+    display: none;
+}
+
+#first-cat-bar .parent #child li {
+  padding: 10px;
+
+}
+
+#first-cat-bar .parent:hover{
+  background: #f5548e;
+}
+#first-cat-bar .parent:hover a{
+  color: #fff;
+}
+#first-cat-bar .parent:hover #child li a{
+  color: #f5548e;
+}
+#first-cat-bar .parent:hover #child {
+  display: block;
+
+}
+#first-cat-bar .parent #child li a:hover {
+  color: #000;
+}
+.donate-now {
+  list-style-type:none;
+  margin:25px 0 0 0;
+  padding:0;
+}
+
+.donate-now li {
+  float:left;
+  margin:0 5px 0 0;
+ width:100px;
+ height:40px;
+ position:relative;
+}
+
+.donate-now label, .donate-now input {
+ display:block;
+ position:absolute;
+ top:0;
+ left:0;
+ right:0;
+ bottom:0;
+}
+
+.donate-now input[type="radio"] {
+ opacity:0.01;
+ z-index:100;
+}
+
+.donate-now input[type="radio"]:checked + label,
+.Checked + label {
+ background:#f5548e;
+ color: #fff;
+}
+
+.donate-now label {
+  padding:5px;
+  border:1px solid #CCC; 
+  cursor:pointer;
+ z-index:90;
+ text-align: center;
+}
+
+.donate-now label:hover {
+  background:#DDD;
+}
+/*
+Manan Css end
+*/
+
+
 .author-area {
   display: flex;
   justify-content: flex-end;
