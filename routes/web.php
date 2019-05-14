@@ -71,6 +71,8 @@ Route::get('/getattribute/{id}', 'AttributeController@getattribute');
 
 //////////////////////////////user side route here /////////////////////////
 Route::get('/category_show', 'FrontController@create')->name('category_show');
+Route::get('/post_create', 'FrontController@post_create')->name('post_create');
+Route::get('/post_form/{id}', 'FrontController@post_form')->name('post_form');
 
 
 
