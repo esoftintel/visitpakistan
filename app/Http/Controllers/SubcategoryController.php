@@ -16,9 +16,10 @@ class SubcategoryController extends Controller
     public function index()
     {
         //
-        
-        $data = subcategory::where('st_status','active')->get();
-        
+        $data = subcategory::where('st_status','active')
+                            ->Join('categories', 'categories.ct_id', '=', 'subcategories.st_ct_id')
+                           ->get();
+                         
         return view('admin.subCategory.subCategory_list')->with('subCategory_data',$data);
     }
 
@@ -51,8 +52,6 @@ class SubcategoryController extends Controller
             'st_name' => $subcategory,                   
             'st_ct_id' => $category                   
           );
-        
-          
      subcategory::create($data);  
      return redirect('subcategory')->with('info','Data is Added Successfully!');
     }

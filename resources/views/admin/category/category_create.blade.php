@@ -14,7 +14,7 @@
             <div class="card ">
               <div class="card-header">
               <div class="row"> 
-                <div class="col-lg-6"><h4 class="card-title"> Category</h4></div>
+                <div class="col-lg-6"><h4 class="card-title"> Category Add </h4></div>
                 <div class="col-lg-6"> <a class="btn btn-primary btn-sm pull-right" href="{{url('/category_list')}}" role="button">Categories</a></div>
                 </div>
                
@@ -28,8 +28,8 @@
                         <input type="text" class="form-control" name="name" placeholder="Attribute Name" required >
                      </div>
                     <div class="form-group">
-                        <label> Select Icon </label>
-                        <input type="file" class="form-control btn btn-success"  name="userfile"  >
+                        <label> Select Category Icone </label>
+                        <input type="file" class="form-control"  name="userfile"   required>
                     </div>
                     
                     <button type="submit" class="btn btn-primary btn-sm">Submit</button>

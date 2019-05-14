@@ -22,10 +22,11 @@ class PackagController extends Controller
 
     public function index()
     {
-        //
-        $packages = packag::where('pk_status','active')->get();
-        
-      
+        //packages list view
+        $packages = packag::where('pk_status','active')
+                            ->Join('categories', 'categories.ct_id', '=', 'packags.pk_ct_id')
+                            ->Join('subcategories', 'subcategories.st_id', '=', 'packags.pk_st_id')
+                            ->get();
         return view('admin.packages.packages_list')->with('packages_data',$packages);
     }
 
@@ -39,7 +40,6 @@ class PackagController extends Controller
         //package create function for controller
          $data=category::where('ct_status','active')->get();
          return view('admin.packages.package_create')->with('categories',$data);
-
     }
 
     /**

@@ -43,7 +43,7 @@
                         <td> {{$key->atv_id}} </td>
                         <td>{{$key->atv_name}}</td>
                         <td>{{$key->atv_status}}</td>
-                        <td>{{$key->atv_at_id}}</td>
+                        <td>{{$key->at_name}}</td>
                         <td>{{$key->created_at}}</td>
                         <td>
                            <a class="btn btn-primary btn-sm" href="{{route('attribute_value.edit',$key->atv_id)}}" role="button">Update</a>

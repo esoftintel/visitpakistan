@@ -12,7 +12,7 @@
 */ 
 
 Route::get('/', function () {
-    return view('user.post.post_create');
+    return view('user.index');
 });
 
 Auth::routes(['verify' => true]);
@@ -47,7 +47,8 @@ Route::get('/category_create', 'CategoryController@create')->name('category_crea
 Route::post('/category_store', 'CategoryController@store')->name('category_store');
 Route::get('/category_edit/{id}', 'CategoryController@edit')->name('category_edit');
 Route::post('/category_update', 'CategoryController@update')->name('category_update');
-Route::get('/category_delete/{id}','CategoryController@category_delete');
+Route::get('/category_delete/{id}','CategoryController@destroy');
+Route::get('/elequent', 'CategoryController@elequent');
 
 Route::resource('subcategory','SubcategoryController');
 Route:: get('/subcategory_delete/{id}','SubcategoryController@distory');

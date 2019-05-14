@@ -17,7 +17,9 @@ class AttributeValueController extends Controller
      */
     public function index()
     {
-       $attribute_value = attribute_value::where('atv_status','active')->get();
+       $attribute_value = attribute_value::where('atv_status','active')
+                                        ->Join('attributes', 'attributes.at_id', '=', 'attribute_values.atv_at_id')
+                                        ->get();
        return view('admin.attributevalue.attribute_value_list')->with('attributevalue_data',$attribute_value);
     }
 
