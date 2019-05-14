@@ -33,7 +33,6 @@
                         <th>Name</th>
                         <th>Status</th>
                         <th>Subcategory Name</th>
-                        
                         <th>Created</th>
                         <th>Action</th>
                       </tr>

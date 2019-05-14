@@ -13,7 +13,13 @@ class PackagController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * 
      */
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+
     public function index()
     {
         //
@@ -32,8 +38,6 @@ class PackagController extends Controller
     {
         //package create function for controller
          $data=category::where('ct_status','active')->get();
-         
-
          return view('admin.packages.package_create')->with('categories',$data);
 
     }
@@ -63,10 +67,7 @@ class PackagController extends Controller
             'pk_ct_id' => $category,                   
             'pk_st_id' => $subcategory                  
           );
-        //   echo '<pre>'; 
-        //   print_r($data); exit;
-        
-          
+
      packag::create($data);  
      return redirect('packages')->with('info','Data is Added Successfully!');
     }
@@ -93,7 +94,6 @@ class PackagController extends Controller
     {
         //
         $data=packag:: findOrFail($id);
-        
         return view('admin.packages.package_update')->with('package_data',$data);
         //print_r($packag); exit;
     }
