@@ -16,8 +16,9 @@ class AttributeController extends Controller
      */
     public function index()
     {
-        $attribute = attribute::where('status','active')->get();
-      
+        $attribute = attribute::where('status','active')
+                                ->Join('subcategories', 'subcategories.st_id', '=', 'attributes.at_st_id')
+                                ->get();
         return view('admin.attribute.attribute_list')->with('attribute_data',$attribute);
     }
 

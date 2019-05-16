@@ -43,13 +43,13 @@
                     <tbody>
                     @foreach($packages_data as $key)
                       <tr>
-                        <td> {{$key->pk_id}} </td>
+                         <td> {{$key->pk_id}} </td>
                         <td>{{$key->pk_title}}</td>
                         <td>{{$key->pk_price}}</td>
                         <td>{{$key->pk_duration}}</td>
                         <td>{{$key->pk_status}}</td>
-                        <td>{{$key->pk_ct_id}}</td>
-                        <td>{{$key->pk_st_id}}</td>
+                        <td>{{$key->ct_name}}</td>
+                        <td>{{$key->st_name}}</td>
                       
                         <td>{{$key->created_at}}</td>
                         <td>

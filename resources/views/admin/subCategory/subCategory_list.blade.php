@@ -43,7 +43,7 @@
                         <td>{{$key->st_name}}</td>
                         
                         <td>{{$key->st_status}}</td>
-                        <td>{{$key->st_ct_id}}</td>
+                        <td>{{$key->ct_name}}</td>
                         <td>{{$key->created_at}}</td>
                         <td>
                     

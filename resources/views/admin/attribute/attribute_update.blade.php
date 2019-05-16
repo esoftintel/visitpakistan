@@ -30,9 +30,6 @@
                         <label for="exampleInputEmail1">Name</label>
                         <input type="text" class="form-control" value="{{$attribute_data->at_name}}" name="attribute"  placeholder="Attribute Name">
                      </div>
-                   
-                   
-                    
                     <button type="submit" class="btn btn-primary">Submit</button>
                  </form>
                    

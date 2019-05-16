@@ -13,8 +13,8 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $data = category::get();
+    { 
+        $data = category::where('ct_status','active')->get();
         return view('admin.category.category_list')->with('category_data',$data);
     }
 
@@ -53,7 +53,7 @@ class CategoryController extends Controller
                    );
                    
               category::create($data);  
-            return back()->with('success','Image Upload successfully');
+              return redirect('category')->with('info','Data is Added Successfully!');
         }
     }
 
@@ -87,14 +87,16 @@ class CategoryController extends Controller
      * @param  \App\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request,$id)
     {
       
         $this->validate($request, [
             'userfile' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
     
+
         if ($request->hasFile('userfile')) {
+           
            $image = $request->file('userfile');
             $ctname = $request->input('name');
             $name = time().'.'.$image->getClientOriginalExtension();
@@ -104,16 +106,19 @@ class CategoryController extends Controller
                      'ct_name' => $ctname,                   
                      'ct_icone' => $name                   
                    );
+
         }
         else{
+            
             $data =array(
                 'ct_name' =>  $request->input('name'),                   
                 'ct_icone' => $request->input('oldimg')                 
               );
+              
             }
           
-         category::where('ct_id',$request->input('ctid'))->update($data);  
-       return back()->with('success','Image Upload successfully');
+         category::where('ct_id',$id)->update($data);  
+         return redirect('category')->with('info','Data is Udateded Successfully!');
   
         
     }
@@ -124,8 +129,27 @@ class CategoryController extends Controller
      * @param  \App\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(category $category)
+    public function destroy($id)
     {
         //
+        $data =array(
+            'ct_status' =>'deactive'                                      
+          );
+     category::wherect_id($id)->update($data);  
+     return redirect('category')->with('info','Data is Deleted Successfully!');
+    }
+
+    public function elequent()
+    {
+        
+        $categories = category::with('subcategory')->get();
+        // $data = $this->categories
+        //             ->where('ct_id', '!=', null)
+        //             ->whereHas('subCats')
+        //             ->with('subCats')
+        //             ->get();
+        dd($categories);
+
+        return view('elequent', compact('categories'));
     }
 }
