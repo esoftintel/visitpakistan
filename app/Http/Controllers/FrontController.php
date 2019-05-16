@@ -7,6 +7,7 @@ use App\category;
 use App\subcategory;
 use App\attribute;
 use App\attribute_value;
+use App\post_attribute;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -45,12 +46,21 @@ class FrontController extends Controller
     
     }
 
+    public function image_post()
+    {
+      
+        return view('user.post.image_post') ; //->with('category',$data);
+    
+    }
+
     public function post_form($id)
     {
         $subcategory = subcategory::find($id);
         $category    = category::find($subcategory->st_ct_id);
         $data['category_name'] =$category->ct_name;
         $data['subcategory_name'] =$subcategory->st_name;
+        $data['category_id'] =$category->ct_id;
+        $data['subcategory_id'] =$subcategory->st_id;
         $data['attribute_data'] = attribute::where('status','active')->where('at_st_id',$id)->get();
         foreach ($data['attribute_data'] as $key) {
            $key->attribute_value_data  = attribute_value::where('atv_status','active')->where('atv_at_id',$key->at_id)->get();
@@ -60,15 +70,46 @@ class FrontController extends Controller
     
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    
+    public function post_store(Request $request)
     {
-        //
+       
+        $data=$request->input();
+        $attribute=$request->input('attribute');
+        $attribute_value=$request->input('attribute_value');
+    //    print_r($attribute);
+    //    exit;
+        $data = array(
+                        "ps_title"   => $request->input('title'),
+                        "ps_detail"  => $request->input('detail'),
+                        "ps_price"   => $request->input('price'),
+                        "ps_address" => $request->input('address'),
+                        "ps_ct_id"   => $request->input('ctid'),
+                        "ps_st_id"   => $request->input('sctid'),
+                        "ps_ur_id"   => 1,
+                        "ps_lati"    => $request->input('state'),
+                        "ps_longi"   => $request->input('city'),
+                     );
+                    $d =  post::create($data);
+                  $i=0;
+                  if($attribute)
+                  {
+                      
+                   foreach($attribute as $key)
+                   {
+                       $at = array(
+                                      "pt_title" =>$key,
+                                      "pt_value" =>$attribute_value[$i++],
+                                      "pt_ps_id" =>$d->ps_id,
+                                    );
+                                   
+                                    post_attribute::create($at);
+                   }
+                   
+                  }
+                   $request->session()->put('post_id', $d->ps_id);
+                   return view('user.post.image_post') ; //->with('category',$data);
+
     }
 
     /**

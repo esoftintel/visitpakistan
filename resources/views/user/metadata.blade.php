@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="{{ asset('vendor_assets/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor_assets/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('style.css') }}">
+    <link rel="stylesheet" href="{{ url('/css_img/dropzone.css') }}">
+    <link rel="stylesheet" href="{{ url('/css_img/custom.css') }}">
     <!-- endinject -->
     <link rel="icon" type="{{ asset('image/png" sizes="32x32" href="img/fevicon.png') }}">
 </head>

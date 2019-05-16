@@ -12,7 +12,7 @@
 */ 
 
 Route::get('/', function () {
-    return view('user.post.post_create');
+    return view('user.index');
 });
 
 Auth::routes(['verify' => true]);
@@ -73,6 +73,16 @@ Route::get('/getattribute/{id}', 'AttributeController@getattribute');
 Route::get('/category_show', 'FrontController@create')->name('category_show');
 Route::get('/post_create', 'FrontController@post_create')->name('post_create');
 Route::get('/post_form/{id}', 'FrontController@post_form')->name('post_form');
+Route::post('/post_submit', 'FrontController@post_store')->name('post_submit');
+Route::get('/image_post', 'FrontController@image_post')->name('image_post');
+
+
+///////////////////////images rout////////////////
+Route::post('/images_save', 'MideaController@store')->name('images_save');
+Route::post('/images-delete', 'MideaController@destroy'); 
+Route::get('/images-show', 'MideaController@index');
+
+
 
 
 
