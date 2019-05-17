@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('ps_title');
             $table->string('ps_detail');
             $table->string('ps_price');
+            $table->string('ps_address');
             $table->string('ps_lati');
             $table->string('ps_longi');
             $table->enum('ps_status',['active','deactive']);

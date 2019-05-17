@@ -16,6 +16,7 @@ class CreateMideasTable extends Migration
         Schema::create('mideas', function (Blueprint $table) {
             $table->bigIncrements('m_id');
             $table->string('m_url');
+            $table->string('m_name');
             $table->string('m_type');
             $table->enum('m_status',['active','deactive']);
             $table->biginteger('m_ps_id')->unsigned();
