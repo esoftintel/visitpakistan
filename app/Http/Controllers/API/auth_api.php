@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request; 
 use App\Http\Controllers\Controller; 
 use App\User; 
+use App\category; 
 use Illuminate\Support\Facades\Auth; 
 use Validator;
 
@@ -18,7 +19,7 @@ class auth_api extends Controller
          * @return \Illuminate\Http\Response 
          */ 
         public function login(){ 
-            print_r(request('password')); exit;
+            //print_r(request('password')); exit;
            // print_r(attempt(['email' => request('email'), 'password' => request('password')])); exit;
             if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){ 
                 $user = Auth::user(); 
@@ -35,25 +36,24 @@ class auth_api extends Controller
          * 
          * @return \Illuminate\Http\Response 
          */ 
-        public function register(Request $request) 
-        { 
-            $validator = Validator::make($request->all(), [ 
-                'name' => 'required', 
-                'email' => 'required|email', 
-                'password' => 'required', 
-                'c_password' => 'required|same:password', 
-            ]);
+    public function register(Request $request) 
+    { 
+        $validator = Validator::make($request->all(), [ 
+            'name' => 'required', 
+            'email' => 'required|email', 
+            'password' => 'required', 
+            'c_password' => 'required|same:password', 
+        ]);
     if ($validator->fails()) { 
-                return response()->json(['error'=>$validator->errors()], 401);            
-            }
-    $input = $request->all(); 
-    // print_r($input); exit;
-            $input['password'] = bcrypt($input['password']); 
-            $user = User::create($input); 
-            $success['token'] =  $user->createToken('MyApp')-> accessToken; 
-            $success['name'] =  $user->name;
-    return response()->json(['success'=>$success], $this-> successStatus); 
+            return response()->json(['error'=>$validator->errors()], 401);            
         }
+        $input = $request->all(); 
+        $input['password'] = bcrypt($input['password']); 
+        $user = User::create($input); 
+        $success['token'] =  $user->createToken('MyApp')-> accessToken; 
+        $success['name'] =  $user->name;
+        return response()->json(['success'=>$success], $this-> successStatus); 
+    }
     /** 
          * details api 
          * 
@@ -64,4 +64,26 @@ class auth_api extends Controller
             $user = Auth::user(); 
             return response()->json(['success' => $user], $this-> successStatus); 
         } 
+
+        public function getAllUsers()
+        {
+            $users=User::all();
+            return response()->json(['success' => $users], $this-> successStatus); 
+
+        }
+
+        public function getAllCategories()
+        {
+            $categories=category::where('ct_status','active')->get();
+            if($categories)
+            {
+                return response()->json(['success' => $categories], $this-> successStatus); 
+            }
+            else
+            {
+                return response()->json(['Unsuccess' => 'No Category exits in database']); 
+            }
+            
+
+        }
 }
