@@ -21,6 +21,21 @@
         <div class="container">
         <div class="row">
         <div class="col-sm-10 offset-sm-1">
+            <h2 class="page-heading">Category :{{$category_data->ct_name}} </h2>
+            <h2 class="page-heading">SubCategory :{{$subcategory_data->st_name}} </h2>
+             @foreach($post_attribute_data as $key)
+             <h2 class="page-heading">{{$key->pt_title}} </h2>
+             <h2 class="page-heading">{{$key->pt_value}} </h2>
+            
+             @endforeach
+
+             <h2 class="page-heading">Title :{{$post_data->ps_title}} </h2>
+             <h2 class="page-heading">Detail:{{$post_data->ps_detail}} </h2>
+             <h2 class="page-heading">Price :$ {{$post_data->ps_price}} </h2>
+             <h2 class="page-heading">Address :{{$post_data->ps_address}} </h2>
+
+        </div>
+        <div class="col-sm-10 offset-sm-1">
             <h2 class="page-heading">Upload your Images <span id="counter"></span></h2>
             <form method="post" action='{{url("/images_save")}}'
                   enctype="multipart/form-data" class="dropzone" id="my-dropzone">
@@ -39,6 +54,7 @@
              </form> 
         </div>
     </div>
+    <button type="button" class="btn btn-success">Dark</button>
    <!-- {{--Dropzone Preview Template--}} -->
     <div id="preview" style="display: none;">
 

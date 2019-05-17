@@ -111,7 +111,7 @@
                                             <div class="author__access_area">
                                                 <ul class="d-flex list-unstyled align-items-center">
                                                     <li>
-                                                        <a href="add-listing.html" class="btn btn-xs btn-gradient btn-gradient-two">
+                                                        <a href="{{url('category_show')}}" class="btn btn-xs btn-gradient btn-gradient-two">
                                                             <span class="la la-plus"></span> Add Listing
                                                         </a>
                                                     </li>
