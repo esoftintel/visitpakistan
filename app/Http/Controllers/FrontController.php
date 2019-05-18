@@ -8,7 +8,10 @@ use App\subcategory;
 use App\attribute;
 use App\attribute_value;
 use App\post_attribute;
+use App\midea;
 use Illuminate\Http\Request;
+use Redirect;
+use Session;
 
 class FrontController extends Controller
 {
@@ -46,12 +49,7 @@ class FrontController extends Controller
     
     }
 
-    public function image_post()
-    {
-      
-        return view('user.post.image_post') ; //->with('category',$data);
-    
-    }
+
 
     public function post_form($id)
     {
@@ -107,11 +105,26 @@ class FrontController extends Controller
                    }
                    
                   }
-                   $request->session()->put('post_id', $d->ps_id);
-                   return view('user.post.image_post') ; //->with('category',$data);
+                   $request->session()->put('post_id', $d->ps_id); 
+                   return redirect()->to('image_post/'.$d->ps_id);
 
     }
 
+
+    public function image_post($id)
+    {
+          $data['post_data']           = post::find($id);
+         $cid = $data['post_data']->ps_ct_id;
+         $sid = $data['post_data']->ps_st_id;
+         $psid = $data['post_data']->ps_id;
+        //   exit();
+          $data['category_data']       = category::find($cid);
+          $data['subcategory_data']    = subcategory::find($sid);
+          $data['post_attribute_data'] = post_attribute::where('pt_ps_id',$psid)->get();
+         
+        return view('user.post.image_post',$data) ; //->with('category',$data);
+    
+    }
     /**
      * Display the specified resource.
      *
