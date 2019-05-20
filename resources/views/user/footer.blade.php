@@ -137,10 +137,12 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" enctype="multipart/form-data" action="{{ url('/userlogin') }}"  id="signup-form">
+                    <form method="post" enctype="multipart/form-data" action="{{ url('/usersignup') }}">
+                    {{ csrf_field() }}
+                    <input type="text" class="form-control" name='name' placeholder="Name" required>
                         <input type="email" class="form-control" name='email' placeholder="Email" required>
                         <input type="password" class="form-control" name="password" placeholder="Password" required>
-                        <button type="submit" name="submit" class="btn btn-block btn-lg btn-gradient btn-gradient-two">Sign Up</button>
+                        <button type="submit" name="submit" class="btn btn-block form-control btn-lg btn-gradient btn-gradient-two">Sign Up</button>
                     </form>
                     <div class="form-excerpts">
                         <ul class="list-unstyled">

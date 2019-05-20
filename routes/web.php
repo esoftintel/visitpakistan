@@ -87,6 +87,7 @@ Route::get('/images-show', 'MideaController@index');
 ////////////user Login Signup
 Route::post('/userlogin', 'HomeController@user_login'); 
 Route::get('/userlogout','HomeController@user_logout');
+Route::Post('/usersignup','HomeController@user_register');
 
 
 

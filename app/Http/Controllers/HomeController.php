@@ -59,4 +59,10 @@ class HomeController extends Controller
         session()->forget('user');
         return view('user.index');
     }
+
+    public function user_register(Request $request)
+    {
+        $post=$request->input();
+        pritn_r($post); exit;
+    }
 }
