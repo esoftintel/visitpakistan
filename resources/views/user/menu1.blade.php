@@ -115,20 +115,11 @@
                                                             <span class="la la-plus"></span> Add Listing
                                                         </a>
                                                     </li>
-                                                    @if (!session('user'))
                                                     <li>
                                                         <a href="" class="access-link" data-toggle="modal" data-target="#login_modal">Login</a>
                                                         <span>or</span>
                                                         <a href="" class="access-link" data-toggle="modal" data-target="#signup_modal">Register</a>
                                                     </li>
-                                                    @else
-                                                    <li>
-                                                        <a href="" class="access-link" data-toggle="modal" data-target="#login_modal">{{session('user')}}</a>
-                                                        <span></span>
-                                                        <a href="{{url('/userlogout')}}" >Logout</a>
-                                                    </li>
-                                                    @endif 
-
                                                 </ul>
                                             </div>
                                         </div>

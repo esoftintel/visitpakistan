@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -11,10 +12,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
@@ -26,5 +27,36 @@ class HomeController extends Controller
        // return view('home');
        
         return view('home');
+    }
+
+    public function user_login(Request $request)
+    {
+      $post=$request->input();
+      $data=array(
+          'email'=>$post['email'],
+          'password'=>$post['password'],
+
+      );
+
+      $check=User::where('email',$post['email'])
+                   ->where('password',$post['password'])
+                   ->first();
+                 
+      
+      if($check->id)
+      {
+    
+        session(['user' => $check->name]);
+        //$request->session()->put('user', $check->name);
+      }
+   
+      return view('user.index');
+
+    }
+
+    public function user_logout()
+    {
+        session()->forget('user');
+        return view('user.index');
     }
 }

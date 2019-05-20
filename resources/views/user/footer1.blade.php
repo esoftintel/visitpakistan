@@ -19,11 +19,11 @@
                         <div class="widget widget_pages">
                             <h2 class="widget-title">Helpful Links</h2>
                             <ul class="list-unstyled">
-                                <li class="page-item"><a href="">GawadarHub</a></li>
+                                <li class="page-item"><a href="">Join Direo</a></li>
                                 <li class="page-item"><a href="">Sign In</a></li>
                                 <li class="page-item"><a href="">How it Work</a></li>
                                 <li class="page-item"><a href="">Advantages</a></li>
-                                <li class="page-item"><a href="">GawadarHub App</a></li>
+                                <li class="page-item"><a href="">Direo App</a></li>
                                 <li class="page-item"><a href="">Packages</a></li>
                             </ul>
                         </div>
@@ -42,9 +42,9 @@
                     </div><!-- ends: .col-lg-3 -->
                     <div class="col-lg-4 col-sm-6">
                         <div class="widget widget_text">
-                            <h2 class="widget-title">Gawadarhub on Mobile</h2>
+                            <h2 class="widget-title">Direo on Mobile</h2>
                             <div class="textwidget">
-                                <p>Download the GawadarHub app today so you can find your events anytime, anywhere.</p>
+                                <p>Download the Direo app today so you can find your events anytime, anywhere.</p>
                                 <ul class="list-unstyled store-btns">
                                     <li><a href="" class="btn-gradient btn-gradient-two btn btn-md btn-icon icon-left"><span class="fab fa-apple"></span> App Store</a></li>
                                     <li><a href="" class="btn btn-dark btn-md btn-icon btn-icon"><span class="fab fa-android"></span> Google Play</a></li>
@@ -71,26 +71,49 @@
             </div>
         </div><!-- ends: .footer-bottom -->
     </footer><!-- ends: .footer -->
-
-    ///login in model
-    <div class="modal fade" id="login_modal"  role="dialog" aria-labelledby="login_modal_label" aria-hidden="true">
+    <div class="modal fade" id="login_modal" tabindex="-1" role="dialog" aria-labelledby="login_modal_label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="login_modal_label"><i class="la la-lock"></i> Log In</h5>
+                    <h5 class="modal-title" id="login_modal_label"><i class="la la-lock"></i> Sign In</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                <form method="POST" action="{{ url('/userlogin')}}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('login') }}">
                         @csrf
-                        <input type="email" name="email" class="form-control" placeholder="Email" required>
-                        <input type="password" name="password" class="form-control" placeholder="Password" required>
 
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
-                        <div class="form-group">
                             <div class="col-md-6">
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                @if ($errors->has('email'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required autocomplete="current-password">
+
+                                @if ($errors->has('password'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
@@ -101,15 +124,17 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-12 ">
-                            <button type="submit" name="submit" class="btn btn-block btn-lg btn-gradient btn-gradient-two">Login</button>
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Login') }}
+                                </button>
 
-                                <!-- @if (Route::has('password.request'))
+                                @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
-                                @endif -->
+                                @endif
                             </div>
                         </div>
                     </form>
@@ -137,14 +162,14 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" enctype="multipart/form-data" action="{{ url('/userlogin') }}"  id="signup-form">
-                        <input type="email" class="form-control" name='email' placeholder="Email" required>
-                        <input type="password" class="form-control" name="password" placeholder="Password" required>
-                        <button type="submit" name="submit" class="btn btn-block btn-lg btn-gradient btn-gradient-two">Sign Up</button>
+                    <form action="/" id="signup-form">
+                        <input type="email" class="form-control" placeholder="Email" required>
+                        <input type="password" class="form-control" placeholder="Password" required>
+                        <button type="submit" class="btn btn-block btn-lg btn-gradient btn-gradient-two">Sign Up</button>
                     </form>
                     <div class="form-excerpts">
                         <ul class="list-unstyled">
-                            <li>Already a member?  <a href="" class="access-link" data-toggle="modal" data-target="#login_modal">Login</a></li>
+                            <li>Already a member? <a href="">Sign In</a></li>
                             <li><a href="">Recover Password</a></li>
                         </ul>
                         <div class="social-login">

@@ -83,6 +83,10 @@ Route::post('/images_save', 'MideaController@store')->name('images_save');
 Route::post('/images-delete', 'MideaController@destroy'); 
 Route::get('/images-show', 'MideaController@index'); 
 
+////////////user Login Signup
+Route::post('/userlogin', 'HomeController@user_login'); 
+Route::get('/userlogout','HomeController@user_logout');
+
 
 
 
