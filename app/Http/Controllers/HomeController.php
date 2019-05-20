@@ -43,7 +43,7 @@ class HomeController extends Controller
                    ->first();
                  
       
-      if($check->id)
+      if($check)
       {
     
         session(['user' => $check->name]);
