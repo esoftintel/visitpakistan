@@ -28,7 +28,7 @@ class AttributeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {  
+    { 
         $data = category::where('ct_status','active')->get();
         return view('admin.attribute.attribute_create')->with('category_data',$data);
     }
