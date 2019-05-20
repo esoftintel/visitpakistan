@@ -24,8 +24,8 @@ Route::post('/login', '\App\Http\Controllers\API\test_api@login');
 Route::post('login', 'API\auth_api@login');
 Route::post('register', 'API\auth_api@register');
 Route::group(['middleware' => 'auth:api'], function(){
-Route::get('details', 'API\auth_api@details');
-});
+    Route::post('details', 'API\auth_api@details');
+    });
 
 Route::group(['middleware' => 'auth:api'], function(){
     Route::get('users','API\auth_api@getAllUsers');
@@ -35,4 +35,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::group(['middleware' => 'auth:api'], function(){
         Route::get('categories','API\auth_api@getAllCategories');
         });
+        Route::group(['middleware' => 'auth:api'], function(){
+            Route::post('category_add','API\auth_api@category_add');
+            });
         

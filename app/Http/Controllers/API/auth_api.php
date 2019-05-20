@@ -19,11 +19,8 @@ class auth_api extends Controller
          * @return \Illuminate\Http\Response 
          */ 
         public function login(){ 
-            //print_r(request('password')); exit;
-           print_r(Auth::attempt(['email' => request('email'), 'password' => request('password')])); exit;
             if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){ 
                 $user = Auth::user(); 
-
                 $success['token'] =  $user->createToken('MyApp')-> accessToken; 
                 return response()->json(['success' => $success], $this-> successStatus); 
             } 
@@ -84,6 +81,46 @@ class auth_api extends Controller
                 return response()->json(['Unsuccess' => 'No Category exits in database']); 
             }
             
+
+        }
+
+        public function category_add(Request $request)
+        {
+            $validator = Validator::make($request->all(), [ 
+                'name' => 'required', 
+                'userfile' => 'required|image',  
+            ]);
+            // $this->validate($request, [
+            //     'userfile' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // ]);
+        
+            if (!$validator->fails()) {
+               $image = $request->file('userfile');
+                $ctname = $request->input('name');
+                $name = time().'.'.$image->getClientOriginalExtension();
+                $destinationPath = public_path('/images');
+                $image->move($destinationPath, $name);
+                $data =array(
+                         'ct_name' => $ctname,                   
+                         'ct_icone' => $name                   
+                       );
+                       
+                  $data=category::create($data);
+                  $id=$data->ct_id ;
+                  if($id)
+                  {
+                    $category=category::where('ct_id',$id)->first();
+                    return response()->json(['success' => $category], $this-> successStatus);
+                  }
+                  else
+                  {
+                    return response()->json(['unsuccess' => 'There is some error to add category please try again!']);
+                  }
+            }
+            else
+            {
+                return response()->json(['unsuccess' => 'Plese Select the Icon image also!']);
+            }
 
         }
 }
