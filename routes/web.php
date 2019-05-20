@@ -76,6 +76,7 @@ Route::get('/post_create', 'FrontController@post_create')->name('post_create');
 Route::get('/post_form/{id}', 'FrontController@post_form')->name('post_form');
 Route::post('/post_submit', 'FrontController@post_store')->name('post_submit');
 Route::get('/image_post/{id}', 'FrontController@image_post')->name('image_post');
+Route::get('/all', 'FrontController@index')->name('all');
 
 
 ///////////////////////images rout////////////////
