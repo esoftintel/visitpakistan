@@ -22,7 +22,17 @@ class FrontController extends Controller
      */
     public function index()
     {
-        //
+        $post_data = post::where('ps_status','active')->inRandomOrder()->limit(6)->get();
+        foreach ($post_data as $key) {
+            $key->media_data          = midea::where('m_ps_id',$key->ps_id)->first();
+           
+            $key->category_data       = category::find($key->ps_ct_id);
+            $key->subcategory_data    = subcategory::find($key->ps_st_id); 
+            $key->post_attribute_data = post_attribute::where('pt_ps_id',$key->ps_id)->get();
+        }
+        $category_data       = category::get();
+        return view('user.index2',['post_data'=>$post_data,'category_data'=>$category_data]) ; 
+      
     }
 
     /**

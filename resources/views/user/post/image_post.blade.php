@@ -54,7 +54,7 @@
              </form> 
         </div>
     </div>
-    <button type="button" class="btn btn-success">Dark</button>
+  <a href="#">  <button type="button" class="btn btn-success">Dark</button></a>
    <!-- {{--Dropzone Preview Template--}} -->
     <div id="preview" style="display: none;">
 
