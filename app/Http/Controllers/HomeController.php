@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth; 
 use App\User;
+use Validator;
 
 class HomeController extends Controller
 {
@@ -31,23 +33,11 @@ class HomeController extends Controller
 
     public function user_login(Request $request)
     {
-      $post=$request->input();
-      $data=array(
-          'email'=>$post['email'],
-          'password'=>$post['password'],
 
-      );
-
-      $check=User::where('email',$post['email'])
-                   ->where('password',$post['password'])
-                   ->first();
-                 
-      
-      if($check)
+      if(Auth::attempt(['email' => request('email'), 'password' => request('password')]))
       {
-    
-        session(['user' => $check->name]);
-        //$request->session()->put('user', $check->name);
+        $user = Auth::user(); 
+        session(['user' => $user->name,'user_data'=>$user]);
       }
    
       return view('user.index');
@@ -62,7 +52,27 @@ class HomeController extends Controller
 
     public function user_register(Request $request)
     {
-        $post=$request->input();
-        print_r($post); exit;
+        $validator = Validator::make($request->all(), [ 
+            'name' => 'required', 
+            'email' => 'required|email', 
+            'password' => 'required',  
+        ]);
+    if ($validator->fails()) { 
+         return view('user.index');           
+        }
+        else
+        {
+            $input = $request->all(); 
+            // $input['password'] = bcrypt($input['password']);
+             $user = User::create($input); 
+             if($user)
+             {
+                session(['user' => $user->name]);
+             }
+             return view('user.index');
+             
+        }
+       
+        
     }
 }
