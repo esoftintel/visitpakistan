@@ -12,7 +12,7 @@ use App\midea;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
-
+use Carbon\Carbon;
 class FrontController extends Controller
 {
     /**
