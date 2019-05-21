@@ -19,6 +19,7 @@ class auth_api extends Controller
          * @return \Illuminate\Http\Response 
          */ 
         public function login(){ 
+            //print_r(request('email')); exit;
             if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){ 
                 $user = Auth::user(); 
                 $success['token'] =  $user->createToken('MyApp')-> accessToken; 
