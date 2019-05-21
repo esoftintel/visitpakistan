@@ -63,6 +63,6 @@ class HomeController extends Controller
     public function user_register(Request $request)
     {
         $post=$request->input();
-        pritn_r($post); exit;
+        print_r($post); exit;
     }
 }

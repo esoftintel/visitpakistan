@@ -45,7 +45,7 @@ class auth_api extends Controller
             return response()->json(['error'=>$validator->errors()], 401);            
         }
         $input = $request->all(); 
-        $input['password'] = bcrypt($input['password']);
+       // $input['password'] = bcrypt($input['password']);
         $user = User::create($input); 
         $success['token'] =  $user->createToken('MyApp')-> accessToken; 
         $success['name'] =  $user->name;

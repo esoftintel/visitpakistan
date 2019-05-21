@@ -138,7 +138,7 @@
                 </div>
                 <div class="modal-body">
                     <form method="post" enctype="multipart/form-data" action="{{ url('/usersignup') }}">
-                    {{ csrf_field() }}
+                    @csrf
                     <input type="text" class="form-control" name='name' placeholder="Name" required>
                         <input type="email" class="form-control" name='email' placeholder="Email" required>
                         <input type="password" class="form-control" name="password" placeholder="Password" required>
