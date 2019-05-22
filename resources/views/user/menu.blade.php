@@ -111,9 +111,15 @@
                                             <div class="author__access_area">
                                                 <ul class="d-flex list-unstyled align-items-center">
                                                     <li>
+
+                                                    @if (session('user_data'))
+                                                  
                                                         <a href="{{url('category_show')}}" class="btn btn-xs btn-gradient btn-gradient-two">
                                                             <span class="la la-plus"></span> Add Listing
                                                         </a>
+                                                        @else
+                                                        <a href="" class="access-link" data-toggle="modal" data-target="#login_modal">Add Listing</a>
+                                                    @endif 
                                                     </li>
                                                     @if (!session('user'))
                                                     <li>
