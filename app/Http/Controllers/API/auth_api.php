@@ -18,21 +18,18 @@ class auth_api extends Controller
          * 
          * @return \Illuminate\Http\Response 
          */ 
-<<<<<<< HEAD
         public function login(){ 
-            //print_r(request('email')); exit;
-=======
-        public function login(Request $request){ 
-
-
->>>>>>> 9ebb3af2e05888ec923cad964363c67bbc77d3e7
             if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){ 
-                $user = Auth::user(); 
+                $user = Auth::user();
+                $success['status']=1;
+                $success['user']=$user;
                 $success['token'] =  $user->createToken('MyApp')-> accessToken; 
-                return response()->json(['success' => $success], $this-> successStatus); 
+                return response()->json(['result' => $success]); 
             } 
             else{ 
-                return response()->json(['error'=>'Unauthorised'], 401); 
+                $unsuccess['status']=0;
+                $unsuccess['msg']='Username or Password is incorrect';
+                return response()->json(['result' => $unsuccess]); 
             } 
         }
     /** 
@@ -49,14 +46,29 @@ class auth_api extends Controller
             'c_password' => 'required|same:password', 
         ]);
     if ($validator->fails()) { 
-            return response()->json(['error'=>$validator->errors()], 401);            
+           
+            return response()->json(['status'=>0,'error'=>$validator->errors()], 401);            
         }
         $input = $request->all(); 
        // $input['password'] = bcrypt($input['password']);
-        $user = User::create($input); 
-        $success['token'] =  $user->createToken('MyApp')-> accessToken; 
-        $success['name'] =  $user->name;
-        return response()->json(['success'=>$success], $this-> successStatus); 
+        $user = User::where('email', $input['email'])->first();
+        
+        if(!$user)
+        {
+         $user = User::Create($input);
+         $success['status'] = 1;
+         $success['user'] =  $user;
+         $success['token'] =  $user->createToken('MyApp')-> accessToken; 
+        
+        return response()->json(['success'=>$success], $this-> successStatus);  
+        }
+        else
+        {
+            $response['status'] = 0;
+            $response['msg']='User with this Email already exits so it cannot register again!';
+           return response()->json(['error'=>$response]);
+        }
+        
     }
     /** 
          * details api 
@@ -72,20 +84,32 @@ class auth_api extends Controller
         public function getAllUsers()
         {
             $users=User::all();
-            return response()->json(['success' => $users], $this-> successStatus); 
+            return response()->json(['status'=>1,'success' => $users], $this-> successStatus); 
 
         }
 
         public function getAllCategories()
         {
             $categories=category::where('ct_status','active')->get();
+           // http://127.0.0.1:8000/images/1557829011.png
             if($categories)
             {
-                return response()->json(['success' => $categories], $this-> successStatus); 
+                echo '<pre>';
+                
+                foreach($categories as $category)
+                {
+                  $category->image_path= asset('images').'/'.$category->ct_icone;  
+                 
+                }
+                //endforeach;
+                 //print_r($categories);exit;
+               
+                
+                return response()->json(['status'=>1,'result' => $categories], $this-> successStatus); 
             }
             else
             {
-                return response()->json(['Unsuccess' => 'No Category exits in database']); 
+                return response()->json(['status'=>0,'msg' => 'No Category exits in database']); 
             }
             
 
