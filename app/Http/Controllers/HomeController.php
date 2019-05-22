@@ -37,16 +37,18 @@ class HomeController extends Controller
       if(Auth::attempt(['email' => request('email'), 'password' => request('password')]))
       {
         $user = Auth::user(); 
-        session(['user' => $user->name,'user_data'=>$user]);
+        session(['user' => $user->name,'user_data'=>$user->id]);
+        
       }
    
-      return view('user.index');
+       return redirect()->route('all');
 
     }
 
     public function user_logout()
     {
         session()->forget('user');
+        session()->forget('user_data');
         return view('user.index');
     }
 
@@ -62,14 +64,22 @@ class HomeController extends Controller
         }
         else
         {
-            $input = $request->all(); 
-            // $input['password'] = bcrypt($input['password']);
-             $user = User::create($input); 
-             if($user)
-             {
-                session(['user' => $user->name]);
-             }
-             return view('user.index');
+            $user_is = User::where('email',$request->input('email'))->first();
+           
+            if($user_is)
+            {
+                return view('user.index');  
+            }
+            else{
+                $input = $request->all(); 
+                $user = User::create($input); 
+                if($user)
+                {
+                   session(['user' => $user->name]);
+                }
+                return view('user.index');
+            }
+            
              
         }
        
