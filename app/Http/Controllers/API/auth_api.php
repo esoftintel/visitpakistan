@@ -91,8 +91,7 @@ class auth_api extends Controller
         public function getAllCategories()
         {
             $categories=category::where('ct_status','active')->get();
-           // http://127.0.0.1:8000/images/1557829011.png
-            if($categories)
+           if($categories)
             {
                 echo '<pre>';
                 
@@ -101,10 +100,6 @@ class auth_api extends Controller
                   $category->image_path= asset('images').'/'.$category->ct_icone;  
                  
                 }
-                //endforeach;
-                 //print_r($categories);exit;
-               
-                
                 return response()->json(['status'=>1,'result' => $categories], $this-> successStatus); 
             }
             else
