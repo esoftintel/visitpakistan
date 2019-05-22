@@ -9,6 +9,7 @@ use App\attribute;
 use App\attribute_value;
 use App\post_attribute;
 use App\midea;
+use App\User;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
@@ -22,15 +23,54 @@ class FrontController extends Controller
      */
     public function index()
     {
-        $post_data = post::where('ps_status','active')->inRandomOrder()->limit(6)->get();
+        $post_data = post::where('ps_status','active')
+                          ->inRandomOrder()
+                          ->limit(6)
+                          ->orderByRaw("ps_type = 'feature' asc")
+                          ->orderByRaw("ps_type = 'normal' asc")
+                          ->get();
+                         
         foreach ($post_data as $key) {
             $key->media_data          = midea::where('m_ps_id',$key->ps_id)->first();
-           
             $key->category_data       = category::find($key->ps_ct_id);
-            $key->subcategory_data    = subcategory::find($key->ps_st_id); 
+            $key->subcategory_data    = subcategory::find($key->ps_st_id);
+            $key->create_by           = user::find($key->ps_ur_id);  
             $key->post_attribute_data = post_attribute::where('pt_ps_id',$key->ps_id)->get();
         }
         $category_data       = category::get();
+        foreach ($category_data as $key1) {
+            $i=0;
+            $post_d = post::where('ps_status','active')->where('ps_ct_id',$key1->ct_id)->get();
+             foreach ($post_d as $key2) {
+                 $i++;
+             }
+             $key1->its_post =$i;
+        }
+       
+        return view('user.index2',['post_data'=>$post_data,'category_data'=>$category_data]) ; 
+      
+    }
+
+    public function category_posts($id)
+    {
+        $post_data = post::where('ps_status','active')->where('ps_ct_id',$id)->get();
+        foreach ($post_data as $key) {
+            $key->media_data          = midea::where('m_ps_id',$key->ps_id)->first();
+            $key->category_data       = category::find($key->ps_ct_id);
+            $key->subcategory_data    = subcategory::find($key->ps_st_id); 
+            $key->create_by           = user::find($key->ps_ur_id); 
+            $key->post_attribute_data = post_attribute::where('pt_ps_id',$key->ps_id)->get();
+        }
+        $category_data       = category::get();
+        foreach ($category_data as $key1) {
+            $i=0;
+            $post_d = post::where('ps_status','active')->where('ps_ct_id',$key1->ct_id)->get();
+             foreach ($post_d as $key2) {
+                 $i++;
+             }
+             $key1->its_post =$i;
+        }
+       
         return view('user.index2',['post_data'=>$post_data,'category_data'=>$category_data]) ; 
       
     }
@@ -47,6 +87,7 @@ class FrontController extends Controller
            $key->subcategory = $data['subcategory'] = subcategory::where('st_status','active')->where('st_ct_id',$key->ct_id)->get();
         
         }
+      
         return view('user.post.category_show',$data) ; //->with('category',$data);
     
     }
@@ -70,6 +111,7 @@ class FrontController extends Controller
         $data['category_id'] =$category->ct_id;
         $data['subcategory_id'] =$subcategory->st_id;
         $data['attribute_data'] = attribute::where('status','active')->where('at_st_id',$id)->get();
+        $data['user_data'] =User::find(session('user_data'));
         foreach ($data['attribute_data'] as $key) {
            $key->attribute_value_data  = attribute_value::where('atv_status','active')->where('atv_at_id',$key->at_id)->get();
         
@@ -121,7 +163,7 @@ class FrontController extends Controller
     }
 
 
-    public function image_post($id)
+    public function image_post($id) 
     {
           $data['post_data']           = post::find($id);
          $cid = $data['post_data']->ps_ct_id;

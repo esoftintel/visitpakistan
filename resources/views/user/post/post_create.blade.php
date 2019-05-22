@@ -136,7 +136,7 @@
                                                 </div>
                                                 <br/>
                                                 <label for="" class="form-label">Your Phone Number</label>
-                                                <p>+9234727216162</p>
+                                                <p>{{$user_data->email}}</p>
                                        </div>
                                     </div>
                                    <button type="submit" class="btn btn-primary btn-lg listing_submit_btn">Submit listing</button>
