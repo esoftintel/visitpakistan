@@ -1,6 +1,8 @@
 @include('user.metadata')
 
 @include('user.menu')
+<div class="bg_image_holder">
+            <img src="{{ asset('img/banner.jpg') }}" alt=""></div>
         <div class="directory_content_area">
             <div class="container">
                 <div class="row">
