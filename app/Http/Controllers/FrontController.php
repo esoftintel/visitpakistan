@@ -23,11 +23,12 @@ class FrontController extends Controller
      */
     public function index()
     {
+ 
+      
         $post_data = post::where('ps_status','active')
-                          ->inRandomOrder()
                           ->limit(6)
-                          ->orderByRaw("ps_type = 'feature' asc")
                           ->orderByRaw("ps_type = 'normal' asc")
+                          ->orderByRaw("ps_type = 'feature' asc")
                           ->get();
                          
         foreach ($post_data as $key) {
@@ -36,6 +37,27 @@ class FrontController extends Controller
             $key->subcategory_data    = subcategory::find($key->ps_st_id);
             $key->create_by           = user::find($key->ps_ur_id);  
             $key->post_attribute_data = post_attribute::where('pt_ps_id',$key->ps_id)->get();
+            $created = Carbon::createFromTimeStamp(strtotime($key->created_at));
+            $created ->diff(Carbon::now())->format('%d days, %h hours and %i minutes');
+            $diff = $created->diff(Carbon::now());
+            if($diff->y)
+            {
+               $key->duration=  $diff->y." Years";
+            }
+            elseif($diff->m) {
+                $key->duration=  $diff->m." Months";
+            }
+            elseif($diff->d) {
+                $key->duration=  $diff->d." Days";
+            } elseif($diff->h) {
+                $key->duration=  $diff->h." Hours";
+            } elseif($diff->i) {
+                $key->duration=  $diff->i." Mints";
+            }
+            elseif($diff->s) {
+                $key->duration=  $diff->s." Second";
+            }
+            
         }
         $category_data       = category::get();
         foreach ($category_data as $key1) {
@@ -53,13 +75,37 @@ class FrontController extends Controller
 
     public function category_posts($id)
     {
-        $post_data = post::where('ps_status','active')->where('ps_ct_id',$id)->get();
+        $post_data = post::where('ps_status','active')
+        ->where('ps_ct_id',$id)
+        ->orderByRaw("ps_type = 'normal' asc")
+        ->orderByRaw("ps_type = 'feature' asc")
+        ->get();
         foreach ($post_data as $key) {
             $key->media_data          = midea::where('m_ps_id',$key->ps_id)->first();
             $key->category_data       = category::find($key->ps_ct_id);
             $key->subcategory_data    = subcategory::find($key->ps_st_id); 
             $key->create_by           = user::find($key->ps_ur_id); 
             $key->post_attribute_data = post_attribute::where('pt_ps_id',$key->ps_id)->get();
+            $created = Carbon::createFromTimeStamp(strtotime($key->created_at));
+            $created ->diff(Carbon::now())->format('%d days, %h hours and %i minutes');
+            $diff = $created->diff(Carbon::now());
+            if($diff->y)
+            {
+               $key->duration=  $diff->y." Years";
+            }
+            elseif($diff->m) {
+                $key->duration=  $diff->m." Months";
+            }
+            elseif($diff->d) {
+                $key->duration=  $diff->d." Days";
+            } elseif($diff->h) {
+                $key->duration=  $diff->h." Hours";
+            } elseif($diff->i) {
+                $key->duration=  $diff->i." Mints";
+            }
+            elseif($diff->s) {
+                $key->duration=  $diff->s." Second";
+            }
         }
         $category_data       = category::get();
         foreach ($category_data as $key1) {
@@ -70,6 +116,51 @@ class FrontController extends Controller
              }
              $key1->its_post =$i;
         }
+       
+        return view('user.index2',['post_data'=>$post_data,'category_data'=>$category_data]) ; 
+      
+    }
+    public function post_detail($id)
+    {
+        $key = post::find($id);
+            $key->media_data          = midea::where('m_ps_id',$key->ps_id)->first();
+            $key->media_all_data      = midea::where('m_ps_id',$key->ps_id)->get();
+            $key->category_data       = category::find($key->ps_ct_id);
+            $key->subcategory_data    = subcategory::find($key->ps_st_id); 
+            $key->create_by           = user::find($key->ps_ur_id); 
+            $key->post_attribute_data = post_attribute::where('pt_ps_id',$key->ps_id)->get();
+            $created = Carbon::createFromTimeStamp(strtotime($key->created_at));
+            $created ->diff(Carbon::now())->format('%d days, %h hours and %i minutes');
+            $diff = $created->diff(Carbon::now());
+            if($diff->y)
+            {
+               $key->duration=  $diff->y." Years";
+            }
+            elseif($diff->m) {
+                $key->duration=  $diff->m." Months";
+            }
+            elseif($diff->d) {
+                $key->duration=  $diff->d." Days";
+            } elseif($diff->h) {
+                $key->duration=  $diff->h." Hours";
+            } elseif($diff->i) {
+                $key->duration=  $diff->i." Mints";
+            }
+            elseif($diff->s) {
+                $key->duration=  $diff->s." Second";
+            }
+          
+        print_r($key);
+        exit();
+        // $category_data       = category::get();
+        // foreach ($category_data as $key1) {
+        //     $i=0;
+        //     $post_d = post::where('ps_status','active')->where('ps_ct_id',$key1->ct_id)->get();
+        //      foreach ($post_d as $key2) {
+        //          $i++;
+        //      }
+        //      $key1->its_post =$i;
+       // }
        
         return view('user.index2',['post_data'=>$post_data,'category_data'=>$category_data]) ; 
       

@@ -84,6 +84,7 @@ Route::get('/all', 'FrontController@index')->name('all');
 Route::get('/ad_details', 'FrontController@ad_details')->name('ad_details');
 
 Route::get('/category_post/{id}', 'FrontController@category_posts')->name('category_post');
+Route::get('/post_detail/{id}', 'FrontController@post_detail')->name('post_detail');
 
 
 ///////////////////////images rout////////////////
