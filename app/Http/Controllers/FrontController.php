@@ -125,6 +125,7 @@ class FrontController extends Controller
         $key = post::find($id);
             $key->media_data          = midea::where('m_ps_id',$key->ps_id)->first();
             $key->media_all_data      = midea::where('m_ps_id',$key->ps_id)->get();
+           
             $key->category_data       = category::find($key->ps_ct_id);
             $key->subcategory_data    = subcategory::find($key->ps_st_id); 
             $key->create_by           = user::find($key->ps_ur_id); 
@@ -149,20 +150,9 @@ class FrontController extends Controller
             elseif($diff->s) {
                 $key->duration=  $diff->s." Second";
             }
-          
-        print_r($key);
-        exit();
-        // $category_data       = category::get();
-        // foreach ($category_data as $key1) {
-        //     $i=0;
-        //     $post_d = post::where('ps_status','active')->where('ps_ct_id',$key1->ct_id)->get();
-        //      foreach ($post_d as $key2) {
-        //          $i++;
-        //      }
-        //      $key1->its_post =$i;
-       // }
+      
        
-        return view('user.index2',['post_data'=>$post_data,'category_data'=>$category_data]) ; 
+        return view('user.ad_details',['post_data'=>$key]) ; 
       
     }
 

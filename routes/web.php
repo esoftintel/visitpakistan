@@ -82,6 +82,7 @@ Route::post('/post_submit', 'FrontController@post_store')->name('post_submit');
 Route::get('/image_post/{id}', 'FrontController@image_post')->name('image_post');
 Route::get('/all', 'FrontController@index')->name('all');
 Route::get('/ad_details', 'FrontController@ad_details')->name('ad_details');
+Route::get('/ad_details1/{id}', 'FrontController@post_detail')->name('ad_details1');
 
 Route::get('/category_post/{id}', 'FrontController@category_posts')->name('category_post');
 Route::get('/post_detail/{id}', 'FrontController@post_detail')->name('post_detail');

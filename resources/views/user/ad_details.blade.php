@@ -1,30 +1,32 @@
 @include('user.metadata')
 
 @include('user.menu')
-<div class="bg_image_holder"><img src="img/details-img.jpg" alt=""></div>
+<div class="bg_image_holder"><img src="{{asset('/images/media')}}/{{$post_data->media_data['m_url']}}" alt=""></div>
         <div class="listing-info content_above">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-md-7">
+                        @if($post_data->ps_type=='feature')
                         <ul class="list-unstyled listing-info--badges">
-                            <li><span class="atbd_badge atbd_badge_featured">Featured</span></li>
-                     
+                            <li><span class="atbd_badge atbd_badge_featured">{{$post_data->ps_type}}</span></li>
                         </ul>
+                       @endif
                         <ul class="list-unstyled listing-info--meta">
                             <li>
                                 <span class="atbd_meta atbd_listing_average_pricing" data-toggle="tooltip" data-placement="top" title="" data-original-title="Average">
-                                    <span style="color:#fff" class="atbd_active">10,000 PKR</span>
+                                    <span style="color:#fff" class="atbd_active">{{$post_data->ps_price}} PKR</span>
                                     
                                 </span>
                             </li>
                           
                             <li>
                                 <div class="atbd_listing_category">
-                                    <a href=""><span class="la la-glass"></span>Property</a>
+                                    <a href=""> <img class="cat_featimg" src="{{ asset('images')}}/{{$post_data->category_data['ct_icone']}}" style=" width: 20px; 
+height: 20px;" alt="">{{$post_data->category_data['ct_name']}}</a>
                                 </div>
                             </li>
                         </ul><!-- ends: .listing-info-meta -->
-                        <h1>Strawberry Basil Lemonade</h1>
+                        <h1>{{$post_data->ps_title}}</h1>
    
                     </div>
                     <div class="col-lg-4 col-md-5 d-flex align-items-end justify-content-start justify-content-md-end">
@@ -157,45 +159,25 @@
                         </div>
                         <div class="atbdb_content_module_contents">
                             <div class="gallery-wrapper">
+                           
                                 <div class="gallery-images">
+                               
+                                @foreach($post_data['media_all_data'] as $key)
                                     <div class="single-image">
-                                        <img src="img/g1.jpg" alt="">
-                                    </div>
-                                    <div class="single-image">
-                                        <img src="img/g1.jpg" alt="">
-                                    </div>
-                                    <div class="single-image">
-                                        <img src="img/g1.jpg" alt="">
-                                    </div>
-                                    <div class="single-image">
-                                        <img src="img/g1.jpg" alt="">
-                                    </div>
-                                    <div class="single-image">
-                                        <img src="img/g1.jpg" alt="">
-                                    </div>
-                                    <div class="single-image">
-                                        <img src="img/g1.jpg" alt="">
-                                    </div>
+                                        <img src="{{asset('images/media')}}/{{$key->m_url}}" style=" width: 200px;
+height: 200px;" alt="">
+                                    </div>     
                                 </div><!-- ends: .gallery-images -->
+                                @endforeach
+                               
                                 <div class="gallery-thumbs">
-                                    <div class="single-thumb">
-                                        <img src="img/gt1.jpg" alt="">
+                                @foreach($post_data['media_all_data'] as $key)
+                                    <div class="single-image">
+                                        <img src="{{asset('images/media')}}/{{$key->m_url}}" style=" width: 200px;
+height: 200px;" alt="">
                                     </div>
-                                    <div class="single-thumb">
-                                        <img src="img/gt2.jpg" alt="">
-                                    </div>
-                                    <div class="single-thumb">
-                                        <img src="img/gt3.jpg" alt="">
-                                    </div>
-                                    <div class="single-thumb">
-                                        <img src="img/gt4.jpg" alt="">
-                                    </div>
-                                    <div class="single-thumb">
-                                        <img src="img/gt5.jpg" alt="">
-                                    </div>
-                                    <div class="single-thumb">
-                                        <img src="img/gt3.jpg" alt="">
-                                    </div>
+                                @endforeach
+                                    
                                 </div><!-- ends: .gallery-thumbs -->
                             </div><!-- ends: .gallery-wrapper -->
                         </div>
@@ -207,7 +189,7 @@
                             </div>
                         </div>
                         <div class="atbdb_content_module_contents">
-                            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa kequi officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusan tium dolorem que laudantium, totam rem aperiam the eaque ipsa quae abillo was inventore veritatis keret quasi aperiam architecto beatae vitae dicta sunt explicabo. Nemo ucxqui officia voluptatem accu santium doloremque laudantium, totam rem ape dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas.</p>
+                            <p>{{$post_data->ps_detail}}.</p>
                         </div>
                     </div><!-- ends: .atbd_content_module -->
              
@@ -233,15 +215,15 @@
                                 <ul>
                                     <li>
                                         <div class="atbd_info_title"><span class="la la-map-marker"></span>Address:</div>
-                                        <div class="atbd_info">25 East Valley Road, New York</div>
+                                        <div class="atbd_info">{{$post_data->ps_address}}</div>
                                     </li>
                                     <li>
                                         <div class="atbd_info_title"><span class="la la-phone"></span>Phone Number:</div>
-                                        <div class="atbd_info">(213) 995-7799</div>
+                                        <div class="atbd_info">{{$post_data->create_by['email']}}</div>
                                     </li>
                                     <li>
                                         <div class="atbd_info_title"><span class="la la-envelope"></span>Email:</div>
-                                        <span class="atbd_info">support@aazztech.com</span>
+                                        <span class="atbd_info">{{$post_data->create_by['email']}}</span>
                                     </li>
                                  
                                 </ul>
@@ -263,7 +245,7 @@
                                 </div>
                                 <div class="atbd_name_time">
                                     <h4>Zephy Real Estate <span class="verified" data-toggle="tooltip" data-placement="top" title="Verified"></span></h4>
-                                    <span class="review_time">Posted 6 days ago</span>
+                                    <span class="review_time">Posted {{$post_data->duration}} ago</span>
                                 </div>
                             </div><!-- ends: .atbd_avatar_wrapper -->
                             <div class="atbd_widget_contact_info">
@@ -274,11 +256,11 @@
                                     </li>
                                     <li>
                                         <span class="la la-phone"></span>
-                                        <span class="atbd_info">(213) 995-7799</span>
+                                        <span class="atbd_info">{{$post_data->create_by['email']}}</span>
                                     </li>
                                     <li>
                                         <span class="la la-envelope"></span>
-                                        <span class="atbd_info">support@aazztech.com</span>
+                                        <span class="atbd_info">{{$post_data->create_by['email']}}</span>
                                     </li>
                                  
                                 </ul>
