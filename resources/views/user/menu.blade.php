@@ -1,6 +1,6 @@
 <body>
     <section class="intro-wrapper bgimage overlay overlay--dark">
-        <div class="bg_image_holder"><img src="{{ asset('img/intro.jpg') }}" alt=""></div>
+        <div class="bg_image_holder"><img src="{{ asset('img/banner.jpg') }}" alt=""></div>
         <div class="mainmenu-wrapper">
             <div class="menu-area menu1 menu--light">
                 <div class="top-menu-area">
@@ -25,20 +25,15 @@
                                                         <li>
                                                             <a href="index.html">Home</a>
                                                         </li>
-                                                        <li class="dropdown has_dropdown">
+                                                        <li class="dropdown">
                                                             <a href="#" class="dropdown-toggle" id="drop3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Listings</a>
-                                                            <ul class="dropdown-menu" aria-labelledby="drop3">
-                                                                <li><a href="all-listings-grid.html">Listing Grid</a></li>
-                                                                <li><a href="all-listings-list.html">Listing List</a></li>
-                                                                <li><a href="listing-details.html">Listing Details</a></li>
-                                                                <li><a href="add-listing.html">Add Listing</a></li>
-                                                            </ul>
+                                                            
                                                         </li>
                                                         <li class="dropdown has_dropdown">
                                                             <a href="#" class="dropdown-toggle" id="drop4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
                                                             <ul class="dropdown-menu" aria-labelledby="drop4">
                                                                 <li><a href="all-categories.html">All Categories</a></li>
-                                                                <li><a href="all-locations.html">All Locations</a></li>
+                                                       
                                                             </ul>
                                                         </li>
                                                         <li class="dropdown has_dropdown">
@@ -49,33 +44,16 @@
                                                                 <li><a href="author-profile.html">Author Profile</a></li>
                                                                 <li><a href="dashboard-listings.html">Author Dashboard</a></li>
                                                                 <li><a href="pricing-plans.html">Pricing Plans</a></li>
-                                                                <li><a href="checkout.html">Checkout</a></li>
                                                                 <li><a href="invoice.html">Invoice</a></li>
                                                                 <li><a href="faqs.html">FAQ</a></li>
                                                                 <li><a href="about.html">About</a></li>
                                                                 <li><a href="contact.html">Contact</a></li>
-                                                                <li><a href="cards.html">Products Cards</a></li>
-                                                                <li><a href="headers.html">Header Styles</a></li>
                                                             </ul>
                                                         </li>
-                                                        <li class="dropdown has_dropdown">
+                                                        <li class="dropdown">
                                                             <a class="dropdown-toggle" href="#" id="drop1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                 Blog
                                                             </a>
-                                                            <ul class="dropdown-menu" aria-labelledby="drop1">
-                                                                <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
-                                                                <li><a href="blog-grid.html">Blog Grid Layout</a></li>
-                                                                <li><a href="blog-details-standard.html">Blog Details</a></li>
-                                                                <!-- dropdowns example -->
-                                                                <li class="dropdown-menu--inner">
-                                                                    <a href="#">Dropdown Levels</a>
-                                                                    <ul class="list-unstyled">
-                                                                        <li><a href="">Places</a></li>
-                                                                        <li><a href="">Shop</a></li>
-                                                                        <li><a href="">Business</a></li>
-                                                                    </ul>
-                                                                </li>
-                                                            </ul>
                                                         </li>
                                                     </ul>
                                                 </div>

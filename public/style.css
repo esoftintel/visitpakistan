@@ -1539,6 +1539,16 @@
   background: none;
   color: #272b41;
 }
+.atbd_listing_info .atbd_listing_title{
+  overflow: hidden;
+}
+.atbd_listing_info .atbd_listing_title a{
+  text-overflow: ellipsis;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  height: 11em;
+}
 
 .checkbox-primary .custom-control-label::before {
   background: #f5548e;
