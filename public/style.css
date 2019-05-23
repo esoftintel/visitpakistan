@@ -1549,6 +1549,18 @@
   overflow: hidden;
   height: 11em;
 }
+.atbd_listing_image a .lst_featimg{
+  object-fit: cover;
+  object-position: center;
+  height: 227px;
+  background: #8888;
+}
+.category-single .cat_featimg{
+  height: 250px;
+  object-fit: contain;
+  object-position: center;
+  width: 100%;
+}
 
 .checkbox-primary .custom-control-label::before {
   background: #f5548e;

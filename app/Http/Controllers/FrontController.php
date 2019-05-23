@@ -99,6 +99,9 @@ class FrontController extends Controller
         return view('user.post.post_create',$data) ; //->with('category',$data);
     
     }
+    public function ad_details(){
+        return view('user.ad_details') ; //->with('category',$data);
+    }
 
 
 
