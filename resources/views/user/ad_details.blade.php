@@ -1,12 +1,7 @@
 @include('user.metadata')
 
 @include('user.menu')
-<<<<<<< HEAD
-=======
-
-        <div class="bg_image_holder"><img src="img/details-img.jpg" alt=""></div>
-
->>>>>>> 685e545a90e51411735b321b66b7b5a0305f42a6
+<div class="bg_image_holder"><img src="img/details-img.jpg" alt=""></div>
         <div class="listing-info content_above">
             <div class="container">
                 <div class="row">
