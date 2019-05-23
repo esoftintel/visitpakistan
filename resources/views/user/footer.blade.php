@@ -158,7 +158,12 @@
             </div>
         </div>
     </div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0C5etf1GVmL_ldVAichWwFFVcDfa1y_c"></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxs2Gu24f_hlwSuG-E7tRL9kJS6dITftQ&libraries=places&callback=initialize" async defer></script>
+     -->
+
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize" async defer></script>
+    
+    <script src="{{ url('/js/mapInput.js') }}"></script>
     <!-- inject:js-->
     <script src="{{ asset('vendor_assets/js/jquery/jquery-1.12.3.js') }}"></script>
     <script src="{{ asset('vendor_assets/js/bootstrap/popper.js') }}"></script>

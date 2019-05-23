@@ -157,7 +157,7 @@
                                                         <p><span class="la la-phone"></span>{{$key->create_by['email']}}</p>
                                                     </li>
                                                     <li>
-                                                        <p><span class="la la-calendar-check-o"></span>Posted 2 months ago</p>
+                                                        <p><span class="la la-calendar-check-o"></span>Posted {{$key->duration}} ago</p>
                                                     </li>
                                                 </ul>
                                             </div><!-- End atbd listing meta -->
@@ -170,7 +170,9 @@
                                             </div>
                                             <ul class="atbd_content_right">
                                                 <li class="atbd_save">
-                                                    <span class="la la-heart-o"></span>
+                                                    <span class="la la-heart-o dill"></span>
+                                                    <input type="hidden" name="dill" id="dill" value="{{$key->ps_id}}" >
+                                               
                                                 </li>
                                             </ul>
                                         </div><!-- end .atbd_listing_bottom_content -->
@@ -180,7 +182,11 @@
                         </div><!-- ends: .col-lg-4 -->
                     @endforeach
                       
-                     
+                    <script>
+                           $(".dill" ).click(function() {
+                                    alert($("#dill").val());
+                            });
+                      </script>
                         <div class="col-lg-12 text-center m-top-20">
                             <a href="" class="btn btn-gradient btn-gradient-two">Explore All 200+</a>
                         </div>
