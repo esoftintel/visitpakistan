@@ -12,7 +12,7 @@
      
  
         <div class="col-lg-12 col-md-12">
-        <a class="btn btn-success btn-sm pull-right"  href="{{url('/post_chat/'.$post[0]->ps_id)}}" >Chat</a>
+        <a class="btn btn-success btn-sm pull-right"  href="{{url('/post_chat/'.$post[0]->ps_id)}}" >PostChat</a>
         @if (session('info'))
           <div class="alert alert-success">
               {{ session('info') }}
@@ -84,10 +84,6 @@
                 </div>
               </div>
             </div>
-           
-         
-            
-           
             </div>
                 
                 

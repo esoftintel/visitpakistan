@@ -7,6 +7,7 @@ use App\post_attribute;
 use App\midea;
 use App\category;
 use App\User;
+use App\chat;
 
 
 use Illuminate\Http\Request;
@@ -77,8 +78,13 @@ class admin extends Controller
     return view('admin.posts.post_details')->with('post',$Post);
     }
 
-    public function add()
+    public function post_chat($id)
     {
-        
+        $chats=chat::where('ch_ps_id',$id)
+                 ->select('*','chats.created_at AS ch_created_at')
+                ->join('users','users.id', '=', 'chats.ch_u_id')
+                ->get();
+     return view('admin.posts.post_chat')->with('chats',$chats);
+    
     }
 }

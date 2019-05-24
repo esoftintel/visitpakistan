@@ -61,9 +61,10 @@
           </li>
           
           <li>
-            <a href="{{url('/setLink')}}">
-              <i class="tim-icons icon-pin"></i>
-              <p>setLink</p>
+          <a href="{{url('/dashboard')}}">
+            <i class='tim-icons icon-single-02'></i>
+              <!-- <i class="tim-icons icon-atom"></i> -->
+              <p>Posts</p>
             </a>
           </li>
           <li>
