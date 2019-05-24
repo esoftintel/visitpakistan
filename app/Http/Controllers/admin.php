@@ -1,6 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\post;
+use App\subcategory;
+use App\post_attribute;
+use App\midea;
+use App\category;
+use App\User;
+
 
 use Illuminate\Http\Request;
 
@@ -9,9 +16,45 @@ class admin extends Controller
     //
     public function index()
     {
-    
-        return view('admin.dashboard');
+        $Posts=post::where('ps_status','active')
+        ->select('*','posts.created_at AS p_created_at')
+        ->Join('categories', 'categories.ct_id', '=', 'posts.ps_ct_id')
+        ->join('users','users.id', '=', 'posts.ps_ur_id')
+        ->limit(12)   
+         ->orderByRaw("ps_type = 'normal' asc")
+        ->orderByRaw("ps_type = 'feature' asc")
+        //->orderByRaw("created_at = 'feature' desc")
+        ->get();
+        foreach ($Posts as $key) {
+          $key->image_path= asset('images').'/'.$key->ct_icone;
+          $key->media_data          = midea::where('m_ps_id',$key->ps_id)->get();
+          foreach($key->media_data as $image)
+          {
+              $key->media_path= asset('images').'/media/'.$image->m_url;
+          }
+          $key->post_attribute_data = post_attribute::where('pt_ps_id',$key->ps_id)->get();
+      }
+        return view('admin.dashboard')->with('posts',$Posts);
     }
+
+    public function posts()
+    {
+        $Posts=post::where('ps_status','active')
+        ->select('*','posts.created_at AS p_created_at')
+        ->limit(12)   
+        ->orderByRaw("ps_type = 'feature' asc")
+        ->orderByRaw("created_at  desc")
+        ->get();
+
+        return view('admin.dashboard1')->with('posts',$Posts);
+    }
+   
+    public function post_details($id)
+    {
+        
+
+    }
+
     public function add()
     {
         

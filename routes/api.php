@@ -38,4 +38,9 @@ Route::group(['middleware' => 'auth:api'], function(){
         Route::group(['middleware' => 'auth:api'], function(){
             Route::post('category_add','API\auth_api@category_add');
             });
+
+ Route::group(['middleware' => 'auth:api'], function(){
+                Route::get('category_posts/{id}','API\post_api@category_post');
+                Route::get('all_categories_posts','API\post_api@all_categories_post');
+                });
         

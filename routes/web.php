@@ -25,6 +25,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/otherdatabase','MultidatabaseController@fetchDataFromOtherDatabase');
 
 Route::get('/dashboard','admin@index');
+Route::get('/dashboardposts','admin@posts');
+////post oprations
+Route::get('/post_details/{id}','admin@post_details');
+
+
 Route::resource('users', 'UserController');
 
 Route::resource('roles', 'RoleController');
@@ -89,6 +94,9 @@ Route::get('/images-show', 'MideaController@index');
 Route::post('/userlogin', 'HomeController@user_login'); 
 Route::get('/userlogout','HomeController@user_logout');
 Route::Post('/usersignup','HomeController@user_register');
+
+
+
 
 
 
