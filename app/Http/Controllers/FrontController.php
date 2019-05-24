@@ -123,6 +123,8 @@ class FrontController extends Controller
     public function post_detail($id)
     {
         $key = post::find($id);
+        if($key)
+        {
             $key->media_data          = midea::where('m_ps_id',$key->ps_id)->first();
             $key->media_all_data      = midea::where('m_ps_id',$key->ps_id)->get();
            
@@ -153,6 +155,12 @@ class FrontController extends Controller
       
        
         return view('user.ad_details',['post_data'=>$key]) ; 
+        }
+        else
+        {
+            
+            return Redirect::back()->withErrors(['msg', 'The Message']);  
+        }
       
     }
 

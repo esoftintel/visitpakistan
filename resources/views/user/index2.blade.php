@@ -120,7 +120,7 @@
                                 <article class="atbd_single_listing_wrapper">
                                     <figure class="atbd_listing_thumbnail_area">
                                         <div class="atbd_listing_image">
-                                            <a href="">
+                                            <a href="{{url('ad_details')}}/{{$key->ps_id}}">
                                             @if($key->media_data)
                                             
                                                 <img class="lst_featimg" src="{{ asset('images/media')}}/{{$key->media_data['m_url']}}" alt="listing image">
@@ -170,10 +170,11 @@
                                                     <a href=""><img src="{{ asset('images')}}/{{$key->category_data['ct_icone']}}" style="width:16px; height:16px;" /> {{$key->category_data['ct_name']}}</a>
                                                 </div>
                                             </div>
-                                            <ul class="atbd_content_right">
+                                            <ul class="atbd_content_right dill " data-id="{{$key->ps_id}}">
                                                 <li class="atbd_save">
-                                                    <span class="la la-heart-o dill"></span>
-                                                    <input type="hidden" name="dill" id="dill" value="{{$key->ps_id}}" >
+                                                    <span class="la la-heart-o "  ></span>
+                                                    <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+                                                    <input type="hidden" name="dill" id="user_id" value="{{session('user_data')}}" >
                                                
                                                 </li>
                                             </ul>
@@ -183,12 +184,7 @@
                             </div>
                         </div><!-- ends: .col-lg-4 -->
                     @endforeach
-                      
-                    <script>
-                           $(".dill" ).click(function() {
-                                    alert($("#dill").val());
-                            });
-                      </script>
+                     
                         <div class="col-lg-12 text-center m-top-20">
                             <a href="" class="btn btn-gradient btn-gradient-two">Explore All 200+</a>
                         </div>
