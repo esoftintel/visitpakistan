@@ -8,65 +8,35 @@
      
       <!-- End Navbar -->
       <div class="content">
+      {{$i=1}}
+      <div class="row">
+        @foreach($posts as $post)
      
- 
-        <div class="col-lg-12 col-md-12">
-        @if (session('info'))
-          <div class="alert alert-success">
-              {{ session('info') }}
-          </div>
-          @endif
-            <div class="card ">
+        
+          <div class="col-lg-4">
+            <div class="card card-chart">
               <div class="card-header">
-              <div class="row"> 
-                <div class="col-lg-6"><h4 class="card-title">Posts</h4></div>
-               
-                <h4 class="card-title"> </h4>
+                <h4 class="card-category">Posted by: {{$post->name}}</h4>
+                <div class="row">
+
+                <h5 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i>Posted at: {{$post->created_at}}</h5>
+                &nbsp &nbsp &nbsp &nbsp &nbsp<a style="float:right" href="post_details/{{$post->ps_id}}">Details</a>
+                </div>
               </div>
               <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table tablesorter " id="sample_table">
-                    <thead class=" text-primary">
-                      <tr>
-                        <th>Id</th>
-                        <th>Post Title</th>
-                        <th>POst details</th>
-                        <th>POst Price</th>
-                        <th>Type</th>
-                        <th>Created at</th>
-                        <th class="pull-center">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($posts as $key)
-                      <tr>
-                        <td> {{$key->ps_id}} </td>
-                        <td>{{$key->ps_title}}</td>
-                        <td>{{$key->ps_detail}}</td>
-                        <td>{{$key->ps_price}}</td>
-                        <td>{{$key->ps_type}}</td>
-                        <td >{{$key->created_at}}</td>
-                        <td class="pull-right">
-                           <a class="btn btn-primary btn-sm" href="{{url('/post_details/'.$key->ps_id)}}" role="button">Details</a>
-                           <a class="btn btn-primary btn-sm" href="{{url('/post_update/'.$key->ps_id)}}" role="button">Update</a>
-                           <a class="btn btn-primary btn-sm" href="{{url('/post_delete/'.$key->ps_id)}}" role="button">Delete</a> 
-                         </td>
-                      </tr>
-                      @endforeach
-                     
-                      
-                    </tbody>
-                  </table>
+              <img src="{{$post->image_path}}" alt="Trulli" width="320" height="250">
+                <!-- <div class="chart-area">
+                  <canvas id="chartLinePurple"></canvas> -->
                 </div>
               </div>
             </div>
-          </div>
-          
-    
-     
-        
-          
-
+            @if($i/3==0)
+      
+            <br>
+            @endif
+            {{$i++}}
+            
+            @endforeach
             </div>
          
         

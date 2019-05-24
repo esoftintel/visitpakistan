@@ -24,8 +24,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/otherdatabase','MultidatabaseController@fetchDataFromOtherDatabase');
 
-Route::get('/dashboard','admin@index');
-Route::get('/dashboardposts','admin@posts');
+Route::get('/dashboard1','admin@index');
+Route::get('/dashboard','admin@posts');
 ////post oprations
 Route::get('/post_details/{id}','admin@post_details');
 
