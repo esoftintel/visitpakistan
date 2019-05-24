@@ -185,6 +185,31 @@
     <script src="{{ url('/js_img/dropzone.js') }}"></script>
     <script src="{{ url('/js_img/dropzone-config.js') }}"></script>
     <!-- endinject-->
+
+
+    <script>
+    
+        $(".dill").on('click',function(){
+            var postid=$(this).attr("data-id");
+            var userid = $('#user_id').val();
+            alert(token);
+            if(postid)
+            {
+                $.ajax({
+                    url:'/like',
+                    type:'POST',
+                    dataType:'json',
+                    data: { post_id: postid, user_id : userid , "_token": $('#token').val()} ,
+                    success:function(data){
+                    
+                        console.log(data); 
+                        //$('#subcategory').empty();
+                    }
+                    });
+            }
+        });
+                
+    </script>
 </body>
 
 </html>
