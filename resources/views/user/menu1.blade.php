@@ -1,6 +1,6 @@
 <body>
     <section class="intro-wrapper bgimage overlay overlay--dark">
-        <div class="bg_image_holder"><img src="{{ asset('img/intro.jpg') }}" alt=""></div>
+  
         <div class="mainmenu-wrapper">
             <div class="menu-area menu1 menu--light">
                 <div class="top-menu-area">

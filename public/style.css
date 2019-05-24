@@ -1539,6 +1539,48 @@
   background: none;
   color: #272b41;
 }
+.atbd_listing_info .atbd_listing_title{
+  overflow: hidden;
+}
+.atbd_listing_info .atbd_listing_title a{
+  text-overflow: ellipsis;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  height: 11em;
+}
+.atbd_listing_image a .lst_featimg{
+  object-fit: cover;
+  object-position: center;
+  height: 227px;
+  background: #8888;
+}
+.category-single .cat_featimg{
+  height: 250px;
+  object-fit: contain;
+  object-position: center;
+  width: 100%;
+}
+.bg_image_holderr img {
+  display: block !important;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+}
+.bg_image_holderr {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat;
+  z-index: 0;
+  transition: opacity .3s linear;
+  -webkit-transition: opacity .3s linear;
+  opacity: 0;
+}
 
 .checkbox-primary .custom-control-label::before {
   background: #f5548e;

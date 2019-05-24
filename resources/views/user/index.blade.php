@@ -195,7 +195,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>Best Listings Around the World</h2>
+                        <h2>Best Listings Around Pakistan</h2>
                         <p>Explore the popular listings around the world</p>
                     </div>
                 </div>

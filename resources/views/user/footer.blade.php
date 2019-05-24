@@ -61,7 +61,7 @@
                     <div class="col-lg-12">
                         <div class="footer-bottom--content">
                             <a href="" class="footer-logo"><img src="{{ asset('img/logo.png')}}" alt=""></a>
-                            <p class="m-0 copy-text">©2019 Direo. Made with <span class="la la-heart-o"></span> by <a href="">Aazztech</a></p>
+                            <p class="m-0 copy-text">©2019 Gwadar Hub. Made with <span class="la la-heart-o"></span> by <a href="">E-soft Intel.</a></p>
                             <ul class="list-unstyled lng-list">
                                 <li><a href="">English</a></li>
                             </ul>
@@ -158,7 +158,12 @@
             </div>
         </div>
     </div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0C5etf1GVmL_ldVAichWwFFVcDfa1y_c"></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxs2Gu24f_hlwSuG-E7tRL9kJS6dITftQ&libraries=places&callback=initialize" async defer></script>
+     -->
+
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize" async defer></script>
+    
+    <script src="{{ url('/js/mapInput.js') }}"></script>
     <!-- inject:js-->
     <script src="{{ asset('vendor_assets/js/jquery/jquery-1.12.3.js') }}"></script>
     <script src="{{ asset('vendor_assets/js/bootstrap/popper.js') }}"></script>

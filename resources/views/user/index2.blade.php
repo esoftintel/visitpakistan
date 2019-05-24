@@ -1,6 +1,8 @@
 @include('user.metadata')
 
 @include('user.menu')
+<div class="bg_image_holder">
+            <img src="{{ asset('img/banner.jpg') }}" alt=""></div>
         <div class="directory_content_area">
             <div class="container">
                 <div class="row">
@@ -39,20 +41,20 @@
                             <ul class="categories">
                                 <li>
                                     <a href="">
-                                        <span class="color-primary"><i class="la la-cutlery"></i></span>
-                                        Restaurants
+                                        <span class="color-primary"><i class="la la-building"></i></span>
+                                        Property
                                     </a>
                                 </li>
                                 <li>
                                     <a href="">
-                                        <span class="color-success"><i class="la la-map-marker"></i></span>
-                                        Places
+                                        <span class="color-success"><i class="la la-automobile"></i></span>
+                                        Vehicles
                                     </a>
                                 </li>
                                 <li>
                                     <a href="">
-                                        <span class="color-warning"><i class="la la-shopping-cart"></i></span>
-                                        Shopping
+                                        <span class="color-warning"><i class="la la-television"></i></span>
+                                        Electronics
                                     </a>
                                 </li>
                                 <li>
@@ -83,7 +85,7 @@
                 <div class="col-lg-4 col-sm-6">
                     <div class="category-single category--img">
                         <figure class="category--img4">
-                            <img src="{{ asset('images')}}/{{$key_value->ct_icone}}" style=" height:250px;" alt="">
+                            <img class="cat_featimg" src="{{ asset('images')}}/{{$key_value->ct_icone}}" alt="">
                             <figcaption class="overlay-bg">
                                 <a href="{{url('/category_post/'.$key_value->ct_id.'')}}" class="cat-box">
                                     <div>
@@ -106,8 +108,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>Best Listings Around the World</h2>
-                        <p>Explore the popular listings around the world</p>
+                        <h2>Best Listings Around the Pakistan</h2>
+                        <p>Explore the popular listings around Pakistan and Gulf</p>
                     </div>
                 </div>
                 <div class="listing-cards-wrapper col-lg-12">
@@ -121,7 +123,7 @@
                                             <a href="">
                                             @if($key->media_data)
                                             
-                                                <img src="{{ asset('images/media')}}/{{$key->media_data['m_url']}}" style=" height:280px;" alt="listing image">
+                                                <img class="lst_featimg" src="{{ asset('images/media')}}/{{$key->media_data['m_url']}}" alt="listing image">
                                             
                                             @endif
                                             </a>
@@ -157,7 +159,7 @@
                                                         <p><span class="la la-phone"></span>{{$key->create_by['email']}}</p>
                                                     </li>
                                                     <li>
-                                                        <p><span class="la la-calendar-check-o"></span>Posted 2 months ago</p>
+                                                        <p><span class="la la-calendar-check-o"></span>Posted {{$key->duration}} ago</p>
                                                     </li>
                                                 </ul>
                                             </div><!-- End atbd listing meta -->
@@ -170,7 +172,9 @@
                                             </div>
                                             <ul class="atbd_content_right">
                                                 <li class="atbd_save">
-                                                    <span class="la la-heart-o"></span>
+                                                    <span class="la la-heart-o dill"></span>
+                                                    <input type="hidden" name="dill" id="dill" value="{{$key->ps_id}}" >
+                                               
                                                 </li>
                                             </ul>
                                         </div><!-- end .atbd_listing_bottom_content -->
@@ -180,7 +184,11 @@
                         </div><!-- ends: .col-lg-4 -->
                     @endforeach
                       
-                     
+                    <script>
+                           $(".dill" ).click(function() {
+                                    alert($("#dill").val());
+                            });
+                      </script>
                         <div class="col-lg-12 text-center m-top-20">
                             <a href="" class="btn btn-gradient btn-gradient-two">Explore All 200+</a>
                         </div>
@@ -194,7 +202,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>Why <span>Direo</span> for your Business?</h2>
+                        <h2>Why <span>Gwadar Hub</span> for your Business?</h2>
                         <p>Explore the popular listings around the world</p>
                     </div>
                 </div>
@@ -243,7 +251,7 @@
                 <div class="col-lg-12">
                     <div class="section-title">
                         <h2>Destination We Love</h2>
-                        <p>Explore best listings around the world by city</p>
+                        <p>Explore best listings around Pakistan and Gulf by city</p>
                     </div>
                 </div>
                 <div class="col-lg-12">
@@ -252,7 +260,7 @@
                             <figure>
                                 <a href=""><img src="{{ asset('img/place1.jpg')}}" alt=""></a>
                                 <figcaption>
-                                    <h3>London, UK</h3>
+                                    <h3>Gwadar</h3>
                                     <p>68 Listings</p>
                                 </figcaption>
                             </figure>
@@ -261,7 +269,7 @@
                             <figure>
                                 <a href=""><img src="{{ asset('img/place2.png')}}" alt=""></a>
                                 <figcaption>
-                                    <h3>New York</h3>
+                                    <h3>Lahore</h3>
                                     <p>68 Listings</p>
                                 </figcaption>
                             </figure>
@@ -270,7 +278,7 @@
                             <figure>
                                 <a href=""><img src="{{ asset('img/place3.png')}}" alt=""></a>
                                 <figcaption>
-                                    <h3>Sydney</h3>
+                                    <h3>Islamabad</h3>
                                     <p>68 Listings</p>
                                 </figcaption>
                             </figure>
@@ -279,59 +287,14 @@
                             <figure>
                                 <a href=""><img src="{{ asset('img/place4.png')}}" alt=""></a>
                                 <figcaption>
-                                    <h3>Paris, France</h3>
+                                    <h3>Karachi</h3>
                                     <p>68 Listings</p>
                                 </figcaption>
                             </figure>
                         </div><!-- ends: .category-place-single -->
                     </div><!-- ends: .col-lg-12 -->
                 </div>
-                <div class="col-lg-12">
-                    <div class="place-list-wrapper">
-                        <ul class="list-unstyled">
-                            <li><a href="">Dubai (45)</a></li>
-                            <li><a href="">Melbourne (95)</a></li>
-                            <li><a href="">Sydney (90)</a></li>
-                            <li><a href="">Brisbane (73)</a></li>
-                            <li><a href="">Perth (97)</a></li>
-                            <li><a href="">Toronto (960)</a></li>
-                            <li><a href="">Vancouver (46)</a></li>
-                            <li><a href="">Montreal (46)</a></li>
-                            <li><a href="">Calgary (16)</a></li>
-                            <li><a href="">Edmonton (6)</a></li>
-                            <li><a href="">Ottawa (53)</a></li>
-                            <li><a href="">Atlantic Canada (83)</a></li>
-                            <li><a href="">Berlin (71)</a></li>
-                            <li><a href="">Munich (46)</a></li>
-                            <li><a href="">Hamburg Area (727)</a></li>
-                            <li><a href="">Frankfurt Area (655)</a></li>
-                            <li><a href="">Stuttgart Area (9)</a></li>
-                            <li><a href="">Barcelona (46)</a></li>
-                            <li><a href="">Madrid (790)</a></li>
-                            <li><a href="">Spain (52)</a></li>
-                            <li><a href="">Dublin (657)</a></li>
-                            <li><a href="">Galway (12)</a></li>
-                            <li><a href="">Limerick (6)</a></li>
-                            <li><a href="">Tokyo, JP (24)</a></li>
-                            <li><a href="">Kanagawa (276)</a></li>
-                            <li><a href="">Osaka (146)</a></li>
-                            <li><a href="">Kyoto (70)</a></li>
-                            <li><a href="">Nagoya (64)</a></li>
-                            <li><a href="">Mexico City (195)</a></li>
-                            <li><a href="">Cancun (328)</a></li>
-                            <li><a href="">Monterrey (27)</a></li>
-                            <li><a href="">Baja California Sur (42)</a></li>
-                            <li><a href="">Amsterdam (446)</a></li>
-                            <li><a href="">Maastricht (3)</a></li>
-                            <li><a href="">London (25)</a></li>
-                            <li><a href="">Yorkshire (967)</a></li>
-                            <li><a href="">Edinburgh (923)</a></li>
-                            <li><a href="">Kent (80)</a></li>
-                            <li><a href="">Manchester (60)</a></li>
-                            <li><a href="">Glasgow (52)</a></li>
-                        </ul>
-                    </div>
-                </div>
+               
             </div>
         </div>
     </section><!-- ends: .places -->
@@ -341,7 +304,7 @@
                 <div class="col-lg-12">
                     <div class="section-title">
                         <h2>Trusted By Over 4000+ Users</h2>
-                        <p>Here is what people say about Direo</p>
+                        <p>Here is what people say about Gwadar Hub</p>
                     </div>
                 </div><!-- ends: .col-lg-12 -->
                 <div class="testimonial-carousel owl-carousel">

@@ -45,7 +45,7 @@
                                         <label for="" name="attribute[<?php echo $a; ?>]" value="{{$key->at_name}}" class="form-label">{{$key->at_name}}</label>
                                         <input type="hidden" name="attribute[<?php echo $a; ?>]" value="{{$key->at_name}}">
                                         <div class="select-basic">
-                                                <select class="form-control" id="custom-field" name="attribute_value[<?php echo $a++; ?>]" required>
+                                                <select class="form-control"  name="attribute_value[<?php echo $a++; ?>]" required>
                                                 @foreach($key->attribute_value_data as $key1)
                                                     <option value="{{$key1->atv_name}}">{{$key1->atv_name}}</option>
                                                     
@@ -97,9 +97,9 @@
                                                   
                                                 <p>Or</p>
                                                   
-                                                    <label for="location" class="form-label">State</label>
+                                                    <label for="locationn" class="form-label">State</label>
                                                     <div class="select-basic">
-                                                        <select class="form-control" name="state" id="location">
+                                                        <select class="form-control" name="state" id="locationn">
                                                             <option>Punjab</option>
                                                             <option>Sindh</option>
                                                             <option>Balochistan</option>
@@ -107,23 +107,21 @@
                                                         </select>
                                                     </div>
 
-                                                    <label for="location" class="form-label">City</label>
-                                                    <div class="select-basic">
-                                                        <select class="form-control" name="city" id="location">
-                                                            <option>Lahore</option>
-                                                            <option>Islamabad</option>
-                                                            <option>Gujranwala</option>
-                                                            <option>Peshawar</option>
-                                                        </select>
-                                                    </div>
+                                                  
 
-                                                    <label for="" class="form-label">Address</label>
+                                                    <label for="address_address" class="form-label">Address</label>
                                                     <div class="">
-                                                        <input class="form-control" name="address" placeholder="Enter address" value="" required/>
+                                                        <input type="text" id="address-input" class="form-control map-input" name="address" placeholder="Enter address" required/>
+                                                        <input type="hidden" name="address_latitude" id="address-latitude" value="0" />
+                                                        <input type="hidden" name="address_longitude" id="address-longitude" value="0" />
+
                                                     </div>
+                                                    <div id="address-map-container" style="width:100%;height:400px; ">
+                                                    <div style="width: 100%; height: 100%" id="address-map"></div>
+                                                </div>
 
                                         </div>
-                                          <div class="form-group">
+                                    <div class="form-group">
                                                 <h4>REVIEW YOUR DETAILS</h4>
 
                                                 <img src="img.png" class="image-place"/>
@@ -143,7 +141,7 @@
                              </form>
 
                             <script>
-                                    var x = document.getElementById("locations");
+                                    var x = document.getElementById("locationn");
                                     
                                     function getLocation() {
                                       if (navigator.geolocation) {
