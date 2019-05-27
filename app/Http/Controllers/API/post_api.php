@@ -97,5 +97,84 @@ else{
  
 
 }
+
+public function postsOfCategory($id)
+        {
+            $categoryPosts=post::where('ps_ct_id',$id)
+                        ->Join('categories', 'categories.ct_id', '=', 'posts.ps_ct_id')
+                        ->join('users','users.id', '=', 'posts.ps_ur_id')
+                        ->limit(4)   
+                         ->orderByRaw("ps_type = 'normal' asc")
+                        ->orderByRaw("ps_type = 'feature' asc")
+                        ->get();
+                        
+                        
+                        
+              foreach ($categoryPosts as $key) {
+                  $key->image_path= asset('images').'/'.$key->ct_icone;
+                  
+             
+                $key->media_data          = midea::where('m_ps_id',$key->ps_id)->get();
+                foreach($key->media_data as $image)
+                {
+                    $image->image_path= asset('images').'/'.$image->m_url;
+                }
+                $key->post_attribute_data = post_attribute::where('pt_ps_id',$key->ps_id)->get();
+            }
+              if($categoryPosts)
+              {
+                    $result['status']=1;
+                    $result['result']=$categoryPosts;
+                    return response()->json([$result]); 
+                  
+              }
+              else
+              {
+                  $result['status']=1;
+                    $result['result']=$categoryPosts;
+                    return response()->json([$result]); 
+              }
+                        
+         
+        }
+
+public function post_details($id)
+{
+    $Post=post::where('ps_id',$id)
+            ->Join('categories', 'categories.ct_id', '=', 'posts.ps_ct_id')
+            ->join('users','users.id', '=', 'posts.ps_ur_id')
+            ->limit(4)   
+             ->orderByRaw("ps_type = 'normal' asc")
+            ->orderByRaw("ps_type = 'feature' asc")
+            ->get();
+            
+            
+            
+  foreach ($Post as $key) {
+      $key->image_path= asset('images').'/'.$key->ct_icone;
+      
+ 
+    $key->media_data          = midea::where('m_ps_id',$key->ps_id)->get();
+    foreach($key->media_data as $image)
+    {
+        $image->media_path= asset('images').'/media/'.$image->m_url;
+    }
+    $key->post_attribute_data = post_attribute::where('pt_ps_id',$key->ps_id)->get();
+}
+ if($Post)
+  {
+        $result['status']=1;
+        $result['result']=$Post;
+        return response()->json([$result]); 
+      
+  }
+  else
+  {
+      $result['status']=1;
+        $result['result']=$Post;
+        return response()->json([$result]); 
+  }
+
+}
    
 }

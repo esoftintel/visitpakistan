@@ -42,5 +42,7 @@ Route::group(['middleware' => 'auth:api'], function(){
  Route::group(['middleware' => 'auth:api'], function(){
                 Route::get('category_posts/{id}','API\post_api@category_post');
                 Route::get('all_categories_posts','API\post_api@all_categories_post');
+                Route::get('categoryPosts/{id}','API\post_api@postsOfCategory');
+                Route::get('post_details/{id}','API\post_api@post_details');
                 });
         

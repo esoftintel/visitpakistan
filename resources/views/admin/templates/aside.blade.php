@@ -7,12 +7,14 @@
           <!-- <a href="javascript:void(0)" class="simple-text logo-mini">
             CT
           </a> -->
-          <a href="dashboard" class="simple-text logo-normal text-center">
+          <a href="{{url('/dashboard')}}" class="simple-text logo-normal text-center">
             Dashboard
           </a>
         </div>
         <ul class="nav">
+         
           <li >
+         
             <!-- <a href="/dashboard">
               <i class="tim-icons icon-chart-pie-36"></i>
               <p>Dashboard</p>
@@ -59,9 +61,10 @@
           </li>
           
           <li>
-            <a href="{{url('/setLink')}}">
-              <i class="tim-icons icon-pin"></i>
-              <p>setLink</p>
+          <a href="{{url('/dashboard')}}">
+            <i class='tim-icons icon-single-02'></i>
+              <!-- <i class="tim-icons icon-atom"></i> -->
+              <p>Posts</p>
             </a>
           </li>
           <li>
