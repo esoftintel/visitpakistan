@@ -182,39 +182,72 @@ class FrontController extends Controller
     }
     public function post_detail($id)
     {
-        $key = post::find($id);
-        if($key)
+        $key1 = post::find($id);
+        if($key1)
         {
-            $key->media_data          = midea::where('m_ps_id',$key->ps_id)->first();
-            $key->media_all_data      = midea::where('m_ps_id',$key->ps_id)->get();
+            $key1->media_data          = midea::where('m_ps_id',$key1->ps_id)->first();
+            $key1->media_all_data      = midea::where('m_ps_id',$key1->ps_id)->get();
            
-            $key->category_data       = category::find($key->ps_ct_id);
-            $key->subcategory_data    = subcategory::find($key->ps_st_id); 
-            $key->create_by           = user::find($key->ps_ur_id); 
-            $key->post_attribute_data = post_attribute::where('pt_ps_id',$key->ps_id)->get();
-            $created = Carbon::createFromTimeStamp(strtotime($key->created_at));
+            $key1->category_data       = category::find($key1->ps_ct_id);
+            $key1->subcategory_data    = subcategory::find($key1->ps_st_id); 
+            $key1->create_by           = user::find($key1->ps_ur_id); 
+            $key1->post_attribute_data = post_attribute::where('pt_ps_id',$key1->ps_id)->get();
+            $created = Carbon::createFromTimeStamp(strtotime($key1->created_at));
             $created ->diff(Carbon::now())->format('%d days, %h hours and %i minutes');
             $diff = $created->diff(Carbon::now());
             if($diff->y)
             {
-               $key->duration=  $diff->y." Years";
+               $key1->duration=  $diff->y." Years"; 
             }
             elseif($diff->m) {
-                $key->duration=  $diff->m." Months";
+                $key1->duration=  $diff->m." Months";
             }
             elseif($diff->d) {
-                $key->duration=  $diff->d." Days";
+                $key1->duration=  $diff->d." Days";
             } elseif($diff->h) {
-                $key->duration=  $diff->h." Hours";
+                $key1->duration=  $diff->h." Hours";
             } elseif($diff->i) {
-                $key->duration=  $diff->i." Mints";
+                $key1->duration=  $diff->i." Mints";
             }
             elseif($diff->s) {
-                $key->duration=  $diff->s." Second";
+                $key1->duration=  $diff->s." Second";
             }
       
-       
-        return view('user.ad_details',['post_data'=>$key]) ; 
+            $post_data = post::where('ps_status','active')
+            ->where('ps_ct_id',$key1->ps_ct_id)
+            ->orderByRaw("ps_type = 'normal' asc")
+            ->orderByRaw("ps_type = 'feature' asc")
+            ->get();
+            foreach ($post_data as $key) {
+                $key->media_data          = midea::where('m_ps_id',$key->ps_id)->first();
+                $key->category_data       = category::find($key->ps_ct_id);
+                $key->subcategory_data    = subcategory::find($key->ps_st_id); 
+                $key->create_by           = user::find($key->ps_ur_id); 
+                $key->post_attribute_data = post_attribute::where('pt_ps_id',$key->ps_id)->get();
+                $created = Carbon::createFromTimeStamp(strtotime($key->created_at));
+                $created ->diff(Carbon::now())->format('%d days, %h hours and %i minutes');
+                $diff = $created->diff(Carbon::now());
+                if($diff->y)
+                {
+                   $key->duration=  $diff->y." Years";
+                }
+                elseif($diff->m) {
+                    $key->duration=  $diff->m." Months";
+                }
+                elseif($diff->d) {
+                    $key->duration=  $diff->d." Days";
+                } elseif($diff->h) {
+                    $key->duration=  $diff->h." Hours";
+                } elseif($diff->i) {
+                    $key->duration=  $diff->i." Mints";
+                }
+                elseif($diff->s) {
+                    $key->duration=  $diff->s." Second";
+                }
+            }
+          
+          
+        return view('user.ad_details',['post_data'=>$key1 , 'related_data'=>$post_data]) ; 
         }
         else
         {
