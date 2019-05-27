@@ -1581,6 +1581,15 @@
   -webkit-transition: opacity .3s linear;
   opacity: 0;
 }
+.ad_detailbanner{
+  height: 450px !important;
+}
+.detailbg{
+  height: 450px !important;
+}
+.atbd_listing_gallery .gallery-images .single-image img {
+  height: 440px;
+}
 
 .checkbox-primary .custom-control-label::before {
   background: #f5548e;
