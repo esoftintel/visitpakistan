@@ -14,7 +14,23 @@ class ChatController extends Controller
      */
     public function index()
     {
-        //
+       
+           // require __DIR__ . '/vendor/autoload.php';
+
+            $options = array(
+                'cluster' => 'ap2',
+                'useTLS' => true
+            );
+            $pusher = new Pusher\Pusher(
+                '452d383510e046c39729',
+                '07dce10f2bf8b2d4c682',
+                '789604',
+                $options
+            );
+
+            $data['message'] = 'hello world';
+            $pusher->trigger('my-channel', 'my-event', $data);
+            return view('user.pushere');
     }
 
     /**
@@ -24,7 +40,7 @@ class ChatController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.pushere');
     }
 
     /**

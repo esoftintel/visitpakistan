@@ -11,25 +11,26 @@
                             <h2 class="title">Find the Best Places to Be</h2>
                             <p class="sub_title">All the top locations – from restaurants and clubs, to galleries, famous places and more..</p>
                         </div><!-- ends: .search_title_area -->
-                        <form action="/" class="search_form">
+                        <form action="{{url('/search')}}" method="POST" class="search_form">
                             <div class="atbd_seach_fields_wrapper">
+                            @csrf
                                 <div class="single_search_field search_query">
-                                    <input class="form-control search_fields" type="text" placeholder="What are you looking for?">
+                                    <input class="form-control search_fields" name="search" type="text" placeholder="What are you looking for?">
                                 </div>
                                 <div class="single_search_field search_category">
-                                    <select class="search_fields" id="at_biz_dir-category">
-                                        <option value="">Select a category</option>
-                                        <option value="automobile">Automobile</option>
-                                        <option value="education">Education</option>
-                                        <option value="event">Event</option>
+                                    <select class="search_fields" name="category" id="at_biz_dir-category">
+                                    <option value="">Select a Category</option>
+                                    @foreach($category_data as $category)
+                                        <option value="{{$category->ct_id}}">{{$category->ct_name}}</option>
+                                    @endforeach    
                                     </select>
                                 </div>
                                 <div class="single_search_field search_location">
-                                    <select class="search_fields" id="at_biz_dir-location">
+                                    <select class="search_fields" name="location" id="at_biz_dir-location">
                                         <option value="">Select a location</option>
-                                        <option value="ab">AB Simple</option>
-                                        <option value="australia">Australia</option>
-                                        <option value="australia-australia">Australia</option>
+                                    @foreach($location as $l)
+                                        <option value="{{$l->ps_city}}">{{$l->ps_city}}</option>
+                                    @endforeach 
                                     </select>
                                 </div>
                                 <div class="atbd_submit_btn">
@@ -153,7 +154,7 @@
                                             <div class="atbd_listing_data_list">
                                                 <ul>
                                                     <li>
-                                                        <p><span class="la la-map-marker"></span>{{$key->ps_address}}</p>
+                                                        <p><span class="la la-map-marker"></span>{{$key->ps_city}}</p>
                                                     </li>
                                                     <li>
                                                         <p><span class="la la-phone"></span>{{$key->create_by['email']}}</p>
