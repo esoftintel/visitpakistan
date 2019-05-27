@@ -1,7 +1,7 @@
 @include('user.metadata')
 
 @include('user.menu')
-<div class="bg_image_holder"><img src="{{asset('/images/media')}}/{{$post_data->media_data['m_url']}}" alt=""></div>
+<div class="bg_image_holder ad_detailbanner"><img src="{{asset('/images/media')}}/{{$post_data->media_data['m_url']}}" alt=""></div>
         <div class="listing-info content_above">
             <div class="container">
                 <div class="row">
@@ -21,14 +21,17 @@
                           
                             <li>
                                 <div class="atbd_listing_category">
-                                    <a href=""> <img class="cat_featimg" src="{{ asset('images')}}/{{$post_data->category_data['ct_icone']}}" style=" width: 20px; 
-height: 20px;" alt="">{{$post_data->category_data['ct_name']}}</a>
+                                    <a href=""><img class="cat_featimg" src="{{ asset('images')}}/{{$post_data->category_data['ct_icone']}}" style=" width: 20px; height: 20px;" alt="">    {{$post_data->category_data['ct_name']}}</a>
                                 </div>
                             </li>
                         </ul><!-- ends: .listing-info-meta -->
                         <h1>{{$post_data->ps_title}}</h1>
    
                     </div>
+
+
+
+               
                     <div class="col-lg-4 col-md-5 d-flex align-items-end justify-content-start justify-content-md-end">
                         <div class="atbd_listing_action_area">
                             <div class="atbd_action atbd_save">
@@ -100,52 +103,15 @@ height: 20px;" alt="">{{$post_data->category_data['ct_name']}}</a>
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="moda_claim_listing" tabindex="-1" role="dialog" aria-labelledby="claim_listing_label" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="claim_listing_label"><i class="la la-check-square"></i> Claim This Listing</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="/">
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <input type="text" placeholder="Your Name" class="form-control" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="email" class="form-control" placeholder="Email Address" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control" placeholder="Phone Number" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="url" class="form-control" placeholder="Listing URL" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <textarea class="form-control" rows="6" placeholder="Provie Listing Information" required></textarea>
-                                            <button type="submit" class="btn btn-secondary">Submit Query</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div><!-- ends: .listing-info -->
     </section><!-- ends: .card-details-wrapper -->
+
+
+
+
+
+
     <section class="directory_listiing_detail_area single_area section-bg section-padding-strict">
         <div class="container">
             <div class="row">
@@ -159,26 +125,28 @@ height: 20px;" alt="">{{$post_data->category_data['ct_name']}}</a>
                         </div>
                         <div class="atbdb_content_module_contents">
                             <div class="gallery-wrapper">
-                           
                                 <div class="gallery-images">
-                               
-                                @foreach($post_data['media_all_data'] as $key)
+
+                                 @foreach($post_data['media_all_data'] as $key)
                                     <div class="single-image">
-                                        <img src="{{asset('images/media')}}/{{$key->m_url}}" style=" width: 200px;
-height: 200px;" alt="">
-                                    </div>     
+                                        <img src="{{asset('images/media')}}/{{$key->m_url}}" alt="">
+                                    </div>
+                                    @endforeach
+                                  
                                 </div><!-- ends: .gallery-images -->
-                                @endforeach
-                               
+
+
+
+
                                 <div class="gallery-thumbs">
                                 @foreach($post_data['media_all_data'] as $key)
-                                    <div class="single-image">
-                                        <img src="{{asset('images/media')}}/{{$key->m_url}}" style=" width: 200px;
-height: 200px;" alt="">
+                                    <div class="single-thumb">
+                                        <img src="{{asset('images/media')}}/{{$key->m_url}}" alt="">
                                     </div>
                                 @endforeach
-                                    
+
                                 </div><!-- ends: .gallery-thumbs -->
+
                             </div><!-- ends: .gallery-wrapper -->
                         </div>
                     </div><!-- ends: .atbd_content_module -->
@@ -245,14 +213,14 @@ height: 200px;" alt="">
                                 </div>
                                 <div class="atbd_name_time">
                                     <h4>Zephy Real Estate <span class="verified" data-toggle="tooltip" data-placement="top" title="Verified"></span></h4>
-                                    <span class="review_time">Posted {{$post_data->duration}} ago</span>
+                                    <span class="review_time">Posted {{$post_data->duration}} days ago</span>
                                 </div>
                             </div><!-- ends: .atbd_avatar_wrapper -->
                             <div class="atbd_widget_contact_info">
                                 <ul>
                                     <li>
                                         <span class="la la-map-marker"></span>
-                                        <span class="atbd_info">25 East Valley Road, Michigan</span>
+                                        <span class="atbd_info">{{$post_data->ps_address}}</span>
                                     </li>
                                     <li>
                                         <span class="la la-phone"></span>
@@ -498,4 +466,16 @@ height: 200px;" alt="">
             </div>
         </div>
     </section><!-- ends: .directory_listiing_detail_area -->
+
+
+    <script>
+
+            var element, name, arr;
+            element = document.getElementById("exchange");
+            name = "detailbg";
+            arr = element.className.split(" ");
+            if (arr.indexOf(name) == -1) {
+                element.className += " " + name;
+            }
+        </script>
     @include('user.footer')

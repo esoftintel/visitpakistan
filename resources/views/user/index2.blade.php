@@ -145,7 +145,7 @@
                                     <div class="atbd_listing_info">
                                         <div class="atbd_content_upper">
                                             <h4 class="atbd_listing_title">
-                                                <a href="">{{$key->ps_title}}</a>
+                                                <a href="{{url('ad_details')}}/{{$key->ps_id}}">{{$key->ps_title}}</a>
                                             </h4>
                                             <div class="atbd_listing_meta">
                                                <span class="atbd_meta atbd_listing_price">$ {{$key->ps_price}}</span>

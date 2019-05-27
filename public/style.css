@@ -1567,6 +1567,19 @@
   object-position: center;
   width: 100%;
 }
+.listing-info .listing-info--meta .atbd_listing_category .cat_featimg{
+  object-fit: contain;
+  object-position: center;
+  border-radius: 3px;
+}
+.atbd_listing_gallery .gallery-thumbs .single-thumb {
+  height: 82.69px;
+}
+.atbd_listing_gallery .gallery-thumbs .single-thumb img {
+  max-height: 82.69px;
+  object-fit: cover;
+  object-position: center;
+}
 .bg_image_holderr {
   position: absolute;
   height: 100%;
@@ -1580,6 +1593,15 @@
   transition: opacity .3s linear;
   -webkit-transition: opacity .3s linear;
   opacity: 0;
+}
+.ad_detailbanner{
+  height: 450px !important;
+}
+.detailbg{
+  height: 450px !important;
+}
+.atbd_listing_gallery .gallery-images .single-image img {
+  height: 440px;
 }
 
 .checkbox-primary .custom-control-label::before {
