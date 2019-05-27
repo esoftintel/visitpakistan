@@ -61,7 +61,7 @@
                     <div class="col-lg-12">
                         <div class="footer-bottom--content">
                             <a href="" class="footer-logo"><img src="{{ asset('img/logo.png')}}" alt=""></a>
-                            <p class="m-0 copy-text">©2019 Gwadar Hub. Made with <span class="la la-heart-o"></span> by <a href="">E-soft Intel.</a></p>
+                            <p class="m-0 copy-text">©2019 Gwadar Hub. Made with <span class="la la-heart-o"></span> by <a href="http://esoftintel.com">E-soft Intel.</a></p>
                             <ul class="list-unstyled lng-list">
                                 <li><a href="">English</a></li>
                             </ul>

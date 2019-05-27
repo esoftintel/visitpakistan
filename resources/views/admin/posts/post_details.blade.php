@@ -41,7 +41,7 @@
               <div class="card-body">
                
               
-              <h4 class="card-title"><i class="tim-icons text-primary"></i><b class='text-center'> Created at : </b>< class='text-center'>{{$post[0]->created_at}}</div></h4>
+              <h4 class="card-title"><i class="tim-icons text-primary"></i><b class='text-center'> Created at : </b><i class='text-center'>{{$post[0]->created_at}}</i></h4>
               <h4 class="card-title"><i class="tim-icons  text-primary"></i><b class='text-center'>User Name :  </b> {{$post[0]->name}}</h4>
               <h4 class="card-title"><i class="tim-icons  text-primary"></i><b class='text-center'>User Address : </b> {{$post[0]->name}}</h4>
               <h4 class="card-title"><i class="tim-icons  text-primary"></i><b class='text-center'>Post Title : </b> {{$post[0]->ps_title}}</h4>

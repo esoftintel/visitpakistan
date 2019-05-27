@@ -38,14 +38,7 @@
             
             @endforeach
             </div>
-         
-        
 
-         
-        
-        
-        
-      
       
       @include('admin.templates.footer')
      
