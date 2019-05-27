@@ -21,7 +21,7 @@
                           
                             <li>
                                 <div class="atbd_listing_category">
-                                    <a href=""><img class="cat_featimg" src="{{ asset('images')}}/{{$post_data->category_data['ct_icone']}}" style=" width: 20px; height: 20px;" alt="">{{$post_data->category_data['ct_name']}}</a>
+                                    <a href=""><img class="cat_featimg" src="{{ asset('images')}}/{{$post_data->category_data['ct_icone']}}" style=" width: 20px; height: 20px;" alt="">    {{$post_data->category_data['ct_name']}}</a>
                                 </div>
                             </li>
                         </ul><!-- ends: .listing-info-meta -->
