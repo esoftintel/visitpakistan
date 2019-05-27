@@ -10,7 +10,7 @@
                                 <div class="menu-fullwidth">
                                     <div class="logo-wrapper order-lg-0 order-sm-1">
                                         <div class="logo logo-top">
-                                            <a href="index.html"><img src="{{ asset('img/logo-white.png')}}" alt="logo image" class="img-fluid"></a>
+                                            <a href="/all"><img src="{{ asset('img/logo-white.png')}}" alt="logo image" class="img-fluid"></a>
                                         </div>
                                     </div><!-- ends: .logo-wrapper -->
                                     <div class="menu-container order-lg-1 order-sm-0">
@@ -23,7 +23,7 @@
                                                 <div class="collapse navbar-collapse" id="direo-navbar-collapse">
                                                     <ul class="navbar-nav">
                                                         <li>
-                                                            <a href="index.html">Home</a>
+                                                            <a href="/all">Home</a>
                                                         </li>
                                                         <li class="dropdown">
                                                             <a href="#" class="dropdown-toggle" id="drop3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Listings</a>
