@@ -14,7 +14,7 @@ use App\post_attribute;
 use App\midea;
 use App\like;
 use Carbon\Carbon;
-
+use Dotenv\Regex\Result;
 
 class post_api extends Controller
 {
@@ -262,20 +262,26 @@ class post_api extends Controller
             public function like_post(Request $request)
             {
                 $data1 = $request->input();
-                print_r($data1); exit;
+              
                 $data =array('l_ps_id'=>$data1['post_id'],
                              'l_u_id' =>$data1['user_id']
                             );
+                           
                     $liked = like::where($data)->first();
                     if($liked)
                     {   $record = like::find($liked->l_id);
                         $record->delete();
-                        return json_encode(['reslut'=>0]);
+                        $result['status']=0;
+                        $result['result']='unliked';
+                        
+                        return response()->json([$result]); 
                     }
                     else
                     {
                         $like = like::create($data);
-                        return json_encode(['result'=>1]);
+                        $result['status']=1;
+                        $result['result']='liked';
+                        return response()->json([$result]); 
                     }
             }
             

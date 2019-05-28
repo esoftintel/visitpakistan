@@ -417,4 +417,16 @@ class FrontController extends Controller
     {
         //
     }
+
+    public function userprofile()
+    {
+        return view('user.user_profile') ; //->with('category',$data);
+
+    }
+
+    public function userdashboard()
+    {
+        return view('user.user_dashboard') ; //->with('category',$data);
+
+    }
 }
