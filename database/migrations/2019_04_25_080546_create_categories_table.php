@@ -17,8 +17,9 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('ct_id');
             $table->string('ct_name');
             $table->string('ct_icone');
-            $table->enum('ct_status', ['active','deactive'])
-              ->default('active');
+            $table->enum('ct_status', ['active','deactive'])->default('active');
+            $table->enum('ct_type', ['public','private'])
+              ->default('public');
             $table->timestamps();
         });
     }

@@ -129,7 +129,7 @@
 
                                  @foreach($post_data['media_all_data'] as $key)
                                     <div class="single-image">
-                                        <img src="{{asset('images/media')}}/{{$key->m_url}}" alt="">
+                                        <img src="{{asset('images/media')}}/{{$key->m_url}}"  alt="">
                                     </div>
                                     @endforeach
                                   
@@ -157,7 +157,12 @@
                             </div>
                         </div>
                         <div class="atbdb_content_module_contents">
-                            <p>{{$post_data->ps_detail}}.</p>
+                           <h3> Price:</h3> <p>{{$post_data->ps_price}}.</p>
+                           <h3> Detail:</h3> <p>{{$post_data->ps_detail}}.</p>
+                           @foreach($post_data->post_attribute_data as $pad)
+
+                           <h3> {{$pad->pt_title}}:</h3> <p>{{$pad->pt_value}}.</p>
+                           @endforeach
                         </div>
                     </div><!-- ends: .atbd_content_module -->
              
@@ -266,85 +271,29 @@
                         </div><!-- ends: .atbd_widget_title -->
                         <div class="atbd_categorized_listings atbd_similar_listings">
                             <ul class="listings">
+                            @foreach($related_data as $ps_data)
                                 <li>
                                     <div class="atbd_left_img">
-                                        <a href=""><img src="img/sl1.jpg" alt="listing image"></a>
+                                        <a href="{{url('ad_details')}}/{{$ps_data->ps_id}}"><img src="{{asset('images/media')}}/{{$ps_data->media_data['m_url']}}" style=" width: 80px; height: 80px;" alt="listing image"></a>
                                     </div>
                                     <div class="atbd_right_content">
                                         <div class="cate_title">
-                                            <h4><a href="">Clothing Shopping Mall</a></h4>
+                                            <h4><a href="{{url('ad_details')}}/{{$ps_data->ps_id}}">{{$ps_data->ps_title}}</a></h4>
                                         </div>
                                         <p class="listing_value">
-                                            <span>$25,800</span>
+                                            <span>${{$ps_data->ps_price}}</span>
                                         </p>
                                         <p class="directory_tag">
-                                            <span class="la la-cutlery" aria-hidden="true"></span>
+
                                             <span>
-                                                <a href="">Food & Drink</a>
-                                                <span class="atbd_cat_popup">+3
-                                                    <span class="atbd_cat_popup_wrapper">
-                                                        <span>
-                                                            <a href="">Food<span>,</span></a>
-                                                            <a href="">Others<span>,</span></a>
-                                                            <a href="">Service<span>,</span></a>
-                                                        </span>
-                                                    </span>
-                                                </span><!-- ends: .atbd_cat_popup -->
+                                                <a href="{{url('ad_details')}}/{{$ps_data->ps_id}}"><img class="cat_featimg" src="{{ asset('images')}}/{{$ps_data->category_data['ct_icone']}}" style=" width: 20px; height: 20px;" alt="">{{$ps_data->category_data['ct_name']}}</a>
+                                               
                                             </span>
                                         </p>
                                     </div>
                                 </li>
-                                <li>
-                                    <div class="atbd_left_img">
-                                        <a href=""><img src="img/sl2.jpg" alt="listing image"></a>
-                                    </div>
-                                    <div class="atbd_right_content">
-                                        <div class="cate_title">
-                                            <h4><a href="">Flanders Heat & Air Systems</a></h4>
-                                        </div>
-                                        <p class="listing_value">
-                                            <span>$38,4800</span>
-                                        </p>
-                                        <p class="directory_tag">
-                                            <span class="la la-bed" aria-hidden="true"></span>
-                                            <span><a href="">Hotel & Travel</a></span>
-                                        </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="atbd_left_img">
-                                        <a href=""><img src="img/sl3.jpg" alt="listing image"></a>
-                                    </div>
-                                    <div class="atbd_right_content">
-                                        <div class="cate_title">
-                                            <h4><a href="">Favorite Place Fog Bank</a></h4>
-                                        </div>
-                                        <p class="listing_value">
-                                            <span>$95,700</span>
-                                        </p>
-                                        <p class="directory_tag">
-                                            <span class="la la-bookmark" aria-hidden="true"></span>
-                                            <span><a href="">Art & History</a></span>
-                                        </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="atbd_left_img">
-                                        <a href=""><img src="img/sl4.jpg" alt="listing image"></a>
-                                    </div>
-                                    <div class="atbd_right_content">
-                                        <div class="cate_title">
-                                            <h4><a href="">Favorite Place Fog Bank</a></h4>
-                                        </div>
-                                        <p class="listing_value">
-                                            <span>$45,800</span>
-                                        </p>
-                                        <p class="directory_tag">
-                                            <span class="la la-bookmark" aria-hidden="true"></span>
-                                            <span><a href="">Shopping</a></span>
-                                        </p>
-                                    </div>
-                                </li>
+                            @endforeach    
+                               
                             </ul>
                         </div> <!-- ends .atbd_similar_listings -->
                     </div><!-- ends: .widget -->

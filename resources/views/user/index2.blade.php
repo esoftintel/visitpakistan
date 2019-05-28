@@ -11,25 +11,26 @@
                             <h2 class="title">Find the Best Places to Be</h2>
                             <p class="sub_title">All the top locations – from restaurants and clubs, to galleries, famous places and more..</p>
                         </div><!-- ends: .search_title_area -->
-                        <form action="/" class="search_form">
+                        <form action="{{url('/search')}}" method="POST" class="search_form">
                             <div class="atbd_seach_fields_wrapper">
+                            @csrf
                                 <div class="single_search_field search_query">
-                                    <input class="form-control search_fields" type="text" placeholder="What are you looking for?">
+                                    <input class="form-control search_fields" name="search" type="text" placeholder="What are you looking for?">
                                 </div>
                                 <div class="single_search_field search_category">
-                                    <select class="search_fields" id="at_biz_dir-category">
-                                        <option value="">Select a category</option>
-                                        <option value="automobile">Automobile</option>
-                                        <option value="education">Education</option>
-                                        <option value="event">Event</option>
+                                    <select class="search_fields" name="category" id="at_biz_dir-category">
+                                    <option value="">Select a Category</option>
+                                    @foreach($category_data as $category)
+                                        <option value="{{$category->ct_id}}">{{$category->ct_name}}</option>
+                                    @endforeach    
                                     </select>
                                 </div>
                                 <div class="single_search_field search_location">
-                                    <select class="search_fields" id="at_biz_dir-location">
+                                    <select class="search_fields" name="location" id="at_biz_dir-location">
                                         <option value="">Select a location</option>
-                                        <option value="ab">AB Simple</option>
-                                        <option value="australia">Australia</option>
-                                        <option value="australia-australia">Australia</option>
+                                    @foreach($location as $l)
+                                        <option value="{{$l->ps_city}}">{{$l->ps_city}}</option>
+                                    @endforeach 
                                     </select>
                                 </div>
                                 <div class="atbd_submit_btn">
@@ -129,7 +130,7 @@
                                             </a>
                                         </div><!-- ends: .atbd_listing_image -->
                                         <div class="atbd_author atbd_author--thumb">
-                                            <a href="">
+                                            <a href="/user_profile">
                                                 <img src="img/author-thumb2.jpg" alt="Author Image">
                                                 <span class="custom-tooltip">{{$key->create_by['name']}}</span>
                                             </a>
@@ -153,7 +154,7 @@
                                             <div class="atbd_listing_data_list">
                                                 <ul>
                                                     <li>
-                                                        <p><span class="la la-map-marker"></span>{{$key->ps_address}}</p>
+                                                        <p><span class="la la-map-marker"></span>{{$key->ps_city}}</p>
                                                     </li>
                                                     <li>
                                                         <p><span class="la la-phone"></span>{{$key->create_by['email']}}</p>
@@ -252,42 +253,19 @@
                 </div>
                 <div class="col-lg-12">
                     <div class="cat-places-wrapper">
+                    @foreach($location as $loc)
                         <div class="category-place-single">
                             <figure>
-                                <a href=""><img src="{{ asset('img/place1.jpg')}}" alt=""></a>
+                      
+                                <a href=""><img src="{{ asset('images/media')}}/{{$loc->location_media['m_url']}}" alt=""></a>
                                 <figcaption>
-                                    <h3>Gwadar</h3>
-                                    <p>68 Listings</p>
+                                    <h3>{{$loc->ps_city}}</h3>
+                                    <p>{{$loc->location_num_post}} Listings</p>
                                 </figcaption>
                             </figure>
                         </div><!-- ends: .category-place-single -->
-                        <div class="category-place-single">
-                            <figure>
-                                <a href=""><img src="{{ asset('img/place2.png')}}" alt=""></a>
-                                <figcaption>
-                                    <h3>Lahore</h3>
-                                    <p>68 Listings</p>
-                                </figcaption>
-                            </figure>
-                        </div><!-- ends: .category-place-single -->
-                        <div class="category-place-single">
-                            <figure>
-                                <a href=""><img src="{{ asset('img/place3.png')}}" alt=""></a>
-                                <figcaption>
-                                    <h3>Islamabad</h3>
-                                    <p>68 Listings</p>
-                                </figcaption>
-                            </figure>
-                        </div><!-- ends: .category-place-single -->
-                        <div class="category-place-single">
-                            <figure>
-                                <a href=""><img src="{{ asset('img/place4.png')}}" alt=""></a>
-                                <figcaption>
-                                    <h3>Karachi</h3>
-                                    <p>68 Listings</p>
-                                </figcaption>
-                            </figure>
-                        </div><!-- ends: .category-place-single -->
+                    @endforeach    
+                      
                     </div><!-- ends: .col-lg-12 -->
                 </div>
                

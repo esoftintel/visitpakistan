@@ -39,7 +39,7 @@ class LikeController extends Controller
         $data =array('l_ps_id'=>$data1['post_id'],
                      'l_u_id' =>$data1['user_id']
                     );
-            $liked = like::where('l_ps_id',$data1['post_id'])->where('l_ps_id',$data1['post_id'])->first();
+            $liked = like::where('l_ps_id',$data1['post_id'])->where('l_u_id',$data1['user_id'])->first();
             if($liked)
             {   $record = like::find($liked->l_id);
                 $record->delete();

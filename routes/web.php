@@ -90,10 +90,16 @@ Route::get('/all', 'FrontController@index')->name('all');
 //Route::get('/ad_details', 'FrontController@ad_details')->name('ad_details');
 Route::get('/ad_details/{id}', 'FrontController@post_detail')->name('ad_details');
 
+Route::get('/user_profile', 'FrontController@userprofile')->name('user_profile');
+Route::get('/user_dashboard', 'FrontController@userdashboard')->name('user_dashboard');
+
+
 Route::get('/category_post/{id}', 'FrontController@category_posts')->name('category_post');
 Route::get('/post_detail/{id}', 'FrontController@post_detail')->name('post_detail');
+Route::get('/pusher', 'ChatController@index')->name('pusher');
 
 Route::post('/like', 'LikeController@store')->name('like');
+Route::post('/search', 'FrontController@search')->name('search');
 
 
 ///////////////////////images rout////////////////
@@ -101,7 +107,7 @@ Route::post('/images_save', 'MideaController@store')->name('images_save');
 Route::post('/images-delete', 'MideaController@destroy'); 
 Route::get('/images-show', 'MideaController@index'); 
 
-////////////user Login Signup
+////////////user Login Signup 
 Route::post('/userlogin', 'HomeController@user_login'); 
 Route::get('/userlogout','HomeController@user_logout');
 Route::Post('/usersignup','HomeController@user_register');
