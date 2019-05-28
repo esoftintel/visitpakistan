@@ -1580,6 +1580,57 @@
   object-fit: cover;
   object-position: center;
 }
+.profile_icon{
+
+  width:30px; 
+  height:30px; 
+  color:#fff !important;
+}
+.custom-drop{
+  position: absolute;
+  right: 0;
+  background: #fff;
+  width: 221px;
+  padding: 10px;
+}
+.custom-drop ul{
+
+  list-style: none;
+  padding: 0;
+}
+#myDiv{
+  display: none;
+}
+.showmenu{
+  display: block !important;
+}
+.welcome_txt img{
+  width: 55px;
+  height: 55px;
+  float: left;
+  border-radius:100% 
+}
+.welcome_txt .textes{
+  padding-left: 61px;
+}
+.welcome_txt .textes p{
+  margin-bottom: 0px;
+
+}
+#myDiv hr{
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+.profile_icon img{
+  height: 37px;
+  border-radius:100% 
+}
+.breadcrumb-wrapper {
+  padding: 4.33333rem 0;
+}
+.header-breadcrumb{
+  height: 245px !important;
+}
 .bg_image_holderr {
   position: absolute;
   height: 100%;

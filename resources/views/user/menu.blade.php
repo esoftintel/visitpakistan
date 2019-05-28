@@ -41,10 +41,6 @@
                                                                 Pages
                                                             </a>
                                                             <ul class="dropdown-menu" aria-labelledby="drop2">
-                                                                <li><a href="author-profile.html">Author Profile</a></li>
-                                                                <li><a href="dashboard-listings.html">Author Dashboard</a></li>
-                                                                <li><a href="pricing-plans.html">Pricing Plans</a></li>
-                                                                <li><a href="invoice.html">Invoice</a></li>
                                                                 <li><a href="faqs.html">FAQ</a></li>
                                                                 <li><a href="about.html">About</a></li>
                                                                 <li><a href="contact.html">Contact</a></li>
@@ -105,6 +101,37 @@
                                                         <span>or</span>
                                                         <a href="" class="access-link" data-toggle="modal" data-target="#signup_modal">Register</a>
                                                     </li>
+
+                                                    <li class="dropdown has_dropdown">
+                                                    <a onclick="toggleMenu()" class="profile_icon dropdown-toggle" id="drop4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('img/profile-placeholder.png') }}" /> <i class="la la-angle-down"></i></a>
+                                                    
+                                                    <div class="custom-drop" id="myDiv">
+
+                                                        <div class="welcome_txt">
+                                                        
+                                                            <img src="{{ asset('img/profile-placeholder.png') }}"/>
+                                                            
+                                                            <div class="textes">
+                                                            <p>Hello!</p>
+                                                            <p><strong>Abdul Manan</strong></p>
+                                                            <a href="/user_dashboard">View / Edit Profile</a>
+                                                            </div>
+                                                        
+                                                        </div>
+
+                                                        <hr>
+                                                            <ul class="" aria-labelledby="drop4">
+                                                                <li><a href="/user_dashboard"><i class="la la-file-text"></i> My Ads</a></li>
+                                                                <li><a href="#"><i class="la la-credit-card"></i> My Orders & Billings</a></li>
+                                                                <li><a href="#"><i class="la la-info-circle"></i> Help</a></li>
+                                                                <li><a href="#"><i class="la la-gear"></i> Settings</a></li>
+                                                                <li><a href="#"><i class="la la-sign-out"></i> Logout</a></li>
+                                                       
+                                                            </ul>
+
+                                                            </div>
+                                                    </li>
+
                                                     @else
                                                     <li>
                                                         <a href="" class="access-link" data-toggle="modal" data-target="#login_modal">{{session('user')}}</a>
@@ -152,3 +179,11 @@
                 <!-- end  -->
             </div>
         </div><!-- ends: .mainmenu-wrapper -->
+
+        <script>
+        function toggleMenu() {
+        var element = document.getElementById("myDiv");
+        element.classList.toggle("showmenu");
+        }
+        
+        </script>
