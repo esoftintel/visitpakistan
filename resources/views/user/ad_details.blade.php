@@ -157,7 +157,12 @@
                             </div>
                         </div>
                         <div class="atbdb_content_module_contents">
-                            <p>{{$post_data->ps_detail}}.</p>
+                           <h3> Price:</h3> <p>{{$post_data->ps_price}}.</p>
+                           <h3> Detail:</h3> <p>{{$post_data->ps_detail}}.</p>
+                           @foreach($post_data->post_attribute_data as $pad)
+
+                           <h3> {{$pad->pt_title}}:</h3> <p>{{$pad->pt_value}}.</p>
+                           @endforeach
                         </div>
                     </div><!-- ends: .atbd_content_module -->
              
@@ -279,9 +284,9 @@
                                             <span>${{$ps_data->ps_price}}</span>
                                         </p>
                                         <p class="directory_tag">
-                                            <span class="la la-cutlery" aria-hidden="true"></span>
+
                                             <span>
-                                                <a href="{{url('ad_details')}}/{{$ps_data->ps_id}}">{{$ps_data->category_data['ct_name']}}</a>
+                                                <a href="{{url('ad_details')}}/{{$ps_data->ps_id}}"><img class="cat_featimg" src="{{ asset('images')}}/{{$ps_data->category_data['ct_icone']}}" style=" width: 20px; height: 20px;" alt="">{{$ps_data->category_data['ct_name']}}</a>
                                                
                                             </span>
                                         </p>

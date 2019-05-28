@@ -1295,7 +1295,12 @@
 .iborder-warning {
   color: #fa8b0c;
 }
-
+.category-place-single figure a img {
+  width: 545px !important;
+  height: 270px;
+  object-fit: cover;
+  object-position: center;
+}
 .outline-warning {
   border: 1px solid #fa8b0c;
   color: #fa8b0c;

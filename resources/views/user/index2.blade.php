@@ -253,42 +253,19 @@
                 </div>
                 <div class="col-lg-12">
                     <div class="cat-places-wrapper">
+                    @foreach($location as $loc)
                         <div class="category-place-single">
                             <figure>
-                                <a href=""><img src="{{ asset('img/place1.jpg')}}" alt=""></a>
+                      
+                                <a href=""><img src="{{ asset('images/media')}}/{{$loc->location_media['m_url']}}" alt=""></a>
                                 <figcaption>
-                                    <h3>Gwadar</h3>
-                                    <p>68 Listings</p>
+                                    <h3>{{$loc->ps_city}}</h3>
+                                    <p>{{$loc->location_num_post}} Listings</p>
                                 </figcaption>
                             </figure>
                         </div><!-- ends: .category-place-single -->
-                        <div class="category-place-single">
-                            <figure>
-                                <a href=""><img src="{{ asset('img/place2.png')}}" alt=""></a>
-                                <figcaption>
-                                    <h3>Lahore</h3>
-                                    <p>68 Listings</p>
-                                </figcaption>
-                            </figure>
-                        </div><!-- ends: .category-place-single -->
-                        <div class="category-place-single">
-                            <figure>
-                                <a href=""><img src="{{ asset('img/place3.png')}}" alt=""></a>
-                                <figcaption>
-                                    <h3>Islamabad</h3>
-                                    <p>68 Listings</p>
-                                </figcaption>
-                            </figure>
-                        </div><!-- ends: .category-place-single -->
-                        <div class="category-place-single">
-                            <figure>
-                                <a href=""><img src="{{ asset('img/place4.png')}}" alt=""></a>
-                                <figcaption>
-                                    <h3>Karachi</h3>
-                                    <p>68 Listings</p>
-                                </figcaption>
-                            </figure>
-                        </div><!-- ends: .category-place-single -->
+                    @endforeach    
+                      
                     </div><!-- ends: .col-lg-12 -->
                 </div>
                

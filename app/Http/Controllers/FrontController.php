@@ -69,6 +69,17 @@ class FrontController extends Controller
              $key1->its_post =$i;
         }
        $location = post::select('ps_city')->where('ps_status','active')->distinct()->get();  // groupby
+       foreach ($location as $key1) {
+        $i=0;
+        $post_d = post::where('ps_status','active')->where('ps_city',$key1->ps_city)->get();
+        $post_dd = post::where('ps_status','active')->where('ps_city',$key1->ps_city)->first();
+        $media_d = midea::where('m_ps_id',$post_dd->ps_id)->first();
+        $key1->location_media = $media_d;
+         foreach ($post_d as $key2) {
+             $i++;
+         }
+         $key1->location_num_post =$i;
+    }
        
         return view('user.index2',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location]) ; 
       
