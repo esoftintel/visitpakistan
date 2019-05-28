@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User; 
@@ -16,60 +15,84 @@ use App\like;
 use Carbon\Carbon;
 use Dotenv\Regex\Result;
 
+
 class post_api extends Controller
 {
     //post against category
     public function category_post($id)
-        { 
-        $post_data = post::where('ps_status','active')->where('ps_ct_id',$id)->get();
-        $post1 = post::where('ps_status','active')->where('ps_ct_id',$id)->first();
+    { 
+    $post_data = post::where('ps_status','active')->where('ps_ct_id',$id)->get();
+    $post1 = post::where('ps_status','active')->where('ps_ct_id',$id)->first();
+    if(!empty($post1))
+    {
         
-        if(!empty($post1))
-        {
+        foreach ($post_data as $key) {
             
-            foreach ($post_data as $key) {
-                $key->media_data          = midea::where('m_ps_id',$key->ps_id)->first();
-                $key->category_data       = category::find($key->ps_ct_id);
-                $key->subcategory_data    = subcategory::find($key->ps_st_id); 
-                $key->create_by           = user::find($key->ps_ur_id); 
-                $key->post_attribute_data = post_attribute::where('pt_ps_id',$key->ps_id)->get();
+            
+          $md= midea::where('m_ps_id',$key->ps_id)->first();
+            $key->media_as         = asset('images/media/')."/".$md['m_url'];
+           
+            $key->media_data          = midea::where('m_ps_id',$key->ps_id)->get();
+            foreach($key->media_data as $image)
+            {
+                $image->media_path= asset('images').'/media/'.$image->m_url;
             }
-            $category_data       = category::get();
-            foreach ($category_data as $key1) {
-                $i=0;
-                $post_d = post::where('ps_status','active')->where('ps_ct_id',$key1->ct_id)->get();
-                 foreach ($post_d as $key2) {
-                     $i++;
-                 }
-                 $key1->its_post =$i;
-            }
-            $result['status']=1;
-            $result['result']=$post_data;
-            return response()->json([$result]); 
+            $key->category_data       = category::find($key->ps_ct_id);
+            $key->subcategory_data    = subcategory::find($key->ps_st_id); 
+            $key->create_by           = user::find($key->ps_ur_id); 
+            $key->post_attribute_data = post_attribute::where('pt_ps_id',$key->ps_id)->get();
         }
-        else{
-            $result['status']=0;
-            $result['result']=$post_data;
-            return response()->json([$result]); 
-                    
+        $category_data       = category::get();
+        foreach ($category_data as $key1) {
+            $i=0;
+            $post_d = post::where('ps_status','active')->where('ps_ct_id',$key1->ct_id)->get();
+             foreach ($post_d as $key2) {
+                 $i++;
+             }
+             $key1->its_post =$i;
         }
-        
-      }
+        $result['status']=1;
+        $result['result']=$post_data;
+        return response()->json([$result]); 
+    }
+    else{
+        $result['status']=0;
+        $result['result']=$post_data;
+        return response()->json([$result]); 
+                
+    }
+    
+  }
      
     public function all_categories_post()
     { 
      $category_data       = category::where('ct_status','active')->get();
      $ct_data             = category::where('ct_status','active')->first();
+     $userId=Auth::user()->id;
      foreach($category_data as $category)
      {
      $category->image_path= asset('images').'/'.$category->ct_icone;
-    $post_data = post::where('ps_status','active')
+     $post_data = post::where('ps_status','active')
                        ->where('ps_ct_id',$category->ct_id)
                        ->limit(4)   
                        ->orderByRaw("ps_type = 'normal' asc")
                        ->orderByRaw("ps_type = 'feature' asc")
                        ->get();
      foreach ($post_data as $key) {
+                    $postId=$key->ps_id;
+                    $data =array('l_ps_id'=>$postId,
+                                'l_u_id' =>$userId
+                            );
+
+                    $liked = like::where($data)->first();
+                    if($liked)
+                    {
+                        $key->likedstatus=true;
+                    }
+                    else
+                    {
+                        $key->likedstatus=false;
+                    }
          
             $key->media_data          = midea::where('m_ps_id',$key->ps_id)->get();
             foreach($key->media_data as $image)
@@ -261,9 +284,12 @@ class post_api extends Controller
 
             public function like_post(Request $request)
             {
+                
                 $data1 = $request->input();
-              
-                $data =array('l_ps_id'=>$data1['post_id'],
+                $id=Auth::user()->id;  
+                if($id)
+                {
+                    $data =array('l_ps_id'=>$data1['post_id'],
                              'l_u_id' =>$data1['user_id']
                             );
                            
@@ -274,15 +300,23 @@ class post_api extends Controller
                         $result['status']=0;
                         $result['result']='unliked';
                         
-                        return response()->json([$result]); 
+                        return response()->json($result); 
                     }
                     else
                     {
                         $like = like::create($data);
                         $result['status']=1;
                         $result['result']='liked';
-                        return response()->json([$result]); 
+                        return response()->json($result); 
                     }
+                }
+                else{
+                    $result['status']=0;
+                    $result['result']='Unauthorised';
+                        
+                    return response()->json($result); 
+                }
+               
             }
             
 }

@@ -68,9 +68,9 @@
             </a>
           </li>
           <li>
-            <a href="{{url('/setLink')}}">
-              <i class="tim-icons icon-bell-55"></i>
-              <p>setLink</p>
+            <a href="{{route('users.index')}}">
+              <i class="tim-icons icon-single-02"></i>
+              <p>Users</p>
             </a>
           </li>
           <li>
