@@ -1664,6 +1664,11 @@
 .sticky .menu-area.menu--light .top-menu-area {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
+.atbd_listing_thumbnail_area .atbd_listing_image img {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
 .breadcrumb-wrapper {
   padding: 4.33333rem 0;
 }
