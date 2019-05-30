@@ -164,19 +164,19 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="address" class="not_empty">Address</label>
-                                                        <input class="form-control" id="address" type="text" value="{{$user_record->u_address}}" placeholder="Address">
+                                                        <input class="form-control" name="address" type="text" value="{{$user_record->u_address}}" placeholder="Address">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="new_pass" class="not_empty">New Password</label>
-                                                        <input id="new_pass" class="form-control" type="password" placeholder="Password">
+                                                        <input name="new_pass" class="form-control" type="password" placeholder="Password">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="confirm_pass" class="not_empty">Confirm New Password</label>
-                                                        <input id="confirm_pass" class="form-control" type="password" placeholder="Re-enter Password">
+                                                        <input name="confirm_pass" class="form-control" type="password" placeholder="Re-enter Password">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">

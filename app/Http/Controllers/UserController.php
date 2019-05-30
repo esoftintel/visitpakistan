@@ -146,4 +146,20 @@ class UserController extends Controller {
             ->with('flash_message',
              'User successfully deleted.');
     }
+
+
+    public function user_update(Request $request)
+    {
+        $pst = $request->post();
+        $data = array(
+                        'name'            =>$pst['name'],
+                        'u_phone'         =>$pst['phone'],
+                        'u_address'       =>$pst['address'],
+                        'password'        =>$pst['new_pass'],
+                        'u_facebook'      =>$pst['facebook'],
+                        'u_googleaccount' =>$pst['google'],
+                        'u_about'         =>$pst['bio'],
+                     );
+
+    }
 }
