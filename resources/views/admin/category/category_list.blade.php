@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 
  @include('admin.templates.header')
 <body class="">
+=======
+-
+@include('admin.templates.header')
+<body class="white-content">
+>>>>>>> 3e3152dca0e19e49eba7dc01924ea0433d63a113
   <div class="wrapper">
     @include('admin.templates.aside')
     <div class="main-panel">

@@ -1,7 +1,7 @@
 <body>
     <section class="intro-wrapper bgimage overlay overlay--dark" id="exchange">
        
-        <div class="mainmenu-wrapper">
+        <div class="mainmenu-wrapper" id="myHeader">
             <div class="menu-area menu1 menu--light">
                 <div class="top-menu-area">
                     <div class="container-fluid">
@@ -84,40 +84,25 @@
                                         <div class="author-area">
                                             <div class="author__access_area">
                                                 <ul class="d-flex list-unstyled align-items-center">
-                                                    <li>
+                                                   
 
                                                     @if (session('user_data'))
                                                   
-                                                        <a href="{{url('category_show')}}" class="btn btn-xs btn-gradient btn-gradient-two">
+                                                    <li> <a href="{{url('category_show')}}" class="btn btn-xs btn-gradient btn-gradient-two">
                                                             <span class="la la-plus"></span> Add Listing
-                                                        </a>
-                                                        @else
-                                                        <a href="" class="access-link" data-toggle="modal" data-target="#login_modal">Add Listing</a>
-                                                    @endif 
-                                                    </li>
-                                                    @if (!session('user'))
-                                                    <li>
-                                                        <a href="" class="access-link" data-toggle="modal" data-target="#login_modal">Login</a>
-                                                        <span>or</span>
-                                                        <a href="" class="access-link" data-toggle="modal" data-target="#signup_modal">Register</a>
-                                                    </li>
-
-                                                    <li class="dropdown has_dropdown">
+                                                        </a></li>
+                                                        <li class="dropdown has_dropdown">
                                                     <a onclick="toggleMenu()" class="profile_icon dropdown-toggle" id="drop4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('img/profile-placeholder.png') }}" /> <i class="la la-angle-down"></i></a>
                                                     
                                                     <div class="custom-drop" id="myDiv">
-
-                                                        <div class="welcome_txt">
-                                                        
+                                                          <div class="welcome_txt">
                                                             <img src="{{ asset('img/profile-placeholder.png') }}"/>
-                                                            
                                                             <div class="textes">
-                                                            <p>Hello!</p>
-                                                            <p><strong>Abdul Manan</strong></p>
-                                                            <a href="/user_dashboard">View / Edit Profile</a>
+                                                                <p>Hello!</p>
+                                                                <p><strong>{{session('user')}}</strong></p>
+                                                                <a href="/user_dashboard">View / Edit Profile</a>
                                                             </div>
-                                                        
-                                                        </div>
+                                                          </div>
 
                                                         <hr>
                                                             <ul class="" aria-labelledby="drop4">
@@ -125,22 +110,22 @@
                                                                 <li><a href="#"><i class="la la-credit-card"></i> My Orders & Billings</a></li>
                                                                 <li><a href="#"><i class="la la-info-circle"></i> Help</a></li>
                                                                 <li><a href="#"><i class="la la-gear"></i> Settings</a></li>
-                                                                <li><a href="#"><i class="la la-sign-out"></i> Logout</a></li>
+                                                                <li><a href="{{url('/userlogout')}}"> Logout</a></li>
                                                        
                                                             </ul>
 
                                                             </div>
                                                     </li>
-
-                                                    @else
-                                                    <li>
-                                                        <a href="" class="access-link" data-toggle="modal" data-target="#login_modal">{{session('user')}}</a>
-                                                        <span></span>
-                                                        <a href="{{url('/userlogout')}}" >Logout</a>
+                                                        @else
+                                                       <li><a href="" class="access-link" data-toggle="modal" data-target="#login_modal">Add Listing</a></li>
+                                                       <li>
+                                                        <a href="" class="access-link" data-toggle="modal" data-target="#login_modal">Login</a>
+                                                        <span>or</span>
+                                                        <a href="" class="access-link" data-toggle="modal" data-target="#signup_modal">Register</a>
                                                     </li>
                                                     @endif 
-
-                                                </ul>
+                                                    
+                                              </ul>
                                             </div>
                                         </div>
                                         <!-- end .author-area -->
@@ -187,3 +172,17 @@
         }
         
         </script>
+        <script>
+            window.onscroll = function() {myFunction()};
+
+            var header = document.getElementById("myHeader");
+            var sticky = header.offsetTop;
+
+            function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+            }
+            </script>
