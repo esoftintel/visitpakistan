@@ -472,4 +472,11 @@ class FrontController extends Controller
         return view('user.user_dashboard',['post_data'=>$post_data,'location'=>$location]) ; 
 
     }
+
+
+    public function categorylisting()
+    {
+        return view('user.category_listing') ; 
+
+    }
 }

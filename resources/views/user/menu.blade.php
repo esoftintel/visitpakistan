@@ -1,7 +1,7 @@
 <body>
     <section class="intro-wrapper bgimage overlay overlay--dark" id="exchange">
        
-        <div class="mainmenu-wrapper">
+        <div class="mainmenu-wrapper" id="myHeader">
             <div class="menu-area menu1 menu--light">
                 <div class="top-menu-area">
                     <div class="container-fluid">
@@ -102,6 +102,15 @@
                                                         <a href="" class="access-link" data-toggle="modal" data-target="#signup_modal">Register</a>
                                                     </li>
 
+                                                   
+
+                                                    @else
+                                                    <li>
+                                                        <a href="" class="access-link" data-toggle="modal" data-target="#login_modal">{{session('user')}}</a>
+                                                        <span></span>
+                                                        <a href="{{url('/userlogout')}}" >Logout</a>
+                                                    </li>
+
                                                     <li class="dropdown has_dropdown">
                                                     <a onclick="toggleMenu()" class="profile_icon dropdown-toggle" id="drop4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('img/profile-placeholder.png') }}" /> <i class="la la-angle-down"></i></a>
                                                     
@@ -130,13 +139,6 @@
                                                             </ul>
 
                                                             </div>
-                                                    </li>
-
-                                                    @else
-                                                    <li>
-                                                        <a href="" class="access-link" data-toggle="modal" data-target="#login_modal">{{session('user')}}</a>
-                                                        <span></span>
-                                                        <a href="{{url('/userlogout')}}" >Logout</a>
                                                     </li>
                                                     @endif 
 
@@ -187,3 +189,17 @@
         }
         
         </script>
+        <script>
+            window.onscroll = function() {myFunction()};
+
+            var header = document.getElementById("myHeader");
+            var sticky = header.offsetTop;
+
+            function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+            }
+            </script>
