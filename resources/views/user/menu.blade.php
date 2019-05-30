@@ -1,7 +1,7 @@
 <body>
     <section class="intro-wrapper bgimage overlay overlay--dark" id="exchange">
        
-        <div class="mainmenu-wrapper">
+        <div class="mainmenu-wrapper" id="myHeader">
             <div class="menu-area menu1 menu--light">
                 <div class="top-menu-area">
                     <div class="container-fluid">
@@ -90,8 +90,33 @@
                                                   
                                                     <li> <a href="{{url('category_show')}}" class="btn btn-xs btn-gradient btn-gradient-two">
                                                             <span class="la la-plus"></span> Add Listing
+<<<<<<< HEAD
+                                                        </a>
+                                                        @else
+                                                        <a href="" class="access-link" data-toggle="modal" data-target="#login_modal">Add Listing</a>
+                                                    @endif 
+                                                    </li>
+                                                    @if (!session('user'))
+                                                    <li>
+                                                        <a href="" class="access-link" data-toggle="modal" data-target="#login_modal">Login</a>
+                                                        <span>or</span>
+                                                        <a href="" class="access-link" data-toggle="modal" data-target="#signup_modal">Register</a>
+                                                    </li>
+
+                                                   
+
+                                                    @else
+                                                    <li>
+                                                        <a href="" class="access-link" data-toggle="modal" data-target="#login_modal">{{session('user')}}</a>
+                                                        <span></span>
+                                                        <a href="{{url('/userlogout')}}" >Logout</a>
+                                                    </li>
+
+                                                    <li class="dropdown has_dropdown">
+=======
                                                         </a></li>
                                                         <li class="dropdown has_dropdown">
+>>>>>>> b57a556c5edcf8b0488532dc8ef0e3182b8985b9
                                                     <a onclick="toggleMenu()" class="profile_icon dropdown-toggle" id="drop4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('img/profile-placeholder.png') }}" /> <i class="la la-angle-down"></i></a>
                                                     
                                                     <div class="custom-drop" id="myDiv">
@@ -116,6 +141,8 @@
 
                                                             </div>
                                                     </li>
+<<<<<<< HEAD
+=======
                                                         @else
                                                        <li><a href="" class="access-link" data-toggle="modal" data-target="#login_modal">Add Listing</a></li>
                                                        <li>
@@ -123,6 +150,7 @@
                                                         <span>or</span>
                                                         <a href="" class="access-link" data-toggle="modal" data-target="#signup_modal">Register</a>
                                                     </li>
+>>>>>>> b57a556c5edcf8b0488532dc8ef0e3182b8985b9
                                                     @endif 
                                                     
                                               </ul>
@@ -172,3 +200,17 @@
         }
         
         </script>
+        <script>
+            window.onscroll = function() {myFunction()};
+
+            var header = document.getElementById("myHeader");
+            var sticky = header.offsetTop;
+
+            function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+            }
+            </script>
