@@ -295,7 +295,7 @@ class FrontController extends Controller
     public function ad_details(){
         return view('user.ad_details') ; //->with('category',$data);
     }
-
+ 
 
 
     public function post_form($id)

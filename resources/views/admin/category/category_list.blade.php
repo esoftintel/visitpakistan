@@ -1,5 +1,5 @@
--
-@include('admin.templates.header')
+
+ @include('admin.templates.header')
 <body class="">
   <div class="wrapper">
     @include('admin.templates.aside')
@@ -8,8 +8,8 @@
      
       <!-- End Navbar -->
       <div class="content">
-       
-        <div class="row">
+     
+ 
         <div class="col-lg-12 col-md-12">
         @if (session('info'))
           <div class="alert alert-success">
@@ -19,9 +19,10 @@
             <div class="card ">
               <div class="card-header">
               <div class="row"> 
-                <div class="col-lg-6"><h4 class="card-title"> Categories</h4></div>
+              <div class="col-lg-6"><h4 class="card-title"> Categories</h4></div>
                 <div class="col-lg-6"> <a class="btn btn-primary pull-right btn-sm" href="{{url('/category_create')}}" role="button">add Categories</a></div>
-                </div>
+               
+              <h4 class="card-title"> </h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -54,12 +55,12 @@
                       
                     </tbody>
                   </table>
-                </div>
+                  </div>
               </div>
             </div>
           </div>
-          
-        </div>
-      </div>
+
+       </div>
+       
       @include('admin.templates.footer')
      

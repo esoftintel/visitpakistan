@@ -20,18 +20,25 @@ Route::get('profile', function () {
     // Only verified users may enter...
 })->middleware('verified');
 
+Route::group(['middleware' => ['auth']], function() {
+    // 
+    Route::get('/dashboard','admin@posts');
+    Route::resource('users', 'UserController');
+});
+
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('/otherdatabase','MultidatabaseController@fetchDataFromOtherDatabase');
 
 Route::get('/dashboard1','admin@index');
-Route::get('/dashboard','admin@posts');
+
 ////post oprations
 Route::get('/post_details/{id}','admin@post_details');
 Route::get('/post_chat/{id}','admin@post_chat');
 
 
-Route::resource('users', 'UserController');
+
 
 Route::resource('roles', 'RoleController');
 
@@ -78,7 +85,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 ///rout for get dynamic value for subcategory
 Route::get('/getsubcategory/{id}', 'AttributeController@getcategory');
 Route::get('/getattribute/{id}', 'AttributeController@getattribute');
-
+ 
 
 //////////////////////////////user side route here /////////////////////////
 Route::get('/category_show', 'FrontController@create')->name('category_show');
@@ -108,9 +115,9 @@ Route::post('/images-delete', 'MideaController@destroy');
 Route::get('/images-show', 'MideaController@index'); 
 
 ////////////user Login Signup 
-Route::post('/userlogin', 'HomeController@user_login'); 
-Route::get('/userlogout','HomeController@user_logout');
-Route::Post('/usersignup','HomeController@user_register');
+Route::post('/userlogin', 'userLoginController@user_login'); 
+Route::get('/userlogout','userLoginController@user_logout');
+Route::Post('/usersignup','userLoginController@user_register');
 
 
 

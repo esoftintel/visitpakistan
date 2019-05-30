@@ -1,5 +1,5 @@
--
-@include('admin.templates.header')
+
+ @include('admin.templates.header')
 <body class="">
   <div class="wrapper">
     @include('admin.templates.aside')
@@ -8,8 +8,8 @@
      
       <!-- End Navbar -->
       <div class="content">
-       
-        <div class="row">
+     
+ 
         <div class="col-lg-12 col-md-12">
         @if (session('info'))
           <div class="alert alert-success">
@@ -19,10 +19,10 @@
             <div class="card ">
               <div class="card-header">
               <div class="row"> 
-                <div class="col-lg-6"><h4 class="card-title"> Attribute</h4></div>
-                <div class="col-lg-6"> <a class="btn btn-primary pull-right btn-sm" href="{{url('/attribute_create')}}" role="button">add Attribute</a></div>
-                </div>
+              <div class="col-lg-6"><h4 class="card-title"> Attribute</h4></div>
+              <div class="col-lg-6"> <a class="btn btn-primary pull-right btn-sm" href="{{url('/attribute_create')}}" role="button">add Attribute</a></div>
                
+              <h4 class="card-title"> </h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -46,7 +46,7 @@
                         <td>{{$key->st_name}}</td>
                       
                         <td>{{$key->created_at}}</td>
-                        <td>
+                         <td>
                            
                            <a class="btn btn-primary btn-sm" href="{{route('attributer.edit',$key->at_id)}}">Update</a>
                            <a class="btn btn-primary btn-sm" href="{{url('/attribute_delete/'.$key->at_id)}}" role="button">Delete</a> 
@@ -55,14 +55,14 @@
                       @endforeach
                      
                       
-                    </tbody>
+                      </tbody>
                   </table>
-                </div>
+                  </div>
               </div>
             </div>
           </div>
-          
-        </div>
-      </div>
+
+       </div>
+       
       @include('admin.templates.footer')
      

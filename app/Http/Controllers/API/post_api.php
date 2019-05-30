@@ -10,23 +10,49 @@ use Validator;
 use App\post;
 use App\subcategory;
 use App\post_attribute;
+use App\attribute_value;
+use App\attribute;
 use App\midea;
 use App\like;
 use Carbon\Carbon;
 use Dotenv\Regex\Result;
 
 
+
+
 class post_api extends Controller
 {
+
+    private $photos_path;
+
+    public function __construct()
+    {
+        $this->photos_path = public_path('/images/media');
+    }
     //post against category
     public function category_post($id)
     { 
     $post_data = post::where('ps_status','active')->where('ps_ct_id',$id)->get();
     $post1 = post::where('ps_status','active')->where('ps_ct_id',$id)->first();
+    $userId=Auth::user()->id;
     if(!empty($post1))
     {
         
         foreach ($post_data as $key) {
+
+            $postId=$key->ps_id;
+                $data =array('l_ps_id'=>$postId,
+                            'l_u_id' =>$userId
+                            );
+                $liked=   like::where($data)->first();
+                if($liked)
+                {
+                    $key->likedstatus=true;
+                }
+                else
+                {
+                    $key->likedstatus=false;
+                }
             
             
           $md= midea::where('m_ps_id',$key->ps_id)->first();
@@ -290,7 +316,7 @@ class post_api extends Controller
                 if($id)
                 {
                     $data =array('l_ps_id'=>$data1['post_id'],
-                             'l_u_id' =>$data1['user_id']
+                                 'l_u_id' =>$data1['user_id']
                             );
                            
                     $liked = like::where($data)->first();
@@ -318,5 +344,236 @@ class post_api extends Controller
                 }
                
             }
+
+        public function liked_posts()
+        {
+            $userId=Auth::user()->id;
+            if($userId)
+            {
+                $posts=like::where('l_u_id',$userId)
+                        ->select('*', 'posts.created_at AS ps_created_at')
+                        ->join('posts','posts.ps_id' ,'=', 'likes.l_ps_id')
+                        ->Join('categories', 'categories.ct_id', '=', 'posts.ps_ct_id')
+                        ->join('users','users.id', '=', 'posts.ps_ur_id')
+                         ->orderByRaw("ps_type = 'normal' asc")
+                        ->orderByRaw("ps_type = 'feature' asc")
+                        ->get();
+
+                        foreach ($posts as $key) {
+                            $postId=$key->ps_id;
+                                     $data =array('l_ps_id'=>$postId,
+                                                  'l_u_id' =>$userId
+                                                );
+                                     $liked=   like::where($data)->first();
+                                     if($liked)
+                                     {
+                                         $key->likedstatus=true;
+                                     }
+                                     else
+                                     {
+                                         $key->likedstatus=false;
+                                     }
+                            $key->image_path= asset('images').'/'.$key->ct_icone;
+                            
+                       
+                          $key->media_data          = midea::where('m_ps_id',$key->ps_id)->get();
+                          foreach($key->media_data as $image)
+                          {
+                              $image->media_path= asset('images').'/media/'.$image->m_url;
+                          }
+                          $key->post_attribute_data = post_attribute::where('pt_ps_id',$key->ps_id)->get();
+                      }
+                      if($posts)
+                      {
+                        $result['status']=1;
+                        $result['result']=$posts;
+                            
+                        return response()->json($result);  
+                      }
+                      else
+                      {
+                        $result['status']=0;
+                        $result['result']=$posts;
+                        return response()->json($result);
+                      }
+
+                        
+            }
+            else{
+                $result['status']=0;
+                $result['result']='Unauthorised';  
+                return response()->json($result); 
+            }
+        }
+
+        public function post_store(Request $request)
+        {
+            $data=$request->input();
+            $request->validate([
+                'title' => 'required',
+                'detail'  =>'required',
+                'address'  =>'required',
+                'detail'  =>'required',
+                'ctid'  =>'required',
+                'sctid'  =>'required',
+                'latitude'  =>'required',
+                'logitute'  =>'required',
+                // 'detail'  =>'required',
+                // 'detail'  =>'required',
+                'photos'      =>'required'
+
+            ]);
+
+            $userId=Auth::user()->id;
+            $attribute=$request->input('attribute');
+            $attribute_value=$request->input('attribute_value');
+        //    print_r($attribute);
+        //    exit;
+            $data = array(
+                            "ps_title"   => $request->input('title'),
+                            "ps_detail"  => $request->input('detail'),
+                            "ps_price"   => $request->input('price'),
+                            "ps_address" => $request->input('address'),
+                            "ps_ct_id"   => $request->input('ctid'),
+                            "ps_st_id"   => $request->input('sctid'),
+                            "ps_ur_id"   => $userId,
+                            "ps_lati"    => $request->input('latitude'),
+                            "ps_longi"   => $request->input('logitute'),
+                         );
+                      $post =  post::create($data);
+                      
+                      if($attribute)
+                      {
+                          
+                       foreach($attribute as $key)
+                       {
+                           $at = array(
+                                          "pt_title" =>$key->attribute,
+                                          "pt_value" =>$key->attribute_value,
+                                          "pt_ps_id" =>$post->ps_id,
+                                        );
+                                       
+                                        post_attribute::create($at);
+                       }
+
+                       
+                      }
+
+                      foreach ($request->photos as $photo) {
+                        $image = $request->file($photo); 
+                        $original_name = basename($image->getClientOriginalName());
+             
+                          $name = sha1(date('YmdHis') . str_random(30));
+                          $save_name = $name . '.' . $image->getClientOriginalExtension();
+                          $resize_name =  $image->getClientOriginalExtension();
+                          $photo->move($this->photos_path, $save_name);
+                        midea::create([
+                                      'm_url' => $save_name,                   
+                                      'm_type' => $resize_name,
+                                      'm_name' =>$original_name = basename($photo->getClientOriginalName()),
+                                      'm_ps_id' =>$post->ps_id  
+                        ]);
+                    }
+
+                   if()
+                   {
+                    $result['status']=1;
+                    $result['result']='unliked';
+                    
+                    return response()->json($result); 
+                   }
+    
+        }
+
+
+        public function getcategories()
+        {
+            $data = category::where('ct_status','active')->get();
+            $data1 = category::where('ct_status','active')->first();
+            if($data)
+            {
+                foreach ($data as $key) {
+                    $key->image_path= asset('images').'/'.$key->ct_icone;
+                }
+
+
+            }
+            if($data1)
+            {
+                $result['status']=1;
+                $result['result']=$data;
+                 return response()->json($result);
+
+            }
+            else
+            {
+                $result['status']=0;
+                $result['result']=$data;
+                 return response()->json($result);
+            }
             
+        }
+        
+         public function getsubcategories($id)
+        {
+            $data = subcategory::where('st_ct_id',$id)->get();
+             $data1 = subcategory::where('st_ct_id',$id)->first();
+           
+            if($data1)
+            {
+                $result['status']=1;
+                $result['result']=$data;
+                 return response()->json($result);
+
+            }
+            else
+            {
+                $result['status']=0;
+                $result['result']=$data;
+                 return response()->json($result);
+            }
+            
+        }
+        
+        public function getsubcategory_attributes($id)
+        {
+             $data = attribute::where('at_st_id',$id)->get();
+             $data1 = attribute::where('at_st_id',$id)->first();
+           
+            if($data1)
+            {
+                $result['status']=1;
+                $result['result']=$data;
+                 return response()->json($result);
+
+            }
+            else
+            {
+                $result['status']=0;
+                $result['result']=$data;
+                 return response()->json($result);
+            }
+            
+        }
+        
+        public function getsubcategory_attributevalues($id)
+        {
+            $data = attribute_value::where('atv_at_id',$id)->get();
+            $data1= attribute_value::where('atv_at_id',$id)->first();
+            if($data1)
+            {
+                $result['status']=1;
+                $result['result']=$data;
+                 return response()->json($result);
+
+            }
+            else
+            {
+                $result['status']=0;
+                $result['result']=$data;
+                 return response()->json($result);
+            }
+        }
+ 
 }
+

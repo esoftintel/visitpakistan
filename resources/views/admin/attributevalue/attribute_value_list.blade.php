@@ -8,8 +8,8 @@
      
       <!-- End Navbar -->
       <div class="content">
-       
-        <div class="row">
+     
+ 
         <div class="col-lg-12 col-md-12">
         @if (session('info'))
           <div class="alert alert-success">
@@ -19,10 +19,10 @@
             <div class="card ">
               <div class="card-header">
               <div class="row"> 
-                <div class="col-lg-6"><h4 class="card-title"> Attribute Values</h4></div>
+              <div class="col-lg-6"><h4 class="card-title"> Attribute Values</h4></div>
                 <div class="col-lg-6"> <a class="btn btn-primary btn-sm pull-right" href="{{route('attribute_value.create')}}" role="button">add Attribute_Values</a></div>
-                </div>
-                <h4 class="card-title"> </h4>
+               
+              <h4 class="card-title"> </h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -55,12 +55,14 @@
                       
                     </tbody>
                   </table>
-                </div>
+                  </div>
               </div>
             </div>
           </div>
-          
-        </div>
-      </div>
+
+       </div>
+       
       @include('admin.templates.footer')
+     
+     
      
