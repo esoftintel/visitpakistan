@@ -42,7 +42,7 @@ class HomeController extends Controller
         
       }
    
-       return redirect()->route('all');
+       return redirect()->route('user_dashboard');
 
     }
 
@@ -50,7 +50,7 @@ class HomeController extends Controller
     {
         session()->forget('user');
         session()->forget('user_data');
-        return view('user.index');
+        return redirect()->route('all'); 
     }
 
     public function user_register(Request $request)

@@ -391,7 +391,7 @@ class FrontController extends Controller
      * @param  \App\post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(post $post)
+    public function edit(post $post) 
     {
         //
     }
