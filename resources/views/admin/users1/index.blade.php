@@ -1,5 +1,5 @@
 @include('admin.templates.header')
-<body class="">
+<body class="white-content">
     @include('admin.templates.aside')
     <div class="main-panel">
     @include('admin.templates.navbar')
