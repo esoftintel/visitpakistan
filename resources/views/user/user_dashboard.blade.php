@@ -43,7 +43,7 @@
                                 </li>
                             </ul>
                             <div class="nav_button">
-                                <a href="add-listing.html" class="btn btn-primary"><span class="la la-plus"></span> Add Listing</a>
+                                <a href="{{url('/category_show')}}" class="btn btn-primary"><span class="la la-plus"></span> Add Listing</a>
                                 <a href="" class="btn btn-secondary">Log Out</a>
                             </div>
                         </div>
@@ -140,51 +140,31 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="full_name" class="not_empty">Full Name</label>
-                                                        <input class="form-control" type="text" placeholder="Full name" id="full_name">
+                                                    <form enctype="multipart/form-data" method="post" action="{{route('user_update')}}">
+                                                    {{ csrf_field() }}
+                                                        <label for="full_name" class="not_empty"> Name</label>
+                                                        <input class="form-control" type="text" placeholder="Please You'r Name" value="{{$user_record->name}}" name="name" id="full_name">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="user_name" class="not_empty">Username</label>
-                                                        <input class="form-control" id="user_name" type="text" disabled="disabled" value="admin">
+                                                        <input class="form-control" id="user_name" type="text" disabled="disabled" value="{{$user_record->email}}">
                                                         <p>(Username can not be changed)</p>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="first_name" class="not_empty">First Name</label>
-                                                        <input class="form-control" id="first_name" type="text" name="user[first_name]" placeholder="First Name">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="last_name" class="not_empty">Last Name</label>
-                                                        <input class="form-control" id="last_name" type="text" placeholder="Last Name">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="req_email" class="not_empty">Email (required)</label>
-                                                        <input class="form-control" id="req_email" type="text" placeholder="mail@example.com" required="">
-                                                    </div>
-                                                </div>
+                                                
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="phone" class="not_empty">Cell Number</label>
-                                                        <input class="form-control" type="tel" placeholder="Phone number" id="phone">
+                                                        <input class="form-control" type="tel" placeholder="Phone number" name="phone" value="{{$user_record->u_phone}}" id="phone">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="website" class="not_empty">Website</label>
-                                                        <input class="form-control" id="website" type="text" placeholder="Website">
-                                                    </div>
-                                                </div>
+                                                
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="address" class="not_empty">Address</label>
-                                                        <input class="form-control" id="address" type="text" placeholder="Address">
+                                                        <input class="form-control" id="address" type="text" value="{{$user_record->u_address}}" placeholder="Address">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -202,48 +182,30 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="facebook" class="not_empty">Facebook</label>
-                                                        <input id="facebook" class="form-control" type="url" placeholder="Facebook URL">
+                                                        <input id="facebook" class="form-control" type="url" name="facebook" value="{{$user_record->u_facebook}}" placeholder="Facebook URL">
                                                         <p>Leave it empty to hide</p>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="twitter" class="not_empty">Twitter</label>
-                                                        <input id="twitter" class="form-control" type="url" placeholder="Twitter URL">
-                                                        <p>Leave it empty to hide</p>
-                                                    </div>
-                                                </div>
+                                               
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="google" class="not_empty">Google+</label>
-                                                        <input id="google" class="form-control" type="url" placeholder="Google+ URL">
+                                                        <input id="google" class="form-control" type="url" name="google" value="{{$user_record->u_googleaccount}}" placeholder="Google+ URL">
                                                         <p>Leave it empty to hide</p>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="linkedIn" class="not_empty">LinkedIn</label>
-                                                        <input id="linkedIn" class="form-control" type="url" placeholder="Linkedin URL">
-                                                        <p>Leave it empty to hide</p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="youtube" class="not_empty">Youtube</label>
-                                                        <input id="youtube" class="form-control" type="url" placeholder="Youtube URL">
-                                                        <p>Leave it empty to hide</p>
-                                                    </div>
-                                                </div>
+                                         
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="bio" class="not_empty">About Author</label>
-                                                        <textarea class="wp-editor-area form-control" rows="6" autocomplete="off" id="bio" placeholder="Describe yourself"></textarea>
+                                                        <textarea class="wp-editor-area form-control" rows="6" autocomplete="off" name="bio" id="bio" placeholder="Describe yourself"> {{$user_record->aboutl}}</textarea>
                                                     </div>
                                                 </div>
                                             </div>
                                             <!--ends social info .row-->
                                             <button type="submit" class="btn btn-primary" id="update_user_profile">Save Changes</button>
                                         </div>
+                                     </form>
                                     </div>
                                 </div>
                             </div><!-- ends: .atbd_author_module -->
@@ -273,21 +235,14 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @foreach($like_data as $lk)
                                                     <tr>
-                                                        <td><a href="">Double Broccoli Quinoa</a></td>
-                                                        <td><span class="la la-glass"></span> <a href="">Restaurant</a></td>
+                                                        <td><a href="{{url('/post_detail')}}/{{$lk->ps_id}}">{{$lk->ps_title}}</a></td>
+                                                        <td><a href=""><img src="{{asset('images')}}/{{$lk->category_data['ct_icone']}}" style="height:20px; width:20px" alt="listing image">{{$lk->category_data['ct_name']}}</a></td>
                                                         <td><a href="" class="remove-favorite"><span class="la la-times"></span></a></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td><a href="">Easy Brazillian Cheese Bread</a></td>
-                                                        <td><span class="la la-glass"></span> <a href="">Restaurant</a></td>
-                                                        <td><a href="" class="remove-favorite"><span class="la la-times"></span></a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><a href="">Hilton Hawaiian Village</a></td>
-                                                        <td><span class="la la-bed"></span> <a href="">Hotel</a></td>
-                                                        <td><a href="" class="remove-favorite"><span class="la la-times"></span></a></td>
-                                                    </tr>
+                                                    @endforeach
+                                                  
                                                 </tbody>
                                             </table>
                                         </div>
