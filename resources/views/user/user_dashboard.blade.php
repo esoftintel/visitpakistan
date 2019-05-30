@@ -113,18 +113,19 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-3 col-md-4 mb-5 mb-lg-0">
-                            <div class="user_pro_img_area">
-                                <img src="img/author-profile.jpg" alt="">
-                                <div class="image-info">
-                                    <h6>Profile Image</h6>
-                                    <span>JPG or PNG 120x120 px</span>
-                                </div>
-                                <div class="custom-file-upload">
-                                    <input type="file" id="customFile">
-                                    <label for="customFile" class="btn btn-sm btn-secondary">Upload New Image</label>
-                                </div>
-                                <button class="btn btn-sm btn-danger">Delete Image</button>
+                        <br/><br/>
+                            <div style="width:150px;height: 150px; border: 1px solid whitesmoke ;text-align: left;position: relative" id="image">
+                                <img width="100%" height="100%" id="preview_image" src="{{asset('images/user')}}/{{$user_record->u_image}}">
+                                <i id="loading" class="fa fa-spinner fa-spin fa-3x fa-fw" style="position: absolute;left: 40%;top: 40%;display: none"></i>
                             </div>
+                            <p>
+                                <a href="javascript:changeProfile()" style="text-decoration: none;">
+                                    <i class="glyphicon glyphicon-edit"></i> Change
+                                </a>&nbsp;&nbsp;
+                              
+                            </p>
+                            <input type="file" id="file" style="display: none"/>
+                            <input type="hidden" id="file_name"/>
                         </div>
                         <div class="col-lg-9 col-md-8">
                             <div class="atbd_author_module">
@@ -283,4 +284,103 @@ if (arr.indexOf(name) == -1) {
 }
 </script>
 
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://use.fontawesome.com/2c7a93b259.js"></script>
+<script>
+    function changeProfile() {
+        $('#file').click();
+    }
+    $('#file').change(function () {
+        if ($(this).val() != '') {
+            upload(this);
+
+        }
+    });
+    function upload(img) {
+        var form_data = new FormData();
+        form_data.append('file', img.files[0]);
+        form_data.append('_token', '{{csrf_token()}}');
+        $('#loading').css('display', 'block');
+        $.ajax({
+            url: "{{url('ajax-image-upload')}}",
+            data: form_data,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                if (data.fail) {
+                    $('#preview_image').attr('src', '{{asset('images/user/noimage.jpg')}}');
+                    alert(data.errors['file']);
+                }
+                else {
+                    $('#file_name').val(data);
+                    var imgt ='{{asset('images/user')}}/'+data;
+                    var ig = imgt.replace(/\s/g, "");
+                    $('#preview_image').attr('src', ''+ig);
+                }
+                $('#loading').css('display', 'none');
+            },
+            error: function (xhr, status, error) {
+                alert(xhr.responseText);
+                $('#preview_image').attr('src', '{{asset('images/noimage.jpg')}}');
+            }
+        });
+    }
+    function removeFile() {
+        if ($('#file_name').val() != '')
+            if (confirm('Are you sure want to remove profile picture?')) {
+                $('#loading').css('display', 'block');
+                var form_data = new FormData();
+                form_data.append('_method', 'DELETE');
+                form_data.append('_token', '{{csrf_token()}}');
+                $.ajax({
+                    url: "ajax-remove-image/" + $('#file_name').val(),
+                    data: form_data,
+                    type: 'POST',
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        $('#preview_image').attr('src', '{{asset('images/noimage.jpg')}}');
+                        $('#file_name').val('');
+                        $('#loading').css('display', 'none');
+                    },
+                    error: function (xhr, status, error) {
+                        alert(xhr.responseText);
+                    }
+                });
+            }
+    }
+</script>
+
 @include('user.footer')
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ajax Image Upload with Laravel</title>
+</head>
+<body style="background: lightgrey">
+<center>
+    <br/><br/>
+    <div style="width:350px;height: 350px; border: 1px solid whitesmoke ;text-align: center;position: relative" id="image">
+        <img width="100%" height="100%" id="preview_image" src="{{asset('images/noimage.jpg')}}"/>
+        <i id="loading" class="fa fa-spinner fa-spin fa-3x fa-fw" style="position: absolute;left: 40%;top: 40%;display: none"></i>
+    </div>
+    <p>
+        <a href="javascript:changeProfile()" style="text-decoration: none;">
+            <i class="glyphicon glyphicon-edit"></i> Change
+        </a>&nbsp;&nbsp;
+        <a href="javascript:removeFile()" style="color: red;text-decoration: none;">
+            <i class="glyphicon glyphicon-trash"></i>
+            Remove
+        </a>
+    </p>
+    <input type="file" id="file" style="display: none"/>
+    <input type="hidden" id="file_name"/>
+</center>
+<!-- JavaScripts -->
+
+</body>
+</html>
