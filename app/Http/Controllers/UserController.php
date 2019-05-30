@@ -150,6 +150,7 @@ class UserController extends Controller {
 
     public function user_update(Request $request)
     {
+        $user = User::findOrFail(session('user_data')); 
         $pst = $request->post();
         $data = array(
                         'name'            =>$pst['name'],
@@ -160,6 +161,16 @@ class UserController extends Controller {
                         'u_googleaccount' =>$pst['google'],
                         'u_about'         =>$pst['bio'],
                      );
+               
+            $flg =    $user->update($data);  
+            if($flg)
+            {
+                return redirect()->route('user_dashboard'); 
+            } 
+            else{
+                return redirect()->route('all'); 
+            }   
+           
 
     }
 }

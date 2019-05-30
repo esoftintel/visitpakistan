@@ -482,11 +482,13 @@ class FrontController extends Controller
 
         }
       
-     
-        }
         return view('user.user_dashboard',['post_data'=>$post_data,'like_data'=>$like_data , 'user_record'=>$user]) ; 
 
+        }
+        return Redirect::back()->withErrors(['msg', 'The Message']);  
     }
+       
+
 
 
     public function categorylisting()

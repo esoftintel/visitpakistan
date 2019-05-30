@@ -101,7 +101,7 @@ Route::get('/pusher', 'ChatController@index')->name('pusher');
 
 Route::post('/like', 'LikeController@store')->name('like');
 Route::post('/search', 'FrontController@search')->name('search');
-Route::post('/user_update', 'FrontController@user_update')->name('user_update');
+Route::post('/user_update', 'UserController@user_update')->name('user_update');
 
 
 ///////////////////////images rout////////////////

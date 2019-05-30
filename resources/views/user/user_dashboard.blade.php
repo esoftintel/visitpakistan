@@ -143,7 +143,7 @@
                                                     <form enctype="multipart/form-data" method="post" action="{{route('user_update')}}">
                                                     {{ csrf_field() }}
                                                         <label for="full_name" class="not_empty"> Name</label>
-                                                        <input class="form-control" type="text" placeholder="Please You'r Name" value="{{$user_record->name}}" name="name" id="full_name">
+                                                        <input class="form-control" type="text" placeholder="Please You'r Name" name="name" value="{{$user_record->name}}" >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -198,7 +198,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="bio" class="not_empty">About Author</label>
-                                                        <textarea class="wp-editor-area form-control" rows="6" autocomplete="off" name="bio" id="bio" placeholder="Describe yourself"> {{$user_record->aboutl}}</textarea>
+                                                        <textarea class="wp-editor-area form-control" rows="6" autocomplete="off" name="bio" id="bio" placeholder="Describe yourself"> {{$user_record->u_about}}</textarea>
                                                     </div>
                                                 </div>
                                             </div>
