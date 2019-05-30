@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 
 use App\User;
 use Auth;
 
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
 //Importing laravel-permission models
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -172,5 +175,47 @@ class UserController extends Controller {
             }   
            
 
+    }
+
+
+    public function ajaxImage(Request $request)
+    {
+        if ($request->isMethod('get'))
+            return view('ajax_image_upload');
+        else {
+            $validator = Validator::make($request->all(),
+                [
+                    'file' => 'image',
+                ],
+                [
+                    'file.image' => 'The file must be an image (jpeg, png, bmp, gif, or svg)'
+                ]);
+            if ($validator->fails())
+                return array(
+                    'fail' => true,
+                    'errors' => $validator->errors()
+                );
+            $extension = $request->file('file')->getClientOriginalExtension();
+            $dir = 'images/user';
+            $filename = uniqid() . '_' . time() . '.' . $extension;
+            $request->file('file')->move($dir, $filename);
+            $user = User::findOrFail(session('user_data')); 
+            if($user)
+            {
+                if($user->u_image)
+                {
+                    File::delete('images/user/' .$user->u_image);
+                }
+
+                $user->update(['u_image'=>$filename]); 
+            }
+            
+            return $filename;
+        }
+    }
+
+    public function deleteImage($filename)
+    {
+        File::delete('images/user/' . $filename);
     }
 }

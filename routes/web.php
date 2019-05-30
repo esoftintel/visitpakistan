@@ -117,9 +117,18 @@ Route::post('/images-delete', 'MideaController@destroy');
 Route::get('/images-show', 'MideaController@index'); 
 
 ////////////user Login Signup 
+<<<<<<< HEAD
 Route::post('/userlogin', 'userLoginController@user_login'); 
 Route::get('/userlogout','userLoginController@user_logout');
 Route::Post('/usersignup','userLoginController@user_register');
+=======
+Route::post('/userlogin', 'HomeController@user_login'); 
+Route::get('/userlogout','HomeController@user_logout');
+Route::Post('/usersignup','HomeController@user_register');
+///////////////images upload bye ajex
+Route::match(['get', 'post'], 'ajax-image-upload', 'UserController@ajaxImage');
+Route::delete('ajax-remove-image/{filename}', 'UserController@deleteImage');
+>>>>>>> 38e1312cf2f2ef9970a4010c4da22c78ba04e365
 
 
 
