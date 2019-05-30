@@ -10,6 +10,7 @@ use App\attribute_value;
 use App\post_attribute;
 use App\midea;
 use App\User;
+use App\like; 
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
@@ -465,11 +466,25 @@ class FrontController extends Controller
         }
       
        
-        $location = post::select('ps_city')->where('ps_status','active')->distinct()->get();  // groupby
-      
-         
+        $likes = like::where('l_u_id',$flg)->get();  
+        $like_data = array();
+        for ($i = 0; $i<count($likes); $i++) { 
+            foreach ($post_data as $key ) {
+                if($key->ps_id==$likes[$i]->l_ps_id)
+                {
+                    array_push($like_data,$key);
+                }
+            }
         }
-        return view('user.user_dashboard',['post_data'=>$post_data,'location'=>$location]) ; 
+        if(session('user_data'))
+        {
+            $user = User::find(session('user_data'));
+
+        }
+      
+     
+        }
+        return view('user.user_dashboard',['post_data'=>$post_data,'like_data'=>$like_data , 'user_record'=>$user]) ; 
 
     }
 
