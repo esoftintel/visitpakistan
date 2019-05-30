@@ -66,7 +66,7 @@ Route:: get('/subcategory_delete/{id}','SubcategoryController@distory');
 Route::resource('attribute_value','AttributeValueController');
 Route::get('/AttributeValue', 'AttributeValueController@index')->name('AttributeValue');
 Route::get('/at_value_delete/{id}','AttributeValueController@destroy');
-
+ 
 ///packages table oprations route(s)
 Route::resource('packages','PackagController');
 Route::get('/package_delete/{id}','PackagController@destroy');

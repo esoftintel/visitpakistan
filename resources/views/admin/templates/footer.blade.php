@@ -55,21 +55,28 @@
     </div>
   </div>
   <!--   Core JS Files   -->
-  <script  src="{{ asset('assets/dashboard/js/core/jquery.min.js') }}" ></script>
-  <script  src="{{ asset('assets/dashboard/js/core/popper.min.js') }}"></script>
-  <script  src="{{ asset('assets/dashboard/js/core/bootstrap.min.js') }}"></script>
-  <script  src="{{ asset('assets/dashboard/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
+  <script type="text/javascript"  src="{{ asset('assets/dashboard/js/core/jquery.min.js') }}" ></script>
+  <script type="text/javascript"  src="{{ asset('assets/dashboard/js/core/popper.min.js') }}"></script>
+  <script  type="text/javascript" src="{{ asset('assets/dashboard/js/core/bootstrap.min.js') }}"></script>
+  <script  type="text/javascript" src="{{ asset('assets/dashboard/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
   <!--  Google Maps Plugin    -->
   <!-- Place this tag in your head or just before your close body tag. -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
   <!-- Chart JS -->
-  <script  src="{{ asset('assets/dashboard/js/plugins/chartjs.min.js') }}"></script>
+  <script type="text/javascript"  src="{{ asset('assets/dashboard/js/plugins/chartjs.min.js') }}"></script>
   <!--  Notifications Plugin    -->
-  <script  src="{{ asset('assets/dashboard/js/plugins/bootstrap-notify.js') }}"></script>
+  <script type="text/javascript"  src="{{ asset('assets/dashboard/js/plugins/bootstrap-notify.js') }}"></script>
   <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
-  <script  src="{{ asset('assets/dashboard/js/black-dashboard.min.js?v=1.0.0') }}"></script>
+  <script  type="text/javascript" src="{{ asset('assets/dashboard/js/black-dashboard.min.js?v=1.0.0') }}"></script>
   <!-- Black Dashboard DEMO methods, don't include it in your project! -->
-  <script  src="{{ asset('assets/dashboard/demo/demo.js') }}"></script>
+  <script type="text/javascript"  src="{{ asset('assets/dashboard/demo/demo.js') }}"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+  <script>
+    $(document).ready( function () {
+    $('#sample_table').DataTable();
+} );
+</script>
   <script>
     $(document).ready(function() {
       $().ready(function() {
