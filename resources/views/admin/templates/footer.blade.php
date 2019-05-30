@@ -24,7 +24,7 @@
       </footer>
     </div>
   </div>
-  <div class="fixed-plugin">
+  <!-- <div class="fixed-plugin">
     <div class="dropdown show-dropdown">
       <a href="#" data-toggle="dropdown">
         <i class="fa fa-cog fa-2x"> </i>
@@ -53,7 +53,7 @@
        
       </ul>
     </div>
-  </div>
+  </div> -->
   <!--   Core JS Files   -->
   <script type="text/javascript"  src="{{ asset('assets/dashboard/js/core/jquery.min.js') }}" ></script>
   <script type="text/javascript"  src="{{ asset('assets/dashboard/js/core/popper.min.js') }}"></script>

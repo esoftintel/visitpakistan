@@ -33,16 +33,16 @@ class HomeController extends Controller
     }
 
     public function user_login(Request $request)
-    {
-
+     {
       if(Auth::attempt(['email' => request('email'), 'password' => request('password')]))
       {
         $user = Auth::user(); 
         session(['user' => $user->name,'user_data'=>$user->id]);
         
+       return redirect()->route('user_dashboard');
       }
    
-       return redirect()->route('user_dashboard');
+      return redirect()->route('all');
 
     }
 
