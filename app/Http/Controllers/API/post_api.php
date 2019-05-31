@@ -406,9 +406,12 @@ class post_api extends Controller
             }
         }
 
-        public function post_store(Request $request)
+        public function post_submit(Request $request)
         {
-            $data=$request->input();
+            
+
+             $data=$request->input();
+             
             $request->validate([
                 'title' => 'required',
                 'detail'  =>'required',
@@ -452,6 +455,7 @@ class post_api extends Controller
                                           "pt_value" =>$key->attribute_value,
                                           "pt_ps_id" =>$post->ps_id,
                                         );
+
                                        
                                         post_attribute::create($at);
                        }
@@ -475,7 +479,7 @@ class post_api extends Controller
                         ]);
                     }
 
-                   if()
+                   if($data)
                    {
                     $result['status']=1;
                     $result['result']='unliked';

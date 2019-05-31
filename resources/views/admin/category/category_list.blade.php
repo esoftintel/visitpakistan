@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 
  @include('admin.templates.header')
-<body class="">
-=======
--
-@include('admin.templates.header')
 <body class="white-content">
->>>>>>> 3e3152dca0e19e49eba7dc01924ea0433d63a113
   <div class="wrapper">
     @include('admin.templates.aside')
     <div class="main-panel">
@@ -38,7 +32,7 @@
                         <th>Id</th>
                         <th>Name</th>
                         <th>icon</th>
-                        <th>Status</th>
+                        <th>Image</th>
                         <th>Created</th>
                         <th>Action</th>
                       </tr>
@@ -48,12 +42,12 @@
                       <tr>
                         <td> {{$key->ct_id}} </td>
                         <td>{{$key->ct_name}}</td>
-                        <td><img src="<?php echo  url('/images')."/".$key->ct_icone; ?>" class="img-thumbnail" width="100"></td>
-                        <td>{{$key->ct_status}}</td>
+                        <td><img src="<?php echo  url('/images')."/".$key->ct_icone; ?>" class="img-thumbnail" width="70"></td>
+                        <td><img src="<?php echo  url('/images')."/".$key->ct_image; ?>" class="img-thumbnail" width="70"></td>
                         <td>{{$key->created_at}}</td>
                         <td>
-                           <a class="btn btn-primary" href="{{url('/category_edit',$key->ct_id)}}" role="button">Update</a>
-                           <a class="btn btn-primary" href="{{url('category_delete',$key->ct_id)}}" role="button">Delete</a> 
+                           <a class="btn btn-primary btn-sm" href="{{url('/category_edit',$key->ct_id)}}" role="button">Update</a>
+                           <a class="btn btn-danger btn-sm" href="{{url('category_delete',$key->ct_id)}}" role="button">Delete</a> 
                          </td>
                       </tr>
                       @endforeach

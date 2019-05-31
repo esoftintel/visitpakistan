@@ -46,6 +46,17 @@
                         
                         <img src="{{URL::to('/')}}/images/{{$category_data->ct_icone}}" class="img-thumbnail" width="100">
                     </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Select New Image</label>
+                        <input type="file", name="image">
+                        <input type="hidden" name="oldimage" value="{{$category_data->ct_image}}">
+                    </div>
+                    </div>
+                        <div class="form-group">
+                        <label>Old Image </label>
+                        
+                        <img src="{{URL::to('/')}}/images/{{$category_data->ct_image}}" class="img-thumbnail" width="100">
+                    </div>
             
                     
                     <button type="submit" class="btn btn-primary from-control">Submit</button>

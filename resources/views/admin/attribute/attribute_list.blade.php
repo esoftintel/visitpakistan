@@ -1,21 +1,11 @@
-<<<<<<< HEAD
-
- @include('admin.templates.header')
-<body class="">
-=======
--
 @include('admin.templates.header')
 <body class="white-content">
->>>>>>> 3e3152dca0e19e49eba7dc01924ea0433d63a113
-  <div class="wrapper">
     @include('admin.templates.aside')
     <div class="main-panel">
     @include('admin.templates.navbar')
      
       <!-- End Navbar -->
       <div class="content">
-     
- 
         <div class="col-lg-12 col-md-12">
         @if (session('info'))
           <div class="alert alert-success">
@@ -64,11 +54,13 @@
                       </tbody>
                   </table>
                   </div>
+                  </div>
               </div>
             </div>
           </div>
-
-       </div>
-       
+          
+        </div>
+      </div>
+     
       @include('admin.templates.footer')
      

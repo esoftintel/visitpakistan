@@ -31,6 +31,10 @@
                         <label> Select Category Icone </label>
                         <input type="file" class="form-control"  name="userfile"   required>
                     </div>
+                    <div class="form-group">
+                        <label> Select Category Image </label>
+                        <input type="file" class="form-control"  name="image"   required>
+                    </div>
                     
                     <button type="submit" class="btn btn-primary btn-sm">Submit</button>
                  </form>

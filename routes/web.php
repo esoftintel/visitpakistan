@@ -22,7 +22,7 @@ Route::get('profile', function () {
 
 Route::group(['middleware' => ['auth']], function() {
     // 
-    Route::get('/dashboard','admin@posts');
+    Route::get('/dashboard','admin@dashboard');
     Route::resource('users', 'UserController');
 });
 
@@ -36,6 +36,7 @@ Route::get('/dashboard1','admin@index');
 ////post oprations
 Route::get('/post_details/{id}','admin@post_details');
 Route::get('/post_chat/{id}','admin@post_chat');
+Route::get('/posts_list','admin@posts');
 
 
 
