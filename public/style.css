@@ -1448,6 +1448,13 @@
 .color-vk {
   color: #4A76A8;
 }
+.atbd_author.atbd_author--thumb a:before {
+
+  background: transparent !important;
+}
+.author-img{
+  width: 54px; height: 54px; object-fit: cover;object-position: center;
+}
 
 .btn-shadow-primary {
   -webkit-box-shadow: 0 10px 20px rgba(245, 84, 142, 0.2);
