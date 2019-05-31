@@ -46,13 +46,15 @@
                                         <input type="hidden" name="attribute[<?php echo $a; ?>]" value="{{$key->at_name}}">
                                          
                                         <div class="select-basic">
-                                      
+                                        <?php  if(count($key->attribute_value_data)==0){  ?>
+                                            <input type="text" name="attribute_value[<?php echo $a++; ?>]" >
+                                        <?php }else{ ?>
                                              <select class="form-control"  name="attribute_value[<?php echo $a++; ?>]" required>
                                                @foreach($key->attribute_value_data as $key1)
                                                     <option value="{{$key1->atv_name}}">{{$key1->atv_name}}</option>
                                                 @endforeach   
                                              </select>
-                                       
+                                        <?php } ?>
                                             </div>    
                                 </div>
                                 @endforeach
