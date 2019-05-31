@@ -1,4 +1,4 @@
--
+
 @include('admin.templates.header')
 <body class="white-content">
   <div class="wrapper">
@@ -8,8 +8,8 @@
      
       <!-- End Navbar -->
       <div class="content">
-       
-        <div class="row">
+     
+ 
         <div class="col-lg-12 col-md-12">
         @if (session('info'))
           <div class="alert alert-success">
@@ -19,9 +19,10 @@
             <div class="card ">
               <div class="card-header">
               <div class="row"> 
-                <div class="col-lg-6"><h4 class="card-title">Sub Categories</h4></div>
+              <div class="col-lg-6"><h4 class="card-title">Sub Categories</h4></div>
                 <div class="col-lg-6"> <a class="btn btn-primary pull-right btn-sm" href="{{route('subcategory.create')}}" role="button">add Categories</a></div>
-                </div>
+               
+              <h4 class="card-title"> </h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">

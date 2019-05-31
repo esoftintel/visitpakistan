@@ -27,7 +27,7 @@ class PostController extends Controller
     {
         $data['category'] = category::where('ct_status','active')->get();
         $data['subcategory'] = subcategory::where('st_status','active')->get();
-        return view('user.post.post_create')->with('attributevalue_data',$attribute_value);
+        return view('user.post.post_create')->with('attributevalue_data',$data);
     
     }
 

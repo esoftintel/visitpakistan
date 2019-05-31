@@ -20,7 +20,7 @@
               <p>Dashboard</p>
             </a> -->
             <a href="{{url('/category')}}">
-            <i class='tim-icons icon-single-02'></i>
+            <i class='tim-icons icon-align-center'></i>
               <!-- <i class="tim-icons icon-atom"></i> -->
               <p>Categories</p>
             </a>
@@ -31,7 +31,7 @@
               <p>Dashboard</p>
             </a> -->
             <a href="{{url('/subcategory')}}">
-            <i class='tim-icons icon-single-02'></i>
+            <i class='tim-icons icon-align-center'></i>
               <!-- <i class="tim-icons icon-atom"></i> -->
               <p>SubCategories</p>
             </a>
@@ -62,7 +62,7 @@
           
           <li>
           <a href="{{url('/dashboard')}}">
-            <i class='tim-icons icon-single-02'></i>
+            <i class='tim-icons icon-bell-55'></i>
               <!-- <i class="tim-icons icon-atom"></i> -->
               <p>Posts</p>
             </a>
