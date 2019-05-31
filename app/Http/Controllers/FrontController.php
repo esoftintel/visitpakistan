@@ -419,16 +419,16 @@ class FrontController extends Controller
         //
     }
 
-    public function userprofile()
+    public function userprofile($id)
     {
-
-        $flg = session('user_data');
+              
+        $user = User::find($id);
        
-        if($flg)
+        if($user)
         {
-           $user = User::find($flg);
+           
         $post_data = post::where('ps_status','active')
-        ->where('ps_ur_id',$flg)
+        ->where('ps_ur_id',$id)
         ->orderByRaw("ps_type = 'normal' asc")
         ->orderByRaw("ps_type = 'feature' asc")
         ->get();

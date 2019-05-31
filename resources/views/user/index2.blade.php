@@ -130,8 +130,8 @@
                                             </a>
                                         </div><!-- ends: .atbd_listing_image -->
                                         <div class="atbd_author atbd_author--thumb">
-                                            <a href="/user_profile">
-                                                <img src="img/author-thumb2.jpg" alt="Author Image">
+                                            <a href="{{url('/user_profile')}}/{{$key->create_by['id']}}">
+                                                <img src="{{asset('/images/user')}}/{{$key->create_by['u_image']}}" style="width: 63px;height: 54px;" alt="Author Image">
                                                 <span class="custom-tooltip">{{$key->create_by['name']}}</span>
                                             </a>
                                         </div>
