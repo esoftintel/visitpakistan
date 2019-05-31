@@ -55,6 +55,8 @@ Route::group(['middleware' => 'auth:api'], function(){
                 Route::get('/getsubcategories/{id}', 'API\post_api@getsubcategories');
                  Route::get('/getsubcategory_attributes/{id}', 'API\post_api@getsubcategory_attributes');
                  Route::get('/attribute_values/{id}', 'API\post_api@getsubcategory_attributevalues');
+
+                 Route::post('/post_submit', 'API\post_api@post_submit');
                 });
 
                
