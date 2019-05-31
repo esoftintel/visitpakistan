@@ -1668,12 +1668,24 @@
   width: 100%;
   object-fit: cover;
   object-position: center;
+  height:227px;
 }
 .breadcrumb-wrapper {
   padding: 4.33333rem 0;
 }
 .header-breadcrumb{
-  height: 245px !important;
+  height: 300px !important;
+}
+#preview_image{
+  border-radius: 51%;
+  object-fit: cover;
+  object-position: top;
+  box-shadow: 0px 1px 21px #6c6c6c;
+}
+.change-txt{
+  text-align: center;
+  width:150px;
+  margin-top:20px;
 }
 .bg_image_holderr {
   position: absolute;

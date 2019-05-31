@@ -88,7 +88,8 @@
                         <figure class="category--img4">
                             <img class="cat_featimg" src="{{ asset('images')}}/{{$key_value->ct_icone}}" alt="">
                             <figcaption class="overlay-bg">
-                                <a href="{{url('/category_post/'.$key_value->ct_id.'')}}" class="cat-box">
+                                <!-- <a href="{{url('/category_post/'.$key_value->ct_id.'')}}" class="cat-box"> -->
+                                <a href="{{url('/category_listing/'.$key_value->ct_id.'')}}" class="cat-box">
                                     <div>
                                         
                                         <h4 class="cat-name">{{$key_value->ct_name}}</h4>
