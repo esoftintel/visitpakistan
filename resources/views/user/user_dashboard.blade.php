@@ -354,33 +354,3 @@ if (arr.indexOf(name) == -1) {
 </script>
 
 @include('user.footer')
-
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Ajax Image Upload with Laravel</title>
-</head>
-<body style="background: lightgrey">
-<center>
-    <br/><br/>
-    <div style="width:350px;height: 350px; border: 1px solid whitesmoke ;text-align: center;position: relative" id="image">
-        <img width="100%" height="100%" id="preview_image" src="{{asset('images/noimage.jpg')}}"/>
-        <i id="loading" class="fa fa-spinner fa-spin fa-3x fa-fw" style="position: absolute;left: 40%;top: 40%;display: none"></i>
-    </div>
-    <p>
-        <a href="javascript:changeProfile()" style="text-decoration: none;">
-            <i class="glyphicon glyphicon-edit"></i> Change
-        </a>&nbsp;&nbsp;
-        <a href="javascript:removeFile()" style="color: red;text-decoration: none;">
-            <i class="glyphicon glyphicon-trash"></i>
-            Remove
-        </a>
-    </p>
-    <input type="file" id="file" style="display: none"/>
-    <input type="hidden" id="file_name"/>
-</center>
-<!-- JavaScripts -->
-
-</body>
-</html>
