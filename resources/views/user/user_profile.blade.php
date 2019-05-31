@@ -22,7 +22,7 @@
                 <div class="col-lg-12">
                     <div class="atbd_auhor_profile_area">
                         <div class="atbd_author_avatar">
-                            <img src="{{asset('images/user')}}/{{$user_r->u_image}}" alt="Author Image">
+                            <img src="{{asset('images/user')}}/{{$user_r->u_image}}" style="width:100px;height:100px" alt="Author Image">
                             <div class="atbd_auth_nd">
                                 <h2>{{$user_r->name}}</h2>
                                 <p>Joined in March 2019</p>

@@ -44,13 +44,15 @@
                                 
                                         <label for="" name="attribute[<?php echo $a; ?>]" value="{{$key->at_name}}" class="form-label">{{$key->at_name}}</label>
                                         <input type="hidden" name="attribute[<?php echo $a; ?>]" value="{{$key->at_name}}">
+                                         
                                         <div class="select-basic">
-                                                <select class="form-control"  name="attribute_value[<?php echo $a++; ?>]" required>
-                                                @foreach($key->attribute_value_data as $key1)
+                                      
+                                             <select class="form-control"  name="attribute_value[<?php echo $a++; ?>]" required>
+                                               @foreach($key->attribute_value_data as $key1)
                                                     <option value="{{$key1->atv_name}}">{{$key1->atv_name}}</option>
-                                                    
-                                                 @endforeach   
-                                                </select>
+                                                @endforeach   
+                                             </select>
+                                       
                                             </div>    
                                 </div>
                                 @endforeach

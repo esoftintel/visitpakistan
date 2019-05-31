@@ -28,9 +28,9 @@
                                 <div class="single_search_field search_location">
                                     <select class="search_fields" name="location" id="at_biz_dir-location">
                                         <option value="">Select a location</option>
-                                    @foreach($location as $l)
-                                        <option value="{{$l->ps_city}}">{{$l->ps_city}}</option>
-                                    @endforeach 
+                                        @foreach($location as $l)
+                                            <option value="{{$l->ps_city}}">{{$l->ps_city}}</option>
+                                        @endforeach 
                                     </select>
                                 </div>
                                 <div class="atbd_submit_btn">

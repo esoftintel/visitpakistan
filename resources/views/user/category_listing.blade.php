@@ -55,35 +55,32 @@
                         <div class="col-lg-4 order-lg-0 order-1 mt-5 mt-lg-0">
                             <div class="listings-sidebar">
                                 <div class="search-area default-ad-search">
-                                    <form action="#">
+                                    <form action="{{url('/search_category')}}" method="POST">
+                                    @csrf
                                         <div class="form-group">
-                                            <input type="text" placeholder="What are you looking for?" class="form-control">
+                                            <input type="text" name="search" placeholder="What are you looking for?" class="form-control">
                                         </div><!-- ends: .form-group -->
                                         <div class="form-group">
                                             <div class="select-basic">
-                                                <select class="form-control ad_search_category">
-                                                    <option>Select Category</option>
-                                                    <option>Restaurant</option>
-                                                    <option>&nbsp;&nbsp; Food</option>
-                                                    <option>&nbsp;&nbsp; Lunch Pack</option>
-                                                    <option>Places</option>
-                                                    <option>&nbsp;&nbsp; Travel</option>
-                                                    <option>&nbsp;&nbsp; Booking</option>
-                                                    <option>&nbsp;&nbsp; Hotel</option>
-                                                    <option>&nbsp;&nbsp; Location</option>
-                                                    <option>Shopping</option>
-                                                    <option>&nbsp;&nbsp; Accessories</option>
-                                                    <option>&nbsp;&nbsp; Clothing</option>
-                                                    <option>&nbsp;&nbsp; Gadgets</option>
+                                                <select class="form-control ad_search_category" name="category">
+                                                    <option value="">Select Category</option>
+                                                    @foreach($category_data as $category)
+                                                    <option value="{{$category->ct_id}}">{{$category->ct_name}}</option>
+                                                    @endforeach  
                                                 </select>
                                             </div>
                                         </div><!-- ends: .form-group -->
                                         <div class="form-group">
-                                            <div class="position-relative">
-                                                <input type="text" placeholder="City, state or zip code" class="form-control location-name">
-                                                <button type="submit" class="locator"><span class="la la-crosshairs"></span></button>
+                                            <div class="select-basic">
+                                                <select class="form-control ad_search_category" name="location">
+                                                <option value="">Select a location</option>
+                                                    @foreach($location as $l)
+                                                        <option value="{{$l->ps_city}}">{{$l->ps_city}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div><!-- ends: .form-group -->
+                                         
                                         <div class="form-group p-bottom-10">
                                             <div class="price-range rs-primary">
                                                 <p class="d-flex justify-content-between">
@@ -273,7 +270,7 @@
                                                 </div>
                                             </div>
                                         </div><!-- ends: .filter-checklist -->
-                                        <a href="" class="btn btn-gradient btn-gradient-two btn-block btn-icon icon-right m-top-40">Search Filter <span class="la la-long-arrow-right"></span></a>
+                                        <button type="submit" class="btn btn-block btn-gradient btn-gradient-one btn-md btn_search">Search</button>
                                     </form><!-- ends: form -->
                                 </div><!-- ends: .default-ad-search -->
                             </div>
@@ -281,7 +278,7 @@
                         <div class="col-lg-8 order-lg-1 order-0">
                             <div class="row">
                             @foreach($post_data as $key)
-                        <div class="col-lg-4 col-sm-6">
+                        <div class=" col-sm-6">
                             <div class="atbd_single_listing ">
                                 <article class="atbd_single_listing_wrapper">
                                     <figure class="atbd_listing_thumbnail_area">
@@ -350,215 +347,7 @@
                             </div>
                         </div><!-- ends: .col-lg-4 -->
                     @endforeach
-                                <div class="col-sm-6">
-                                    <div class="atbd_single_listing ">
-                                        <article class="atbd_single_listing_wrapper">
-                                            <figure class="atbd_listing_thumbnail_area">
-                                                <div class="atbd_listing_image">
-                                                    <a href="">
-                                                        <img src="img/p2.jpg" alt="listing image">
-                                                    </a>
-                                                </div><!-- ends: .atbd_listing_image -->
-                                                <div class="atbd_author atbd_author--thumb">
-                                                    <a href="">
-                                                        <img src="img/author-thumb2.jpg" alt="Author Image">
-                                                        <span class="custom-tooltip">Jeffery A, Owner</span>
-                                                    </a>
-                                                </div>
-                                                <div class="atbd_thumbnail_overlay_content">
-                                                    <ul class="atbd_upper_badge">
-                                                        <li><span class="atbd_badge atbd_badge_popular">Popular</span></li>
-                                                    </ul><!-- ends .atbd_upper_badge -->
-                                                </div><!-- ends: .atbd_thumbnail_overlay_content -->
-                                            </figure><!-- ends: .atbd_listing_thumbnail_area -->
-                                            <div class="atbd_listing_info">
-                                                <div class="atbd_content_upper">
-                                                    <h4 class="atbd_listing_title">
-                                                        <a href="">Sydney Restaurant Towers</a>
-                                                    </h4>
-                                                    <div class="atbd_listing_meta">
-                                                        <span class="atbd_meta atbd_listing_rating">4.5<i class="la la-star"></i></span>
-                                                        <span class="atbd_meta atbd_listing_average_pricing" data-toggle="tooltip" data-placement="top" title="" data-original-title="Average">
-                                                            <span class="atbd_active"><img src="img/svg/dollar.svg" class="svg" alt="" /></span>
-                                                            <span class="atbd_active"><img src="img/svg/dollar.svg" class="svg" alt="" /></span>
-                                                            <span><img src="img/svg/dollar.svg" class="svg" alt="" /></span>
-                                                            <span><img src="img/svg/dollar.svg" class="svg" alt="" /></span>
-                                                        </span>
-                                                        <span class="atbd_meta atbd_badge_close">Closed</span>
-                                                    </div><!-- End atbd listing meta -->
-                                                    <div class="atbd_listing_data_list">
-                                                        <ul>
-                                                            <li>
-                                                                <p><span class="la la-map-marker"></span>Los Angeles, United States</p>
-                                                            </li>
-                                                            <li>
-                                                                <p><span class="la la-phone"></span>(415) 796-3633</p>
-                                                            </li>
-                                                            <li>
-                                                                <p><span class="la la-calendar-check-o"></span>Posted 2 months ago</p>
-                                                            </li>
-                                                        </ul>
-                                                    </div><!-- End atbd listing meta -->
-                                                </div><!-- end .atbd_content_upper -->
-                                                <div class="atbd_listing_bottom_content">
-                                                    <div class="atbd_content_left">
-                                                        <div class="atbd_listing_category">
-                                                            <a href=""><span class="la la-map-marker"></span>Places</a>
-                                                            <div class="atbd_cat_popup">
-                                                                <span>+2</span>
-                                                                <div class="atbd_cat_popup_wrapper">
-                                                                    <span><a href="">Event</a></span>
-                                                                    <span><a href="">Food</a></span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <ul class="atbd_content_right">
-                                                        <li class="atbd_count"><span class="la la-eye"></span>900+</li>
-                                                        <li class="atbd_save">
-                                                            <span class="la la-heart-o"></span>
-                                                        </li>
-                                                    </ul>
-                                                </div><!-- end .atbd_listing_bottom_content -->
-                                            </div><!-- ends: .atbd_listing_info -->
-                                        </article><!-- atbd_single_listing_wrapper -->
-                                    </div>
-                                </div><!-- ends: .col-md-6 -->
-                                <div class="col-sm-6">
-                                    <div class="atbd_single_listing ">
-                                        <article class="atbd_single_listing_wrapper">
-                                            <figure class="atbd_listing_thumbnail_area">
-                                                <div class="atbd_listing_image">
-                                                    <a href="">
-                                                        <img src="img/p3.jpg" alt="listing image">
-                                                    </a>
-                                                </div><!-- ends: .atbd_listing_image -->
-                                                <div class="atbd_author atbd_author--thumb">
-                                                    <a href="">
-                                                        <img src="img/author-thumb2.jpg" alt="Author Image">
-                                                        <span class="custom-tooltip">Jeffery A, Owner</span>
-                                                    </a>
-                                                </div>
-                                                <div class="atbd_thumbnail_overlay_content">
-                                                    <ul class="atbd_upper_badge">
-                                                        <li><span class="atbd_badge atbd_badge_new">New</span></li>
-                                                    </ul><!-- ends .atbd_upper_badge -->
-                                                </div><!-- ends: .atbd_thumbnail_overlay_content -->
-                                            </figure><!-- ends: .atbd_listing_thumbnail_area -->
-                                            <div class="atbd_listing_info">
-                                                <div class="atbd_content_upper">
-                                                    <h4 class="atbd_listing_title">
-                                                        <a href="">Kung Food &amp; Drinks</a>
-                                                    </h4>
-                                                    <div class="atbd_listing_meta">
-                                                        <span class="atbd_meta atbd_listing_rating">4.5<i class="la la-star"></i></span>
-                                                        <span class="atbd_meta atbd_listing_average_pricing" data-toggle="tooltip" data-placement="top" title="" data-original-title="Average">
-                                                            <span class="atbd_active"><img src="img/svg/dollar.svg" class="svg" alt="" /></span>
-                                                            <span class="atbd_active"><img src="img/svg/dollar.svg" class="svg" alt="" /></span>
-                                                            <span><img src="img/svg/dollar.svg" class="svg" alt="" /></span>
-                                                            <span><img src="img/svg/dollar.svg" class="svg" alt="" /></span>
-                                                        </span>
-                                                        <span class="atbd_meta atbd_badge_close">Closed</span>
-                                                    </div><!-- End atbd listing meta -->
-                                                    <div class="atbd_listing_data_list">
-                                                        <ul>
-                                                            <li>
-                                                                <p><span class="la la-map-marker"></span>Los Angeles, United States</p>
-                                                            </li>
-                                                            <li>
-                                                                <p><span class="la la-phone"></span>(415) 796-3633</p>
-                                                            </li>
-                                                            <li>
-                                                                <p><span class="la la-calendar-check-o"></span>Posted 2 months ago</p>
-                                                            </li>
-                                                        </ul>
-                                                    </div><!-- End atbd listing meta -->
-                                                </div><!-- end .atbd_content_upper -->
-                                                <div class="atbd_listing_bottom_content">
-                                                    <div class="atbd_content_left">
-                                                        <div class="atbd_listing_category">
-                                                            <a href=""><span class="la la-shopping-cart"></span>Shopping</a>
-                                                        </div>
-                                                    </div>
-                                                    <ul class="atbd_content_right">
-                                                        <li class="atbd_count"><span class="la la-eye"></span>900+</li>
-                                                        <li class="atbd_save">
-                                                            <span class="la la-heart-o"></span>
-                                                        </li>
-                                                    </ul>
-                                                </div><!-- end .atbd_listing_bottom_content -->
-                                            </div><!-- ends: .atbd_listing_info -->
-                                        </article><!-- atbd_single_listing_wrapper -->
-                                    </div>
-                                </div><!-- ends: .col-md-6 -->
-                                <div class="col-sm-6">
-                                    <div class="atbd_single_listing ">
-                                        <article class="atbd_single_listing_wrapper">
-                                            <figure class="atbd_listing_thumbnail_area">
-                                                <div class="atbd_listing_image">
-                                                    <a href="">
-                                                        <img src="img/p4.jpg" alt="listing image">
-                                                    </a>
-                                                </div><!-- ends: .atbd_listing_image -->
-                                                <div class="atbd_author atbd_author--thumb">
-                                                    <a href="">
-                                                        <img src="img/author-thumb2.jpg" alt="Author Image">
-                                                        <span class="custom-tooltip">Jeffery A, Owner</span>
-                                                    </a>
-                                                </div>
-                                                <div class="atbd_thumbnail_overlay_content">
-                                                    <ul class="atbd_upper_badge">
-                                                        <li><span class="atbd_badge atbd_badge_featured">Featured</span></li>
-                                                        <li><span class="atbd_badge atbd_badge_popular">Popular</span></li>
-                                                    </ul><!-- ends .atbd_upper_badge -->
-                                                </div><!-- ends: .atbd_thumbnail_overlay_content -->
-                                            </figure><!-- ends: .atbd_listing_thumbnail_area -->
-                                            <div class="atbd_listing_info">
-                                                <div class="atbd_content_upper">
-                                                    <h4 class="atbd_listing_title">
-                                                        <a href="">Favorite Place Fog Bank</a>
-                                                    </h4>
-                                                    <div class="atbd_listing_meta">
-                                                        <span class="atbd_meta atbd_listing_rating">4.5<i class="la la-star"></i></span>
-                                                        <span class="atbd_meta atbd_listing_average_pricing" data-toggle="tooltip" data-placement="top" title="" data-original-title="Average">
-                                                            <span class="atbd_active"><img src="img/svg/dollar.svg" class="svg" alt="" /></span>
-                                                            <span class="atbd_active"><img src="img/svg/dollar.svg" class="svg" alt="" /></span>
-                                                            <span><img src="img/svg/dollar.svg" class="svg" alt="" /></span>
-                                                            <span><img src="img/svg/dollar.svg" class="svg" alt="" /></span>
-                                                        </span>
-                                                        <span class="atbd_meta atbd_badge_open">Open Now</span>
-                                                    </div><!-- End atbd listing meta -->
-                                                    <div class="atbd_listing_data_list">
-                                                        <ul>
-                                                            <li>
-                                                                <p><span class="la la-map-marker"></span>Los Angeles, United States</p>
-                                                            </li>
-                                                            <li>
-                                                                <p><span class="la la-phone"></span>(415) 796-3633</p>
-                                                            </li>
-                                                            <li>
-                                                                <p><span class="la la-calendar-check-o"></span>Posted 2 months ago</p>
-                                                            </li>
-                                                        </ul>
-                                                    </div><!-- End atbd listing meta -->
-                                                </div><!-- end .atbd_content_upper -->
-                                                <div class="atbd_listing_bottom_content">
-                                                    <div class="atbd_content_left">
-                                                        <div class="atbd_listing_category">
-                                                            <a href=""><span class="la la-bank"></span>Art &amp; History</a>
-                                                        </div>
-                                                    </div>
-                                                    <ul class="atbd_content_right">
-                                                        <li class="atbd_count"><span class="la la-eye"></span>900+</li>
-                                                        <li class="atbd_save">
-                                                            <span class="la la-heart-o"></span>
-                                                        </li>
-                                                    </ul>
-                                                </div><!-- end .atbd_listing_bottom_content -->
-                                            </div><!-- ends: .atbd_listing_info -->
-                                        </article><!-- atbd_single_listing_wrapper -->
-                                    </div>
-                                </div><!-- ends: .col-md-6 -->
+                                
                                
                             </div>
                             <div class="row">
