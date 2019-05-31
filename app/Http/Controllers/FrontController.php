@@ -419,16 +419,16 @@ class FrontController extends Controller
         //
     }
 
-    public function userprofile()
+    public function userprofile($id)
     {
-
-        $flg = session('user_data');
+              
+        $user = User::find($id);
        
-        if($flg)
+        if($user)
         {
-           $user = User::find($flg);
+           
         $post_data = post::where('ps_status','active')
-        ->where('ps_ur_id',$flg)
+        ->where('ps_ur_id',$id)
         ->orderByRaw("ps_type = 'normal' asc")
         ->orderByRaw("ps_type = 'feature' asc")
         ->get();
@@ -534,9 +534,56 @@ class FrontController extends Controller
 
 
 
-    public function categorylisting()
+    public function categorylisting($id)
     {
-        return view('user.category_listing') ; 
+        $post_data = post::where('ps_status','active')
+        ->where('ps_ct_id',$id)
+        ->orderByRaw("ps_type = 'normal' asc")
+        ->orderByRaw("ps_type = 'feature' asc")
+        ->get();
+        foreach ($post_data as $key) {
+            $key->media_data          = midea::where('m_ps_id',$key->ps_id)->first();
+            $key->category_data       = category::find($key->ps_ct_id);
+            $key->subcategory_data    = subcategory::find($key->ps_st_id); 
+            $key->create_by           = user::find($key->ps_ur_id); 
+            $key->post_attribute_data = post_attribute::where('pt_ps_id',$key->ps_id)->get();
+            $created = Carbon::createFromTimeStamp(strtotime($key->created_at));
+            $created ->diff(Carbon::now())->format('%d days, %h hours and %i minutes');
+            $diff = $created->diff(Carbon::now());
+            if($diff->y)
+            {
+               $key->duration=  $diff->y." Years";
+            }
+            elseif($diff->m) {
+                $key->duration=  $diff->m." Months";
+            }
+            elseif($diff->d) {
+                $key->duration=  $diff->d." Days";
+            } elseif($diff->h) {
+                $key->duration=  $diff->h." Hours";
+            } elseif($diff->i) {
+                $key->duration=  $diff->i." Mints";
+            }
+            elseif($diff->s) {
+                $key->duration=  $diff->s." Second";
+            }
+        }
+        $category_data       = category::get();
+        foreach ($category_data as $key1) {
+            $i=0;
+            $post_d = post::where('ps_status','active')->where('ps_ct_id',$key1->ct_id)->get();
+             foreach ($post_d as $key2) {
+                 $i++;
+             }
+             $key1->its_post =$i;
+        }
+       
+        $location = post::select('ps_city')->where('ps_status','active')->distinct()->get();  // groupby
+       
+        // return view('user.index2',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location]) ; 
+      
+      
+        return view('user.category_listing',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location]) ; 
 
     }
 }

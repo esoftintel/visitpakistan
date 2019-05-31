@@ -88,7 +88,8 @@
                         <figure class="category--img4">
                             <img class="cat_featimg" src="{{ asset('images')}}/{{$key_value->ct_icone}}" alt="">
                             <figcaption class="overlay-bg">
-                                <a href="{{url('/category_post/'.$key_value->ct_id.'')}}" class="cat-box">
+                                <!-- <a href="{{url('/category_post/'.$key_value->ct_id.'')}}" class="cat-box"> -->
+                                <a href="{{url('/category_listing/'.$key_value->ct_id.'')}}" class="cat-box">
                                     <div>
                                         
                                         <h4 class="cat-name">{{$key_value->ct_name}}</h4>
@@ -130,8 +131,8 @@
                                             </a>
                                         </div><!-- ends: .atbd_listing_image -->
                                         <div class="atbd_author atbd_author--thumb">
-                                            <a href="/user_profile">
-                                                <img src="img/author-thumb2.jpg" alt="Author Image">
+                                            <a href="{{url('/user_profile')}}/{{$key->create_by['id']}}">
+                                                <img src="{{asset('/images/user')}}/{{$key->create_by['u_image']}}" class="author-img" alt="Author Image">
                                                 <span class="custom-tooltip">{{$key->create_by['name']}}</span>
                                             </a>
                                         </div>

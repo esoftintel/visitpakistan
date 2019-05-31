@@ -98,10 +98,10 @@ Route::get('/all', 'FrontController@index')->name('all');
 //Route::get('/ad_details', 'FrontController@ad_details')->name('ad_details');
 Route::get('/ad_details/{id}', 'FrontController@post_detail')->name('ad_details');
 
-Route::get('/user_profile', 'FrontController@userprofile')->name('user_profile');
+Route::get('/user_profile/{id}', 'FrontController@userprofile')->name('user_profile'); 
 Route::get('/user_dashboard', 'FrontController@userdashboard')->name('user_dashboard');
 
-Route::get('/category_listing', 'FrontController@categorylisting')->name('category_listing');
+Route::get('/category_listing/{id}', 'FrontController@categorylisting')->name('category_listing');
 
 Route::get('/category_post/{id}', 'FrontController@category_posts')->name('category_post');
 Route::get('/post_detail/{id}', 'FrontController@post_detail')->name('post_detail');
