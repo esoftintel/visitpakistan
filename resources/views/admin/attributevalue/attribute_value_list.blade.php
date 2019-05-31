@@ -1,15 +1,11 @@
--
 @include('admin.templates.header')
 <body class="white-content">
-  <div class="wrapper">
     @include('admin.templates.aside')
     <div class="main-panel">
     @include('admin.templates.navbar')
      
       <!-- End Navbar -->
       <div class="content">
-     
- 
         <div class="col-lg-12 col-md-12">
         @if (session('info'))
           <div class="alert alert-success">
@@ -55,13 +51,15 @@
                       
                     </tbody>
                   </table>
+                </div>
                   </div>
               </div>
             </div>
           </div>
-
-       </div>
-       
+          
+        </div>
+      </div>
+     
       @include('admin.templates.footer')
      
      

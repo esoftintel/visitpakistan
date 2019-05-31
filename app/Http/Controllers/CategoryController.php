@@ -41,15 +41,23 @@ class CategoryController extends Controller
             'userfile' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
     
-        if ($request->hasFile('userfile')) {
-           $image = $request->file('userfile');
-            $ctname = $request->input('name');
-            $name = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('/images');
-            $image->move($destinationPath, $name);
+        if ($request->hasFile('userfile') && $request->hasFile('image')) {
+           $icon = $request->file('userfile');
+           $image= $request->file('image');
+           $ctname = $request->input('name');
+
+           $iconname = time().'.'.$icon->getClientOriginalExtension();
+            
+            $new_name=rand().'.'. $image->getClientOriginalExtension();
+           
+            $Path = public_path('/images');
+            $image->move($Path, $new_name);
+            $icon->move($Path, $iconname);
+            
             $data =array(
                      'ct_name' => $ctname,                   
-                     'ct_icone' => $name                   
+                     'ct_icone' => $iconname,
+                     'ct_image' => $new_name                   
                    );
                    
               category::create($data);  
@@ -92,19 +100,25 @@ class CategoryController extends Controller
       
         $this->validate($request, [
             'userfile' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
     
 
-        if ($request->hasFile('userfile')) {
+        if ($request->hasFile('userfile') && $request->hasFile('image')) {
            
-           $image = $request->file('userfile');
+           $icon= $request->file('userfile');
+           $image = $request->file('image');
             $ctname = $request->input('name');
-            $name = time().'.'.$image->getClientOriginalExtension();
+            $iconname = time().'.'.$icon->getClientOriginalExtension();
+            $imagename = time().'.'.$image->getClientOriginalExtension();
+          
             $destinationPath = public_path('/images');
-            $image->move($destinationPath, $name);
+            $icon->move($destinationPath, $iconname);
+            $image->move($destinationPath, $imagename);
             $data =array(
                      'ct_name' => $ctname,                   
-                     'ct_icone' => $name                   
+                     'ct_icone' => $iconname,
+                     'ct_image'=>$imagename                  
                    );
 
         }
@@ -112,7 +126,8 @@ class CategoryController extends Controller
             
             $data =array(
                 'ct_name' =>  $request->input('name'),                   
-                'ct_icone' => $request->input('oldimg')                 
+                'ct_icone' => $request->input('oldimg') , 
+                'ct_image' => $request->input('oldimage')                
               );
               
             }

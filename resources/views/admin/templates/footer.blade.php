@@ -8,7 +8,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="javascript:void(0)" class="nav-link">
+               <a href="javascript:void(0)" class="nav-link">
                 Blog
               </a>
             </li>

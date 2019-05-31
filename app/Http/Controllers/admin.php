@@ -17,6 +17,16 @@ class admin extends Controller
 
    
     //
+    public function dashboard()
+    {
+        $Posts=post::where('ps_status','active')
+        ->select('*','posts.created_at AS p_created_at')
+        ->limit(12)   
+        ->orderByRaw("ps_type = 'feature' asc")
+        ->orderByRaw("created_at  desc")
+        ->get();
+        return view('admin.dashboard')->with('posts',$Posts);
+    }
     public function index()
     {
         $Posts=post::where('ps_status','active')
@@ -49,7 +59,7 @@ class admin extends Controller
         ->orderByRaw("created_at  desc")
         ->get();
 
-        return view('admin.dashboard')->with('posts',$Posts);
+        return view('admin.posts.posts_list')->with('posts',$Posts);
     }
    
     public function post_details($id)
