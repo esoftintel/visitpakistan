@@ -12,7 +12,7 @@
      
  
         <div class="col-lg-12 col-md-12">
-        <a class="btn btn-success btn-sm pull-right"  href="{{url('/post_details/'.$chats[0]->ch_ps_id)}}" >Back</a>
+        <a class="btn btn-success btn-sm pull-right"  href="" >Back</a>
         @if (session('info'))
           <div class="alert alert-success">
               {{ session('info') }}
