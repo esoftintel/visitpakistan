@@ -20,7 +20,7 @@ class userLoginController extends Controller
         
       }
    
-       return redirect()->route('all');
+       return redirect()->route('user_dashboard');
 
     }
 
