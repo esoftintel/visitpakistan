@@ -5,6 +5,7 @@ use App\post;
 use App\subcategory;
 use App\post_attribute;
 use App\midea;
+use App\packag;
 use App\category;
 use App\User;
 use App\chat;
@@ -19,13 +20,14 @@ class admin extends Controller
     //
     public function dashboard()
     {
-        $Posts=post::where('ps_status','active')
-        ->select('*','posts.created_at AS p_created_at')
-        ->limit(12)   
+        $posts['posts']=post::where('ps_status','active')
+        ->select('*','posts.created_at AS p_created_at')  
         ->orderByRaw("ps_type = 'feature' asc")
         ->orderByRaw("created_at  desc")
         ->get();
-        return view('admin.dashboard')->with('posts',$Posts);
+        $posts['numberOfPosts']=post::count();
+        $posts['packages']=packag::count();
+        return view('admin.dashboard')->with($posts);
     }
     public function index()
     {

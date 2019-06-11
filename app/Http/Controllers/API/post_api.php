@@ -410,82 +410,103 @@ class post_api extends Controller
         {
             
 
-             $data=$request->input();
+            // $data=$request->input();
              
             $request->validate([
                 'title' => 'required',
                 'detail'  =>'required',
                 'address'  =>'required',
-                'detail'  =>'required',
                 'ctid'  =>'required',
                 'sctid'  =>'required',
                 'latitude'  =>'required',
-                'logitute'  =>'required',
-                // 'detail'  =>'required',
+                'logitude'  =>'required',
+                'price'  =>'required',
                 // 'detail'  =>'required',
                 'photos'      =>'required'
 
             ]);
 
             $userId=Auth::user()->id;
-            $attribute=$request->input('attribute');
-            $attribute_value=$request->input('attribute_value');
-        //    print_r($attribute);
-        //    exit;
-            $data = array(
-                            "ps_title"   => $request->input('title'),
-                            "ps_detail"  => $request->input('detail'),
-                            "ps_price"   => $request->input('price'),
-                            "ps_address" => $request->input('address'),
-                            "ps_ct_id"   => $request->input('ctid'),
-                            "ps_st_id"   => $request->input('sctid'),
-                            "ps_ur_id"   => $userId,
-                            "ps_lati"    => $request->input('latitude'),
-                            "ps_longi"   => $request->input('logitute'),
-                         );
-                      $post =  post::create($data);
-                      
-                      if($attribute)
-                      {
+            if($userId)
+            {
+                $attribute=$request->input('attribute');
+               // $attribute_value=$request->input('attribute_value');
+               
+                $data = array(
+                                "ps_title"   => $request->input('title'),
+                                "ps_detail"  => $request->input('detail'),
+                                "ps_price"   => $request->input('price'),
+                                "ps_address" => $request->input('address'),
+                                "ps_ct_id"   => $request->input('ctid'),
+                                "ps_st_id"   => $request->input('sctid'),
+                                "ps_ur_id"   => $userId,
+                                "ps_lati"    => $request->input('latitude'),
+                                "ps_longi"   => $request->input('logitude'),
+                             );
                           
-                       foreach($attribute as $key)
+                          $post =  post::create($data);
+                        //   print_r($attribute);
+                        //   exit;
+
+                          if($attribute)
+                          {
+                           foreach($attribute as $key)
+                           {
+                               
+                               $at = array(
+                                              "pt_title" =>$key['attribute'],
+                                              "pt_value" =>$key['value'],
+                                              "pt_ps_id" =>$post->ps_id,
+                                            );
+                                           
+                                            post_attribute::create($at);
+                            }
+    
+                           
+                          }
+
+                         
+                          $photos = $request->file('photos'); 
+                          foreach ($photos as $photo) {
+                            
+                           // print_r($photo); exit;
+                            $original_name = basename($photo->getClientOriginalName());
+                 
+                              $name = sha1(date('YmdHis') . str_random(30));
+                              $save_name = $name . '.' . $photo->getClientOriginalExtension();
+                              $resize_name =  $photo->getClientOriginalExtension();
+                              $photo->move($this->photos_path, $save_name);
+                                midea::create([
+                                            'm_url' => $save_name,                   
+                                            'm_type' => $resize_name,
+                                            'm_name' =>$original_name = basename($photo->getClientOriginalName()),
+                                            'm_ps_id' =>$post->ps_id  
+                                ]);
+                        }
+    
+                       if($post)
                        {
-                           $at = array(
-                                          "pt_title" =>$key->attribute,
-                                          "pt_value" =>$key->attribute_value,
-                                          "pt_ps_id" =>$post->ps_id,
-                                        );
-
-                                       
-                                        post_attribute::create($at);
+                        $result['status']=1;
+                        $result['result']=$post;
+                        
+                        return response()->json($result); 
                        }
-
-                       
-                      }
-
-                      foreach ($request->photos as $photo) {
-                        $image = $request->file($photo); 
-                        $original_name = basename($image->getClientOriginalName());
-             
-                          $name = sha1(date('YmdHis') . str_random(30));
-                          $save_name = $name . '.' . $image->getClientOriginalExtension();
-                          $resize_name =  $image->getClientOriginalExtension();
-                          $photo->move($this->photos_path, $save_name);
-                        midea::create([
-                                      'm_url' => $save_name,                   
-                                      'm_type' => $resize_name,
-                                      'm_name' =>$original_name = basename($photo->getClientOriginalName()),
-                                      'm_ps_id' =>$post->ps_id  
-                        ]);
-                    }
-
-                   if($data)
-                   {
-                    $result['status']=1;
-                    $result['result']='unliked';
-                    
-                    return response()->json($result); 
-                   }
+                       else
+                       {
+                        $result['status']=0;
+                        $result['result']=$post;
+                        
+                        return response()->json($result); 
+                       }
+            }
+            else
+            {
+                $result['status']=0;
+                $result['result']='unAuthenticate';
+                
+                return response()->json($result); 
+            }
+            
     
         }
 
@@ -518,7 +539,7 @@ class post_api extends Controller
             
         }
         
-         public function getsubcategories($id)
+     public function getsubcategories($id)
         {
             $data = subcategory::where('st_ct_id',$id)->get();
              $data1 = subcategory::where('st_ct_id',$id)->first();
@@ -538,11 +559,15 @@ class post_api extends Controller
             }
             
         }
-        
         public function getsubcategory_attributes($id)
         {
              $data = attribute::where('at_st_id',$id)->get();
              $data1 = attribute::where('at_st_id',$id)->first();
+             foreach($data as $key)
+             {
+                 $keyId=$key->at_id;
+                 $key->attribute_values=attribute_value::where('atv_at_id',$keyId)->get();
+             }
            
             if($data1)
             {
