@@ -59,5 +59,17 @@ Route::group(['middleware' => 'auth:api'], function(){
                  Route::post('/post_submit', 'API\post_api@post_submit');
                 });
 
+
+                Route::group(['middleware' => 'auth:api'], function(){
+                    Route::post('name_edit','API\profile_api@name_edit');
+                    Route::post('phone_edit','API\profile_api@phone_edit');
+                    Route::post('password_edit','API\profile_api@password_edit');
+                    Route::post('address_edit','API\profile_api@address_edit');
+                    Route::post('about_edit','API\profile_api@about_edit');
+                    Route::post('picture_edit','API\profile_api@picture_edit');
+                    
+                    });
+                   
+
                
         
