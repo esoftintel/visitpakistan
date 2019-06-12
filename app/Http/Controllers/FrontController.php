@@ -421,7 +421,7 @@ class FrontController extends Controller
 
     public function userprofile($id)
     {
-              
+       
         $user = User::find($id);
        
         if($user)
@@ -460,7 +460,8 @@ class FrontController extends Controller
             }
         }
       
-       
+       // exit;
+              
         return view('user.user_profile',['post_data'=>$post_data, 'user_r'=>$user]) ; 
 
         }
@@ -521,10 +522,11 @@ class FrontController extends Controller
         }
         if(session('user_data'))
         {
+            
             $user = User::find(session('user_data'));
-
+            
         }
-      
+    
         return view('user.user_dashboard',['post_data'=>$post_data,'like_data'=>$like_data , 'user_record'=>$user]) ; 
 
         }

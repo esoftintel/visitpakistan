@@ -122,7 +122,7 @@ class CategoryController extends Controller
                    );
 
         }
-        else{
+        else{ 
             
             $data =array(
                 'ct_name' =>  $request->input('name'),                   

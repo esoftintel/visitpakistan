@@ -57,6 +57,7 @@
                         
                         <img src="{{URL::to('/')}}/images/{{$category_data->ct_image}}" class="img-thumbnail" width="100">
                     </div>
+                    
             
                     
                     <button type="submit" class="btn btn-primary from-control">Submit</button>

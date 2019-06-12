@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 use Auth;
 use Illuminate\Http\Request;
+use Session;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -40,6 +41,7 @@ class LoginController extends Controller
     }
 
     public function logout(Request $request) {
+        Session::forget('_admimage');
         Auth::logout();
         return redirect('/login');
       }
