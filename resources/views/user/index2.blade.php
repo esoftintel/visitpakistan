@@ -14,11 +14,9 @@
                         <form action="{{url('/search')}}" method="POST" class="search_form">
                             <div class="atbd_seach_fields_wrapper">
                             @csrf
-                                <div class="single_search_field search_query">
-                                    <input class="form-control search_fields" name="search" type="text" placeholder="What are you looking for?">
-                                </div>
+                             <div class="row">
                                 <div class="single_search_field search_category">
-                                    <select class="search_fields" name="category" id="at_biz_dir-category">
+                                    <select class="search_fields form-control" name="category" id="search_attribute">
                                     <option value="">Select a Category</option>
                                     @foreach($category_data as $category)
                                         <option value="{{$category->ct_id}}">{{$category->ct_name}}</option>
@@ -33,10 +31,32 @@
                                         @endforeach 
                                     </select>
                                 </div>
+                                <div class="single_search_field ">
+                                    <select class="search_fields form-control" name="price" id="at_biz_dir-location">
+                                        <option value="">Max Price</option>
+                                        <option value="10000">10,000</option>
+                                        <option value="20000">20,000</option>
+                                        <option value="30000">30,000</option>
+                                        <option value="40000">40,000</option>
+                                        <option value="50000">50,000</option>
+                                        <option value="60000">60,000</option>
+                                        <option value="70000">70,000</option>
+                                        <option value="80000">80,000</option>
+                                        <option value="900000">90,000</option>
+                                        <option value="100000">100,000</option>
+                                        <option value="150000">150,000</option>
+                                    </select>
+                                </div>
+                                <div class="single_search_field search_query">
+                                    <input class="form-control search_fields" name="search" type="text" placeholder="What are you looking for?">
+                                </div>
                                 <div class="atbd_submit_btn">
                                     <button type="submit" class="btn btn-block btn-gradient btn-gradient-one btn-md btn_search">Search</button>
                                 </div>
+                                </div>
+                               
                             </div>
+
                         </form><!-- ends: .search_form -->
                         <div class="directory_home_category_area">
                             <ul class="categories">
