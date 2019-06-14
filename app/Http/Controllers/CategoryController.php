@@ -99,7 +99,7 @@ class CategoryController extends Controller
     {
       
         $this->validate($request, [
-            'userfile' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+             'userfile' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
     
@@ -122,7 +122,7 @@ class CategoryController extends Controller
                    );
 
         }
-        else{
+        else{ 
             
             $data =array(
                 'ct_name' =>  $request->input('name'),                   

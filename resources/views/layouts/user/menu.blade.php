@@ -100,8 +100,7 @@
                                                             <div class="textes">
                                                                 <p>Hello!</p>
                                                                 <p><strong>{{session('user')}}</strong></p>
-                                    
-                                                                <a  id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">View / Edit Profile</a>
+                                                                <a href="/user_dashboard">View / Edit Profile</a>
                                                             </div>
                                                           </div>
 

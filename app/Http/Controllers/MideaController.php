@@ -56,7 +56,7 @@ class MideaController extends Controller
         }
 
         if (!is_dir($this->photos_path)) {
-            mkdir($this->photos_path, 0777);
+            mkdir($this->photos_path, 0777); 
         }
 
         for ($i = 0; $i < count($photos); $i++) {

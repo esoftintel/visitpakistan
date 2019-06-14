@@ -50,7 +50,7 @@ Route::resource('posts', 'PostController');
 Route::get('/adDetails', function () {
     return view('user.ad_details');
 });
-
+ 
 
 Route::resource('attributer','AttributeController');
 Route::get('/attribute', 'AttributeController@index')->name('attribute');

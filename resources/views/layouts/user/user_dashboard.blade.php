@@ -1,4 +1,3 @@
-
 @include('user.metadata')
 
 @include('user.menu')

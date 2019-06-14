@@ -84,7 +84,7 @@
                 </div>
                 <div class="modal-body">
                 <form method="POST" action="{{ url('/userlogin')}}" enctype="multipart/form-data">
-                {{ csrf_field() }}
+                        @csrf
                         <input type="email" name="email" class="form-control" placeholder="Email" required>
                         <input type="password" name="password" class="form-control" placeholder="Password" required>
 
@@ -138,7 +138,7 @@
                 </div>
                 <div class="modal-body">
                     <form method="post" enctype="multipart/form-data" action="{{ url('/usersignup') }}">
-                    {{ csrf_field() }}
+                    @csrf
                     <input type="text" class="form-control" name='name' placeholder="Name" required>
                         <input type="email" class="form-control" name='email' placeholder="Email" required>
                         <input type="password" class="form-control" name="password" placeholder="Password" required>
@@ -210,84 +210,6 @@
         });
                 
     </script>
-             <script>
-             $(document).ready(function(){
-    $("search_attribute").trigger("click");
-});
-                $(document).ready(function(){
-                    $('#search_attribute').on('change',function(){
-                        var category_id=$(this).val();
-                        alert(category_id);
-                        if(category_id)
-                        {
-                            $.ajax({
-                                url:'/search_attribute/'+category_id,
-                                type:'GET',
-                                dataType:'json',
-                                success:function(data){
-                                   //var select=document.getElementById('subcategory'),
-                                    console.log(data); 
-                                    $('#subcategory').empty();
-                                    $('#attribute').empty();
-                                    $('#attribute_value').empty();
-                                    var res='';
-                                    var i=0;
-                                    $.each(data,function(key,value){
-                                         $('#subcategory').append('<option value="'+value.st_id+'">'+value.st_name+'</option>');
-                                            $.each(value.its_attribute,function(key,value){
-                                                res += '<p class="d-flex justify-content-between"><span style="color:green"><input type="hidden" name="attri['+i+']" value="'+value.at_name+'">'+value.at_name+':</span></p><div class="select-basic"><select class="form-control " name="attribute_value['+i+']" id="attribute_value">'; 
-                                                i++;
-                                                 $.each(value.attribute_value_data,function(key,value){
-                                                    
-                                                   res+='<option value="'+value.atv_name+'">'+value.atv_name+'</option>';
-                                                  }); 
-                                                  res+='</select></div>';
-                                            }); 
-                                     });
-                                     $('#attribute_value').append(res);
-                                    
-                                    }
-                                });
-                        }
-                    });
-                });
-        </script>
-                     <script>
-                $(document).ready(function(){
-                    var category_id = document.getElementById("search_attribute").value; 
-                    $.ajax({
-                                url:'/search_attribute/'+category_id,
-                                type:'GET',
-                                dataType:'json',
-                                success:function(data){
-                                   //var select=document.getElementById('subcategory'),
-                                    console.log(data); 
-                                    $('#subcategory').empty();
-                                    $('#attribute').empty();
-                                    $('#attribute_value').empty();
-                                    var res='';
-                                    var i=0;
-                                    $.each(data,function(key,value){
-                                         $('#subcategory').append('<option value="'+value.st_id+'">'+value.st_name+'</option>');
-                                            $.each(value.its_attribute,function(key,value){
-                                                
-                                                res += '<p class="d-flex justify-content-between"><span style="color:green"><input type="hidden" name="attri['+i+']" value="'+value.at_name+'">'+value.at_name+':</span></p><div class="select-basic"><select class="form-control " name="attribute_value['+i+']" id="attribute_value">'; 
-                                                i++;
-                                                
-                                                $.each(value.attribute_value_data,function(key,value){
-                                                    
-                                                   res+='<option value="'+value.atv_name+'">'+value.atv_name+'</option>';
-                                                  }); 
-                                                  res+='</select></div>';
-                                            }); 
-                                     });
-                                     $('#attribute_value').append(res);
-                                    
-                                    }
-                                });
-                      
-                });
-        </script>
 </body>
 
 </html>

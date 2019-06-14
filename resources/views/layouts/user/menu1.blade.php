@@ -1,7 +1,7 @@
 <body>
     <section class="intro-wrapper bgimage overlay overlay--dark" id="exchange">
-       
-        <div class="mainmenu-wrapper" id="myHeader">
+  
+        <div class="mainmenu-wrapper">
             <div class="menu-area menu1 menu--light">
                 <div class="top-menu-area">
                     <div class="container-fluid">
@@ -25,15 +25,20 @@
                                                         <li>
                                                             <a href="/all">Home</a>
                                                         </li>
-                                                        <li class="dropdown">
+                                                        <li class="dropdown has_dropdown">
                                                             <a href="#" class="dropdown-toggle" id="drop3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Listings</a>
-                                                            
+                                                            <ul class="dropdown-menu" aria-labelledby="drop3">
+                                                                <li><a href="all-listings-grid.html">Listing Grid</a></li>
+                                                                <li><a href="all-listings-list.html">Listing List</a></li>
+                                                                <li><a href="listing-details.html">Listing Details</a></li>
+                                                                <li><a href="add-listing.html">Add Listing</a></li>
+                                                            </ul>
                                                         </li>
                                                         <li class="dropdown has_dropdown">
                                                             <a href="#" class="dropdown-toggle" id="drop4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
                                                             <ul class="dropdown-menu" aria-labelledby="drop4">
                                                                 <li><a href="all-categories.html">All Categories</a></li>
-                                                       
+                                                                <li><a href="all-locations.html">All Locations</a></li>
                                                             </ul>
                                                         </li>
                                                         <li class="dropdown has_dropdown">
@@ -41,15 +46,36 @@
                                                                 Pages
                                                             </a>
                                                             <ul class="dropdown-menu" aria-labelledby="drop2">
+                                                                <li><a href="author-profile.html">Author Profile</a></li>
+                                                                <li><a href="dashboard-listings.html">Author Dashboard</a></li>
+                                                                <li><a href="pricing-plans.html">Pricing Plans</a></li>
+                                                                <li><a href="checkout.html">Checkout</a></li>
+                                                                <li><a href="invoice.html">Invoice</a></li>
                                                                 <li><a href="faqs.html">FAQ</a></li>
                                                                 <li><a href="about.html">About</a></li>
                                                                 <li><a href="contact.html">Contact</a></li>
+                                                                <li><a href="cards.html">Products Cards</a></li>
+                                                                <li><a href="headers.html">Header Styles</a></li>
                                                             </ul>
                                                         </li>
-                                                        <li class="dropdown">
+                                                        <li class="dropdown has_dropdown">
                                                             <a class="dropdown-toggle" href="#" id="drop1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                 Blog
                                                             </a>
+                                                            <ul class="dropdown-menu" aria-labelledby="drop1">
+                                                                <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
+                                                                <li><a href="blog-grid.html">Blog Grid Layout</a></li>
+                                                                <li><a href="blog-details-standard.html">Blog Details</a></li>
+                                                                <!-- dropdowns example -->
+                                                                <li class="dropdown-menu--inner">
+                                                                    <a href="#">Dropdown Levels</a>
+                                                                    <ul class="list-unstyled">
+                                                                        <li><a href="">Places</a></li>
+                                                                        <li><a href="">Shop</a></li>
+                                                                        <li><a href="">Business</a></li>
+                                                                    </ul>
+                                                                </li>
+                                                            </ul>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -84,49 +110,17 @@
                                         <div class="author-area">
                                             <div class="author__access_area">
                                                 <ul class="d-flex list-unstyled align-items-center">
-                                                   
-
-                                                    @if (session('user_data'))
-                                                  
-                                                    <li> <a href="{{url('category_show')}}" class="btn btn-xs btn-gradient btn-gradient-two">
+                                                    <li>
+                                                        <a href="{{url('category_show')}}" class="btn btn-xs btn-gradient btn-gradient-two">
                                                             <span class="la la-plus"></span> Add Listing
-                                                        </a></li>
-                                                        <li class="dropdown has_dropdown">
-                                                    <a onclick="toggleMenu()" class="profile_icon dropdown-toggle" id="drop4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('img/profile-placeholder.png') }}" /> <i class="la la-angle-down"></i></a>
-                                                    
-                                                    <div class="custom-drop" id="myDiv">
-                                                          <div class="welcome_txt">
-                                                            <img src="{{ asset('img/profile-placeholder.png') }}"/>
-                                                            <div class="textes">
-                                                                <p>Hello!</p>
-                                                                <p><strong>{{session('user')}}</strong></p>
-                                    
-                                                                <a  id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">View / Edit Profile</a>
-                                                            </div>
-                                                          </div>
-
-                                                        <hr>
-                                                            <ul class="" aria-labelledby="drop4">
-                                                                <li><a href="/user_dashboard"><i class="la la-file-text"></i> My Ads</a></li>
-                                                                <li><a href="#"><i class="la la-credit-card"></i> My Orders & Billings</a></li>
-                                                                <li><a href="#"><i class="la la-info-circle"></i> Help</a></li>
-                                                                <li><a href="#"><i class="la la-gear"></i> Settings</a></li>
-                                                                <li><a href="{{url('/userlogout')}}"> Logout</a></li>
-                                                       
-                                                            </ul>
-
-                                                            </div>
+                                                        </a>
                                                     </li>
-                                                        @else
-                                                       <li><a href="" class="access-link" data-toggle="modal" data-target="#login_modal">Add Listing</a></li>
-                                                       <li>
+                                                    <li>
                                                         <a href="" class="access-link" data-toggle="modal" data-target="#login_modal">Login</a>
                                                         <span>or</span>
                                                         <a href="" class="access-link" data-toggle="modal" data-target="#signup_modal">Register</a>
                                                     </li>
-                                                    @endif 
-                                                    
-                                              </ul>
+                                                </ul>
                                             </div>
                                         </div>
                                         <!-- end .author-area -->
@@ -165,25 +159,3 @@
                 <!-- end  -->
             </div>
         </div><!-- ends: .mainmenu-wrapper -->
-
-        <script>
-        function toggleMenu() {
-        var element = document.getElementById("myDiv");
-        element.classList.toggle("showmenu");
-        }
-        
-        </script>
-        <script>
-            window.onscroll = function() {myFunction()};
-
-            var header = document.getElementById("myHeader");
-            var sticky = header.offsetTop;
-
-            function myFunction() {
-            if (window.pageYOffset > sticky) {
-                header.classList.add("sticky");
-            } else {
-                header.classList.remove("sticky");
-            }
-            }
-            </script>
