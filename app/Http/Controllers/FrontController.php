@@ -141,8 +141,10 @@ class FrontController extends Controller
     {
         $search   = $request->input('search');
         $category = $request->input('category');
+        $price    = (int)$request->input('price');
         $location = $request->input('location');
-        $post_data = post::where('ps_status','active')
+        $post_data = post::where('ps_status','active') 
+                        ->where('ps_price','>=',$price)
                         ->where('ps_ct_id','like', '%' .$category. '%')
                         ->where('ps_city','like', '%' .$location. '%')
                         ->Where('ps_title', 'like', '%' .$search. '%')
@@ -585,11 +587,11 @@ class FrontController extends Controller
         // return view('user.index2',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location]) ; 
       
       
-        return view('user.category_listing',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location]) ; 
+        return view('user.category_listing',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location , 'ctid'=>$id]) ; 
 
     }
 
-    public function search_category(Request $request)
+    public function search_category1k(Request $request)
     {
         $search   = $request->input('search');
         $category = $request->input('category');
@@ -643,6 +645,136 @@ class FrontController extends Controller
        
        /// return view('user.index2',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location]) ; 
         return view('user.category_listing',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location]) ; 
+
+      
+    }
+
+    public function search_attribute($id)
+    {
+        $subcategory              = subcategory::where('st_ct_id',$id)->get();
+        $data =array();
+        foreach ($subcategory as $key) {
+            $r =0;
+            $attt = attribute::where('status','active')->where('at_st_id',$key->st_id)->get(); 
+            foreach ($attt as $key1) {
+               $res =  attribute_value::where('atv_status','active')->where('atv_at_id',$key1->at_id)->get();
+               $r++;
+               if (count($res)==0)
+               {
+                $c = count($attt);
+                 unset($attt[$r-1]);
+               }
+               else{
+                $key1->attribute_value_data  = $res;
+              }
+               
+             }
+       
+             $key->its_attribute = $attt;
+          
+             array_push($data,$key);
+         }
+             
+         return json_encode($data);
+    
+    }
+
+   
+    public function search_category(Request $request)
+    {
+        $search   = $request->input('search');
+        $category = $request->input('category');
+        $location = $request->input('location');
+        $attri    = $request->input('attri');
+        $attribute_value = $request->input('attribute_value');
+        $data = array();
+        $i=0;
+        foreach($attri as $key=>$value)
+        {
+            $d = array('title' =>$value,
+                        'value' =>$attribute_value[$key]
+                       );
+           $data[] = $d;
+        }
+  
+    //     print_r($data);
+    //   exit;
+        
+        $post_data = post::where('ps_status','active')
+                        ->where('ps_ct_id','like', '%' .$category. '%')
+                        ->where('ps_city','like', '%' .$location. '%')
+                        ->Where('ps_title', 'like', '%' .$search. '%')
+                        ->orderByRaw("ps_type = 'normal' asc")
+                        ->orderByRaw("ps_type = 'feature' asc")
+                        ->get();
+                        foreach($post_data as $keyz=>$v)
+                        {
+                            $z=0;
+                            $post_attribute_data = post_attribute::where('pt_ps_id',$v->ps_id)->get();
+                            foreach($post_attribute_data as  $keyp=> $value)
+                            {
+                               
+                               foreach($data as $dt)
+                               {
+                                  if($value->pt_title===$dt['title'] && $value->pt_value===$dt['value'])
+                                  {
+                                     
+                                      $z++;
+                                  }
+                               }
+                               
+                            }
+                            if($z!=count($data))
+                            {
+                                unset($post_data[$keyz]);
+                            }
+                           
+                            $v->matchs=$z;
+                        }
+                    //    print_r($post_data);
+                    //    exit;
+                    
+        foreach ($post_data as $key) {
+            $key->media_data          = midea::where('m_ps_id',$key->ps_id)->first();
+            $key->category_data       = category::find($key->ps_ct_id);
+            $key->subcategory_data    = subcategory::find($key->ps_st_id); 
+            $key->create_by           = user::find($key->ps_ur_id); 
+            $key->post_attribute_data = post_attribute::where('pt_ps_id',$key->ps_id)->get();
+            $created = Carbon::createFromTimeStamp(strtotime($key->created_at));
+            $created ->diff(Carbon::now())->format('%d days, %h hours and %i minutes');
+            $diff = $created->diff(Carbon::now());
+            if($diff->y)
+            {
+               $key->duration=  $diff->y." Years";
+            }
+            elseif($diff->m) {
+                $key->duration=  $diff->m." Months";
+            }
+            elseif($diff->d) {
+                $key->duration=  $diff->d." Days";
+            } elseif($diff->h) {
+                $key->duration=  $diff->h." Hours";
+            } elseif($diff->i) {
+                $key->duration=  $diff->i." Mints";
+            }
+            elseif($diff->s) {
+                $key->duration=  $diff->s." Second";
+            }
+        }
+        $category_data       = category::get();
+        foreach ($category_data as $key1) {
+            $i=0;
+            $post_d = post::where('ps_status','active')->where('ps_ct_id',$key1->ct_id)->get();
+             foreach ($post_d as $key2) {
+                 $i++;
+             }
+             $key1->its_post =$i;
+        }
+       
+        $location = post::select('ps_city')->where('ps_status','active')->distinct()->get();  // groupby
+       
+       /// return view('user.index2',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location]) ; 
+        return view('user.category_listing',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location, 'ctid'=>$category]) ; 
 
       
     }

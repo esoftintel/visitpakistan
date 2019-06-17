@@ -111,6 +111,7 @@ Route::get('/category_listing/{id}', 'FrontController@categorylisting')->name('c
 Route::get('/category_post/{id}', 'FrontController@category_posts')->name('category_post');
 Route::get('/post_detail/{id}', 'FrontController@post_detail')->name('post_detail');
 Route::get('/pusher', 'ChatController@index')->name('pusher');
+Route::get('/search_attribute/{id}', 'FrontController@search_attribute'); 
 
 Route::post('/like', 'LikeController@store')->name('like');
 Route::post('/search', 'FrontController@search')->name('search');

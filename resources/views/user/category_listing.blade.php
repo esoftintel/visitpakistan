@@ -63,8 +63,8 @@
                                         </div><!-- ends: .form-group -->
                                         <div class="form-group">
                                             <div class="select-basic">
-                                                <select class="form-control ad_search_category" name="category">
-                                                    <option value="">Select Category</option>
+                                            <select class="search_fields form-control" name="category" id="search_attribute">
+                                                    <option value="{{$ctid}}">Select Category</option>
                                                     @foreach($category_data as $category)
                                                     <option value="{{$category->ct_id}}">{{$category->ct_name}}</option>
                                                     @endforeach  
@@ -73,7 +73,19 @@
                                         </div><!-- ends: .form-group -->
                                         <div class="form-group">
                                             <div class="select-basic">
-                                                <select class="form-control ad_search_category" name="location">
+                                                <select class="form-control " name="subcategory" id="subcategory">
+                                                <option value="">Select a subcategory</option>
+                                                  
+                                                </select>
+                                            </div>
+                                        </div><!-- ends: .form-group -->
+                                       
+                                        <div class="form-group" id="attribute_value">
+                                           <!-- here search  attribute rander -->
+                                        </div><!-- ends: .form-group -->
+                                        <div class="form-group">
+                                            <div class="select-basic">
+                                                <select class="form-control " name="location">
                                                 <option value="">Select a location</option>
                                                     @foreach($location as $l)
                                                         <option value="{{$l->ps_city}}">{{$l->ps_city}}</option>
