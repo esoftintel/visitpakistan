@@ -98,6 +98,7 @@ class post_api extends Controller
      foreach($category_data as $category)
      {
      $category->image_path= asset('images').'/'.$category->ct_icone;
+     $category->bannar_path= asset('images').'/'.$category->ct_image;
      $post_data = post::where('ps_status','active')
                        ->where('ps_ct_id',$category->ct_id)
                        ->limit(4)   
@@ -123,7 +124,7 @@ class post_api extends Controller
             $key->media_data          = midea::where('m_ps_id',$key->ps_id)->get();
             foreach($key->media_data as $image)
             {
-                $image->image_path= asset('images').'/media/'.$image->m_url;
+                $image->media_path= asset('images').'/media/'.$image->m_url;
             }
            
             
@@ -189,10 +190,6 @@ class post_api extends Controller
                         
          
         }
-        
-        
-           
-        
 
         public function post_details($id)
             {
@@ -225,10 +222,7 @@ class post_api extends Controller
                         elseif($diff->s) {
                             $Post[0]->duration=  $diff->s." Second";
                         }
-                        
-                      
-                        
-                    
+
                      $postCategoryId=  $Post[0]->ps_ct_id;
                      //print_r($postCategoryId); exit;
                         
@@ -603,6 +597,8 @@ class post_api extends Controller
                  return response()->json($result);
             }
         }
+
+        
  
 }
 

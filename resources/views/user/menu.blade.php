@@ -1,5 +1,7 @@
 <body>
     <section class="intro-wrapper bgimage overlay overlay--dark" id="exchange">
+
+   
        
         <div class="mainmenu-wrapper" id="myHeader">
             <div class="menu-area menu1 menu--light">
@@ -11,6 +13,7 @@
                                     <div class="logo-wrapper order-lg-0 order-sm-1">
                                         <div class="logo logo-top">
                                             <a href="/all"><img src="{{ asset('img/logo-white.png')}}" alt="logo image" class="img-fluid"></a>
+                    
                                         </div>
                                     </div><!-- ends: .logo-wrapper -->
                                     <div class="menu-container order-lg-1 order-sm-0">
@@ -96,7 +99,9 @@
                                                     
                                                     <div class="custom-drop" id="myDiv">
                                                           <div class="welcome_txt">
-                                                            <img src="{{ asset('img/profile-placeholder.png') }}"/>
+                                                            <img src="{{ asset('images').'/user/'.session('user_image') }}"/>
+                                                            
+                                                           
                                                             <div class="textes">
                                                                 <p>Hello!</p>
                                                                 <p><strong>{{session('user')}}</strong></p>

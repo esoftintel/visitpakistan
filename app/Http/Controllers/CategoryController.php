@@ -109,8 +109,11 @@ class CategoryController extends Controller
            $icon= $request->file('userfile');
            $image = $request->file('image');
             $ctname = $request->input('name');
+            // $iconname = time().'.'.$icon->getClientOriginalExtension();
+            
+            // $new_name=rand().'.'. $image->getClientOriginalExtension();
             $iconname = time().'.'.$icon->getClientOriginalExtension();
-            $imagename = time().'.'.$image->getClientOriginalExtension();
+            $imagename = rand().'.'.$image->getClientOriginalExtension();
           
             $destinationPath = public_path('/images');
             $icon->move($destinationPath, $iconname);

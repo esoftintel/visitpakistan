@@ -24,7 +24,7 @@ class profile_api extends Controller
         );
         $flg=User::where('id',$userId)->update($data);
         $user=User::find($userId);
-        $user->image_path= asset('images').'/'.$user->u_image;
+        $user->image_path= asset('images').'/user/'.$user->u_image;
         if($flg)
         {
 
@@ -46,12 +46,12 @@ class profile_api extends Controller
         ]);
         $userId=Auth::user()->id;
         $data1 = $request->input();
-        $data= array(
+        $data= array( 
                     'u_phone'=>$data1['phone']
         );
         $flg=User::where('id',$userId)->update($data);
         $user=User::find($userId);
-        $user->image_path= asset('images').'/'.$user->u_image;
+        $user->image_path= asset('images').'/user/'.$user->u_image;
         if($flg)
         {
 
@@ -86,7 +86,7 @@ class profile_api extends Controller
         );
         $flg=User::where('id',$userId)->update($data);
         $user=User::find($userId);
-        $user->image_path= asset('images').'/'.$user->u_image;
+        $user->image_path= asset('images').'/user/'.$user->u_image;
         if($flg)
         {
 
@@ -113,7 +113,7 @@ class profile_api extends Controller
         );
         $flg=User::where('id',$userId)->update($data);
         $user=User::find($userId);
-        $user->image_path= asset('images').'/'.$user->u_image;
+        $user->image_path= asset('images').'/user/'.$user->u_image;
         if($flg)
         {
 
@@ -140,7 +140,7 @@ class profile_api extends Controller
         );
         $flg=User::where('id',$userId)->update($data);
         $user=User::find($userId);
-        $user->image_path= asset('images').'/'.$user->u_image;
+        $user->image_path= asset('images').'/user/'.$user->u_image;
         if($flg)
         {
 
@@ -164,7 +164,7 @@ class profile_api extends Controller
         $image= $request->file('userfile');
 
         $imagename = time().'.'.$image->getClientOriginalExtension();
-        $destinationPath = public_path('/images');
+        $destinationPath = public_path('/images/user');
         $image->move($destinationPath, $imagename);
 
         $data= array(
@@ -172,7 +172,7 @@ class profile_api extends Controller
         );
         $flg=User::where('id',$userId)->update($data);
         $user=User::find($userId);
-        $user->image_path= asset('images').'/'.$user->u_image;
+        $user->image_path= asset('images').'/user/'.$user->u_image;
         if($flg)
         {
 
@@ -183,6 +183,32 @@ class profile_api extends Controller
         else{
             $result['status']=0;
             $result['result']=$user;
+            return response()->json($result);
+        }
+    }
+
+    public function video_upload(Request $request)
+    {
+        $request->validate([
+            'mediafile' => 'required'
+        ]);
+        
+        $file= $request->file('mediafile');
+        $name='video';
+
+        $filename = $name.'.'.$file->getClientOriginalExtension();
+        $destinationPath = public_path('/images/videos');
+        $file->move($destinationPath, $filename);
+        if($file)
+        {
+
+            $result['status']=1;
+            $result['result']=asset('images').'/videos/'.$filename;
+            return response()->json($result); 
+        }
+        else{
+            $result['status']=0;
+            $result['result']=asset('images').'/videos/'.$filename;
             return response()->json($result);
         }
     }

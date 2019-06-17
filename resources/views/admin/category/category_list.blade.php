@@ -28,7 +28,7 @@
                 <div class="table-responsive">
                   <table class="table tablesorter " id="sample_table">
                     <thead class=" text-primary">
-                      <tr>
+                      <tr class="text-center">
                         <th>Id</th>
                         <th>Name</th>
                         <th>icon</th>
@@ -43,11 +43,12 @@
                         <td> {{$key->ct_id}} </td>
                         <td>{{$key->ct_name}}</td>
                         <td><img src="<?php echo  url('/images')."/".$key->ct_icone; ?>" class="img-thumbnail" width="70"></td>
-                        <td><img src="<?php echo  url('/images')."/".$key->ct_image; ?>" class="img-thumbnail" width="70"></td>
+                         <td><img src="<?php echo  url('/images')."/".$key->ct_image; ?>" class="img-thumbnail" width="70"></td>
                         <td>{{$key->created_at}}</td>
-                        <td>
+                        <td class="text-center">
                            <a class="btn btn-primary btn-sm" href="{{url('/category_edit',$key->ct_id)}}" role="button">Update</a>
-                           <a class="btn btn-danger btn-sm" href="{{url('category_delete',$key->ct_id)}}" role="button">Delete</a> 
+                           <a class="btn btn-danger btn-sm" href="{{url('category_delete',$key->ct_id)}}" role="button">Delete</a>
+                           <a class="btn btn-success btn-sm" href="{{url('sub_categories',$key->ct_id)}}" role="button">SubCat</a> 
                          </td>
                       </tr>
                       @endforeach

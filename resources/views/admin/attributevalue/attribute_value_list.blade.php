@@ -30,7 +30,7 @@
                         <th>Status</th>
                         <th>Attribute Name</th>
                         <th>Created</th>
-                        <th>Action</th>
+                        <th class="text-center">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -41,9 +41,9 @@
                         <td>{{$key->atv_status}}</td>
                         <td>{{$key->at_name}}</td>
                         <td>{{$key->created_at}}</td>
-                        <td>
+                        <td class="text-center">
                            <a class="btn btn-primary btn-sm" href="{{route('attribute_value.edit',$key->atv_id)}}" role="button">Update</a>
-                           <a class="btn btn-primary btn-sm" href="{{url('/at_value_delete/'.$key->atv_id)}}" role="button">Delete</a> 
+                           <a class="btn btn-danger btn-sm" href="{{url('/at_value_delete/'.$key->atv_id)}}" role="button">Delete</a> 
                          </td>
                       </tr>
                       @endforeach

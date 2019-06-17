@@ -7,7 +7,6 @@ use App\User;
 use App\category; 
 use Illuminate\Support\Facades\Auth; 
 use Validator;
-
 class auth_api extends Controller
 {
     //
@@ -97,7 +96,8 @@ class auth_api extends Controller
             {
                 foreach($categories as $category)
                 {
-                  $category->image_path= asset('images').'/'.$category->ct_icone;  
+                  $category->image_path= asset('images').'/'.$category->ct_icone; 
+                  $category->bannar_path= asset('images').'/'.$category->ct_image; 
                  
                 }
                 return response()->json(['status'=>1,'result' => $categories], $this-> successStatus); 

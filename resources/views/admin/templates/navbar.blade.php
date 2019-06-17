@@ -53,7 +53,7 @@
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                   <div class="photo">
                     <!-- <img  src="{{ asset('assets/dashboard/img/anime3.png') }}" alt="Profile Photo"> -->
-                    <img  src="{{url('/images').'/'.Session::get('_admimage')}}" alt="Profile Photo">
+                    <img  src="{{url('/images').'/user/'.Session::get('_admimage')}}" alt="Profile Photo">
                   </div>
                   <b class="caret d-none d-lg-block d-xl-block"></b>
                   <p class="d-lg-none">

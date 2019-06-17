@@ -30,7 +30,7 @@
                         <th>Status</th>
                         <th>Subcategory Name</th>
                         <th>Created</th>
-                        <th>Action</th>
+                        <th class="text-center">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -42,10 +42,11 @@
                         <td>{{$key->st_name}}</td>
                       
                         <td>{{$key->created_at}}</td>
-                         <td>
+                         <td class="text-center">
                            
                            <a class="btn btn-primary btn-sm" href="{{route('attributer.edit',$key->at_id)}}">Update</a>
-                           <a class="btn btn-primary btn-sm" href="{{url('/attribute_delete/'.$key->at_id)}}" role="button">Delete</a> 
+                           <a class="btn btn-danger btn-sm" href="{{url('/attribute_delete/'.$key->at_id)}}" role="button">Delete</a> 
+                           <a class="btn btn-success btn-sm" href="{{url('/at_values/'.$key->at_id)}}" role="button">Values</a>
                          </td>
                       </tr>
                       @endforeach

@@ -74,6 +74,11 @@ Route:: get('/subcategory_delete/{id}','SubcategoryController@distory');
 Route::resource('attribute_value','AttributeValueController');
 Route::get('/AttributeValue', 'AttributeValueController@index')->name('AttributeValue');
 Route::get('/at_value_delete/{id}','AttributeValueController@destroy');
+
+///////////////Routs for required lists against give id of category, subcagtegory <div class=""></div>
+Route::get('sub_categories/{id}','SubcategoryController@sub_categories_of_category');
+Route::get('sub_attributes/{id}','AttributeController@sub_attributes');
+Route::get('at_values/{id}','AttributeValueController@at_values');
  
 ///packages table oprations route(s)
 Route::resource('packages','PackagController');

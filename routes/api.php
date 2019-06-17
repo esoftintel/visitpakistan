@@ -69,6 +69,9 @@ Route::group(['middleware' => 'auth:api'], function(){
                     Route::post('picture_edit','API\profile_api@picture_edit');
                     
                     });
+
+
+                    Route::post('video_upload','API\profile_api@video_upload');
                    
 
                
