@@ -103,186 +103,8 @@
                                                 <div class="slider-range"></div>
                                             </div><!-- ends: .price-range -->
                                         </div><!-- ends: .form-group -->
-                                        <div class="check-btn">
-                                            <div class="btn-checkbox active-color-secondary">
-                                                <label>
-                                                    <input type="checkbox" value="1"><span class="color-success"><i class="la la-clock-o"></i> Open Now</span>
-                                                </label>
-                                            </div>
-                                            <div class="btn-checkbox active-color-secondary">
-                                                <label>
-                                                    <input type="checkbox" value="1"><span class="color-primary"><i class="la la-tags"></i> Offering Deal</span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="filter-checklist">
-                                            <h5>Filter by Features</h5>
-                                            <div class="checklist-items feature-checklist hideContent">
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="tag9" checked>
-                                                    <label class="custom-control-label" for="tag9">Accepts Cards</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="tag10">
-                                                    <label class="custom-control-label" for="tag10">Electronics</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="tag11">
-                                                    <label class="custom-control-label" for="tag11">Bike Parking</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="tag12">
-                                                    <label class="custom-control-label" for="tag12">Wheelchair</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="tag13">
-                                                    <label class="custom-control-label" for="tag13">Accessories</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="tag14">
-                                                    <label class="custom-control-label" for="tag14">WiFi Internet</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="tag15">
-                                                    <label class="custom-control-label" for="tag15">Parking Street</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="tag16">
-                                                    <label class="custom-control-label" for="tag16">Clothing</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="tag17">
-                                                    <label class="custom-control-label" for="tag17">Travel Booking</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="tag18">
-                                                    <label class="custom-control-label" for="tag18">Fast Support</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="tag19">
-                                                    <label class="custom-control-label" for="tag19">Parking Street</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="tag20">
-                                                    <label class="custom-control-label" for="tag20">Shopping</label>
-                                                </div>
-                                            </div>
-                                            <a href="" class="show-link">Show More</a>
-                                        </div><!-- ends: .filter-checklist -->
-                                        <div class="filter-checklist">
-                                            <h5>Filter by Tags</h5>
-                                            <div class="checklist-items tags-checklist">
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="tag1" checked>
-                                                    <label class="custom-control-label" for="tag1">Restaurant</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="tag2">
-                                                    <label class="custom-control-label" for="tag2">Food</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="tag3">
-                                                    <label class="custom-control-label" for="tag3">Launch</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="tag4">
-                                                    <label class="custom-control-label" for="tag4">Breakfast</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="tag5">
-                                                    <label class="custom-control-label" for="tag5">Lifestyle</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="tag6">
-                                                    <label class="custom-control-label" for="tag6">Travel</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="tag7">
-                                                    <label class="custom-control-label" for="tag7">Drink</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="tag8_1">
-                                                    <label class="custom-control-label" for="tag8_1">Services</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="tag6_2">
-                                                    <label class="custom-control-label" for="tag6_2">Booking</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="tag7_3">
-                                                    <label class="custom-control-label" for="tag7_3">Rent</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="tag8_2">
-                                                    <label class="custom-control-label" for="tag8_2">Shopping</label>
-                                                </div>
-                                            </div>
-                                        </div><!-- ends: .filter-checklist -->
-                                        <div class="filter-checklist">
-                                            <h5>Filter by Ratings</h5>
-                                            <div class="sort-rating">
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck7" checked>
-                                                    <label class="custom-control-label" for="customCheck7">
-                                                        <span class="active"><i class="la la-star"></i></span>
-                                                        <span class="active"><i class="la la-star"></i></span>
-                                                        <span class="active"><i class="la la-star"></i></span>
-                                                        <span class="active"><i class="la la-star"></i></span>
-                                                        <span class="active"><i class="la la-star"></i></span>
-                                                    </label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck8">
-                                                    <label class="custom-control-label" for="customCheck8">
-                                                        <span class="active"><i class="la la-star"></i></span>
-                                                        <span class="active"><i class="la la-star"></i></span>
-                                                        <span class="active"><i class="la la-star"></i></span>
-                                                        <span class="active"><i class="la la-star"></i></span>
-                                                        <span><i class="la la-star"></i></span>
-                                                    </label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck9">
-                                                    <label class="custom-control-label" for="customCheck9">
-                                                        <span class="active"><i class="la la-star"></i></span>
-                                                        <span class="active"><i class="la la-star"></i></span>
-                                                        <span class="active"><i class="la la-star"></i></span>
-                                                        <span><i class="la la-star"></i></span>
-                                                        <span><i class="la la-star"></i></span>
-                                                    </label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck10">
-                                                    <label class="custom-control-label" for="customCheck10">
-                                                        <span class="active"><i class="la la-star"></i></span>
-                                                        <span class="active"><i class="la la-star"></i></span>
-                                                        <span><i class="la la-star"></i></span>
-                                                        <span><i class="la la-star"></i></span>
-                                                        <span><i class="la la-star"></i></span>
-                                                    </label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck11">
-                                                    <label class="custom-control-label" for="customCheck11">
-                                                        <span class="active"><i class="la la-star"></i></span>
-                                                        <span><i class="la la-star"></i></span>
-                                                        <span><i class="la la-star"></i></span>
-                                                        <span><i class="la la-star"></i></span>
-                                                        <span><i class="la la-star"></i></span>
-                                                    </label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck12">
-                                                    <label class="custom-control-label" for="customCheck12">
-                                                        <span><i class="la la-star"></i></span>
-                                                        <span><i class="la la-star"></i></span>
-                                                        <span><i class="la la-star"></i></span>
-                                                        <span><i class="la la-star"></i></span>
-                                                        <span><i class="la la-star"></i></span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div><!-- ends: .filter-checklist -->
+                                       
+                                       
                                         <button type="submit" class="btn btn-block btn-gradient btn-gradient-one btn-md btn_search">Search</button>
                                     </form><!-- ends: form -->
                                 </div><!-- ends: .default-ad-search -->
@@ -290,6 +112,7 @@
                         </div><!-- ends: .col-lg-4 -->
                         <div class="col-lg-8 order-lg-1 order-0">
                             <div class="row">
+                            <?php if(count($post_data)>0){?>
                             @foreach($post_data as $key)
                         <div class=" col-sm-6">
                             <div class="atbd_single_listing ">
@@ -360,8 +183,9 @@
                             </div>
                         </div><!-- ends: .col-lg-4 -->
                     @endforeach
-                                
-                               
+                            <?php } else{?>           
+                            <h1>Sory Have no Data plz silety change your wish and get search agin   </h1>   
+                            <?php } ?>
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
@@ -392,6 +216,10 @@ arr = element.className.split(" ");
 if (arr.indexOf(name) == -1) {
     element.className += " " + name;
 }
+
+$('form select').on('change', function(){
+    $(this).closest('form').submit();
+});
 </script>
 
 @include('user.footer')
