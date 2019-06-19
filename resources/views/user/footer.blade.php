@@ -235,7 +235,7 @@
                                     $.each(data,function(key,value){
                                          $('#subcategory').append('<option value="'+value.st_id+'">'+value.st_name+'</option>');
                                             $.each(value.its_attribute,function(key,value){
-                                                res += '<p class="d-flex justify-content-between"><span style="color:green"><input type="hidden" name="attri['+i+']" value="'+value.at_name+'">'+value.at_name+':</span></p><div class="select-basic"><select class="form-control " name="attribute_value['+i+']" id="attribute_value">'; 
+                                                res += '<p class="d-flex justify-content-between"><span style="color:green"><input type="hidden" name="attri['+i+']" value="'+value.at_name+'">'+value.at_name+':</span></p><div class="select-basic"><select class="form-control " name="attribute_value['+i+']" id="attribute_value"><option value="any">any</option>'; 
                                                 i++;
                                                  $.each(value.attribute_value_data,function(key,value){
                                                     
@@ -253,6 +253,7 @@
                 });
         </script>
                      <script>
+                    
                 $(document).ready(function(){
                     var category_id = document.getElementById("search_attribute").value; 
                     $.ajax({
@@ -271,7 +272,7 @@
                                          $('#subcategory').append('<option value="'+value.st_id+'">'+value.st_name+'</option>');
                                             $.each(value.its_attribute,function(key,value){
                                                 
-                                                res += '<p class="d-flex justify-content-between"><span style="color:green"><input type="hidden" name="attri['+i+']" value="'+value.at_name+'">'+value.at_name+':</span></p><div class="select-basic"><select class="form-control " name="attribute_value['+i+']" id="attribute_value">'; 
+                                                res += '<p class="d-flex justify-content-between"><span style="color:green"><input type="hidden" name="attri['+i+']" value="'+value.at_name+'">'+value.at_name+':</span></p><div class="select-basic"><select class="form-control " name="attribute_value['+i+']" id="attribute_value"><option value="any">any</option>'; 
                                                 i++;
                                                 
                                                 $.each(value.attribute_value_data,function(key,value){
