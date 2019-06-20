@@ -684,6 +684,7 @@ class FrontController extends Controller
     {
         $search   = $request->input('search');
         $category = $request->input('category');
+        $subcategory = $request->input('subcategory');
         $location = $request->input('location');
         $attri    = $request->input('attri');
         $attribute_value = $request->input('attribute_value');
@@ -696,12 +697,13 @@ class FrontController extends Controller
                        );
            $data[] = $d;
         }
-  
+   
     //     print_r($data);
     //   exit;
         
         $post_data = post::where('ps_status','active')
-                        ->where('ps_ct_id','like', '%' .$category. '%')
+                        ->where('ps_ct_id', $category)
+                        ->where('ps_st_id', $subcategory)
                         ->where('ps_city','like', '%' .$location. '%')
                         ->Where('ps_title', 'like', '%' .$search. '%')
                         ->orderByRaw("ps_type = 'normal' asc")
@@ -714,12 +716,17 @@ class FrontController extends Controller
                             foreach($post_attribute_data as  $keyp=> $value)
                             {
                                
-                               foreach($data as $dt)
+                 
+                                foreach($data as $dt)
                                {
                                   if($value->pt_title===$dt['title'] && $value->pt_value===$dt['value'])
                                   {
                                      
                                       $z++;
+                                  }
+                                  if($value->pt_title===$dt['title'] && $dt['value']=="any")
+                                  {
+                                    $z++;
                                   }
                                }
                                
