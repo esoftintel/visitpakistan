@@ -1,6 +1,9 @@
 .copy-text a{
   color: #319e5f !important;
 }
+.change-txt a{
+  color: #319e5f !important;
+}
 .btn-primary {
   color: #fff;
   background: linear-gradient(to right, #32a060, #208349) !important;
