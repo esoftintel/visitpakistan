@@ -60,30 +60,16 @@
                         </form><!-- ends: .search_form -->
                         <div class="directory_home_category_area">
                             <ul class="categories">
+                            @foreach($category_data as $key_value)
                                 <li>
-                                    <a href="">
-                                        <span class="color-primary"><i class="la la-building"></i></span>
-                                        Property
+                                    <a href="{{url('/category_listing/'.$key_value->ct_id.'')}}">
+                                        <span class="color-primary"> <img class="cat_featimg" src="{{ asset('images')}}/{{$key_value->ct_image}}" style="height:100px; width:100px;" alt="">
+                           </span>
+                           {{$key_value->ct_name}}
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="">
-                                        <span class="color-success"><i class="la la-automobile"></i></span>
-                                        Vehicles
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <span class="color-warning"><i class="la la-television"></i></span>
-                                        Electronics
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <span class="color-danger"><i class="la la-bed"></i></span>
-                                        Hotels
-                                    </a>
-                                </li>
+                                @endforeach
+                             
                             </ul>
                         </div><!-- ends: .directory_home_category_area -->
                     </div><!-- ends: .col-lg-10 -->

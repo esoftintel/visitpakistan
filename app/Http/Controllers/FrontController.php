@@ -60,7 +60,7 @@ class FrontController extends Controller
             }
             
         }
-        $category_data       = category::get();
+        $category_data       = category::get(); 
         foreach ($category_data as $key1) {
             $i=0;
             $post_d = post::where('ps_status','active')->where('ps_ct_id',$key1->ct_id)->get();
@@ -540,6 +540,7 @@ class FrontController extends Controller
 
     public function categorylisting($id)
     {
+        $ctimg = category::find($id);
         $post_data = post::where('ps_status','active')
         ->where('ps_ct_id',$id)
         ->orderByRaw("ps_type = 'normal' asc")
@@ -587,7 +588,7 @@ class FrontController extends Controller
         // return view('user.index2',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location]) ; 
       
       
-        return view('user.category_listing',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location , 'ctid'=>$id]) ; 
+        return view('user.category_listing',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location , 'ctid'=>$id , 'ctimg'=>$ctimg]) ; 
 
     }
 

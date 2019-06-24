@@ -2,7 +2,7 @@
 @include('user.metadata')
 
 @include('user.menu')
-<div class="bg_image_holder"><img src="img/breadcrumb1.jpg" alt=""></div>
+<div class="bg_image_holder"><img src="{{ asset('images').'/'.$ctimg['ct_image']}}" alt=""></div>
 
 <div class="breadcrumb-wrapper content_above">
             <div class="container">
