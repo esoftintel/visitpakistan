@@ -116,7 +116,7 @@
                         <div class="col-lg-3 col-md-4 mb-5 mb-lg-0">
                         <br/><br/>
                             <div style="width:150px;height: 150px; border: 1px solid whitesmoke ;text-align: left;position: relative" id="image">
-                                <img width="100%" height="100%" id="preview_image" src="{{asset('images/user')}}/{{$user_record->u_image}}">
+                                <img width="100%" height="100%" id="preview_image" src="{{asset('images/user')}}/{{$user_record->u_image  !== '' ? $user_record->u_image : placeholder.png }}">
                                 <i id="loading" class="fa fa-spinner fa-spin fa-3x fa-fw" style="position: absolute;left: 40%;top: 40%;display: none"></i>
                             </div>
                             <p class="change-txt">

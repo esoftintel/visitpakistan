@@ -63,7 +63,7 @@
                             <a href="" class="footer-logo"><img src="{{ asset('img/logo.png')}}" alt=""></a>
                             <p class="m-0 copy-text">©2019 Gwadar Hub. Made with <span class="la la-heart-o"></span> by <a href="http://esoftintel.com">E-soft Intel.</a></p>
                             <ul class="list-unstyled lng-list">
-                                <li><a href="">English</a></li>
+                                <!-- <li><a href="">English</a></li> -->
                             </ul>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
         </div><!-- ends: .footer-bottom -->
     </footer><!-- ends: .footer -->
 
-    ///login in model
+  
     <div class="modal fade" id="login_modal"  role="dialog" aria-labelledby="login_modal_label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
