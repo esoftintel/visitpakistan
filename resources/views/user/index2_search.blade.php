@@ -4,113 +4,10 @@
 <div class="bg_image_holder">
             <img src="{{ asset('img/banner.jpg') }}" alt=""></div>
         <div class="directory_content_area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-10 offset-lg-1">
-                        <div class="search_title_area">
-                            <h2 class="title">Find the Best Places to Be</h2>
-                            <p class="sub_title">All the top locations – from restaurants and clubs, to galleries, famous places and more..</p>
-                        </div><!-- ends: .search_title_area -->
-                        <form action="{{url('/search')}}" method="POST" class="search_form">
-                            <div class="atbd_seach_fields_wrapper">
-                            @csrf
-                             <div class="row">
-                                <div class="single_search_field search_category">
-                                    <select class="search_fields form-control" name="category" id="search_attribute">
-                                    <option value="">Select a Category</option>
-                                    @foreach($category_data as $category)
-                                        <option value="{{$category->ct_id}}">{{$category->ct_name}}</option>
-                                    @endforeach    
-                                    </select>
-                                </div>
-                                <div class="single_search_field search_location">
-                                    <select class="search_fields" name="location" id="at_biz_dir-location">
-                                        <option value="">Select a location</option>
-                                        @foreach($location as $l)
-                                            <option value="{{$l->ps_city}}">{{$l->ps_city}}</option>
-                                        @endforeach 
-                                    </select>
-                                </div>
-                                <div class="single_search_field ">
-                                    <select class="search_fields form-control" name="price" id="at_biz_dir-location">
-                                        <option value="">Max Price</option>
-                                        <option value="10000">10,000</option>
-                                        <option value="20000">20,000</option>
-                                        <option value="30000">30,000</option>
-                                        <option value="40000">40,000</option>
-                                        <option value="50000">50,000</option>
-                                        <option value="60000">60,000</option>
-                                        <option value="70000">70,000</option>
-                                        <option value="80000">80,000</option>
-                                        <option value="900000">90,000</option>
-                                        <option value="100000">100,000</option>
-                                        <option value="150000">150,000</option>
-                                    </select>
-                                </div>
-                                <div class="single_search_field search_query">
-                                    <input class="form-control search_fields" name="search" type="text" placeholder="What are you looking for?">
-                                </div>
-                                <div class="atbd_submit_btn">
-                                    <button type="submit" class="btn btn-block btn-gradient btn-gradient-one btn-md btn_search">Search</button>
-                                </div>
-                                </div>
-                               
-                            </div>
-
-                        </form><!-- ends: .search_form -->
-                        <div class="directory_home_category_area">
-                            <ul class="categories">
-                            @foreach($category_data as $key_value)
-                                <li>
-                                    <a href="{{url('/category_listing/'.$key_value->ct_id.'')}}">
-                                        <span class="color-primary"> <img class="cat_featimg" src="{{ asset('images')}}/{{$key_value->ct_iconewhite}}" style="height:100px; width:100px;" alt="">
-                           </span>
-                           {{$key_value->ct_name}}
-                                    </a>
-                                </li>
-                                @endforeach
-                             
-                            </ul>
-                        </div><!-- ends: .directory_home_category_area -->
-                    </div><!-- ends: .col-lg-10 -->
-                </div>
-            </div>
+           
         </div><!-- ends: .directory_search_area -->
     </section><!-- ends: .intro-wrapper -->
-    <section class="categories-cards section-padding-two">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h2>What Kind of Activity do you Want to try?</h2>
-                        <p>Discover best things to do restaurants, shopping, hotels, cafes and places around the world by categories.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-            @foreach($category_data as $key_value)
-                <div class="col-lg-4 col-sm-6">
-                    <div class="category-single category--img">
-                        <figure class="category--img4">
-                            <img class="cat_featimg" src="{{ asset('images')}}/{{$key_value->ct_image}}" alt="">
-                            <figcaption class="overlay-bg">
-                                <!-- <a href="{{url('/category_post/'.$key_value->ct_id.'')}}" class="cat-box"> -->
-                                <a href="{{url('/category_listing/'.$key_value->ct_id.'')}}" class="cat-box">
-                                    <div>
-                                        
-                                        <h4 class="cat-name">{{$key_value->ct_name}}</h4>
-                                        <span class="badge badge-pill badge-success">{{$key_value->its_post}} Listings</span>
-                                    </div>
-                                </a>
-                            </figcaption>
-                        </figure>
-                    </div><!-- ends: .category-single -->
-                </div><!-- ends: .col -->
-            @endforeach
-               
-            </div>
-        </div>
-    </section><!-- ends: .categories-cards -->
+ 
     <section class="listing-cards section-bg section-padding">
         <div class="container">
             <div class="row">
@@ -201,7 +98,7 @@
             </div>
         </div>
     </section><!-- ends: .listing-cards -->
-    <section class="cta section-padding">
+    <section class="cta section-padding border-bottom">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -249,6 +146,36 @@
             </div>
         </div>
     </section><!-- ends: .cta -->
+    <section class="places section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h2>Destination We Love</h2>
+                        <p>Explore best listings around Pakistan and Gulf by city</p>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="cat-places-wrapper">
+                    @foreach($location as $loc)
+                        <div class="category-place-single">
+                            <figure>
+                      
+                                <a href=""><img src="{{ asset('images/media')}}/{{$loc->location_media['m_url']}}" alt=""></a>
+                                <figcaption>
+                                    <h3>{{$loc->ps_city}}</h3>
+                                    <p>{{$loc->location_num_post}} Listings</p>
+                                </figcaption>
+                            </figure>
+                        </div><!-- ends: .category-place-single -->
+                    @endforeach    
+                      
+                    </div><!-- ends: .col-lg-12 -->
+                </div>
+               
+            </div>
+        </div>
+    </section><!-- ends: .places -->
     <section class="testimonial-wrapper section-padding--bottom">
         <div class="container">
             <div class="row">
@@ -296,6 +223,34 @@
             </div>
         </div>
     </section><!-- ends: .testimonial-wrapper -->
+    <section class="clients-logo-wrapper border-top p-top-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="logo-carousel owl-carousel">
+                        <div class="carousel-single">
+                            <img src="{{ asset('img/cl1.png')}}" alt="">
+                        </div>
+                        <div class="carousel-single">
+                            <img src="{{ asset('img/cl2.png')}}" alt="">
+                        </div>
+                        <div class="carousel-single">
+                            <img src="{{ asset('img/cl3.png')}}" alt="">
+                        </div>
+                        <div class="carousel-single">
+                            <img src="{{ asset('img/cl4.png')}}" alt="">
+                        </div>
+                        <div class="carousel-single">
+                            <img src="{{ asset('img/cl5.png')}}" alt="">
+                        </div>
+                        <div class="carousel-single">
+                            <img src="{{ asset('img/cl1.png')}}" alt="">
+                        </div>
+                    </div><!-- ends: .logo-carousel -->
+                </div>
+            </div>
+        </div>
+    </section><!-- ends: .clients-logo-wrapper -->
     <section class="subscribe-wrapper">
         <div class="container">
             <div class="row">
