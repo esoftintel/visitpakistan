@@ -65,21 +65,22 @@
                                             <div class="nav_right_module search_module">
                                                 <span class="icon-left" id="basic-addon9"><i class="la la-search"></i></span>
                                                 <div class="search_area">
-                                                    <form action="/">
+                                                <form action="{{url('/search')}}" method="POST" class="search_form">
+                                            @csrf
                                                         <div class="input-group input-group-light">
-                                                            <input type="text" class="form-control search_field top-search-field" placeholder="What are you looking for?" autocomplete="off">
+                                                            <input type="text" name="search" class="form-control search_field top-search-field" placeholder="What are you looking for?" autocomplete="off">
                                                         </div>
                                                     </form>
                                                 </div>
                                             </div>
+                                            <?php $ct = DB::table('categories')->get();  ?>
                                             <div class="search-categories">
                                                 <ul class="list-unstyled">
-                                                    <li><a href=""><span class="la la-glass bg-danger"></span> Food & Drinks</a></li>
-                                                    <li><a href=""><span class="la la-cutlery bg-primary"></span> Restaurants</a></li>
-                                                    <li><a href=""><span class="la la-map-marker bg-success"></span> Places</a></li>
-                                                    <li><a href=""><span class="la la-shopping-cart bg-secondary"></span> Shopping & Store</a></li>
-                                                    <li><a href=""><span class="la la-bed bg-info"></span> Hotels</a></li>
-                                                    <li><a href=""><span class="la la-bank bg-warning"></span> Art & History</a></li>
+                                                @foreach($ct as $key)
+                                                    <li><a href="{{url('/category_listing/'.$key->ct_id.'')}}">
+                                                    <span class="color-primary"> <img class="cat_featimg" src="{{ asset('images')}}/{{$key->ct_icone}}" style="height:20px; " alt=""></span> {{$key->ct_name}}</a></li>
+                                                @endforeach
+                                                    
                                                 </ul>
                                             </div>
                                         </div><!-- ends: .search-wrapper -->

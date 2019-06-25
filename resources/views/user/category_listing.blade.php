@@ -64,7 +64,7 @@
                                         <div class="form-group">
                                             <div class="select-basic">
                                             <select class="search_fields form-control" name="category" id="search_attribute">
-                                                    <option value="{{$ctid}}">Select Category</option>
+                                                    <option value="{{$ctid}}">{{$ctimg['ct_name']}}</option>
                                                     @foreach($category_data as $category)
                                                     <option value="{{$category->ct_id}}">{{$category->ct_name}}</option>
                                                     @endforeach  

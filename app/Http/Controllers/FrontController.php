@@ -190,7 +190,7 @@ class FrontController extends Controller
        
         $location = post::select('ps_city')->where('ps_status','active')->distinct()->get();  // groupby
        
-        return view('user.index2',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location]) ; 
+        return view('user.index2_search',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location]) ; 
       
       
     }
