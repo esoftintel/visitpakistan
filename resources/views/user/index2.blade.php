@@ -63,7 +63,7 @@
                             @foreach($category_data as $key_value)
                                 <li>
                                     <a href="{{url('/category_listing/'.$key_value->ct_id.'')}}">
-                                        <span class="color-primary"> <img class="cat_featimg" src="{{ asset('images')}}/{{$key_value->ct_image}}" style="height:100px; width:100px;" alt="">
+                                        <span class="color-primary"> <img class="cat_featimg" src="{{ asset('images')}}/{{$key_value->ct_iconewhite}}" style="height:100px; width:100px;" alt="">
                            </span>
                            {{$key_value->ct_name}}
                                     </a>
