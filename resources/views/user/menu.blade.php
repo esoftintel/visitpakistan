@@ -25,35 +25,7 @@
                                                 <!-- Collect the nav links, forms, and other content for toggling -->
                                                 <div class="collapse navbar-collapse" id="direo-navbar-collapse">
                                                     <ul class="navbar-nav">
-                                                        <li>
-                                                            <a href="/all">Home</a>
-                                                        </li>
-                                                        <li class="dropdown">
-                                                            <a href="#" class="dropdown-toggle" id="drop3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Listings</a>
-                                                            
-                                                        </li>
-                                                        <li class="dropdown has_dropdown">
-                                                            <a href="#" class="dropdown-toggle" id="drop4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
-                                                            <ul class="dropdown-menu" aria-labelledby="drop4">
-                                                                <li><a href="all-categories.html">All Categories</a></li>
-                                                       
-                                                            </ul>
-                                                        </li>
-                                                        <li class="dropdown has_dropdown">
-                                                            <a class="dropdown-toggle" href="#" id="drop2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                Pages
-                                                            </a>
-                                                            <ul class="dropdown-menu" aria-labelledby="drop2">
-                                                                <li><a href="faqs.html">FAQ</a></li>
-                                                                <li><a href="about.html">About</a></li>
-                                                                <li><a href="contact.html">Contact</a></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li class="dropdown">
-                                                            <a class="dropdown-toggle" href="#" id="drop1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                Blog
-                                                            </a>
-                                                        </li>
+                                                        
                                                     </ul>
                                                 </div>
                                                 <!-- /.navbar-collapse -->
@@ -100,7 +72,7 @@
                                                     
                                                     <div class="custom-drop" id="myDiv">
                                                           <div class="welcome_txt">
-                                                            <img src="{{ asset('images').'/user/'.session('user_image') }}"/>
+                                                           
                                                             
                                                            
                                                             <div class="textes">

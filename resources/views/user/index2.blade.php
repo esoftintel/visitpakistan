@@ -326,34 +326,6 @@
             </div>
         </div>
     </section><!-- ends: .testimonial-wrapper -->
-    <section class="clients-logo-wrapper border-top p-top-100">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="logo-carousel owl-carousel">
-                        <div class="carousel-single">
-                            <img src="{{ asset('img/cl1.png')}}" alt="">
-                        </div>
-                        <div class="carousel-single">
-                            <img src="{{ asset('img/cl2.png')}}" alt="">
-                        </div>
-                        <div class="carousel-single">
-                            <img src="{{ asset('img/cl3.png')}}" alt="">
-                        </div>
-                        <div class="carousel-single">
-                            <img src="{{ asset('img/cl4.png')}}" alt="">
-                        </div>
-                        <div class="carousel-single">
-                            <img src="{{ asset('img/cl5.png')}}" alt="">
-                        </div>
-                        <div class="carousel-single">
-                            <img src="{{ asset('img/cl1.png')}}" alt="">
-                        </div>
-                    </div><!-- ends: .logo-carousel -->
-                </div>
-            </div>
-        </div>
-    </section><!-- ends: .clients-logo-wrapper -->
     <section class="subscribe-wrapper">
         <div class="container">
             <div class="row">
