@@ -201,7 +201,7 @@
             </div>
         </div>
     </section><!-- ends: .listing-cards -->
-    <section class="cta section-padding border-bottom">
+    <section class="cta section-padding">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -249,36 +249,6 @@
             </div>
         </div>
     </section><!-- ends: .cta -->
-    <section class="places section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h2>Destination We Love</h2>
-                        <p>Explore best listings around Pakistan and Gulf by city</p>
-                    </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="cat-places-wrapper">
-                    @foreach($location as $loc)
-                        <div class="category-place-single">
-                            <figure>
-                      
-                                <a href=""><img src="{{ asset('images/media')}}/{{$loc->location_media['m_url']}}" alt=""></a>
-                                <figcaption>
-                                    <h3>{{$loc->ps_city}}</h3>
-                                    <p>{{$loc->location_num_post}} Listings</p>
-                                </figcaption>
-                            </figure>
-                        </div><!-- ends: .category-place-single -->
-                    @endforeach    
-                      
-                    </div><!-- ends: .col-lg-12 -->
-                </div>
-               
-            </div>
-        </div>
-    </section><!-- ends: .places -->
     <section class="testimonial-wrapper section-padding--bottom">
         <div class="container">
             <div class="row">
