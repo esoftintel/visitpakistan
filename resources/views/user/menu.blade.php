@@ -79,7 +79,7 @@
                                                                 <p>Hello!</p>
                                                                 <p><strong>{{session('user')}}</strong></p>
                                     
-                                                                <a  id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">View / Edit Profile</a>
+                                                                <a  id="profile-tab"  href="{{url('user_dashboard')}}" role="tab" aria-controls="profile" aria-selected="false">View / Edit Profile</a>
                                                             </div>
                                                           </div>
 
