@@ -4,6 +4,13 @@
 .change-txt a{
   color: #319e5f !important;
 }
+.welcome_txt .textes p{
+  color: #32a060;
+}
+.welcome_txt .textes a, .custom-drop ul li a{
+  color: #2b90f1;
+}
+
 .btn-primary {
   color: #fff;
   background: linear-gradient(to right, #32a060, #208349) !important;
@@ -1651,7 +1658,7 @@
   border-radius:100% 
 }
 .welcome_txt .textes{
-  padding-left: 61px;
+  padding-left: 0px;
 }
 .welcome_txt .textes p{
   margin-bottom: 0px;
@@ -1673,6 +1680,9 @@
   background:#fff;
   transition-duration: 0.7s;
 
+}
+.mainmenu-wrapper.sticky .dropdown a i{
+  color: #32a060;
 }
 .badge-success {
   color: #fff;
