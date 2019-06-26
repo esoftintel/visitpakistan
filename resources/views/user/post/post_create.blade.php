@@ -129,18 +129,20 @@
                                         </div>
                                     <div class="form-group">
                                                 <h4>REVIEW YOUR DETAILS</h4>
-
-                                                <img src="img.png" class="image-place"/>
-                                                <div style="widows: 100%;"></div>
+                                                <?php if($user_data->u_image){?>
+                                                 <img src="{{asset('images/user')}}/{{$user_data->u_image}}" class="image-place"/>
+                                                <?php } else {?>
+                                                    <img src="{{asset('images/user')}}/placeholder.png" class="image-place"/>
+                                                <?php } ?> <div style="widows: 100%;"></div>
                                                     <br/>
                                                 <label for="" class="form-label">Name</label>
                                                 <div class="">
-                                                    <input class="form-control" placeholder="Your Name" value="Abdul Manan" required/>
+                                                    <input class="form-control"  value="{{$user_data->name}}" readonly />
                                                     
                                                 </div>
                                                 <br/>
                                                 <label for="" class="form-label">Your Phone Number</label>
-                                                <p>{{$user_data->email}}</p>
+                                                <p>{{$user_data->u_phone}}</p>
                                        </div>
                                     </div>
                                    <button type="submit" class="btn btn-primary btn-lg listing_submit_btn">Submit listing</button>
