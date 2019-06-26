@@ -35,8 +35,11 @@
                                         </div><!-- ends: .atbd_listing_image -->
                                         <div class="atbd_author atbd_author--thumb">
                                             <a href="{{url('/user_profile')}}/{{$key->create_by['id']}}">
+                                            <?php if($key->create_by['u_image']){ ?>
                                                 <img src="{{asset('/images/user')}}/{{$key->create_by['u_image']}}" class="author-img" alt="Author Image">
-                                                <span class="custom-tooltip">{{$key->create_by['name']}}</span>
+                                            <?php } else {?>
+                                                <img src="{{asset('/images/user')}}/placeholder.png" class="author-img" alt="Author Image">
+                                            <?php }?>   <span class="custom-tooltip">{{$key->create_by['name']}}</span>
                                             </a>
                                         </div>
                                         <div class="atbd_thumbnail_overlay_content">

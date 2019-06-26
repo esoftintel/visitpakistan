@@ -63,12 +63,12 @@
                                                    
 
                                                     @if (session('user_data'))
-                                                  
+                                                  <?php $d = DB::table('users')->where('id',session('user_data'))->first(); ?>
                                                     <li> <a href="{{url('category_show')}}" class="btn btn-xs btn-gradient btn-gradient-two">
                                                             <span class="la la-plus"></span> Add Listing
                                                         </a></li>
                                                         <li class="dropdown has_dropdown">
-                                                    <a onclick="toggleMenu()" class="profile_icon dropdown-toggle" id="drop4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('img/profile-placeholder.png') }}" /> <i class="la la-angle-down"></i></a>
+<a onclick="toggleMenu()" class="profile_icon dropdown-toggle" id="drop4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php  if($d->u_image){ ?><img src="{{ asset('images/user')}}/{{$d->u_image}}" /> <?php } else{ ?><img src="{{ asset('images/user/placeholder.png') }}" /> <?php } ?> <i class="la la-angle-down"></i></a>
                                                     
                                                     <div class="custom-drop" id="myDiv">
                                                           <div class="welcome_txt">

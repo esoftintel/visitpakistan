@@ -304,7 +304,7 @@ class FrontController extends Controller
     public function post_form($id)
     {
         $subcategory = subcategory::find($id);
-        $category    = category::find($subcategory->st_ct_id);
+        $category    = category::find($subcategory->st_ct_id); 
         $data['category_name'] =$category->ct_name;
         $data['subcategory_name'] =$subcategory->st_name;
         $data['category_id'] =$category->ct_id;
@@ -536,7 +536,7 @@ class FrontController extends Controller
     }
        
 
-
+///5cf0d61925777_1559287321.jpg
 
     public function categorylisting($id)
     {
@@ -594,6 +594,7 @@ class FrontController extends Controller
 
     public function search_category1k(Request $request)
     {
+       
         $search   = $request->input('search');
         $category = $request->input('category');
         $location = $request->input('location');
@@ -645,7 +646,7 @@ class FrontController extends Controller
         $location = post::select('ps_city')->where('ps_status','active')->distinct()->get();  // groupby
        
        /// return view('user.index2',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location]) ; 
-        return view('user.category_listing',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location]) ; 
+        return view('user.category_listing',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location ]) ; 
 
       
     }
@@ -683,6 +684,7 @@ class FrontController extends Controller
    
     public function search_category(Request $request)
     {
+        $ctimg = category::find($request->input('category'));
         $search   = $request->input('search');
         $category = $request->input('category');
         $subcategory = $request->input('subcategory');
@@ -782,7 +784,7 @@ class FrontController extends Controller
         $location = post::select('ps_city')->where('ps_status','active')->distinct()->get();  // groupby
        
        /// return view('user.index2',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location]) ; 
-        return view('user.category_listing',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location, 'ctid'=>$category]) ; 
+        return view('user.category_listing',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location, 'ctid'=>$category ,'ctimg'=>$ctimg]) ; 
 
       
     }
