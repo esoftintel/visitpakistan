@@ -60,30 +60,16 @@
                         </form><!-- ends: .search_form -->
                         <div class="directory_home_category_area">
                             <ul class="categories">
+                            @foreach($category_data as $key_value)
                                 <li>
-                                    <a href="">
-                                        <span class="color-primary"><i class="la la-building"></i></span>
-                                        Property
+                                    <a href="{{url('/category_listing/'.$key_value->ct_id.'')}}">
+                                        <span class="color-primary"> <img class="cat_featimg" src="{{ asset('images')}}/{{$key_value->ct_iconewhite}}" style="height:100px; width:100px;" alt="">
+                           </span>
+                           {{$key_value->ct_name}}
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="">
-                                        <span class="color-success"><i class="la la-automobile"></i></span>
-                                        Vehicles
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <span class="color-warning"><i class="la la-television"></i></span>
-                                        Electronics
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <span class="color-danger"><i class="la la-bed"></i></span>
-                                        Hotels
-                                    </a>
-                                </li>
+                                @endforeach
+                             
                             </ul>
                         </div><!-- ends: .directory_home_category_area -->
                     </div><!-- ends: .col-lg-10 -->
@@ -106,7 +92,7 @@
                 <div class="col-lg-4 col-sm-6">
                     <div class="category-single category--img">
                         <figure class="category--img4">
-                            <img class="cat_featimg" src="{{ asset('images')}}/{{$key_value->ct_icone}}" alt="">
+                            <img class="cat_featimg" src="{{ asset('images')}}/{{$key_value->ct_image}}" alt="">
                             <figcaption class="overlay-bg">
                                 <!-- <a href="{{url('/category_post/'.$key_value->ct_id.'')}}" class="cat-box"> -->
                                 <a href="{{url('/category_listing/'.$key_value->ct_id.'')}}" class="cat-box">
@@ -152,8 +138,11 @@
                                         </div><!-- ends: .atbd_listing_image -->
                                         <div class="atbd_author atbd_author--thumb">
                                             <a href="{{url('/user_profile')}}/{{$key->create_by['id']}}">
+                                            <?php if($key->create_by['u_image']){ ?>
                                                 <img src="{{asset('/images/user')}}/{{$key->create_by['u_image']}}" class="author-img" alt="Author Image">
-                                                <span class="custom-tooltip">{{$key->create_by['name']}}</span>
+                                            <?php } else {?>
+                                                <img src="{{asset('/images/user')}}/placeholder.png" class="author-img" alt="Author Image">
+                                            <?php }?>   <span class="custom-tooltip">{{$key->create_by['name']}}</span>
                                             </a>
                                         </div>
                                         <div class="atbd_thumbnail_overlay_content">
@@ -215,7 +204,7 @@
             </div>
         </div>
     </section><!-- ends: .listing-cards -->
-    <section class="cta section-padding border-bottom">
+    <section class="cta section-padding">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -227,7 +216,7 @@
                 <div class="col-lg-12">
                     <div class="row align-items-center">
                         <div class="col-lg-6 col-md-6">
-                            <img src="{{ asset('img/svg/illustration-1.svg')}}" alt="" class="svg">
+                            <img src="{{ asset('images/gwadar-mobile.png')}}" alt="" style="width:100%;" class="svg">
                         </div>
                         <div class="col-lg-5 offset-lg-1 col-md-6 mt-5 mt-md-0">
                             <ul class="feature-list-wrapper list-unstyled">
@@ -263,36 +252,6 @@
             </div>
         </div>
     </section><!-- ends: .cta -->
-    <section class="places section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h2>Destination We Love</h2>
-                        <p>Explore best listings around Pakistan and Gulf by city</p>
-                    </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="cat-places-wrapper">
-                    @foreach($location as $loc)
-                        <div class="category-place-single">
-                            <figure>
-                      
-                                <a href=""><img src="{{ asset('images/media')}}/{{$loc->location_media['m_url']}}" alt=""></a>
-                                <figcaption>
-                                    <h3>{{$loc->ps_city}}</h3>
-                                    <p>{{$loc->location_num_post}} Listings</p>
-                                </figcaption>
-                            </figure>
-                        </div><!-- ends: .category-place-single -->
-                    @endforeach    
-                      
-                    </div><!-- ends: .col-lg-12 -->
-                </div>
-               
-            </div>
-        </div>
-    </section><!-- ends: .places -->
     <section class="testimonial-wrapper section-padding--bottom">
         <div class="container">
             <div class="row">
@@ -340,34 +299,6 @@
             </div>
         </div>
     </section><!-- ends: .testimonial-wrapper -->
-    <section class="clients-logo-wrapper border-top p-top-100">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="logo-carousel owl-carousel">
-                        <div class="carousel-single">
-                            <img src="{{ asset('img/cl1.png')}}" alt="">
-                        </div>
-                        <div class="carousel-single">
-                            <img src="{{ asset('img/cl2.png')}}" alt="">
-                        </div>
-                        <div class="carousel-single">
-                            <img src="{{ asset('img/cl3.png')}}" alt="">
-                        </div>
-                        <div class="carousel-single">
-                            <img src="{{ asset('img/cl4.png')}}" alt="">
-                        </div>
-                        <div class="carousel-single">
-                            <img src="{{ asset('img/cl5.png')}}" alt="">
-                        </div>
-                        <div class="carousel-single">
-                            <img src="{{ asset('img/cl1.png')}}" alt="">
-                        </div>
-                    </div><!-- ends: .logo-carousel -->
-                </div>
-            </div>
-        </div>
-    </section><!-- ends: .clients-logo-wrapper -->
     <section class="subscribe-wrapper">
         <div class="container">
             <div class="row">

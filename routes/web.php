@@ -95,7 +95,7 @@ Route::get('/getattribute/{id}', 'AttributeController@getattribute');
 
 //////////////////////////////user side route here /////////////////////////
 Route::get('/category_show', 'FrontController@create')->name('category_show');
-Route::get('/post_create', 'FrontController@post_create')->name('post_create');
+Route::get('/post_create', 'FrontController@post_create')->name('post_create'); 
 Route::get('/post_form/{id}', 'FrontController@post_form')->name('post_form');
 Route::post('/post_submit', 'FrontController@post_store')->name('post_submit');
 Route::get('/image_post/{id}', 'FrontController@image_post')->name('image_post');
@@ -106,7 +106,7 @@ Route::get('/ad_details/{id}', 'FrontController@post_detail')->name('ad_details'
 Route::get('/user_profile/{id}', 'FrontController@userprofile')->name('user_profile'); 
 Route::get('/user_dashboard', 'FrontController@userdashboard')->name('user_dashboard');
 
-Route::get('/category_listing/{id}', 'FrontController@categorylisting')->name('category_listing');
+Route::get('/category_listing/{id}', 'FrontController@categorylisting')->name('category_listing'); 
 
 Route::get('/category_post/{id}', 'FrontController@category_posts')->name('category_post');
 Route::get('/post_detail/{id}', 'FrontController@post_detail')->name('post_detail');
@@ -132,6 +132,10 @@ Route::Post('/usersignup','userLoginController@user_register');
 
 Route::match(['get', 'post'], 'ajax-image-upload', 'UserController@ajaxImage');
 Route::delete('ajax-remove-image/{filename}', 'UserController@deleteImage');
+////////////banner upload
+
+Route::match(['get', 'post'], 'ajax-image-upload_banner', 'UserController@ajaxImage_banner');
+Route::delete('ajax-remove-image_banner/{filename}', 'UserController@deleteImage_banner');
 
 
 

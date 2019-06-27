@@ -25,35 +25,7 @@
                                                 <!-- Collect the nav links, forms, and other content for toggling -->
                                                 <div class="collapse navbar-collapse" id="direo-navbar-collapse">
                                                     <ul class="navbar-nav">
-                                                        <li>
-                                                            <a href="/all">Home</a>
-                                                        </li>
-                                                        <li class="dropdown">
-                                                            <a href="#" class="dropdown-toggle" id="drop3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Listings</a>
-                                                            
-                                                        </li>
-                                                        <li class="dropdown has_dropdown">
-                                                            <a href="#" class="dropdown-toggle" id="drop4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
-                                                            <ul class="dropdown-menu" aria-labelledby="drop4">
-                                                                <li><a href="all-categories.html">All Categories</a></li>
-                                                       
-                                                            </ul>
-                                                        </li>
-                                                        <li class="dropdown has_dropdown">
-                                                            <a class="dropdown-toggle" href="#" id="drop2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                Pages
-                                                            </a>
-                                                            <ul class="dropdown-menu" aria-labelledby="drop2">
-                                                                <li><a href="faqs.html">FAQ</a></li>
-                                                                <li><a href="about.html">About</a></li>
-                                                                <li><a href="contact.html">Contact</a></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li class="dropdown">
-                                                            <a class="dropdown-toggle" href="#" id="drop1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                Blog
-                                                            </a>
-                                                        </li>
+                                                        
                                                     </ul>
                                                 </div>
                                                 <!-- /.navbar-collapse -->
@@ -65,21 +37,22 @@
                                             <div class="nav_right_module search_module">
                                                 <span class="icon-left" id="basic-addon9"><i class="la la-search"></i></span>
                                                 <div class="search_area">
-                                                    <form action="/">
+                                                <form action="{{url('/search')}}" method="POST" class="search_form">
+                                            @csrf
                                                         <div class="input-group input-group-light">
-                                                            <input type="text" class="form-control search_field top-search-field" placeholder="What are you looking for?" autocomplete="off">
+                                                            <input type="text" name="search" class="form-control search_field top-search-field" placeholder="What are you looking for?" autocomplete="off">
                                                         </div>
                                                     </form>
                                                 </div>
                                             </div>
+                                            <?php $ct = DB::table('categories')->get();  ?>
                                             <div class="search-categories">
                                                 <ul class="list-unstyled">
-                                                    <li><a href=""><span class="la la-glass bg-danger"></span> Food & Drinks</a></li>
-                                                    <li><a href=""><span class="la la-cutlery bg-primary"></span> Restaurants</a></li>
-                                                    <li><a href=""><span class="la la-map-marker bg-success"></span> Places</a></li>
-                                                    <li><a href=""><span class="la la-shopping-cart bg-secondary"></span> Shopping & Store</a></li>
-                                                    <li><a href=""><span class="la la-bed bg-info"></span> Hotels</a></li>
-                                                    <li><a href=""><span class="la la-bank bg-warning"></span> Art & History</a></li>
+                                                @foreach($ct as $key)
+                                                    <li><a href="{{url('/category_listing/'.$key->ct_id.'')}}">
+                                                    <span class="color-primary"> <img class="cat_featimg" src="{{ asset('images')}}/{{$key->ct_icone}}" style="height:20px; " alt=""></span> {{$key->ct_name}}</a></li>
+                                                @endforeach
+                                                    
                                                 </ul>
                                             </div>
                                         </div><!-- ends: .search-wrapper -->
@@ -90,23 +63,28 @@
                                                    
 
                                                     @if (session('user_data'))
-                                                  
+                                                  <?php $d = DB::table('users')->where('id',session('user_data'))->first(); ?>
                                                     <li> <a href="{{url('category_show')}}" class="btn btn-xs btn-gradient btn-gradient-two">
                                                             <span class="la la-plus"></span> Add Listing
                                                         </a></li>
                                                         <li class="dropdown has_dropdown">
+<<<<<<< HEAD
                                                     <a onclick="toggleMenu()" class="profile_icon dropdown-toggle" id="drop4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{session('user_image')?asset('images').'/user/'.session('user_image'):asset('img/profile-placeholder.png')  }}" /> <i class="la la-angle-down"></i></a>
                                                    
+=======
+<a onclick="toggleMenu()" class="profile_icon dropdown-toggle" id="drop4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php  if($d->u_image){ ?><img src="{{ asset('images/user')}}/{{$d->u_image}}" /> <?php } else{ ?><img src="{{ asset('images/user/placeholder.png') }}" /> <?php } ?> <i class="la la-angle-down"></i></a>
+                                                    
+>>>>>>> 7b9a5965be7e50b40e642480daac2af7c0594a0f
                                                     <div class="custom-drop" id="myDiv">
                                                           <div class="welcome_txt">
-                                                            <img src="{{ asset('images').'/user/'.session('user_image') }}"/>
+                                                           
                                                             
                                                            
                                                             <div class="textes">
                                                                 <p>Hello!</p>
                                                                 <p><strong>{{session('user')}}</strong></p>
                                     
-                                                                <a  id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">View / Edit Profile</a>
+                                                                <a  id="profile-tab"  href="{{url('user_dashboard')}}" role="tab" aria-controls="profile" aria-selected="false">View / Edit Profile</a>
                                                             </div>
                                                           </div>
 

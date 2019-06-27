@@ -60,7 +60,7 @@ class FrontController extends Controller
             }
             
         }
-        $category_data       = category::get();
+        $category_data       = category::get(); 
         foreach ($category_data as $key1) {
             $i=0;
             $post_d = post::where('ps_status','active')->where('ps_ct_id',$key1->ct_id)->get();
@@ -190,7 +190,7 @@ class FrontController extends Controller
        
         $location = post::select('ps_city')->where('ps_status','active')->distinct()->get();  // groupby
        
-        return view('user.index2',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location]) ; 
+        return view('user.index2_search',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location]) ; 
       
       
     }
@@ -304,7 +304,7 @@ class FrontController extends Controller
     public function post_form($id)
     {
         $subcategory = subcategory::find($id);
-        $category    = category::find($subcategory->st_ct_id);
+        $category    = category::find($subcategory->st_ct_id); 
         $data['category_name'] =$category->ct_name;
         $data['subcategory_name'] =$subcategory->st_name;
         $data['category_id'] =$category->ct_id;
@@ -433,7 +433,7 @@ class FrontController extends Controller
         ->where('ps_ur_id',$id)
         ->orderByRaw("ps_type = 'normal' asc")
         ->orderByRaw("ps_type = 'feature' asc")
-        ->get();
+        ->paginate(6);
         foreach ($post_data as $key) {
             $key->media_data          = midea::where('m_ps_id',$key->ps_id)->first();
             $key->category_data       = category::find($key->ps_ct_id);
@@ -536,15 +536,16 @@ class FrontController extends Controller
     }
        
 
-
+///5cf0d61925777_1559287321.jpg
 
     public function categorylisting($id)
     {
+        $ctimg = category::find($id);
         $post_data = post::where('ps_status','active')
         ->where('ps_ct_id',$id)
         ->orderByRaw("ps_type = 'normal' asc")
         ->orderByRaw("ps_type = 'feature' asc")
-        ->get();
+        ->paginate(2);
         foreach ($post_data as $key) {
             $key->media_data          = midea::where('m_ps_id',$key->ps_id)->first();
             $key->category_data       = category::find($key->ps_ct_id);
@@ -587,12 +588,13 @@ class FrontController extends Controller
         // return view('user.index2',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location]) ; 
       
       
-        return view('user.category_listing',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location , 'ctid'=>$id]) ; 
+        return view('user.category_listing',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location , 'ctid'=>$id , 'ctimg'=>$ctimg]) ; 
 
     }
 
     public function search_category1k(Request $request)
     {
+       
         $search   = $request->input('search');
         $category = $request->input('category');
         $location = $request->input('location');
@@ -644,7 +646,7 @@ class FrontController extends Controller
         $location = post::select('ps_city')->where('ps_status','active')->distinct()->get();  // groupby
        
        /// return view('user.index2',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location]) ; 
-        return view('user.category_listing',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location]) ; 
+        return view('user.category_listing',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location ]) ; 
 
       
     }
@@ -682,6 +684,7 @@ class FrontController extends Controller
    
     public function search_category(Request $request)
     {
+        $ctimg = category::find($request->input('category'));
         $search   = $request->input('search');
         $category = $request->input('category');
         $subcategory = $request->input('subcategory');
@@ -708,7 +711,7 @@ class FrontController extends Controller
                         ->Where('ps_title', 'like', '%' .$search. '%')
                         ->orderByRaw("ps_type = 'normal' asc")
                         ->orderByRaw("ps_type = 'feature' asc")
-                        ->get();
+                        ->paginate(15);
                         foreach($post_data as $keyz=>$v)
                         {
                             $z=0;
@@ -781,7 +784,7 @@ class FrontController extends Controller
         $location = post::select('ps_city')->where('ps_status','active')->distinct()->get();  // groupby
        
        /// return view('user.index2',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location]) ; 
-        return view('user.category_listing',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location, 'ctid'=>$category]) ; 
+        return view('user.category_listing',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location, 'ctid'=>$category ,'ctimg'=>$ctimg]) ; 
 
       
     }

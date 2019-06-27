@@ -215,7 +215,49 @@ class UserController extends Controller {
         }
     }
 
+    public function ajaxImage_banner(Request $request)
+    {
+        if ($request->isMethod('get'))
+            return view('ajax_image_upload');
+        else {
+            $validator = Validator::make($request->all(),
+                [
+                    'file' => 'image',
+                ],
+                [
+                    'file.image' => 'The file must be an image (jpeg, png, bmp, gif, or svg)'
+                ]);
+            if ($validator->fails())
+                return array(
+                    'fail' => true,
+                    'errors' => $validator->errors()
+                );
+            $extension = $request->file('file_banner')->getClientOriginalExtension();
+            $dir = 'images/user';
+            $filename = uniqid() . '_' . time() . '.' . $extension;
+            $request->file('file_banner')->move($dir, $filename);
+            $user = User::findOrFail(session('user_data')); 
+            if($user)
+            {
+                if($user->u_banner)
+                {
+                    File::delete('images/user/' .$user->u_bnner);
+                }
+
+                $user->update(['u_banner'=>$filename]); 
+               
+            }
+           
+            return $filename;
+        }
+    }
+
     public function deleteImage($filename)
+    {
+        File::delete('images/user/' . $filename);
+    }
+
+    public function deleteImage_banner($filename)
     {
         File::delete('images/user/' . $filename);
     }

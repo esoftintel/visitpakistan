@@ -1,16 +1,18 @@
 @include('user.metadata')
 
 @include('user.menu')
+<div class="bg_image_holder" style="background-image: url(&quot;img/breadcrumb1.jpg&quot;); opacity: 1;"><img src="img/breadcrumb1.jpg" alt="img/breadcrumb1.jpg"></div>
+
        
 <div class="breadcrumb-wrapper content_above">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h1 class="page-title">Add Listing</h1>
+                        <h1 class="page-title">Post an Ad</h1>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">All Listings</li>
+                                <li class="breadcrumb-item active" aria-current="page">Post an Ad</li>
                             </ol>
                         </nav>
                     </div>
@@ -127,18 +129,20 @@
                                         </div>
                                     <div class="form-group">
                                                 <h4>REVIEW YOUR DETAILS</h4>
-
-                                                <img src="img.png" class="image-place"/>
-                                                <div style="widows: 100%;"></div>
+                                                <?php if($user_data->u_image){?>
+                                                 <img src="{{asset('images/user')}}/{{$user_data->u_image}}" class="image-place"/>
+                                                <?php } else {?>
+                                                    <img src="{{asset('images/user')}}/placeholder.png" class="image-place"/>
+                                                <?php } ?> <div style="widows: 100%;"></div>
                                                     <br/>
                                                 <label for="" class="form-label">Name</label>
                                                 <div class="">
-                                                    <input class="form-control" placeholder="Your Name" value="Abdul Manan" required/>
+                                                    <input class="form-control"  value="{{$user_data->name}}" readonly />
                                                     
                                                 </div>
                                                 <br/>
                                                 <label for="" class="form-label">Your Phone Number</label>
-                                                <p>{{$user_data->email}}</p>
+                                                <p>{{$user_data->u_phone}}</p>
                                        </div>
                                     </div>
                                    <button type="submit" class="btn btn-primary btn-lg listing_submit_btn">Submit listing</button>
@@ -171,7 +175,20 @@
         </div>
     </section><!-- ends: .add-listing-wrapper -->
 
+    <script>
 
+var element, name, arr;
+element = document.getElementById("exchange");
+name = "header-breadcrumb";
+arr = element.className.split(" ");
+if (arr.indexOf(name) == -1) {
+    element.className += " " + name;
+}
+
+$('form select').on('change', function(){
+    $(this).closest('form').submit();
+});
+</script>
 
    
    @include('user.footer')

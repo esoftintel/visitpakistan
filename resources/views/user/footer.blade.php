@@ -72,7 +72,7 @@
         </div><!-- ends: .footer-bottom -->
     </footer><!-- ends: .footer -->
 
-    ///login in model
+   <!--login in model-->
     <div class="modal fade" id="login_modal"  role="dialog" aria-labelledby="login_modal_label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">

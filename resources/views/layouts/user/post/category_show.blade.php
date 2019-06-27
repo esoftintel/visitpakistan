@@ -1,8 +1,9 @@
 @include('user.metadata')
 
 @include('user.menu')
+<div class="bg_image_holder" style="background-image: url(&quot;img/breadcrumb1.jpg&quot;); opacity: 1;"><img src="img/breadcrumb1.jpg" alt="img/breadcrumb1.jpg"></div>
        
-<div class="breadcrumb-wrapper content_above">
+<div class="breadcrumb-wrapper content_above hell">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
@@ -67,4 +68,18 @@
             </div>
         </div>
     </section><!-- ends: .add-listing-wrapper -->
+    <script>
+
+var element, name, arr;
+element = document.getElementById("exchange");
+name = "header-breadcrumb";
+arr = element.className.split(" ");
+if (arr.indexOf(name) == -1) {
+    element.className += " " + name;
+}
+
+$('form select').on('change', function(){
+    $(this).closest('form').submit();
+});
+</script>
    @include('user.footer')
