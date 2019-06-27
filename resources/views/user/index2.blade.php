@@ -216,7 +216,7 @@
                 <div class="col-lg-12">
                     <div class="row align-items-center">
                         <div class="col-lg-6 col-md-6">
-                            <img src="{{ asset('img/svg/illustration-1.svg')}}" alt="" class="svg">
+                            <img src="{{ asset('images/gwadar-mobile.png')}}" alt="" style="width:100%;" class="svg">
                         </div>
                         <div class="col-lg-5 offset-lg-1 col-md-6 mt-5 mt-md-0">
                             <ul class="feature-list-wrapper list-unstyled">

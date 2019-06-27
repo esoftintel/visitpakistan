@@ -1604,8 +1604,8 @@
 }
 .category-single .cat_featimg{
   height: 250px;
-  object-fit: contain;
-  object-position: center;
+  object-fit: cover;
+  object-position: right;
   width: 100%;
 }
 .bg_image_holderr img {
