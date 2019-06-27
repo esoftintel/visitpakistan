@@ -95,8 +95,8 @@
                                                             <span class="la la-plus"></span> Add Listing
                                                         </a></li>
                                                         <li class="dropdown has_dropdown">
-                                                    <a onclick="toggleMenu()" class="profile_icon dropdown-toggle" id="drop4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('img/profile-placeholder.png') }}" /> <i class="la la-angle-down"></i></a>
-                                                    
+                                                    <a onclick="toggleMenu()" class="profile_icon dropdown-toggle" id="drop4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{session('user_image')?asset('images').'/user/'.session('user_image'):asset('img/profile-placeholder.png')  }}" /> <i class="la la-angle-down"></i></a>
+                                                   
                                                     <div class="custom-drop" id="myDiv">
                                                           <div class="welcome_txt">
                                                             <img src="{{ asset('images').'/user/'.session('user_image') }}"/>

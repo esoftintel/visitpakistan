@@ -306,7 +306,7 @@ if (arr.indexOf(name) == -1) {
         $.ajax({
             url: "{{url('ajax-image-upload')}}",
             data: form_data,
-            type: 'POST',
+             type: 'POST',
             contentType: false,
             processData: false,
             success: function (data) {
