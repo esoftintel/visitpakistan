@@ -183,31 +183,25 @@
                             </div>
                         </div><!-- ends: .col-lg-4 -->
                     @endforeach
+                    <div class="row">
+                    {{ $post_data->links() }}            
+                    </div>
                             <?php } else{?>           
                             <h1>Sory Have no Data plz silety change your wish and get search agin   </h1>   
                             <?php } ?>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <nav class="navigation pagination d-flex justify-content-end" role="navigation">
-                                        <div class="nav-links">
-                                            <a class="prev page-numbers" href=""><span class="la la-long-arrow-left"></span></a>
-                                            <a class="page-numbers" href="">1</a>
-                                            <span aria-current="page" class="page-numbers current">2</span>
-                                            <a class="page-numbers" href="">3</a>
-                                            <a class="next page-numbers" href=""><span class="la la-long-arrow-right"></span></a>
-                                        </div>
-                                    </nav>
-                                </div>
-                            </div>
+                           
                         </div><!-- ends: .col-lg-8 -->
                     </div>
                 </div><!-- ends: .listing-items -->
             </div>
         </div>
     </section><!-- ends: .all-listing-wrapper -->
+   
 
-    <script>
+
+@include('user.footer')
+<script>
 
 var element, name, arr;
 element = document.getElementById("exchange");
@@ -216,10 +210,8 @@ arr = element.className.split(" ");
 if (arr.indexOf(name) == -1) {
     element.className += " " + name;
 }
-
 $('form select').on('change', function(){
     $(this).closest('form').submit();
 });
 </script>
 
-@include('user.footer')

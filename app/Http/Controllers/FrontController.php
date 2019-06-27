@@ -433,7 +433,7 @@ class FrontController extends Controller
         ->where('ps_ur_id',$id)
         ->orderByRaw("ps_type = 'normal' asc")
         ->orderByRaw("ps_type = 'feature' asc")
-        ->get();
+        ->paginate(6);
         foreach ($post_data as $key) {
             $key->media_data          = midea::where('m_ps_id',$key->ps_id)->first();
             $key->category_data       = category::find($key->ps_ct_id);
@@ -545,7 +545,7 @@ class FrontController extends Controller
         ->where('ps_ct_id',$id)
         ->orderByRaw("ps_type = 'normal' asc")
         ->orderByRaw("ps_type = 'feature' asc")
-        ->get();
+        ->paginate(2);
         foreach ($post_data as $key) {
             $key->media_data          = midea::where('m_ps_id',$key->ps_id)->first();
             $key->category_data       = category::find($key->ps_ct_id);
@@ -711,7 +711,7 @@ class FrontController extends Controller
                         ->Where('ps_title', 'like', '%' .$search. '%')
                         ->orderByRaw("ps_type = 'normal' asc")
                         ->orderByRaw("ps_type = 'feature' asc")
-                        ->get();
+                        ->paginate(15);
                         foreach($post_data as $keyz=>$v)
                         {
                             $z=0;
