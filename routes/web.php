@@ -124,7 +124,7 @@ Route::post('/images_save', 'MideaController@store')->name('images_save');
 Route::post('/images-delete', 'MideaController@destroy'); 
 Route::get('/images-show', 'MideaController@index'); 
 
-////////////user Login Signup 
+////////////user Login Signup  
 
 Route::post('/userlogin', 'userLoginController@user_login'); 
 Route::get('/userlogout','userLoginController@user_logout');

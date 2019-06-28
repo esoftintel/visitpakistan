@@ -28,7 +28,8 @@ class userLoginController extends Controller
     {
         session()->forget('user');
         session()->forget('user_data');
-        return view('user.index');
+        Auth::logout();
+        return redirect()->route('all');
     }
 
     public function user_register(Request $request)

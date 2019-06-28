@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth; 
 use App\post;
 use App\category;
 use App\subcategory;
@@ -294,7 +295,7 @@ class FrontController extends Controller
         $data['subcategory'] = subcategory::where('st_status','active')->get();
         return view('user.post.post_create',$data) ; //->with('category',$data);
     
-    }
+    } 
     public function ad_details(){
         return view('user.ad_details') ; //->with('category',$data);
     }
@@ -322,7 +323,7 @@ class FrontController extends Controller
     
     public function post_store(Request $request)
     {
-       
+        $uu  = Auth::user();
         $data=$request->input();
         $attribute=$request->input('attribute');
         $attribute_value=$request->input('attribute_value');
@@ -335,10 +336,11 @@ class FrontController extends Controller
                         "ps_address" => $request->input('address'),
                         "ps_ct_id"   => $request->input('ctid'),
                         "ps_st_id"   => $request->input('sctid'),
-                        "ps_ur_id"   => 1,
+                        "ps_ur_id"   => $uu->id,
                         "ps_lati"    => $request->input('state'),
                         "ps_longi"   => $request->input('city'),
                      );
+                       
                     $d =  post::create($data);
                   $i=0;
                   if($attribute)
