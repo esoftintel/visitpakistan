@@ -1,7 +1,7 @@
 @include('user.metadata')
 
 @include('user.menu')
-<div class="bg_image_holder" style="background-image: url(&quot;img/breadcrumb1.jpg&quot;); opacity: 1;"><img src="img/breadcrumb1.jpg" alt="img/breadcrumb1.jpg"></div>
+<div class="bg_image_holder" style="background-image: url('../img/breadcrumb.png'); opacity: 1;"><img src="../img/breadcrumb.png" alt="img/breadcrumb1.jpg"></div>
 
        
 <div class="breadcrumb-wrapper content_above">
@@ -42,35 +42,44 @@
                             <input type="hidden" name="sctid" value="{{$subcategory_id}}">
                             <?php $a=0; ?>
                                  @foreach($attribute_data as $key)
+                                 <div class="col-sm-6 lefto">
                                 <div class="form-group">
                                 
-                                        <label for="" name="attribute[<?php echo $a; ?>]" value="{{$key->at_name}}" class="form-label">{{$key->at_name}}</label>
+                                        <!-- <label for="" name="attribute[<?php //echo $a; ?>]" value="{{$key->at_name}}" class="form-label">{{$key->at_name}}</label> -->
                                         <input type="hidden" name="attribute[<?php echo $a; ?>]" value="{{$key->at_name}}">
                                          
-                                        <div class="select-basic">
+                                        
                                         <?php  if(count($key->attribute_value_data)==0){  ?>
-                                            <input type="text" name="attribute_value[<?php echo $a++; ?>]" >
+                                            <label for="" name="attribute[<?php echo $a; ?>]" value="{{$key->at_name}}" class="form-label">{{$key->at_name}}</label>
+                                            <input type="text" class="form-control" name="attribute_value[<?php echo $a++; ?>]" >
                                         <?php }else{ ?>
+                                            <label for="" name="attribute[<?php echo $a; ?>]" value="{{$key->at_name}}" class="form-label">{{$key->at_name}}</label>
+                                            <div class="select-basic">
                                              <select class="form-control"  name="attribute_value[<?php echo $a++; ?>]" required>
                                                @foreach($key->attribute_value_data as $key1)
                                                     <option value="{{$key1->atv_name}}">{{$key1->atv_name}}</option>
                                                 @endforeach   
                                              </select>
+                                             </div>  
                                         <?php } ?>
-                                            </div>    
+                                              
+                                </div>
                                 </div>
                                 @endforeach
                               
-
+                                <div class="col-sm-6 lefto">
                                 <div class="form-group">
                                     <label for="title" class="form-label">Title * </label>
                                     <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title" required>
                                 </div>
+                                </div>
+                                <div class="col-sm-6 lefto">
                                 <div class="form-group">
                                     <label for="desc" class="form-label"> Description *</label>
                                     <textarea id="desc" rows="8" class="form-control" name="detail" placeholder="Description" required></textarea>
                                 </div>
- 
+                                </div>
+                                <div class="col-sm-6 lefto">
                                 <div class="form-group">
                                     <label class="form-label">Pricing *</label>
                                     <div class="pricing-options">
@@ -83,7 +92,8 @@
                                     </div>
                                   
                                 </div>
-                              
+                                </div>
+                                <div class="col-sm-6 lefto">
                                 <div class="form-group">
                                     <label for="location" class="form-label">Location</label>
                                     <div class="select-basic">
@@ -95,6 +105,9 @@
                                         </select>
                                     </div>
                                 </div>
+                                </div>
+
+                                <div class="col-sm-12" style="clear: both;">
                                 <div class="form-group">
                                         <h4>CONFIRM YOUR LOCATION</h4>
                                         <div class="location-btns">
@@ -127,6 +140,9 @@
                                                 </div>
 
                                         </div>
+                                        </div>
+                                       
+                                        <div class="col-sm-12"></div>
                                     <div class="form-group">
                                                 <h4>REVIEW YOUR DETAILS</h4>
                                                 <?php if($user_data->u_image){?>

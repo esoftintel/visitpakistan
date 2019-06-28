@@ -208,6 +208,7 @@ class UserController extends Controller {
                 }
 
                 $user->update(['u_image'=>$filename]); 
+                session(['user_image'=>$filename]);
             }
             
             return $filename;

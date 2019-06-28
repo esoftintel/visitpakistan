@@ -201,7 +201,7 @@ class profile_api extends Controller
         $file->move($destinationPath, $filename);
         if($file)
         {
-
+ 
             $result['status']=1;
             $result['result']=asset('images').'/videos/'.$filename;
             return response()->json($result); 
