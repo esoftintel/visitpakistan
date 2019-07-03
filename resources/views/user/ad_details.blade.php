@@ -215,7 +215,7 @@
                             <div class="atbd_avatar_wrapper">
                                 <div class="atbd_review_avatar">
                                 @if($post_data->create_by['u_image'])
-                                    <img src="{{asset('images/user')}}/{{$post_data->create_by['u_image']}}" style="height:40px" alt="Avatar Image">
+                                    <img src="{{asset('images/user')}}/{{$post_data->create_by['u_image']}}" style="height:40px;width: 40px;object-fit: cover;object-position: top;" alt="Avatar Image">
                                  @else
                                  <img src="{{asset('images/user')}}/placeholder.png" alt="Avatar Image">
                                  @endif   
@@ -278,7 +278,7 @@
                             @foreach($related_data as $ps_data)
                                 <li>
                                     <div class="atbd_left_img">
-                                        <a href="{{url('ad_details')}}/{{$ps_data->ps_id}}"><img src="{{asset('images/media')}}/{{$ps_data->media_data['m_url']}}" style=" width: 80px; height: 80px;" alt="listing image"></a>
+                                        <a href="{{url('ad_details')}}/{{$ps_data->ps_id}}"><img src="{{asset('images/media')}}/{{$ps_data->media_data['m_url']}}" style=" width: 80px; height: 80px;object-fit:cover; object-position:center;" alt="listing image"></a>
                                     </div>
                                     <div class="atbd_right_content">
                                         <div class="cate_title">
