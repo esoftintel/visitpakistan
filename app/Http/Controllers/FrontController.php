@@ -693,6 +693,7 @@ class FrontController extends Controller
         $attribute_value = $request->input('attribute_value');
         $data = array();
         $i=0;
+       
         foreach($attri as $key=>$value)
         {
             $d = array('title' =>$value,
