@@ -63,7 +63,7 @@
                             @foreach($category_data as $key_value)
                                 <li>
                                     <a href="{{url('/category_listing/'.$key_value->ct_id.'')}}">
-                                        <span class="color-primary"> <img class="cat_featimg" src="{{ asset('images')}}/{{$key_value->ct_iconewhite}}" style="height:100px; width:100px;" alt="">
+                                        <span class="color-primary"> <img class="cat_featimg" src="{{ asset('images')}}/{{$key_value->ct_iconewhite}}" style="height:50px; width:50px; object-fit: contain;" alt="">
                            </span>
                            {{$key_value->ct_name}}
                                     </a>
@@ -197,7 +197,7 @@
                     @endforeach
                      
                         <div class="col-lg-12 text-center m-top-20">
-                            <a href="" class="btn btn-gradient btn-gradient-two">Explore All 200+</a>
+                        {{ $post_data->links() }} 
                         </div>
                     </div>
                 </div><!-- ends: .listing-cards-wrapper -->

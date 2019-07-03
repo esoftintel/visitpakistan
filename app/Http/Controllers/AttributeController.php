@@ -146,9 +146,9 @@ class AttributeController extends Controller
     public function sub_attributes($id)
     {
         $attribute = attribute::where('at_st_id',$id)
-                                 ->where('at_status','active')
+                                 ->where('status','active')
                                 ->Join('subcategories', 'subcategories.st_id', '=', 'attributes.at_st_id')
-                                ->get('attributes');
+                                ->get();
         return view('admin.attribute.attribute_list')->with('attribute_data',$attribute);
     }
 }

@@ -187,7 +187,7 @@
                     {{ $post_data->links() }}            
                     </div>
                             <?php } else{?>           
-                            <h1>Sory Have no Data plz silety change your wish and get search agin   </h1>   
+                            <h4>Sorry! No results available related your search.</h4>   
                             <?php } ?>
                             </div>
                            
@@ -210,8 +210,8 @@ arr = element.className.split(" ");
 if (arr.indexOf(name) == -1) {
     element.className += " " + name;
 }
-$('form select').on('change', function(){
-    $(this).closest('form').submit();
-});
+// $('form select').on('change', function(){
+//     $(this).closest('form').submit();
+// });
 </script>
-
+ 

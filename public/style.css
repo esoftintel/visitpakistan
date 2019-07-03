@@ -1488,7 +1488,7 @@
   background: transparent !important;
 }
 .author-img{
-  width: 54px; height: 54px; object-fit: cover;object-position: center;
+  width: 54px !important; height: 54px !important; object-fit: cover !important;object-position: center !important;
 }
 
 .btn-shadow-primary {
@@ -1589,12 +1589,14 @@
 .atbd_listing_info .atbd_listing_title{
   overflow: hidden;
 }
+
 .atbd_listing_info .atbd_listing_title a{
   text-overflow: ellipsis;
   max-width: 200px;
   white-space: nowrap;
   overflow: hidden;
   height: 11em;
+  text-transform: capitalize;
 }
 .atbd_listing_image a .lst_featimg{
   object-fit: cover;
@@ -1670,7 +1672,10 @@
 }
 .profile_icon img{
   height: 37px;
-  border-radius:100% 
+  border-radius: 100%;
+  width: 37px;
+  object-fit: cover;
+  object-position: top;
 }
 .mainmenu-wrapper.sticky{
   position: fixed;
@@ -4649,6 +4654,9 @@ ul li .access-link:hover {
   background: #fff;
   padding: 2rem;
 }
+.default-ad-search select {
+  text-transform: capitalize;
+}
 
 .default-ad-search .form-group, .default-ad-search .filter-checklist, .default-ad-search .range-filter, .default-ad-search .check-btn {
   margin-bottom: 1.33333rem;
@@ -5236,6 +5244,8 @@ ul li .access-link:hover {
 .image-place{
   height: 100px;
   width: 100px;
+  object-fit: cover;
+  object-position: top;
   border-radius: 100px
  }
 .category-menu{
@@ -5282,6 +5292,9 @@ width: 100%;
 #first-cat-bar .parent:hover a{
   color: #fff;
 }
+#first-cat-bar .parent a{
+  color: #32a060;
+}
 #first-cat-bar .parent:hover #child li a{
   color: #32a060;
 }
@@ -5291,6 +5304,19 @@ width: 100%;
 }
 #first-cat-bar .parent #child li a:hover {
   color: #000;
+}
+.review-details h2 span{
+  color: #309e5e;
+  font-weight: bold;
+}
+
+.btn-link {
+    font-weight: 400;
+    color: #319e5f !important;
+    text-decoration: none;
+}
+.lefto{
+  float: left;
 }
 .donate-now {
   list-style-type:none;
