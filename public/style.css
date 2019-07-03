@@ -1488,7 +1488,7 @@
   background: transparent !important;
 }
 .author-img{
-  width: 54px; height: 54px; object-fit: cover;object-position: center;
+  width: 54px !important; height: 54px !important; object-fit: cover !important;object-position: center !important;
 }
 
 .btn-shadow-primary {
@@ -1589,12 +1589,14 @@
 .atbd_listing_info .atbd_listing_title{
   overflow: hidden;
 }
+
 .atbd_listing_info .atbd_listing_title a{
   text-overflow: ellipsis;
   max-width: 200px;
   white-space: nowrap;
   overflow: hidden;
   height: 11em;
+  text-transform: capitalize;
 }
 .atbd_listing_image a .lst_featimg{
   object-fit: cover;
@@ -4651,6 +4653,9 @@ ul li .access-link:hover {
   border: 1px solid #e3e6ef;
   background: #fff;
   padding: 2rem;
+}
+.default-ad-search select {
+  text-transform: capitalize;
 }
 
 .default-ad-search .form-group, .default-ad-search .filter-checklist, .default-ad-search .range-filter, .default-ad-search .check-btn {
