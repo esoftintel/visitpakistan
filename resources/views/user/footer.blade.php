@@ -226,14 +226,18 @@
                                 dataType:'json',
                                 success:function(data){
                                    //var select=document.getElementById('subcategory'),
-                                    console.log(data); 
+                                    console.log(data[0]); 
                                     $('#subcategory').empty();
                                     $('#attribute').empty();
                                     $('#attribute_value').empty();
                                     var res='';
                                     var i=0;
+                                    var zz=0;
                                     $.each(data,function(key,value){
                                          $('#subcategory').append('<option value="'+value.st_id+'">'+value.st_name+'</option>');
+                                          if(zz<1)
+                                          {
+                                              zz++;
                                             $.each(value.its_attribute,function(key,value){
                                                 res += '<p class="d-flex justify-content-between"><span style="color:green"><input type="hidden" name="attri['+i+']" value="'+value.at_name+'">'+value.at_name+':</span></p><div class="select-basic"><select class="form-control " name="attribute_value['+i+']" id="attribute_value"><option value="any">any</option>'; 
                                                 i++;
@@ -243,6 +247,7 @@
                                                   }); 
                                                   res+='</select></div>';
                                             }); 
+                                          }
                                      });
                                      $('#attribute_value').append(res);
                                     
@@ -257,7 +262,7 @@
                 $(document).ready(function(){
                     var category_id = document.getElementById("search_attribute").value; 
                     $.ajax({
-                                url:'/search_attribute1/'+category_id,
+                                url:'/search_attribute/'+category_id,
                                 type:'GET',
                                 dataType:'json',
                                 success:function(data){
@@ -333,4 +338,4 @@
         </script>
 </body>
 
-</html>
+</html> 
