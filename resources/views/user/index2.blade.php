@@ -197,7 +197,7 @@
                     @endforeach
                      
                         <div class="col-lg-12 text-center m-top-20">
-                            <a href="" class="btn btn-gradient btn-gradient-two">Explore All 200+</a>
+                        {{ $post_data->links() }} 
                         </div>
                     </div>
                 </div><!-- ends: .listing-cards-wrapper -->

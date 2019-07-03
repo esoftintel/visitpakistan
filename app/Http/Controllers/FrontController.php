@@ -28,10 +28,9 @@ class FrontController extends Controller
  
       
         $post_data = post::where('ps_status','active')
-                          ->limit(6)
                           ->orderByRaw("ps_type = 'normal' asc")
                           ->orderByRaw("ps_type = 'feature' asc")
-                          ->get();
+                          ->paginate(6);
                          
         foreach ($post_data as $key) {
             $key->media_data          = midea::where('m_ps_id',$key->ps_id)->first();
