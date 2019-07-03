@@ -547,7 +547,7 @@ class FrontController extends Controller
         ->where('ps_ct_id',$id)
         ->orderByRaw("ps_type = 'normal' asc")
         ->orderByRaw("ps_type = 'feature' asc")
-        ->paginate(2);
+        ->paginate(10);
         foreach ($post_data as $key) {
             $key->media_data          = midea::where('m_ps_id',$key->ps_id)->first();
             $key->category_data       = category::find($key->ps_ct_id);
@@ -560,7 +560,7 @@ class FrontController extends Controller
             if($diff->y)
             {
                $key->duration=  $diff->y." Years";
-            }
+            } 
             elseif($diff->m) {
                 $key->duration=  $diff->m." Months";
             }
@@ -655,7 +655,7 @@ class FrontController extends Controller
 
     public function search_attribute($id)
     {
-        $subcategory              = subcategory::where('st_ct_id',$id)->get();
+        $subcategory  = subcategory::where('st_ct_id',$id)->get();
         $data =array();
         foreach ($subcategory as $key) {
             $r =0;
@@ -780,7 +780,7 @@ class FrontController extends Controller
              foreach ($post_d as $key2) {
                  $i++;
              }
-             $key1->its_post =$i;
+             $key1->its_post =$i; 
         }
        
         $location = post::select('ps_city')->where('ps_status','active')->distinct()->get();  // groupby
@@ -789,5 +789,72 @@ class FrontController extends Controller
         return view('user.category_listing',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location, 'ctid'=>$category ,'ctimg'=>$ctimg]) ; 
 
       
+    }
+
+
+    public function search_attribute1($id)
+    {
+        $subcategory  = subcategory::where('st_ct_id',$id)->first();
+       // echo json_encode($subcategory);
+        //exit;
+        $data =array();
+       // foreach ($subcategory as $key) {
+            $r =0;
+            $attt = attribute::where('status','active')->where('at_st_id',$subcategory->st_id)->get(); 
+            foreach ($attt as $key1) {
+               $res =  attribute_value::where('atv_status','active')->where('atv_at_id',$key1->at_id)->get();
+               $r++;
+               if (count($res)==0)
+               {
+                $c = count($attt);
+                 unset($attt[$r-1]);
+               }
+               else{
+                $key1->attribute_value_data  = $res;
+              }
+               
+             }
+       
+             $subcategory->its_attribute = $attt;
+          
+             array_push($data,$subcategory);
+        // }
+        //   print_r($data);
+        //   exit;   
+         return  json_encode($data);
+    
+    }
+
+    public function search_attribute_sb($id)
+    {
+        $subcategory  = subcategory::where('st_id',$id)->first();
+       // echo json_encode($subcategory);
+        //exit;
+        $data =array();
+       // foreach ($subcategory as $key) {
+            $r =0;
+            $attt = attribute::where('status','active')->where('at_st_id',$subcategory->st_id)->get(); 
+            foreach ($attt as $key1) {
+               $res =  attribute_value::where('atv_status','active')->where('atv_at_id',$key1->at_id)->get();
+               $r++;
+               if (count($res)==0)
+               {
+                $c = count($attt);
+                 unset($attt[$r-1]);
+               }
+               else{
+                $key1->attribute_value_data  = $res;
+              }
+               
+             }
+       
+             $subcategory->its_attribute = $attt;
+          
+             array_push($data,$subcategory);
+        // }
+        //   print_r($data);
+        //   exit;   
+         return  json_encode($data);
+    
     }
 }

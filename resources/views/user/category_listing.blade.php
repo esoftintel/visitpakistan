@@ -210,8 +210,8 @@ arr = element.className.split(" ");
 if (arr.indexOf(name) == -1) {
     element.className += " " + name;
 }
-$('form select').on('change', function(){
-    $(this).closest('form').submit();
-});
+// $('form select').on('change', function(){
+//     $(this).closest('form').submit();
+// });
 </script>
-
+ 
