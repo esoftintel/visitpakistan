@@ -15,6 +15,7 @@ class CategoryController extends Controller
     public function index()
     { 
         $data = category::where('ct_status','active')->get();
+    
         return view('admin.category.category_list')->with('category_data',$data);
     }
 
@@ -100,42 +101,54 @@ class CategoryController extends Controller
       
         $this->validate($request, [
              'userfile' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+             'userfilewhite' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
     
 
-        if ($request->hasFile('userfile') && $request->hasFile('image')) {
+        if ($request->hasFile('userfile') && $request->hasFile('image')&&$request->hasFile('userfilewhite')) {
            
            $icon= $request->file('userfile');
+           $iconwhite= $request->file('userfilewhite');
            $image = $request->file('image');
             $ctname = $request->input('name');
+          
+           
             // $iconname = time().'.'.$icon->getClientOriginalExtension();
             
             // $new_name=rand().'.'. $image->getClientOriginalExtension();
             $iconname = time().'.'.$icon->getClientOriginalExtension();
+            $iconwhitename = rand().'.'.$iconwhite->getClientOriginalExtension();
             $imagename = rand().'.'.$image->getClientOriginalExtension();
+          
           
             $destinationPath = public_path('/images');
             $icon->move($destinationPath, $iconname);
+            $iconwhite->move($destinationPath,$iconwhitename);
             $image->move($destinationPath, $imagename);
             $data =array(
                      'ct_name' => $ctname,                   
                      'ct_icone' => $iconname,
+                     'ct_iconewhite' => $iconwhitename,
                      'ct_image'=>$imagename                  
                    );
+                   
 
         }
         else{ 
             
             $data =array(
                 'ct_name' =>  $request->input('name'),                   
-                'ct_icone' => $request->input('oldimg') , 
+                'ct_icone' => $request->input('oldimg') ,
+                'ct_iconewhite' => $request->input('oldimgwhite') ,
                 'ct_image' => $request->input('oldimage')                
               );
               
             }
           
-         category::where('ct_id',$id)->update($data);  
+        $ok= category::where('ct_id',$id)->update($data); 
+      
+          
          return redirect('category')->with('info','Data is Udateded Successfully!');
   
         

@@ -31,7 +31,8 @@
                       <tr class="text-center">
                         <th>Id</th>
                         <th>Name</th>
-                        <th>icon</th>
+                        <th>icon <b>Green</b></th>
+                        <th>icon <b>White</b></th>
                         <th>Image</th>
                         <th>Created</th>
                         <th>Action</th>
@@ -42,8 +43,9 @@
                       <tr>
                         <td> {{$key->ct_id}} </td>
                         <td>{{$key->ct_name}}</td>
-                        <td><img src="<?php echo  url('/images')."/".$key->ct_icone; ?>" class="img-thumbnail" width="70"></td>
-                         <td><img src="<?php echo  url('/images')."/".$key->ct_image; ?>" class="img-thumbnail" width="70"></td>
+                        <td><img src="<?php echo  asset('')."images/".$key->ct_icone; ?>" class="img-thumbnail" width="70"></td>
+                        <td><img src="<?php echo  asset('')."images/".$key->ct_iconewhite; ?>" class="img-thumbnail" width="70"></td>
+                         <td><img src="<?php echo  asset('')."images/".$key->ct_image; ?>" class="img-thumbnail" width="70"></td>
                         <td>{{$key->created_at}}</td>
                         <td class="text-center">
                            <a class="btn btn-primary btn-sm" href="{{url('/category_edit',$key->ct_id)}}" role="button">Update</a>
