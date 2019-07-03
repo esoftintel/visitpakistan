@@ -32,30 +32,43 @@
                         <label for="exampleInputEmail1">Category Name</label>
                         <input type="text" class="form-control" name='name' value="{{$category_data->ct_name}}" placeholder="Category Name" required>
                      </div>
-                     <input type='hidden' class='form-control' name='oldimage' value="{{$category_data->ct_icone}}">
-                   
-                    
-                       
+   
+                     <input type='hidden' class='form-control' name='oldimg' value="{{$category_data->ct_icone}}">
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Select New Icon</label>
+                        <label for="exampleInputPassword1">Select New Icon <b>(Green)</b></label>
                         <input type="file", name="userfile">
-                        <input type="hidden" name="oldimg" value="{{$category_data->ct_icone}}">
                     </div>
-                        <div class="form-group">
-                        <label>Old Icon </label>
-                        
-                        <img src="{{URL::to('/')}}/images/{{$category_data->ct_icone}}" class="img-thumbnail" width="100">
-                    </div>
+          
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Select New Image</label>
+                        <label>Old Icon (Green) </label>
+                        
+                        <img src="{{URL::to('/')}}/images/{{$category_data->ct_icon}}" class="img-thumbnail" width="50">
+                    </div>
+                    
+                
+                    
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Select New Icon<b>(White)</b></label>
+                        <input type="file", name="userfilewhite">
+                        <input type="hidden" name="oldimgwhite" value="{{$category_data->ct_iconewhite}}">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Old Icon <b>(white)</b> </label>
+                        
+                        <img src="{{URL::to('/')}}/images/{{$category_data->ct_iconewhite}}" class="img-thumbnail" width="50">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Select New Banner Image</label>
                         <input type="file", name="image">
                         <input type="hidden" name="oldimage" value="{{$category_data->ct_image}}">
                     </div>
                     </div>
                         <div class="form-group">
-                        <label>Old Image </label>
+                        <label>Old Image (Banner) </label>
                         
-                        <img src="{{URL::to('/')}}/images/{{$category_data->ct_image}}" class="img-thumbnail" width="100">
+                        <img src="{{URL::to('/')}}/images/{{$category_data->ct_image}}" class="img-thumbnail" width="50">
                     </div>
                     
             
@@ -68,7 +81,7 @@
             </div>
           </div>
           
-        </div>
-      </div>
+    
+    </div>
       @include('admin.templates.footer')
      
