@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth; 
 use App\post;
 use App\category;
 use App\subcategory;
@@ -60,7 +61,7 @@ class FrontController extends Controller
             }
             
         }
-        $category_data       = category::get();
+        $category_data       = category::get(); 
         foreach ($category_data as $key1) {
             $i=0;
             $post_d = post::where('ps_status','active')->where('ps_ct_id',$key1->ct_id)->get();
@@ -190,7 +191,7 @@ class FrontController extends Controller
        
         $location = post::select('ps_city')->where('ps_status','active')->distinct()->get();  // groupby
        
-        return view('user.index2',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location]) ; 
+        return view('user.index2_search',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location]) ; 
       
       
     }
@@ -294,7 +295,7 @@ class FrontController extends Controller
         $data['subcategory'] = subcategory::where('st_status','active')->get();
         return view('user.post.post_create',$data) ; //->with('category',$data);
     
-    }
+    } 
     public function ad_details(){
         return view('user.ad_details') ; //->with('category',$data);
     }
@@ -304,7 +305,7 @@ class FrontController extends Controller
     public function post_form($id)
     {
         $subcategory = subcategory::find($id);
-        $category    = category::find($subcategory->st_ct_id);
+        $category    = category::find($subcategory->st_ct_id); 
         $data['category_name'] =$category->ct_name;
         $data['subcategory_name'] =$subcategory->st_name;
         $data['category_id'] =$category->ct_id;
@@ -322,7 +323,7 @@ class FrontController extends Controller
     
     public function post_store(Request $request)
     {
-       
+        $uu  = Auth::user();
         $data=$request->input();
         $attribute=$request->input('attribute');
         $attribute_value=$request->input('attribute_value');
@@ -335,10 +336,11 @@ class FrontController extends Controller
                         "ps_address" => $request->input('address'),
                         "ps_ct_id"   => $request->input('ctid'),
                         "ps_st_id"   => $request->input('sctid'),
-                        "ps_ur_id"   => 1,
+                        "ps_ur_id"   => $uu->id,
                         "ps_lati"    => $request->input('state'),
                         "ps_longi"   => $request->input('city'),
                      );
+                       
                     $d =  post::create($data);
                   $i=0;
                   if($attribute)
@@ -433,7 +435,7 @@ class FrontController extends Controller
         ->where('ps_ur_id',$id)
         ->orderByRaw("ps_type = 'normal' asc")
         ->orderByRaw("ps_type = 'feature' asc")
-        ->get();
+        ->paginate(6);
         foreach ($post_data as $key) {
             $key->media_data          = midea::where('m_ps_id',$key->ps_id)->first();
             $key->category_data       = category::find($key->ps_ct_id);
@@ -536,15 +538,16 @@ class FrontController extends Controller
     }
        
 
-
+///5cf0d61925777_1559287321.jpg
 
     public function categorylisting($id)
     {
+        $ctimg = category::find($id);
         $post_data = post::where('ps_status','active')
         ->where('ps_ct_id',$id)
         ->orderByRaw("ps_type = 'normal' asc")
         ->orderByRaw("ps_type = 'feature' asc")
-        ->get();
+        ->paginate(10);
         foreach ($post_data as $key) {
             $key->media_data          = midea::where('m_ps_id',$key->ps_id)->first();
             $key->category_data       = category::find($key->ps_ct_id);
@@ -557,7 +560,7 @@ class FrontController extends Controller
             if($diff->y)
             {
                $key->duration=  $diff->y." Years";
-            }
+            } 
             elseif($diff->m) {
                 $key->duration=  $diff->m." Months";
             }
@@ -587,12 +590,13 @@ class FrontController extends Controller
         // return view('user.index2',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location]) ; 
       
       
-        return view('user.category_listing',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location , 'ctid'=>$id]) ; 
+        return view('user.category_listing',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location , 'ctid'=>$id , 'ctimg'=>$ctimg]) ; 
 
     }
 
     public function search_category1k(Request $request)
     {
+       
         $search   = $request->input('search');
         $category = $request->input('category');
         $location = $request->input('location');
@@ -644,14 +648,14 @@ class FrontController extends Controller
         $location = post::select('ps_city')->where('ps_status','active')->distinct()->get();  // groupby
        
        /// return view('user.index2',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location]) ; 
-        return view('user.category_listing',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location]) ; 
+        return view('user.category_listing',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location ]) ; 
 
       
     }
 
     public function search_attribute($id)
     {
-        $subcategory              = subcategory::where('st_ct_id',$id)->get();
+        $subcategory  = subcategory::where('st_ct_id',$id)->get();
         $data =array();
         foreach ($subcategory as $key) {
             $r =0;
@@ -682,8 +686,10 @@ class FrontController extends Controller
    
     public function search_category(Request $request)
     {
+        $ctimg = category::find($request->input('category'));
         $search   = $request->input('search');
         $category = $request->input('category');
+        $subcategory = $request->input('subcategory');
         $location = $request->input('location');
         $attri    = $request->input('attri');
         $attribute_value = $request->input('attribute_value');
@@ -696,17 +702,18 @@ class FrontController extends Controller
                        );
            $data[] = $d;
         }
-  
+   
     //     print_r($data);
     //   exit;
         
         $post_data = post::where('ps_status','active')
-                        ->where('ps_ct_id','like', '%' .$category. '%')
+                        ->where('ps_ct_id', $category)
+                        ->where('ps_st_id', $subcategory)
                         ->where('ps_city','like', '%' .$location. '%')
                         ->Where('ps_title', 'like', '%' .$search. '%')
                         ->orderByRaw("ps_type = 'normal' asc")
                         ->orderByRaw("ps_type = 'feature' asc")
-                        ->get();
+                        ->paginate(15);
                         foreach($post_data as $keyz=>$v)
                         {
                             $z=0;
@@ -714,12 +721,17 @@ class FrontController extends Controller
                             foreach($post_attribute_data as  $keyp=> $value)
                             {
                                
-                               foreach($data as $dt)
+                 
+                                foreach($data as $dt)
                                {
                                   if($value->pt_title===$dt['title'] && $value->pt_value===$dt['value'])
                                   {
                                      
                                       $z++;
+                                  }
+                                  if($value->pt_title===$dt['title'] && $dt['value']=="any")
+                                  {
+                                    $z++;
                                   }
                                }
                                
@@ -768,14 +780,81 @@ class FrontController extends Controller
              foreach ($post_d as $key2) {
                  $i++;
              }
-             $key1->its_post =$i;
+             $key1->its_post =$i; 
         }
        
         $location = post::select('ps_city')->where('ps_status','active')->distinct()->get();  // groupby
        
        /// return view('user.index2',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location]) ; 
-        return view('user.category_listing',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location, 'ctid'=>$category]) ; 
+        return view('user.category_listing',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location, 'ctid'=>$category ,'ctimg'=>$ctimg]) ; 
 
       
+    }
+
+
+    public function search_attribute1($id)
+    {
+        $subcategory  = subcategory::where('st_ct_id',$id)->first();
+       // echo json_encode($subcategory);
+        //exit;
+        $data =array();
+       // foreach ($subcategory as $key) {
+            $r =0;
+            $attt = attribute::where('status','active')->where('at_st_id',$subcategory->st_id)->get(); 
+            foreach ($attt as $key1) {
+               $res =  attribute_value::where('atv_status','active')->where('atv_at_id',$key1->at_id)->get();
+               $r++;
+               if (count($res)==0)
+               {
+                $c = count($attt);
+                 unset($attt[$r-1]);
+               }
+               else{
+                $key1->attribute_value_data  = $res;
+              }
+               
+             }
+       
+             $subcategory->its_attribute = $attt;
+          
+             array_push($data,$subcategory);
+        // }
+        //   print_r($data);
+        //   exit;   
+         return  json_encode($data);
+    
+    }
+
+    public function search_attribute_sb($id)
+    {
+        $subcategory  = subcategory::where('st_id',$id)->first();
+       // echo json_encode($subcategory);
+        //exit;
+        $data =array();
+       // foreach ($subcategory as $key) {
+            $r =0;
+            $attt = attribute::where('status','active')->where('at_st_id',$subcategory->st_id)->get(); 
+            foreach ($attt as $key1) {
+               $res =  attribute_value::where('atv_status','active')->where('atv_at_id',$key1->at_id)->get();
+               $r++;
+               if (count($res)==0)
+               {
+                $c = count($attt);
+                 unset($attt[$r-1]);
+               }
+               else{
+                $key1->attribute_value_data  = $res;
+              }
+               
+             }
+       
+             $subcategory->its_attribute = $attt;
+          
+             array_push($data,$subcategory);
+        // }
+        //   print_r($data);
+        //   exit;   
+         return  json_encode($data);
+    
     }
 }

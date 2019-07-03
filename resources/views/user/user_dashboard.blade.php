@@ -4,7 +4,7 @@
 @include('user.menu')
 
 
-<div class="bg_image_holder" style="background-image: url(&quot;img/breadcrumb1.jpg&quot;); opacity: 1;"><img src="img/breadcrumb1.jpg" alt="img/breadcrumb1.jpg"></div>
+<div class="bg_image_holder" style="background-image: url(&quot;img/breadcrumb1.jpg&quot;); opacity: 1;"><img src="{{asset('images/user')}}/{{$user_record->u_banner}}" alt="img/breadcrumb1.jpg"></div>
 
 
 
@@ -56,6 +56,8 @@
             <div class="tab-pane fade show active" id="listings" role="tabpanel" aria-labelledby="all-listings">
                 <div class="container">
                     <div class="row">
+                    @if(count($post_data)>0 )
+                    
                         @foreach($post_data as $psd)
                         <div class="col-lg-4 col-sm-6">
                             <div class="atbd_single_listing atbd_listing_card">
@@ -106,7 +108,9 @@
                             </div><!-- ends: .atbd_single_listing -->
                         </div><!-- ends: .col-lg-4 -->
                         @endforeach
-                        
+                     @else
+                     <h4 style="color:#999; text-align:center">  You don't have ad listing right now, Click on Ad Listing to create one.</h4>
+                     @endif
                     </div>
                 </div>
             </div><!-- ends: .tab-pane -->
@@ -116,7 +120,7 @@
                         <div class="col-lg-3 col-md-4 mb-5 mb-lg-0">
                         <br/><br/>
                             <div style="width:150px;height: 150px; border: 1px solid whitesmoke ;text-align: left;position: relative" id="image">
-                                <img width="100%" height="100%" id="preview_image" src="{{asset('images/user')}}/{{$user_record->u_image}}">
+                                <img width="100%" height="100%" id="preview_image" src="{{asset('images/user')}}/{{$user_record->u_image  !== '' ? $user_record->u_image : 'placeholder.png' }}">
                                 <i id="loading" class="fa fa-spinner fa-spin fa-3x fa-fw" style="position: absolute;left: 40%;top: 40%;display: none"></i>
                             </div>
                             <p class="change-txt">
@@ -127,7 +131,26 @@
                             </p>
                             <input type="file" id="file" style="display: none"/>
                             <input type="hidden" id="file_name"/>
+
+
+                            <br/><br/>
+                            <div style="width:150px;height: 150px; border: 1px solid whitesmoke ;text-align: left;position: relative" id="image">
+                                <img width="100%" height="100%" id="preview_image_banner" src="{{asset('images/user')}}/{{$user_record->u_banner !==null ? $user_record->u_banner : 'placeholder.png' }}">
+                                <i id="loading_banner" class="fa fa-spinner fa-spin fa-3x fa-fw" style="position: absolute;left: 40%;top: 40%;display: none"></i>
+                            </div>
+                            <p class="change-txt">
+                                <a href="javascript:changeProfile_banner()" style="text-decoration: none;">
+                                    <i class="glyphicon glyphicon-edit"></i> Change Banner
+                                </a>&nbsp;&nbsp;
+                              
+                            </p>
+                            <input type="file" id="file_banner" style="display: none"/>
+                            <input type="hidden" id="file_name_benner"/>
+
+
                         </div>
+
+                        
                         <div class="col-lg-9 col-md-8">
                             <div class="atbd_author_module">
                                 <div class="atbd_content_module">
@@ -306,7 +329,7 @@ if (arr.indexOf(name) == -1) {
         $.ajax({
             url: "{{url('ajax-image-upload')}}",
             data: form_data,
-            type: 'POST',
+             type: 'POST',
             contentType: false,
             processData: false,
             success: function (data) {
@@ -353,5 +376,71 @@ if (arr.indexOf(name) == -1) {
             }
     }
 </script>
+    <script>
+    function changeProfile_banner() {
+        $('#file_banner').click();
+    }
+    $('#file_banner').change(function () {
+        if ($(this).val() != '') {
+            upload_banner(this);
+
+        }
+    });
+    function upload_banner(img) {
+        var form_data = new FormData();
+        form_data.append('file_banner', img.files[0]);
+        form_data.append('_token', '{{csrf_token()}}');
+        $('#loading_banner').css('display', 'block');
+        $.ajax({
+            url: "{{url('ajax-image-upload_banner')}}",
+            data: form_data,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                if (data.fail) {
+                    $('#preview_image_banner').attr('src', '{{asset('images/user/noimage.jpg')}}');
+                    alert(data.errors['file']);
+                }
+                else {
+                    $('#file_name_banner').val(data);
+                    var imgt ='{{asset('images/user')}}/'+data;
+                    var ig = imgt.replace(/\s/g, "");
+                    $('#preview_image_banner').attr('src', ''+ig);
+                }
+                $('#loading_banner').css('display', 'none');
+            },
+            error: function (xhr, status, error) {
+                alert(xhr.responseText);
+                $('#preview_image_banner').attr('src', '{{asset('images/noimage.jpg')}}');
+            }
+        });
+    }
+    function removeFile_banner() {
+        if ($('#file_name_banner').val() != '')
+            if (confirm('Are you sure want to remove profile picture?')) {
+                $('#loading_banner').css('display', 'block');
+                var form_data = new FormData();
+                form_data.append('_method', 'DELETE');
+                form_data.append('_token', '{{csrf_token()}}');
+                $.ajax({
+                    url: "ajax-remove-image_benner/" + $('#file_name_banner').val(),
+                    data: form_data,
+                    type: 'POST',
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        $('#preview_image_banner').attr('src', '{{asset('images/noimage.jpg')}}');
+                        $('#file_name_banner').val('');
+                        $('#loading_banner').css('display', 'none');
+                    },
+                    error: function (xhr, status, error) {
+                        alert(xhr.responseText);
+                    }
+                });
+            }
+    }
+</script>
+
 
 @include('user.footer')

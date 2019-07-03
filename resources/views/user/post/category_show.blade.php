@@ -1,16 +1,18 @@
 @include('user.metadata')
 
 @include('user.menu')
+<div class="bg_image_holder" style="background-image: url('img/breadcrumb.png'); opacity: 1;"><img src="img/breadcrumb.png" alt="img/breadcrumb1.jpg"></div>
+
        
 <div class="breadcrumb-wrapper content_above">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h1 class="page-title">Add Listing</h1>
+                        <h1 class="page-title">Choose a Category</h1>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">All Listings</li>
+                                <li class="breadcrumb-item active" aria-current="page">Choose a Category</li>
                             </ol>
                         </nav>
                     </div>
@@ -67,4 +69,18 @@
             </div>
         </div>
     </section><!-- ends: .add-listing-wrapper -->
+    <script>
+
+var element, name, arr;
+element = document.getElementById("exchange");
+name = "header-breadcrumb";
+arr = element.className.split(" ");
+if (arr.indexOf(name) == -1) {
+    element.className += " " + name;
+}
+
+$('form select').on('change', function(){
+    $(this).closest('form').submit();
+});
+</script>
    @include('user.footer')

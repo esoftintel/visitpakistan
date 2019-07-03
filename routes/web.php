@@ -74,6 +74,11 @@ Route:: get('/subcategory_delete/{id}','SubcategoryController@distory');
 Route::resource('attribute_value','AttributeValueController');
 Route::get('/AttributeValue', 'AttributeValueController@index')->name('AttributeValue');
 Route::get('/at_value_delete/{id}','AttributeValueController@destroy');
+
+///////////////Routs for required lists against give id of category, subcagtegory <div class=""></div>
+Route::get('sub_categories/{id}','SubcategoryController@sub_categories_of_category');
+Route::get('sub_attributes/{id}','AttributeController@sub_attributes');
+Route::get('at_values/{id}','AttributeValueController@at_values');
  
 ///packages table oprations route(s)
 Route::resource('packages','PackagController');
@@ -90,7 +95,7 @@ Route::get('/getattribute/{id}', 'AttributeController@getattribute');
 
 //////////////////////////////user side route here /////////////////////////
 Route::get('/category_show', 'FrontController@create')->name('category_show');
-Route::get('/post_create', 'FrontController@post_create')->name('post_create');
+Route::get('/post_create', 'FrontController@post_create')->name('post_create'); 
 Route::get('/post_form/{id}', 'FrontController@post_form')->name('post_form');
 Route::post('/post_submit', 'FrontController@post_store')->name('post_submit');
 Route::get('/image_post/{id}', 'FrontController@image_post')->name('image_post');
@@ -101,12 +106,14 @@ Route::get('/ad_details/{id}', 'FrontController@post_detail')->name('ad_details'
 Route::get('/user_profile/{id}', 'FrontController@userprofile')->name('user_profile'); 
 Route::get('/user_dashboard', 'FrontController@userdashboard')->name('user_dashboard');
 
-Route::get('/category_listing/{id}', 'FrontController@categorylisting')->name('category_listing');
+Route::get('/category_listing/{id}', 'FrontController@categorylisting')->name('category_listing');  
 
 Route::get('/category_post/{id}', 'FrontController@category_posts')->name('category_post');
 Route::get('/post_detail/{id}', 'FrontController@post_detail')->name('post_detail');
 Route::get('/pusher', 'ChatController@index')->name('pusher');
 Route::get('/search_attribute/{id}', 'FrontController@search_attribute'); 
+Route::get('/search_attribute1/{id}', 'FrontController@search_attribute1'); 
+Route::get('/search_attribute_sb/{id}', 'FrontController@search_attribute_sb'); 
 
 Route::post('/like', 'LikeController@store')->name('like');
 Route::post('/search', 'FrontController@search')->name('search');
@@ -119,7 +126,7 @@ Route::post('/images_save', 'MideaController@store')->name('images_save');
 Route::post('/images-delete', 'MideaController@destroy'); 
 Route::get('/images-show', 'MideaController@index'); 
 
-////////////user Login Signup 
+////////////user Login Signup  
 
 Route::post('/userlogin', 'userLoginController@user_login'); 
 Route::get('/userlogout','userLoginController@user_logout');
@@ -127,6 +134,10 @@ Route::Post('/usersignup','userLoginController@user_register');
 
 Route::match(['get', 'post'], 'ajax-image-upload', 'UserController@ajaxImage');
 Route::delete('ajax-remove-image/{filename}', 'UserController@deleteImage');
+////////////banner upload
+
+Route::match(['get', 'post'], 'ajax-image-upload_banner', 'UserController@ajaxImage_banner');
+Route::delete('ajax-remove-image_banner/{filename}', 'UserController@deleteImage_banner');
 
 
 

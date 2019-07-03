@@ -1,16 +1,18 @@
 @include('user.metadata')
 
 @include('user.menu')
+<div class="bg_image_holder" style="background-image: url('../img/breadcrumb.png'); opacity: 1;"><img src="../img/breadcrumb.png" alt="img/breadcrumb1.jpg"></div>
+
        
 <div class="breadcrumb-wrapper content_above">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h1 class="page-title">Add Listing</h1>
+                        <h1 class="page-title">Post an Ad</h1>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">All Listings</li>
+                                <li class="breadcrumb-item active" aria-current="page">Post an Ad</li>
                             </ol>
                         </nav>
                     </div>
@@ -40,35 +42,44 @@
                             <input type="hidden" name="sctid" value="{{$subcategory_id}}">
                             <?php $a=0; ?>
                                  @foreach($attribute_data as $key)
+                                 <div class="col-sm-6 lefto">
                                 <div class="form-group">
                                 
-                                        <label for="" name="attribute[<?php echo $a; ?>]" value="{{$key->at_name}}" class="form-label">{{$key->at_name}}</label>
+                                        <!-- <label for="" name="attribute[<?php //echo $a; ?>]" value="{{$key->at_name}}" class="form-label">{{$key->at_name}}</label> -->
                                         <input type="hidden" name="attribute[<?php echo $a; ?>]" value="{{$key->at_name}}">
                                          
-                                        <div class="select-basic">
+                                        
                                         <?php  if(count($key->attribute_value_data)==0){  ?>
-                                            <input type="text" name="attribute_value[<?php echo $a++; ?>]" >
+                                            <label for="" name="attribute[<?php echo $a; ?>]" value="{{$key->at_name}}" class="form-label">{{$key->at_name}}</label>
+                                            <input type="text" class="form-control" name="attribute_value[<?php echo $a++; ?>]" >
                                         <?php }else{ ?>
+                                            <label for="" name="attribute[<?php echo $a; ?>]" value="{{$key->at_name}}" class="form-label">{{$key->at_name}}</label>
+                                            <div class="select-basic">
                                              <select class="form-control"  name="attribute_value[<?php echo $a++; ?>]" required>
                                                @foreach($key->attribute_value_data as $key1)
                                                     <option value="{{$key1->atv_name}}">{{$key1->atv_name}}</option>
                                                 @endforeach   
                                              </select>
+                                             </div>  
                                         <?php } ?>
-                                            </div>    
+                                              
+                                </div>
                                 </div>
                                 @endforeach
                               
-
+                                <div class="col-sm-6 lefto">
                                 <div class="form-group">
                                     <label for="title" class="form-label">Title * </label>
                                     <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title" required>
                                 </div>
+                                </div>
+                                <div class="col-sm-6 lefto">
                                 <div class="form-group">
                                     <label for="desc" class="form-label"> Description *</label>
                                     <textarea id="desc" rows="8" class="form-control" name="detail" placeholder="Description" required></textarea>
                                 </div>
- 
+                                </div>
+                                <div class="col-sm-6 lefto">
                                 <div class="form-group">
                                     <label class="form-label">Pricing *</label>
                                     <div class="pricing-options">
@@ -81,7 +92,8 @@
                                     </div>
                                   
                                 </div>
-                              
+                                </div>
+                                <div class="col-sm-6 lefto">
                                 <div class="form-group">
                                     <label for="location" class="form-label">Location</label>
                                     <div class="select-basic">
@@ -93,6 +105,9 @@
                                         </select>
                                     </div>
                                 </div>
+                                </div>
+
+                                <div class="col-sm-12" style="clear: both;">
                                 <div class="form-group">
                                         <h4>CONFIRM YOUR LOCATION</h4>
                                         <div class="location-btns">
@@ -125,20 +140,25 @@
                                                 </div>
 
                                         </div>
+                                        </div>
+                                       
+                                        <div class="col-sm-12"></div>
                                     <div class="form-group">
                                                 <h4>REVIEW YOUR DETAILS</h4>
-
-                                                <img src="img.png" class="image-place"/>
-                                                <div style="widows: 100%;"></div>
+                                                <?php if($user_data->u_image){?>
+                                                 <img src="{{asset('images/user')}}/{{$user_data->u_image}}" class="image-place"/>
+                                                <?php } else {?>
+                                                    <img src="{{asset('images/user')}}/placeholder.png" class="image-place"/>
+                                                <?php } ?> <div style="widows: 100%;"></div>
                                                     <br/>
                                                 <label for="" class="form-label">Name</label>
                                                 <div class="">
-                                                    <input class="form-control" placeholder="Your Name" value="Abdul Manan" required/>
+                                                    <input class="form-control"  value="{{$user_data->name}}" readonly />
                                                     
                                                 </div>
                                                 <br/>
                                                 <label for="" class="form-label">Your Phone Number</label>
-                                                <p>{{$user_data->email}}</p>
+                                                <p>{{$user_data->u_phone}}</p>
                                        </div>
                                     </div>
                                    <button type="submit" class="btn btn-primary btn-lg listing_submit_btn">Submit listing</button>
@@ -171,7 +191,20 @@
         </div>
     </section><!-- ends: .add-listing-wrapper -->
 
+    <script>
 
+var element, name, arr;
+element = document.getElementById("exchange");
+name = "header-breadcrumb";
+arr = element.className.split(" ");
+if (arr.indexOf(name) == -1) {
+    element.className += " " + name;
+}
+
+$('form select').on('change', function(){
+    $(this).closest('form').submit();
+});
+</script>
 
    
    @include('user.footer')

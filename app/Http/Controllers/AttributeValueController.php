@@ -124,4 +124,13 @@ class AttributeValueController extends Controller
      return redirect('attribute_value')->with('info','Data is Deleted Successfully!');
        
     }
+
+    public function at_values($id)
+    {
+        $attribute_value = attribute_value::where('atv_at_id',$id)
+                                        ->where('atv_status','active')
+                                        ->Join('attributes', 'attributes.at_id', '=', 'attribute_values.atv_at_id')
+                                        ->get();
+       return view('admin.attributevalue.attribute_value_list')->with('attributevalue_data',$attribute_value);
+    }
 }

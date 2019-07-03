@@ -34,7 +34,7 @@
                         <th>POst Price</th>
                         <th>Type</th>
                         <th>Created at</th>
-                        <th class="pull-center">Action</th>
+                        <th class="text-center">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -48,8 +48,8 @@
                         <td >{{$key->created_at}}</td>
                         <td class="pull-right">
                            <a class="btn btn-primary btn-sm" href="{{url('/post_details/'.$key->ps_id)}}" role="button">Details</a>
-                           <a class="btn btn-primary btn-sm" href="{{url('/post_update/'.$key->ps_id)}}" role="button">Update</a>
-                           <a class="btn btn-primary btn-sm" href="{{url('/post_delete/'.$key->ps_id)}}" role="button">Delete</a> 
+                           
+                           <a class="btn btn-danger btn-sm" href="{{url('/post_delete/'.$key->ps_id)}}" role="button">Delete</a> 
                          </td>
                       </tr>
                       @endforeach

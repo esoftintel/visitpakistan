@@ -118,7 +118,7 @@
                                         </div><!-- ends: .atbd_listing_image -->
                                         <div class="atbd_author atbd_author--thumb">
                                             <a href="">
-                                                <img src="img/author-thumb2.jpg" alt="Author Image">
+                                                <img src="{{asset('images/user')}}/{{$key->create_by['u_banner']}}" alt="opp's" style="height:30px;">
                                                 <span class="custom-tooltip">{{$user_r->name}} Owner</span>
                                             </a>
                                         </div>
@@ -168,20 +168,10 @@
                             </div>
                         </div><!-- ends: .col-md-6 -->
                     @endforeach    
-                        
+                    
                     </div>
                     <div class="row">
-                        <div class="col-lg-12">
-                            <nav class="navigation pagination d-flex justify-content-end" role="navigation">
-                                <div class="nav-links">
-                                    <a class="prev page-numbers" href=""><span class="la la-long-arrow-left"></span></a>
-                                    <a class="page-numbers" href="">1</a>
-                                    <span aria-current="page" class="page-numbers current">2</span>
-                                    <a class="page-numbers" href="">3</a>
-                                    <a class="next page-numbers" href=""><span class="la la-long-arrow-right"></span></a>
-                                </div>
-                            </nav>
-                        </div>
+                    {{ $post_data->links() }} 
                     </div>
                 </div><!-- ends: .col-lg-12 -->
             </div>

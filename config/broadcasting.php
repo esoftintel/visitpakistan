@@ -16,6 +16,12 @@ return [
     */
 
     'default' => env('BROADCAST_DRIVER', 'null'),
+    
+    ///used for pusher
+    'options' => [
+        'cluster' => 'eu',
+        'encrypted' => true
+    ],
 
     /*
     |--------------------------------------------------------------------------

@@ -38,7 +38,7 @@
                 
                 </div>
               </div>
-              <div class="card-body">
+              <div class="card-body"> 
                
               
               <h4 class="card-title"><i class="tim-icons text-primary"></i><b class='text-center'> Created at : </b><i class='text-center'>{{$post[0]->created_at}}</i></h4>

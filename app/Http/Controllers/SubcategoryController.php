@@ -123,4 +123,14 @@ class SubcategoryController extends Controller
      subcategory::wherest_id($id)->update($data);  
      return redirect('subcategory')->with('info','Data is updated Successfully!');
     }
+
+    public function sub_categories_of_category($id)
+    {
+        
+        $data = subcategory::where('st_ct_id',$id)
+                            ->where('st_status','active')
+                            ->Join('categories', 'categories.ct_id', '=', 'subcategories.st_ct_id')
+                           ->get();
+           return view('admin.subCategory.subCategory_list')->with('subCategory_data',$data);
+    }
 }

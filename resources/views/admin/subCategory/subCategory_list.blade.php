@@ -20,7 +20,7 @@
               <div class="card-header">
               <div class="row"> 
               <div class="col-lg-6"><h4 class="card-title">Sub Categories</h4></div>
-                <div class="col-lg-6"> <a class="btn btn-primary pull-right btn-sm" href="{{route('subcategory.create')}}" role="button">add Categories</a></div>
+                <div class="col-lg-6"> <a class="btn btn-primary pull-right btn-sm" href="{{route('subcategory.create')}}" role="button">Add SubCat</a></div>
                
               <h4 class="card-title"> </h4>
               </div>
@@ -34,7 +34,7 @@
                         <th>Status</th>
                         <th>Category_id</th>
                         <th>Created</th>
-                        <th>Action</th>
+                        <th class="text-center">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -46,10 +46,11 @@
                         <td>{{$key->st_status}}</td>
                         <td>{{$key->ct_name}}</td>
                         <td>{{$key->created_at}}</td>
-                        <td>
+                        <td class="text-center">
                     
                            <a class="btn btn-primary btn-sm" href="{{route('subcategory.edit',$key->st_id)}}">Update</a>
-                           <a class="btn btn-primary btn-sm" href="{{url('/subcategory_delete/'.$key->st_id)}}" role="button">Delete</a> 
+                           <a class="btn btn-danger btn-sm" href="{{url('/subcategory_delete/'.$key->st_id)}}" role="button">Delete</a> 
+                           <a class="btn btn-success btn-sm" href="{{url('sub_attributes',$key->st_id)}}" role="button">Attributes</a>
                          </td>
                       </tr>
                       @endforeach

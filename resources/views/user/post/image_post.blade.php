@@ -1,15 +1,16 @@
 @include('user.metadata')
 @include('user.menu')
+<div class="bg_image_holder" style="background-image: url('../img/breadcrumb.png'); opacity: 1;"><img src="../img/breadcrumb.png" alt="img/breadcrumb1.jpg"></div>
 
 <div class="breadcrumb-wrapper content_above">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h1 class="page-title">Add Listing</h1>
+                        <h1 class="page-title">Post an Ad</h1>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">All Listings</li>
+                                <li class="breadcrumb-item active" aria-current="page">Post an Ad</li>
                             </ol>
                         </nav>
                     </div>
@@ -20,23 +21,22 @@
     <section class="add-listing-wrapper border-bottom section-bg section-padding-strict">
         <div class="container">
         <div class="row">
-        <div class="col-sm-10 offset-sm-1">
-            <h2 class="page-heading">Category :{{$category_data->ct_name}} </h2>
-            <h2 class="page-heading">SubCategory :{{$subcategory_data->st_name}} </h2>
+        <div class="col-sm-10 offset-sm-1 review-details">
+            <h2 class="page-heading"><span>Category :</span> {{$category_data->ct_name}} </h2>
+            <h2 class="page-heading"><span>SubCategory :</span>{{$subcategory_data->st_name}} </h2>
              @foreach($post_attribute_data as $key)
-             <h2 class="page-heading">{{$key->pt_title}} </h2>
-             <h2 class="page-heading">{{$key->pt_value}} </h2>
+             <h2 class="page-heading"><span>{{$key->pt_title}} :</span>{{$key->pt_value}}</h2>
             
              @endforeach
 
-             <h2 class="page-heading">Title :{{$post_data->ps_title}} </h2>
-             <h2 class="page-heading">Detail:{{$post_data->ps_detail}} </h2>
-             <h2 class="page-heading">Price :$ {{$post_data->ps_price}} </h2>
-             <h2 class="page-heading">Address :{{$post_data->ps_address}} </h2>
+             <h2 class="page-heading"><span>Title :</span> {{$post_data->ps_title}} </h2>
+             <h2 class="page-heading"><span>Detail:</span> {{$post_data->ps_detail}} </h2>
+             <h2 class="page-heading"><span>Price :</span> PKR. {{$post_data->ps_price}} </h2>
+             <h2 class="page-heading"><span>Address :</span> {{$post_data->ps_address}} </h2>
 
         </div>
         <div class="col-sm-10 offset-sm-1">
-            <h2 class="page-heading">Upload your Images <span id="counter"></span></h2>
+            <h2 class="page-heading"><span style="color:#309e5e">Upload your Images</span> <span id="counter"></span></h2>
             <form method="post" action='{{url("/images_save")}}'
                   enctype="multipart/form-data" class="dropzone" id="my-dropzone">
                   {{ csrf_field() }}
@@ -54,7 +54,7 @@
              </form> 
         </div>
     </div>
-  <a href="#">  <button type="button" class="btn btn-success">Dark</button></a>
+  <a href="#">  <button type="button" class="btn btn-success">Back</button></a>
    <!-- {{--Dropzone Preview Template--}} -->
     <div id="preview" style="display: none;">
 
@@ -103,7 +103,20 @@
         </div>
     </section><!-- ends: .add-listing-wrapper -->
 
+    <script>
 
+        var element, name, arr;
+        element = document.getElementById("exchange");
+        name = "header-breadcrumb";
+        arr = element.className.split(" ");
+        if (arr.indexOf(name) == -1) {
+            element.className += " " + name;
+        }
+
+        $('form select').on('change', function(){
+            $(this).closest('form').submit();
+        });
+</script>
 
     <!-- {{--End of Dropzone Preview Template--}} -->
     @include('user.footer')

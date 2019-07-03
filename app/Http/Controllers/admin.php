@@ -68,7 +68,7 @@ class admin extends Controller
         ->orderByRaw("ps_type = 'feature' asc")
         ->orderByRaw("created_at  desc")
         ->get();
-
+     
         return view('admin.posts.posts_list')->with('posts',$Posts);
     }
    
@@ -96,8 +96,18 @@ class admin extends Controller
       
         $key->post_attribute_data = post_attribute::where('pt_ps_id',$key->ps_id)->get();
     }
+     
+    if($Post->count())
+    { 
+        return view('admin.posts.post_details')->with('post',$Post);
+    }
+    else{
+      
+        return redirect('posts_list')->with('info','No details found!');
+    }
+
     
-    return view('admin.posts.post_details')->with('post',$Post);
+    
     }
 
     public function post_chat($id)

@@ -192,7 +192,7 @@
                                     </li>
                                     <li>
                                         <div class="atbd_info_title"><span class="la la-phone"></span>Phone Number:</div>
-                                        <div class="atbd_info">{{$post_data->create_by['email']}}</div>
+                                        <div class="atbd_info">{{$post_data->create_by['u_phone']}}</div>
                                     </li>
                                     <li>
                                         <div class="atbd_info_title"><span class="la la-envelope"></span>Email:</div>
@@ -214,10 +214,14 @@
                         <div class="widget-body atbd_author_info_widget">
                             <div class="atbd_avatar_wrapper">
                                 <div class="atbd_review_avatar">
-                                    <img src="img/avatar-60x60.jpg" alt="Avatar Image">
+                                @if($post_data->create_by['u_image'])
+                                    <img src="{{asset('images/user')}}/{{$post_data->create_by['u_image']}}" style="height:40px" alt="Avatar Image">
+                                 @else
+                                 <img src="{{asset('images/user')}}/placeholder.png" alt="Avatar Image">
+                                 @endif   
                                 </div>
                                 <div class="atbd_name_time">
-                                    <h4>Zephy Real Estate <span class="verified" data-toggle="tooltip" data-placement="top" title="Verified"></span></h4>
+                                    <h4>{{$post_data->create_by['name']}} <span class="verified" data-toggle="tooltip" data-placement="top" title="Verified"></span></h4>
                                     <span class="review_time">Posted {{$post_data->duration}} days ago</span>
                                 </div>
                             </div><!-- ends: .atbd_avatar_wrapper -->
@@ -229,7 +233,7 @@
                                     </li>
                                     <li>
                                         <span class="la la-phone"></span>
-                                        <span class="atbd_info">{{$post_data->create_by['email']}}</span>
+                                        <span class="atbd_info">{{$post_data->create_by['u_phone']}}</span>
                                     </li>
                                     <li>
                                         <span class="la la-envelope"></span>
@@ -297,120 +301,7 @@
                             </ul>
                         </div> <!-- ends .atbd_similar_listings -->
                     </div><!-- ends: .widget -->
-                    <div class="widget atbd_widget widget-card">
-                        <div class="atbd_widget_title">
-                            <h4><span class="la la-list-alt"></span> Popular Listings</h4>
-                            <a href="">View All</a>
-                        </div><!-- ends: .atbd_widget_title -->
-                        <div class="atbd_categorized_listings atbd_popular_listings">
-                            <ul class="listings">
-                                <li>
-                                    <div class="atbd_left_img">
-                                        <a href=""><img src="img/sl5.jpg" alt="listing image"></a>
-                                    </div>
-                                    <div class="atbd_right_content">
-                                        <div class="cate_title">
-                                            <h4><a href="">Flanders Heat & Air Systems</a></h4>
-                                        </div>
-                                        <p class="directory_tag">
-                                            <span class="la la-glass" aria-hidden="true"></span>
-                                            <span><a href="">Restaurant</a></span>
-                                        </p>
-                                        <div class="atbd_rated_stars">
-                                            <ul>
-                                                <li><span class="rate_active"></span></li>
-                                                <li><span class="rate_active"></span></li>
-                                                <li><span class="rate_active"></span></li>
-                                                <li><span class="rate_active"></span></li>
-                                                <li><span class="rate_active"></span></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="atbd_left_img">
-                                        <a href=""><img src="img/sl6.jpg" alt="listing image"></a>
-                                    </div>
-                                    <div class="atbd_right_content">
-                                        <div class="cate_title">
-                                            <h4><a href="">Expert Services Agency</a></h4>
-                                        </div>
-                                        <p class="directory_tag">
-                                            <span class="la la-map-marker" aria-hidden="true"></span>
-                                            <span>
-                                                <a href="">Places</a>
-                                                <span class="atbd_cat_popup">+4
-                                                    <span class="atbd_cat_popup_wrapper">
-                                                        <span>
-                                                            <a href="">Food<span>,</span></a>
-                                                            <a href="">Others<span>,</span></a>
-                                                            <a href="">Service<span>,</span></a>
-                                                            <a href="">Travel<span>,</span></a>
-                                                        </span>
-                                                    </span>
-                                                </span><!-- ends: .atbd_cat_popup -->
-                                            </span>
-                                        </p>
-                                        <div class="atbd_rated_stars">
-                                            <ul>
-                                                <li><span class="rate_active"></span></li>
-                                                <li><span class="rate_active"></span></li>
-                                                <li><span class="rate_active"></span></li>
-                                                <li><span class="rate_active"></span></li>
-                                                <li><span class="rate_disable"></span></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="atbd_left_img">
-                                        <a href=""><img src="img/sl7.jpg" alt="listing image"></a>
-                                    </div>
-                                    <div class="atbd_right_content">
-                                        <div class="cate_title">
-                                            <h4><a href="">Sydney Restaurant Towers</a></h4>
-                                        </div>
-                                        <p class="directory_tag">
-                                            <span class="la la-shopping-cart" aria-hidden="true"></span>
-                                            <span><a href="">Shopping</a></span>
-                                        </p>
-                                        <div class="atbd_rated_stars">
-                                            <ul>
-                                                <li><span class="rate_active"></span></li>
-                                                <li><span class="rate_active"></span></li>
-                                                <li><span class="rate_disable"></span></li>
-                                                <li><span class="rate_disable"></span></li>
-                                                <li><span class="rate_disable"></span></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="atbd_left_img">
-                                        <a href=""><img src="img/sl8.jpg" alt="listing image"></a>
-                                    </div>
-                                    <div class="atbd_right_content">
-                                        <div class="cate_title">
-                                            <h4><a href="">Favorite Architecture Places</a></h4>
-                                        </div>
-                                        <p class="directory_tag">
-                                            <span class="la la-bank" aria-hidden="true"></span>
-                                            <span><a href="">Art & History</a></span>
-                                        </p>
-                                        <div class="atbd_rated_stars">
-                                            <ul>
-                                                <li><span class="rate_active"></span></li>
-                                                <li><span class="rate_active"></span></li>
-                                                <li><span class="rate_active"></span></li>
-                                                <li><span class="rate_active"></span></li>
-                                                <li><span class="rate_disable"></span></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div> <!-- ends .atbd_similar_listings -->
-                    </div><!-- ends: .widget -->
+                   
                 </div>
             </div>
         </div>
