@@ -12,10 +12,14 @@ class userLoginController extends Controller
     //
     public function user_login(Request $request)
     {
-
+      //echo "yess";
+      //print_r(request('email'));
+     // exit;
       if(Auth::attempt(['email' => request('email'), 'password' => request('password')]))
       {
         $user = Auth::user(); 
+        // print_r($user);
+        // exit;
         session(['user' => $user->name,'user_data'=>$user->id]);
         
       }
