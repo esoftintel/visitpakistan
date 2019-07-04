@@ -102,14 +102,9 @@ class search_api extends Controller
     
     public function search_category(Request $request)
     {
-         $request->validate([
-                'title' => 'required',
-                'detail'  =>'required',
-                
-
-            ]);
         
-          $ctimg = category::find($request->input('category'));
+        
+        $ctimg = category::find($request->input('category'));
         $search   = $request->input('search');
         $category = $request->input('category');
         $subcategory = $request->input('subcategory');
