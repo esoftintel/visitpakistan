@@ -115,7 +115,8 @@ Route::get('/search_attribute/{id}', 'FrontController@search_attribute');
 Route::get('/search_attribute1/{id}', 'FrontController@search_attribute1'); 
 Route::get('/search_attribute_sb/{id}', 'FrontController@search_attribute_sb'); 
 
-Route::post('/like', 'LikeController@store')->name('like');
+Route::post('/like', 'LikeController@store')->name('like'); 
+Route::post('/create_rating_review', 'RatingController@store')->name('create_rating_review'); ////////
 Route::post('/search', 'FrontController@search')->name('search');
 Route::post('/search_category', 'FrontController@search_category')->name('search_category');
 Route::post('/user_update', 'UserController@user_update')->name('user_update');

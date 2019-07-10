@@ -186,7 +186,45 @@
     <script src="{{ url('/js_img/dropzone-config.js') }}"></script>
     <!-- endinject-->
 
+    <script>
+ $('#postid_rating').on('click',function(e) {
+        e.preventDefault(); 
+        alert("zeeee");
+            var uid = $('#cm_user_id').val();
+            var message = $('#message').val();
+            var postid = $('#post_id').val();
+            $.ajax({
+                type: "POST",
+                url:'/create_rating_review',
+                data: {uid:uid, message:message, post_id:postid}
+                success: function( msg ) {
+                    alert( msg );
+                }
+            });
+    });
+</script>
 
+<script>
+    //////////////load popup
+    $(".postid_rating").on('click',function(){
+        var postid=$(this).attr("data-id");
+        var userid = $(this).attr("data-uid");
+        $('#rt_post_id').val(postid);
+        jQuery.noConflict();  
+        if(userid>0)
+        {
+            $('#myModal').modal('show');
+        }
+        else
+        {
+            $('#login_modal').modal('show'); 
+        }
+       
+       // alert(postid);
+    
+    });
+            
+</script>
     <script>
     
         $(".dill").on('click',function(){
@@ -273,9 +311,13 @@
                                     $('#attribute_value').empty();
                                     var res='';
                                     var i=0;
+                                    var zz=0;
                                     $.each(data,function(key,value){
                                          $('#subcategory').append('<option value="'+value.st_id+'">'+value.st_name+'</option>');
-                                            $.each(value.its_attribute,function(key,value){
+                                         if(zz<1)
+                                          {
+                                              zz++; 
+                                         $.each(value.its_attribute,function(key,value){
                                                 
                                                 res += '<p class="d-flex justify-content-between"><span style="color:green"><input type="hidden" name="attri['+i+']" value="'+value.at_name+'">'+value.at_name+':</span></p><div class="select-basic"><select class="form-control " name="attribute_value['+i+']" id="attribute_value"><option value="any">any</option>'; 
                                                 i++;
@@ -286,11 +328,13 @@
                                                   }); 
                                                   res+='</select></div>';
                                             }); 
+                                        }
                                      });
                                      $('#attribute_value').append(res);
                                     
                                     }
                                 });
+                            
                       
                 });
         </script>

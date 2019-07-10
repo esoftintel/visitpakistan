@@ -204,6 +204,31 @@
               
                         </div>
                     </div><!-- ends: .atbd_content_module -->
+                    <div class="atbd_content_module atbd_contact_information_module">
+                        <div class="atbd_content_module__tittle_area">
+                            <div class="atbd_area_title">
+                                <h4><span class="la la-headphones"></span>Reviws & Ratings</h4>
+                            </div>
+                        </div>
+                        <div class="atbdb_content_module_contents">
+                            <div class="atbd_contact_info">
+                                <ul>
+                                @foreach($post_data->rating_are as $pad)
+                                   <li>
+                                       <div class="row col-lg-12">
+                                        <div class="col-lg-2">Rating:</div>
+                                        <div class="col-lg-2">{{$pad->r_rating}}</div>
+                                        <div class="col-lg-2">Comment:</div>
+                                        <div class="col-lg-6">{{$pad->r_comment}}</div>
+                                        </div>
+                                    </li>
+                                    @endforeach
+                                 
+                                </ul>
+                            </div>
+              
+                        </div>
+                    </div><!-- ends: .atbd_content_module -->
 
                 </div>
                 <div class="col-lg-4 mt-5 mt-lg-0">
@@ -243,7 +268,7 @@
                                 </ul>
                             </div><!-- ends: .atbd_widget_contact_info -->
                            
-                            <a href="" class="btn btn-outline-primary btn-block">View Profile</a>
+                            <a href="{{url('user_profile')}}/{{$post_data->create_by['id']}}" class="btn btn-outline-primary btn-block">View Profile</a>
                         </div><!-- ends: .widget-body -->
                     </div><!-- ends: .widget -->
    
