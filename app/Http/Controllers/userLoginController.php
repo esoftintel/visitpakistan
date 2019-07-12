@@ -18,9 +18,13 @@ class userLoginController extends Controller
       if(Auth::attempt(['email' => request('email'), 'password' => request('password')]))
       {
         $user = Auth::user(); 
+<<<<<<< HEAD
         // print_r($user);
         // exit;
         session(['user' => $user->name,'user_data'=>$user->id]);
+=======
+        session(['user' => $user->name,'user_data'=>$user->id,'user_image'=>$user->u_image]);
+>>>>>>> db8a0483a0d18a7da65b18cab2cda733a5731129
         
       }
    

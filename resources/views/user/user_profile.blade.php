@@ -3,8 +3,8 @@
 @include('user.menu')
 
 
-
-<div class="bg_image_holder" style="background-image: url(&quot;img/breadcrumb1.jpg&quot;); opacity: 1;"><img src="img/breadcrumb1.jpg" alt="img/breadcrumb1.jpg"></div>
+ 
+<div class="bg_image_holder" style="background-image: url(&quot;img/breadcrumb1.jpg&quot;); opacity: 1;"><img src="{{ asset('images/user')}}/{{$user_r->u_banner}}" alt="img/breadcrumb1.jpg"></div>
 <div class="breadcrumb-wrapper content_above">
             <div class="container">
                 <div class="row">
@@ -25,15 +25,15 @@
                             <img src="{{asset('images/user')}}/{{$user_r->u_image}}" style="width:100px;height:100px" alt="Author Image">
                             <div class="atbd_auth_nd">
                                 <h2>{{$user_r->name}}</h2>
-                                <p>Joined in March 2019</p>
+                                <p> {{$user_r->duration}}Ago Joined </p>
                             </div>
                         </div><!-- ends: .atbd_author_avatar -->
                         <div class="atbd_author_meta">
                             <div class="atbd_listing_meta">
-                                <span class="atbd_meta atbd_listing_rating">4.5 <i class="la la-star"></i></span>
-                                <p class="meta-info"><span>22</span>Reviews</p>
+                                <span class="atbd_meta atbd_listing_rating">{{$user_r->rate}} <i class="la la-star"></i></span>
+                                <p class="meta-info"><span>{{$user_r->number_view}}</span>Reviews</p>
                             </div>
-                            <p class="meta-info"><span>15</span>Listings</p>
+                            <p class="meta-info"><span>{{$user_r->number_post}}</span>Listings</p>
                         </div><!-- ends: .atbd_author_meta -->
                     </div><!-- ends: .atbd_auhor_profile_area -->
                 </div><!-- ends: .col-lg-12 -->

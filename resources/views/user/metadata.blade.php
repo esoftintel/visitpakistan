@@ -24,4 +24,5 @@
     <link rel="stylesheet" href="{{ url('/css_img/custom.css') }}">
     <!-- endinject -->
     <link rel="icon" type="{{ asset('image/png" sizes="32x32" href="img/fevicon.png') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>

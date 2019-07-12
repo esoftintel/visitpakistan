@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-lg-10 offset-lg-1">
                         <div class="search_title_area">
-                            <h2 class="title">Find the Best Places to Be</h2>
+                            <h2 class="title">We Care About Your Needs </h2>
                             <p class="sub_title">All the top locations – from restaurants and clubs, to galleries, famous places and more..</p>
                         </div><!-- ends: .search_title_area -->
                         <form action="{{url('/search')}}" method="POST" class="search_form">
@@ -181,6 +181,9 @@
                                                     <a href=""><img src="{{ asset('images')}}/{{$key->category_data['ct_icone']}}" style="width:16px; height:16px;" /> {{$key->category_data['ct_name']}}</a>
                                                 </div>
                                             </div>
+                                            <button type="button" class="btn btn-info btn-sm postid_rating"  data-toggle="modal" data-id="{{$key->ps_id}}"  data-uid="{{session('user_data')}}">Open Modal</button>
+                                            <!-- <button type="button" class="btn btn-info btn-sm postid_rating" value="{{$key->ps_id}}" data-id="{{$key->ps_id}}" data-toggle="modal" <?php if(session('user_data')){ ?> data-target="#myModal"<?php }else{?> data-target="#login_modal" <?php } ?>  >Open Modal</button>
+                                            -->
                                             <ul class="atbd_content_right dill " data-id="{{$key->ps_id}}">
                                                 <li class="atbd_save">
                                                     <span class="la la-heart-o "  ></span>
@@ -316,4 +319,89 @@
             </div>
         </div>
     </section><!-- ends: .subscribe-wrapper -->
+
+<div class="container">
+<style>
+.gw-model textarea {
+    width: 100%;
+    border: 1px solid #ccc;
+}
+.star-container {
+    display: inline-block;
+    border-radius: 50px;
+    background-color: #FFFFFF;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.fill {
+    content: '';
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/*.percent30 {
+    width: 30%;
+}
+
+.percent75 {
+    width: 75%;
+}*/
+
+.percent100 {
+    width: 100%;
+}
+
+.fa {
+    font-size: 100px;
+    position: relative;
+    top: -10px;
+    left: -2px;
+}
+</style>
+<!-- The Modal -->
+<div class="modal" id="myModal">
+<div class="modal-dialog">
+<div class="modal-content">
+
+<!-- Modal Header -->
+<div class="modal-header">
+<h4 class="modal-title">Popup</h4>
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+
+<!-- Modal body -->
+<div class="modal-body gw-model">
+<form enctype="multipart/form-data" method="post" action="{{route('create_rating_review')}}" id="comment">
+     {{ csrf_field() }}
+    <textarea id="message" name="message"> </textarea>
+    <input type="hidden" name="post_id" id="rt_post_id">
+    <input type="hidden" name="rate" id="rt_post_id" value="4">
+    <input type="hidden" name="user_id" id="cm_user_id" value="{{session('user_data')}}">
+        <div class="star-container"><span class="fill percent100"></span><i class="far fa-star"></i></div>
+        <div class="star-container"><span class="fill percent100"></span><i class="far fa-star"></i></div>
+        <div class="star-container"><span class="fill percent100"></span><i class="far fa-star"></i></div>
+        <div class="star-container"><span class="fill percent100"></span><i class="far fa-star"></i></div>
+
+    <div class="star-container"><span class="fill percent75"></span><i class="far fa-star"></i></div>
+</div>
+
+<!-- Modal footer -->
+  <div class="modal-footer">
+  <button type="submit" class="btn btn-primary rating_save" >Save</button>
+</form>
+
+<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+
    @include('user.footer')

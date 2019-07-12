@@ -12,6 +12,7 @@ use App\post_attribute;
 use App\midea;
 use App\User;
 use App\like; 
+use App\rating; 
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
@@ -205,6 +206,7 @@ class FrontController extends Controller
             $key1->category_data       = category::find($key1->ps_ct_id);
             $key1->subcategory_data    = subcategory::find($key1->ps_st_id); 
             $key1->create_by           = user::find($key1->ps_ur_id); 
+            $key1->rating_are          = rating::where('r_ps_id',$key1->ps_id)->get(); 
             $key1->post_attribute_data = post_attribute::where('pt_ps_id',$key1->ps_id)->get();
             $created = Carbon::createFromTimeStamp(strtotime($key1->created_at));
             $created ->diff(Carbon::now())->format('%d days, %h hours and %i minutes');
@@ -429,7 +431,48 @@ class FrontController extends Controller
        
         if($user)
         {
+            $rt = rating::where('r_u_id',$user->id)->get();
+            $pst = post::where('ps_ur_id',$user->id)->where('ps_status',"active")->get();
+            $rtt =0;
+            $i =0;
+            foreach($rt as $r)
+            {
+                $rtt=$rtt+$r->r_rating;
+                $i++;
+            }
+            if($rtt==0)
+            {
+                $user->rate = 0;
+            }
+            else
+            {
+                $user->rate = $rtt/$i;
+            }
            
+           $user->number_view = $i;
+           $user->number_post = count($pst);
+           $user->review = $rt;
+
+           $created = Carbon::createFromTimeStamp(strtotime($user->created_at));
+            $created ->diff(Carbon::now())->format('%d days, %h hours and %i minutes');
+            $diff = $created->diff(Carbon::now());
+            if($diff->y)
+            {
+               $user->duration=  $diff->y." Years";
+            }
+            elseif($diff->m) {
+                $user->duration=  $diff->m." Months";
+            }
+            elseif($diff->d) {
+                $user->duration=  $diff->d." Days";
+            } elseif($diff->h) {
+                $user->duration=  $diff->h." Hours";
+            } elseif($diff->i) {
+                $user->duration=  $diff->i." Mints";
+            }
+            elseif($diff->s) {
+                $user->duration=  $diff->s." Second";
+            }
         $post_data = post::where('ps_status','active')
         ->where('ps_ur_id',$id)
         ->orderByRaw("ps_type = 'normal' asc")
