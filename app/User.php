@@ -3,6 +3,7 @@ namespace App;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Notifications\VerifyApiEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable implements MustVerifyEmail
@@ -31,5 +32,11 @@ public function setPasswordAttribute($value)
 {
   $this->attributes['password'] = bcrypt($value);
 }
+
+public function sendApiEmailVerificationNotification()
+{
+$this->notify(new VerifyApiEmail); // my notification
+}
+
 } 
 ?>  

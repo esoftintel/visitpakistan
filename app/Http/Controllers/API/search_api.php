@@ -103,8 +103,9 @@ class search_api extends Controller
     public function search_category(Request $request)
     {
         
-        
+        //print_r($request->input())
         $ctimg = category::find($request->input('category'));
+
         $search   = $request->input('search');
         $category = $request->input('category');
         $subcategory = $request->input('subcategory');
@@ -121,10 +122,6 @@ class search_api extends Controller
                        );
            $data[$i++] = $d;
         }
-   
-    //     print_r($data);
-    //   exit;
-        
         $post_data = post::where('ps_status','active')
                         ->where('ps_ct_id', $category)
                         ->where('ps_st_id', $subcategory)
@@ -133,10 +130,16 @@ class search_api extends Controller
                         ->orderByRaw("ps_type = 'normal' asc")
                         ->orderByRaw("ps_type = 'feature' asc")
                         ->paginate(15);
+
+                        // print_r($post_data);
+                        // exit;
+                     
                         foreach($post_data as $keyz=>$v)
                         {
                             $z=0;
                             $post_attribute_data = post_attribute::where('pt_ps_id',$v->ps_id)->get();
+                           
+                         
                             foreach($post_attribute_data as  $keyp=> $value)
                             {
                                
@@ -162,8 +165,7 @@ class search_api extends Controller
                            
                             $v->matchs=$z;
                         }
-                    //    print_r($post_data);
-                    //    exit;
+                      
                     
         foreach ($post_data as $key) {
             $key->media_data          = midea::where('m_ps_id',$key->ps_id)->first();

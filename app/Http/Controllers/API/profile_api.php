@@ -1,17 +1,17 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
+use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User; 
- 
 use Illuminate\Support\Facades\Auth; 
 use Validator;
 
 class profile_api extends Controller
 {
     //
+    use SendsPasswordResetEmails;
     public function name_edit(Request $request)
     {
         $request->validate([
@@ -210,6 +210,27 @@ class profile_api extends Controller
             $result['status']=0;
             $result['result']=asset('images').'/videos/'.$filename;
             return response()->json($result);
+        }
+    }
+
+    public function forgotpassword(Request $request)
+    {
+        $request->validate([
+            'email' => 'email|required',
+        ]);
+        $email=$request->input('email');
+        $user=User::where('email',$email)->first();
+        if($user)
+        {
+            $user->sendApiEmailVerificationNotification();
+            $result['status']=1;
+            $result['result']='please varify your email by clicking on varification button in your email!';
+            return response()->json($result); 
+        }
+        else{
+            $result['status']=0;
+            $result['result']='User not exits in database with this email!';
+            return response()->json($result); 
         }
     }
     

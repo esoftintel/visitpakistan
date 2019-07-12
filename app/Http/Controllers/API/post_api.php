@@ -375,7 +375,7 @@ class post_api extends Controller
                           {
                               $image->media_path= asset('images').'/media/'.$image->m_url;
                           }
-                          $key->post_attribute_data = post_attribute::where('pt_ps_id',$key->ps_id)->get();
+                          $key->    attribute_data = post_attribute::where('pt_ps_id',$key->ps_id)->get();
                       }
                       if($posts)
                       {
