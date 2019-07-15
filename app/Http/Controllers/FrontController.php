@@ -746,6 +746,8 @@ class FrontController extends Controller
                        );
            $data[] = $d;
         }
+        echo '<pre>';
+        print_r($data); exit;
    
     //     print_r($data);
     //   exit;

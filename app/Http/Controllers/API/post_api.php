@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
+use Illuminate\Support\Facades\Auth;
 use App\User; 
 use App\category; 
-use Illuminate\Support\Facades\Auth; 
 use Validator;
 use App\post;
 use App\subcategory;
@@ -14,17 +15,12 @@ use App\attribute_value;
 use App\attribute;
 use App\midea;
 use App\like;
+use App\rating;
 use Carbon\Carbon;
 use Dotenv\Regex\Result;
- 
-
-
-
 class post_api extends Controller
 {
-
     private $photos_path;
-
     public function __construct()
     {
         $this->photos_path = public_path('/images/media');
@@ -37,9 +33,7 @@ class post_api extends Controller
     $userId=Auth::user()->id;
     if(!empty($post1))
     {
-        
         foreach ($post_data as $key) {
-
             $postId=$key->ps_id;
                 $data =array('l_ps_id'=>$postId,
                             'l_u_id' =>$userId
@@ -53,15 +47,13 @@ class post_api extends Controller
                 {
                     $key->likedstatus=false;
                 }
-            
-            
-          $md= midea::where('m_ps_id',$key->ps_id)->first();
-            $key->media_as         = asset('images/media/')."/".$md['m_url'];
+            $md= midea::where('m_ps_id',$key->ps_id)->first();
+            $key->media_as         = asset('public/images/media/')."/".$md['m_url'];
            
             $key->media_data          = midea::where('m_ps_id',$key->ps_id)->get();
             foreach($key->media_data as $image)
             {
-                $image->media_path= asset('images').'/media/'.$image->m_url;
+                $image->media_path= asset('public/images').'/media/'.$image->m_url;
             }
             $key->category_data       = category::find($key->ps_ct_id);
             $key->subcategory_data    = subcategory::find($key->ps_st_id); 
@@ -85,11 +77,9 @@ class post_api extends Controller
         $result['status']=0;
         $result['result']=$post_data;
         return response()->json([$result]); 
-                
     }
     
   }
-     
     public function all_categories_post()
     { 
      $category_data       = category::where('ct_status','active')->get();
@@ -97,16 +87,34 @@ class post_api extends Controller
      $userId=Auth::user()->id;
      foreach($category_data as $category)
      {
-     $category->image_path= asset('images').'/'.$category->ct_icone;
-     $category->bannar_path= asset('images').'/'.$category->ct_image;
+     //$category->image_path= asset('public/images').'/'.$category->ct_icone;
+     $category->bannar_path= asset('public/images').'/'.$category->ct_image;
      $post_data = post::where('ps_status','active')
                        ->where('ps_ct_id',$category->ct_id)
-                       ->limit(4)   
+                         ->limit(6)   
                        ->orderByRaw("ps_type = 'normal' asc")
                        ->orderByRaw("ps_type = 'feature' asc")
                        ->get();
      foreach ($post_data as $key) {
                     $postId=$key->ps_id;
+                    $rate =rating::where('r_ps_id',$postId)->get();
+                              $i=0;
+                              $totalrating=0;
+                              foreach($rate  as $r)
+                              {
+                                  $i++;
+                                  $totalrating +=$r->r_rating;
+                              }
+                              if($i!=0)
+                              {
+                                  (float)$overallrating=$totalrating/$i;
+                              }
+                              else
+                              {
+                                  $overallrating=0;
+                              }
+                              $key->timeofrating=$i;
+                              $key->overallrating=$overallrating;
                     $data =array('l_ps_id'=>$postId,
                                 'l_u_id' =>$userId
                             );
@@ -124,9 +132,9 @@ class post_api extends Controller
             $key->media_data          = midea::where('m_ps_id',$key->ps_id)->get();
             foreach($key->media_data as $image)
             {
-                $image->media_path= asset('images').'/media/'.$image->m_url;
+                $image->media_path= asset('public/images').'/media/'.$image->m_url;
             }
-           
+          
             
             $key->subcategory_data    = subcategory::find($key->ps_st_id); 
             $key->create_by           = user::find($key->ps_ur_id); 
@@ -149,8 +157,7 @@ class post_api extends Controller
     }
      
     
-    }
-
+}
         public function postsOfCategory($id)
         {
             $categoryPosts=post::where('ps_ct_id',$id)
@@ -160,39 +167,106 @@ class post_api extends Controller
                          ->orderByRaw("ps_type = 'normal' asc")
                         ->orderByRaw("ps_type = 'feature' asc")
                         ->get();
-                        
-                        
-                        
+             
               foreach ($categoryPosts as $key) {
-                  $key->image_path= asset('images').'/'.$key->ct_icone;
+                  $key->image_path= asset('public/images').'/'.$key->ct_icone;
                   
              
                 $key->media_data          = midea::where('m_ps_id',$key->ps_id)->get();
                 foreach($key->media_data as $image)
                 {
-                    $image->image_path= asset('images').'/'.$image->m_url;
+                    $image->image_path= asset('public/images').'/'.$image->m_url;
                 }
                 $key->post_attribute_data = post_attribute::where('pt_ps_id',$key->ps_id)->get();
-            }
+              }
               if($categoryPosts)
               {
                     $result['status']=1;
                     $result['result']=$categoryPosts;
                     return response()->json([$result]); 
-                  
               }
               else
               {
-                  $result['status']=1;
+                    $result['status']=1;
                     $result['result']=$categoryPosts;
                     return response()->json([$result]); 
               }
-                        
-         
         }
 
-        public function post_details($id)
+        public function myposts($id)
             {
+                $posts=post::where('ps_ur_id',$id)
+                        ->select('*', 'posts.created_at AS ps_created_at')
+                        ->Join('categories', 'categories.ct_id', '=', 'posts.ps_ct_id')
+                        ->join('subcategories','subcategories.st_ct_id', '=', 'categories.ct_id')
+                         ->orderByRaw("ps_type = 'normal' asc")
+                        ->orderByRaw("ps_type = 'feature' asc")
+                        ->get();
+                        // return response()->json($post); 
+                        //  exit;
+                        foreach($posts as $post)
+                        {
+                        $created = Carbon::createFromTimeStamp(strtotime($post->ps_created_at));
+                        $created ->diff(Carbon::now())->format('%d days, %h hours and %i minutes');
+                        $diff = $created->diff(Carbon::now());
+                        if($diff->y)
+                        {
+                           $post->duration=  $diff->y." Years";
+                        }
+                        elseif($diff->m) {
+                            $post->duration=  $diff->m." Months";
+                        }
+                        elseif($diff->d) {
+                            $post->duration=  $diff->d." Days";
+                        } elseif($diff->h) {
+                            $post->duration=  $diff->h." Hours";
+                        } elseif($diff->i) {
+                            $post->duration=  $diff->i." Mints";
+                        }
+                        elseif($diff->s) {
+                            $post->duration=  $diff->s." Second";
+                        }
+                  $post->category_icon= asset('public/images').'/'.$post->ct_icone;
+                  $media_image          = midea::where('m_ps_id',$post->ps_id)->first();
+               
+                  $post->media_image= asset('public/images').'/media/'.$media_image['m_url'];
+                  $post->post_attribute_data = post_attribute::where('pt_ps_id',$post->ps_id)->get();  
+                }
+             if($posts)
+              {
+                    $result['status']=1;
+                    $result['result']=$posts;
+                    return response()->json($result); 
+              }
+              else
+              {
+                    $result['status']=0;
+                    $result['result']=$posts;
+                    return response()->json($result); 
+              }
+        
+            }
+            
+            public function post_details($id)
+            {
+                $rate =rating::where('r_ps_id',$id)->get();
+                              $i=0;
+                              $totalrating=0;
+                              foreach($rate  as $r)
+                              {
+                                  $i++;
+                                  $totalrating +=$r->r_rating;
+                              }
+                              if($i!=0)
+                              {
+                                  (float)$overallrating=$totalrating/$i;
+                              }
+                              else
+                              {
+                                  $overallrating=0;
+                              }
+                              $data1['ratetimes']=$i;
+                              $data1['overallrating']=round($overallrating,1);
                 $Post=post::where('ps_id',$id)
                         ->select('*', 'posts.created_at AS ps_created_at')
                         ->Join('categories', 'categories.ct_id', '=', 'posts.ps_ct_id')
@@ -200,11 +274,10 @@ class post_api extends Controller
                          ->orderByRaw("ps_type = 'normal' asc")
                         ->orderByRaw("ps_type = 'feature' asc")
                         ->get();
-                        
-                        
                         $created = Carbon::createFromTimeStamp(strtotime($Post[0]->ps_created_at));
                         $created ->diff(Carbon::now())->format('%d days, %h hours and %i minutes');
                         $diff = $created->diff(Carbon::now());
+                     
                         if($diff->y)
                         {
                            $Post[0]->duration=  $diff->y." Years";
@@ -222,24 +295,18 @@ class post_api extends Controller
                         elseif($diff->s) {
                             $Post[0]->duration=  $diff->s." Second";
                         }
-
                      $postCategoryId=  $Post[0]->ps_ct_id;
                      //print_r($postCategoryId); exit;
-                        
-                        
-              foreach ($Post as $key) {
-                  $key->image_path= asset('images').'/'.$key->ct_icone;
-                  
-             
-                $key->media_data          = midea::where('m_ps_id',$key->ps_id)->get();
-                foreach($key->media_data as $image)
+                $Post[0]->image_path= asset('public/images').'/'.$Post[0]->ct_icone;
+                $Post[0]->user_image_path= asset('images/user').'/'.$Post[0]->u_image;
+                $Post[0]->media_data          = midea::where('m_ps_id',$Post[0]->ps_id)->get();
+                foreach($Post[0]->media_data as $image)
                 {
-                    $image->media_path= asset('images').'/media/'.$image->m_url;
+                    $image->media_path= asset('public/images').'/media/'.$image->m_url;
                 }
-                $key->post_attribute_data = post_attribute::where('pt_ps_id',$key->ps_id)->get();
-            }
-            
-             $categoryPosts=post::where('ps_ct_id',$postCategoryId)
+                $Post[0]->post_attribute_data = post_attribute::where('pt_ps_id',$Post[0]->ps_id)->get();
+
+                $categoryPosts=post::where('ps_ct_id',$postCategoryId)
                         ->select('*', 'posts.created_at AS ps_created_at')
                         ->Join('categories', 'categories.ct_id', '=', 'posts.ps_ct_id')
                         ->join('users','users.id', '=', 'posts.ps_ur_id')
@@ -247,11 +314,10 @@ class post_api extends Controller
                          ->orderByRaw("ps_type = 'normal' asc")
                         ->orderByRaw("ps_type = 'feature' asc")
                         ->get();
-                        
-                        
-                        
-              foreach ($categoryPosts as $key) {
-                  $key->category_icon_path= asset('images').'/'.$key->ct_icone;
+
+                foreach ($categoryPosts as $key) {
+                  $key->category_icon_path= asset('public/images').'/'.$key->ct_icone;
+                  $key->user_image_path= asset('images/user').'/'.$key->u_image;
                   
                    $created = Carbon::createFromTimeStamp(strtotime($key->ps_created_at));
                         $created ->diff(Carbon::now())->format('%d days, %h hours and %i minutes');
@@ -274,37 +340,32 @@ class post_api extends Controller
                             $key->duration=  $diff->s." Second";
                         }
                         
-                  
-             
                 $key->media_data          = midea::where('m_ps_id',$key->ps_id)->get();
                 foreach($key->media_data as $image)
                 {
-                    $image->image_path= asset('images').'/media/'.$image->m_url;
+                    $image->image_path= asset('public/images').'/media/'.$image->m_url;
                 }
                 $key->post_attribute_data = post_attribute::where('pt_ps_id',$key->ps_id)->get();
             }
-            
-            
-             if($Post)
+
+            if($Post)
               {
                     $result['status']=1;
+                    $result['rating']=$data1;
                     $result['result']=$Post;
                     $result['populerPosts']=$categoryPosts;
                     return response()->json([$result]); 
-                  
               }
               else
               {
-                  $result['status']=1;
+                    $result['status']=1;
                     $result['result']=$Post;
                     return response()->json([$result]); 
               }
-        
             }
-
+            
             public function like_post(Request $request)
             {
-                
                 $data1 = $request->input();
                 $id=Auth::user()->id;  
                 if($id)
@@ -312,7 +373,7 @@ class post_api extends Controller
                     $data =array('l_ps_id'=>$data1['post_id'],
                                  'l_u_id' =>$data1['user_id']
                             );
-                           
+
                     $liked = like::where($data)->first();
                     if($liked)
                     {   $record = like::find($liked->l_id);
@@ -336,7 +397,6 @@ class post_api extends Controller
                         
                     return response()->json($result); 
                 }
-               
             }
 
         public function liked_posts()
@@ -367,13 +427,13 @@ class post_api extends Controller
                                      {
                                          $key->likedstatus=false;
                                      }
-                            $key->image_path= asset('images').'/'.$key->ct_icone;
+                            $key->image_path= asset('public/images').'/'.$key->ct_icone;
                             
                        
                           $key->media_data          = midea::where('m_ps_id',$key->ps_id)->get();
                           foreach($key->media_data as $image)
                           {
-                              $image->media_path= asset('images').'/media/'.$image->m_url;
+                              $image->media_path= asset('public/images').'/media/'.$image->m_url;
                           }
                           $key->post_attribute_data = post_attribute::where('pt_ps_id',$key->ps_id)->get();
                       }
@@ -390,8 +450,6 @@ class post_api extends Controller
                         $result['result']=$posts;
                         return response()->json($result);
                       }
-
-                        
             }
             else{
                 $result['status']=0;
@@ -402,46 +460,40 @@ class post_api extends Controller
 
         public function post_submit(Request $request)
         {
-            
-
             // $data=$request->input();
-             
             $request->validate([
                 'title' => 'required',
                 'detail'  =>'required',
                 'address'  =>'required',
-                'ctid'  =>'required',
-                'sctid'  =>'required',
+                'category_id'  =>'required',
+                'subcategory_id'  =>'required',
                 'latitude'  =>'required',
                 'logitude'  =>'required',
                 'price'  =>'required',
                 // 'detail'  =>'required',
-                'photos'      =>'required'
-
+                'photos'      =>'required',
+                'user_id'  =>'required'
             ]);
 
-            $userId=Auth::user()->id;
+            $userId=$request->input('user_id');
             if($userId)
             {
                 $attribute=$request->input('attribute');
                // $attribute_value=$request->input('attribute_value');
-               
                 $data = array(
                                 "ps_title"   => $request->input('title'),
                                 "ps_detail"  => $request->input('detail'),
                                 "ps_price"   => $request->input('price'),
                                 "ps_address" => $request->input('address'),
-                                "ps_ct_id"   => $request->input('ctid'),
-                                "ps_st_id"   => $request->input('sctid'),
+                                "ps_ct_id"   => $request->input('category_id'),
+                                "ps_st_id"   => $request->input('subcategory_id'),
                                 "ps_ur_id"   => $userId,
                                 "ps_lati"    => $request->input('latitude'),
                                 "ps_longi"   => $request->input('logitude'),
                              );
-                          
                           $post =  post::create($data);
                         //   print_r($attribute);
                         //   exit;
-
                           if($attribute)
                           {
                            foreach($attribute as $key)
@@ -452,20 +504,14 @@ class post_api extends Controller
                                               "pt_value" =>$key['value'],
                                               "pt_ps_id" =>$post->ps_id,
                                             );
-                                           
                                             post_attribute::create($at);
                             }
-    
-                           
-                          }
 
-                         
+                          }
                           $photos = $request->file('photos'); 
                           foreach ($photos as $photo) {
-                            
                            // print_r($photo); exit;
-                            $original_name = basename($photo->getClientOriginalName());
-                 
+                              $original_name = basename($photo->getClientOriginalName());
                               $name = sha1(date('YmdHis') . str_random(30));
                               $save_name = $name . '.' . $photo->getClientOriginalExtension();
                               $resize_name =  $photo->getClientOriginalExtension();
@@ -503,8 +549,7 @@ class post_api extends Controller
             
     
         }
-
-
+        
         public function getcategories()
         {
             $data = category::where('ct_status','active')->get();
@@ -512,14 +557,38 @@ class post_api extends Controller
             if($data)
             {
                 foreach ($data as $key) {
-                    $key->image_path= asset('images').'/'.$key->ct_icone;
+                    $key->image_path= asset('public/images').'/'.$key->ct_icone;
                 }
-
-
             }
             if($data1)
             {
                 $result['status']=1;
+                $result['result']=$data;
+                return response()->json($result);
+            }
+            else
+            {
+                $result['status']=0;
+                $result['result']=$data;
+                 return response()->json($result);
+            }
+        }
+        
+        public function getsubcategories($id)
+        {
+            $category = category::where('ct_id',$id)->first();
+            $category->image_path= asset('public/images').'/'.$category->ct_icone; 
+            $category->image_path_white= asset('public/images').'/'.$category->ct_iconewhite;
+            $category->bannar_path= asset('public/images').'/'.$category->ct_image; 
+            
+            
+            $data = subcategory::where('st_ct_id',$id)->get();
+             $data1 = subcategory::where('st_ct_id',$id)->first();
+           
+            if($data1)
+            {
+                $result['status']=1;
+                $result['category']=$category;
                 $result['result']=$data;
                  return response()->json($result);
 
@@ -533,26 +602,6 @@ class post_api extends Controller
             
         }
         
-     public function getsubcategories($id)
-        {
-            $data = subcategory::where('st_ct_id',$id)->get();
-             $data1 = subcategory::where('st_ct_id',$id)->first();
-           
-            if($data1)
-            {
-                $result['status']=1;
-                $result['result']=$data;
-                 return response()->json($result);
-
-            }
-            else
-            {
-                $result['status']=0;
-                $result['result']=$data;
-                 return response()->json($result);
-            }
-            
-        }
         public function getsubcategory_attributes($id)
         {
              $data = attribute::where('at_st_id',$id)->get();
@@ -562,13 +611,11 @@ class post_api extends Controller
                  $keyId=$key->at_id;
                  $key->attribute_values=attribute_value::where('atv_at_id',$keyId)->get();
              }
-           
             if($data1)
             {
                 $result['status']=1;
                 $result['result']=$data;
                  return response()->json($result);
-
             }
             else
             {
@@ -576,7 +623,6 @@ class post_api extends Controller
                 $result['result']=$data;
                  return response()->json($result);
             }
-            
         }
         
         public function getsubcategory_attributevalues($id)
@@ -588,7 +634,6 @@ class post_api extends Controller
                 $result['status']=1;
                 $result['result']=$data;
                  return response()->json($result);
-
             }
             else
             {
@@ -598,7 +643,81 @@ class post_api extends Controller
             }
         }
 
-        
- 
+        public function commentadd(Request $request)
+        {
+             $request->validate([
+                'comment' => 'required',
+                'post_id'  =>'required',
+                'user_id'  =>'required',
+                'rate'  =>'required',
+
+            ]);
+                
+               $message = $request->input('comment');
+               $post_id = $request->input('post_id');
+               $user_id = $request->input('user_id');
+               $rate    = $request->input('rate');
+               $data = array(
+                               'r_comment'  =>$message,
+                               'r_rating'   =>$rate,
+                               'r_ps_id'    =>$post_id,
+                               'r_u_id'     =>$user_id,
+                               'created_at' =>date('Y:m:d H:i:s')
+                            );
+                     $rating=rating::create($data);
+                     if($rating)
+                     {
+                        $result['status']=1;
+                        $result['result']=$rating;
+                         return response()->json($result); 
+                     }
+                     else
+                     {
+                        $result['status']=0;
+                        $result['result']=$rating;
+                        return response()->json($result);  
+                     }
+        }
+            
+        public function getpostrating($id)
+        {
+               $data =rating::where('r_ps_id',$id)
+                              ->select('*', 'ratings.created_at AS rating_created_at','ratings.id AS rating_id')
+                              ->join('users','users.id','=','ratings.r_u_id')
+                              ->get();
+                              $i=0;
+                              $totalrating=0;
+                              foreach($data as $user)
+                              {
+                                  $i++;
+                                  $totalrating +=$user->r_rating;
+                                  $user->user_image_url=asset('public').'/images/user/'.$user->u_image;
+                              }
+                              if($i!=0)
+                              {
+                                  (float)$overallrating=$totalrating/$i;
+                              }
+                              else
+                              {
+                                  $overallrating=0;
+                              }
+                              $data1['totalcomments']=$i;
+                              $data1['overallrating']=$overallrating;
+                              
+                    if($data)
+                     {
+                        $result['status']=1;
+                        $result['ratings']=$data1;
+                        $result['result']=$data;
+                         return response()->json($result); 
+                     }
+                    else
+                     {
+                        $result['status']=0;
+                        $result['result']=$data;
+                        return response()->json($result);  
+                     }
+       }
+
 }
 
