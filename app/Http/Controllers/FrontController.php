@@ -532,6 +532,7 @@ class FrontController extends Controller
             $key->category_data       = category::find($key->ps_ct_id);
             $key->subcategory_data    = subcategory::find($key->ps_st_id); 
             $key->create_by           = user::find($key->ps_ur_id); 
+            $key->rating_are          = rating::where('r_ps_id',$key->ps_id); //its for rating 
             $key->post_attribute_data = post_attribute::where('pt_ps_id',$key->ps_id)->get();
             $created = Carbon::createFromTimeStamp(strtotime($key->created_at));
             $created ->diff(Carbon::now())->format('%d days, %h hours and %i minutes');

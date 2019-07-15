@@ -19,9 +19,9 @@ return [
     
     ///used for pusher
     'options' => [
-        'cluster' => 'eu',
-        'encrypted' => true
-    ],
+                'cluster' => 'ap2',
+                'useTLS' => true
+                ],
 
     /*
     |--------------------------------------------------------------------------

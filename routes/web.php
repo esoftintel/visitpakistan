@@ -10,10 +10,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */ 
-
+use App\Events\FormSubmitted;
+Route::post('/sender', function () {
+    $text=request()->message ;
+   
+    event(new FormSubmitted($text));
+});
 Route::get('/', function () {
     return view('user.index');
 });
+
+
+
 
 Auth::routes(['verify' => true]);
 Route::get('profile', function () {
@@ -117,6 +125,7 @@ Route::get('/search_attribute_sb/{id}', 'FrontController@search_attribute_sb');
 
 Route::post('/like', 'LikeController@store')->name('like'); 
 Route::post('/create_rating_review', 'RatingController@store')->name('create_rating_review'); ////////
+Route::get('/get_rating_review/{post_id}', 'RatingController@index')->name('get_rating_review'); ////////
 Route::post('/search', 'FrontController@search')->name('search');
 Route::post('/search_category', 'FrontController@search_category')->name('search_category');
 Route::post('/user_update', 'UserController@user_update')->name('user_update');
@@ -141,6 +150,8 @@ Route::match(['get', 'post'], 'ajax-image-upload_banner', 'UserController@ajaxIm
 Route::delete('ajax-remove-image_banner/{filename}', 'UserController@deleteImage_banner');
 
 
+Route::get('/chat','RatingController@show_chat');
+Route::get('/reciver','RatingController@reciver_chat');
 
 
 

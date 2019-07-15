@@ -13,9 +13,10 @@ class RatingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+       $data =rating::where('r_ps_id',$id)->get();
+       return json_encode($data);
     }
 
     /**
@@ -25,7 +26,7 @@ class RatingController extends Controller
      */
     public function create()
     {
-        //
+        //jjjjjjjjjjjjjjjj
     }
 
     /**
@@ -97,5 +98,14 @@ return Redirect::back();
     public function destroy(rating $rating)
     {
         //
+    }
+
+    public function show_chat()
+    {
+        return view('user.sender');
+    }
+    public function reciver_chat()
+    {
+        return view('user.reciver');
     }
 }
