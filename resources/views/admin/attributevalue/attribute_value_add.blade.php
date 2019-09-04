@@ -35,15 +35,15 @@
                           <option value="">Select category</option>
                             @foreach($category as $key)
                             <option value='{{$key->ct_id}}'>{{$key->ct_name}}</option>
-                             @endforeach
+                             @endforeach 
                         </select>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="exampleInputPassword1">Subcategory </label>
                         <select name="subcategory" id="subcategory1" class="form-control">
                                 <option value="">Select Sub_Category</option>
                         </select>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                     <label>Attribute</label>
                         <select name="attribute" id="attribute" class="form-control">

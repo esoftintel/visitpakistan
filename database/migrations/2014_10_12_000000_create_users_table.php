@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('u_longitude');
             $table->string('u_image');
             $table->string('u_banner');
+            $table->string('password');
             $table->string('u_googleaccount');
             $table->string('u_facebook');
             $table->rememberToken();

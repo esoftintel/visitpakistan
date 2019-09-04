@@ -37,21 +37,40 @@ class RatingController extends Controller
      */
     public function store(Request $request)
     {
-       $message = $request->input('message');
+      // $message = $request->input('message');
        $post_id = $request->input('post_id');
        $user_id = $request->input('user_id');
-       $rate    = $request->input('rate');
-      
+       $rate    = $request->input('rating');
+      $flg = rating::where('r_ps_id',$post_id)->where('r_u_id',$user_id)->first();
+   
+      if($flg)
+      {
+
+        $data = array(
+            // 'r_comment'  =>$message,
+             'r_rating'   =>$rate,
+             'r_ps_id'    =>$post_id,
+             'r_u_id'     =>$user_id,
+             'updated_at' =>date('Y:m:d H:i:s')
+          );
+   rating::where('id',$flg->id)->update($data);
+   Session::flash('message', "Special message goes here");
+      }
+      else
+      {
        $data = array(
-                       'r_comment'  =>$message,
-                       'r_rating'   =>$rate,
-                       'r_ps_id'    =>$post_id,
-                       'r_u_id'     =>$user_id,
-                       'created_at' =>date('Y:m:d H:i:s')
+                        // 'r_comment'  =>$message,
+                        'r_rating'   =>$rate,
+                        'r_ps_id'    =>$post_id,
+                        'r_u_id'     =>$user_id,
+                        'created_at' =>date('Y:m:d H:i:s')
                     );
-             rating::create($data);
-             Session::flash('message', "Special message goes here");
-return Redirect::back();
+            rating::create($data);
+            Session::flash('message', "Special message goes here");
+
+      }
+       
+return 1;
        
     }
 

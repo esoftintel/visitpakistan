@@ -15,11 +15,12 @@
           <div class="alert alert-success">
               {{ session('info') }}
           </div>
-          @endif
+          @endif 
             <div class="card ">
               <div class="card-header">
               <div class="row"> 
                 <div class="col-lg-6"><h4 class="card-title">Posts</h4></div>
+                <div class="col-lg-6"> <a class="btn btn-primary pull-right btn-sm" href="{{url('/attribute_create')}}" role="button">add Post</a></div>
                
                 <h4 class="card-title"> </h4>
               </div>

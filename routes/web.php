@@ -16,9 +16,8 @@ Route::post('/sender', function () {
    
     event(new FormSubmitted($text));
 });
-Route::get('/', function () {
-    return view('user.index');
-});
+
+Route::get('/', 'FrontController@pakistan')->name('visitpakistan');  
 
 
 
@@ -76,7 +75,7 @@ Route::post('/category_update', 'CategoryController@update')->name('category_upd
 Route::get('/category_delete/{id}','CategoryController@destroy');
 Route::get('/elequent', 'CategoryController@elequent');
 
-Route::resource('subcategory','SubcategoryController');
+Route::resource('subcategory','SubcategoryController'); 
 Route:: get('/subcategory_delete/{id}','SubcategoryController@distory');
 
 Route::resource('attribute_value','AttributeValueController');
@@ -103,6 +102,7 @@ Route::get('/getattribute/{id}', 'AttributeController@getattribute');
 
 //////////////////////////////user side route here /////////////////////////
 Route::get('/category_show', 'FrontController@create')->name('category_show');
+
 Route::get('/post_create', 'FrontController@post_create')->name('post_create'); 
 Route::get('/post_form/{id}', 'FrontController@post_form')->name('post_form');
 Route::post('/post_submit', 'FrontController@post_store')->name('post_submit');
@@ -140,7 +140,7 @@ Route::get('/images-show', 'MideaController@index');
 
 Route::post('/userlogin', 'userLoginController@user_login'); 
 Route::get('/userlogout','userLoginController@user_logout');
-Route::Post('/usersignup','userLoginController@user_register');
+Route::Post('/usersignup','userLoginController@user_register'); 
 
 Route::match(['get', 'post'], 'ajax-image-upload', 'UserController@ajaxImage');
 Route::delete('ajax-remove-image/{filename}', 'UserController@deleteImage');
@@ -153,9 +153,20 @@ Route::delete('ajax-remove-image_banner/{filename}', 'UserController@deleteImage
 Route::get('/chat','RatingController@show_chat');
 Route::get('/reciver','RatingController@reciver_chat');
 
+///////////////////new route visitpakistan////////////////////////
+Route::get('/visitpakistan', 'FrontController@pakistan')->name('visitpakistan');  
+Route::get('/new_post_detail/{id}', 'FrontController@new_post_detail')->name('new_post_detail');
+
+Route::resource('feature','FeatureController');
+Route::get('/feature_delete/{id}','FeatureController@destroy');
+
+Route::resource('tag','TagController');
+Route::get('/tag_delete/{id}','TagController@destroy');
+
+//Route::resource('comment','CommentController');
+Route::post('/comment', 'CommentController@store')->name('comment'); 
 
 
-
-
+Route::get('/new_category_listing/{id}', 'FrontController@new_categorylisting')->name('new_category_listing');  
 
 

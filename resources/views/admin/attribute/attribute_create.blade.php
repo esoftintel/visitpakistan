@@ -35,12 +35,12 @@
                              @endforeach
                         </select>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="exampleInputPassword1">Subcategory </label>
                         <select name="subcategory" id="subcategory" class="form-control" required>
                                 <option value="">Select Subcategory</option>
                         </select>
-                    </div>
+                    </div> -->
                     <button type="submit" class="btn btn-primary">Submit</button>
                  </form>
                 </div>

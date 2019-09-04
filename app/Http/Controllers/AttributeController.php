@@ -17,7 +17,7 @@ class AttributeController extends Controller
     public function index()
     {
         $attribute = attribute::where('status','active')
-                                ->Join('subcategories', 'subcategories.st_id', '=', 'attributes.at_st_id')
+                                ->Join('categories', 'categories.ct_id', '=', 'attributes.at_ct_id')
                                 ->get();
         return view('admin.attribute.attribute_list')->with('attribute_data',$attribute);
     }
@@ -37,21 +37,22 @@ class AttributeController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response 
      */
     public function store(Request $request)
     {
         //
         $attribute=$request->input('attribute');
-        $subcategory=$request->input('subcategory');
-        //$category=$request->input('category');
+       // $subcategory=$request->input('subcategory');
+        $category=$request->input('category');
        
         $data =array(
             'at_name' => $attribute,                   
-            'at_st_id' => $subcategory                   
+            'at_ct_id' => $category                   
           );
         
-          
+        // print_r($data);
+        // exit;
      attribute::create($data);  
      return redirect('attribute')->with('info','Data is Added Successfully!');
        // $post=$request->input();
@@ -138,16 +139,16 @@ class AttributeController extends Controller
 
     public function getattribute($id)
     {
-        $attribute = attribute::where('at_st_id', $id)->get();
+        $attribute = attribute::where('at_ct_id', $id)->get();
         //print_r($attribute) ; exit;     
         return json_encode($attribute);
     }
 
     public function sub_attributes($id)
     {
-        $attribute = attribute::where('at_st_id',$id)
+        $attribute = attribute::where('at_ct_id',$id)
                                  ->where('status','active')
-                                ->Join('subcategories', 'subcategories.st_id', '=', 'attributes.at_st_id')
+                                ->Join('categories', 'categories.ct_id', '=', 'attributes.at_ct_id')
                                 ->get();
         return view('admin.attribute.attribute_list')->with('attribute_data',$attribute);
     }

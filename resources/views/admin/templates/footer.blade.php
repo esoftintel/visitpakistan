@@ -228,36 +228,36 @@
         </script>
 
         <script type="text/javascript">
-                $(document).ready(function(){
-                    $('#category1').on('change',function(){
-                        var category_id=$(this).val();
+                // $(document).ready(function(){
+                //     $('#category1').on('change',function(){
+                //         var category_id=$(this).val();
                      
-                        if(category_id)
-                        {
-                            $.ajax({
-                                url:'/getsubcategory/'+category_id,
-                                type:'GET',
-                                dataType:'json',
-                                success:function(data){
-                                   $('#subcategory1').empty();
-                                    $('#attribute').empty();
-                                    $.each(data,function(key,value){
+                //         if(category_id)
+                //         {
+                //             $.ajax({
+                //                 url:'/getsubcategory/'+category_id,
+                //                 type:'GET',
+                //                 dataType:'json',
+                //                 success:function(data){
+                //                    $('#subcategory1').empty();
+                //                     $('#attribute').empty();
+                //                     $.each(data,function(key,value){
                                 
-                                     $('#subcategory1').append('<option value="'+value.st_id+'">'+value.st_name+'</option>');
-                                    });
+                //                      $('#subcategory1').append('<option value="'+value.st_id+'">'+value.st_name+'</option>');
+                //                     });
                                 
                                     
-                                    }
-                                });
-                        }
-                        else
-                            {
-                            $('#subcategory1').html('<option value="">Select Subcategory</option>');
-                            }
-                    });
+                //                     }
+                //                 });
+                //         }
+                //         else
+                //             {
+                //             $('#subcategory1').html('<option value="">Select Subcategory</option>');
+                //             }
+                //     });
 
-                    $('#subcategory1').change(function(){
-                    var subcategory_id = $('#subcategory1').val();
+                    $('#category1').change(function(){
+                    var subcategory_id = $('#category1').val();
                        if(subcategory_id)
                         {
                             $.ajax({
@@ -282,7 +282,7 @@
                     });
 
                     
-                });
+                // });
         </script> 
       
 

@@ -1,7 +1,6 @@
-@include('user.metadata')
 
-@include('user.menu')
-<div class="bg_image_holder" style="background-image: url('img/breadcrumb.png'); opacity: 1;"><img src="img/breadcrumb.png" alt="img/breadcrumb1.jpg"></div>
+@include('user.metadata')
+@include('user.menu_user_dashbord')
 
        
 <div class="breadcrumb-wrapper content_above">
@@ -38,12 +37,8 @@
                                 <ul id="first-cat-bar"> 
                                     <li class="parent">
                                      
-                                     <a href="#"><img src="<?php echo  url('/images')."/".$key->ct_icone; ?>" class="img-thumbnail" width="50" height="50"><i></i>{{$key->ct_name}}</a>
-                                      <ul id="child">
-                                        @foreach($key->subcategory as $key1)
-                                            <li><a href="{{url('post_form',$key1->st_id)}}"><i class="la la-angle-right"></i> {{$key1->st_name}}</a></li>
-                                        @endforeach
-                                        </ul>
+                                     <a href="{{url('post_form',$key->ct_id)}}"><img src="<?php echo  url('/images')."/".$key->ct_icone; ?>" class="img-thumbnail" width="50" height="50"><i></i>{{$key->ct_name}}</a>
+                                 
                                     </li>
                                 </ul>
                                 @endforeach 
@@ -83,4 +78,4 @@ $('form select').on('change', function(){
     $(this).closest('form').submit();
 });
 </script>
-   @include('user.footer')
+   @include('user.new_footer')

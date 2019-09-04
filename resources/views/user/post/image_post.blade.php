@@ -23,7 +23,7 @@
         <div class="row">
         <div class="col-sm-10 offset-sm-1 review-details">
             <h2 class="page-heading"><span>Category :</span> {{$category_data->ct_name}} </h2>
-            <h2 class="page-heading"><span>SubCategory :</span>{{$subcategory_data->st_name}} </h2>
+           
              @foreach($post_attribute_data as $key)
              <h2 class="page-heading"><span>{{$key->pt_title}} :</span>{{$key->pt_value}}</h2>
             
@@ -116,7 +116,7 @@
         $('form select').on('change', function(){
             $(this).closest('form').submit();
         });
-</script>
+    </script>
 
     <!-- {{--End of Dropzone Preview Template--}} -->
     @include('user.footer')

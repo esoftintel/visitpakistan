@@ -30,7 +30,7 @@
                                 <h2>INCLUDE SOME DETAILS</h2>
                             </div>
                             <div class="atbd_area_title">
-                                <h4>{{$category_name}}  :{{$subcategory_name}}</h4>
+                                <h4>{{$category_name}} </h4>
                                 <a href="{{url('category_show')}}"><button type="button" class="btn btn-link">Change</button></a>
                                 
                             </div>
@@ -39,7 +39,23 @@
                             <form enctype="multipart/form-data" method="post" action="{{route('post_submit')}}">
                             {{ csrf_field() }}
                             <input type="hidden" name="ctid" value="{{$category_id}}">
-                            <input type="hidden" name="sctid" value="{{$subcategory_id}}">
+                            <div class="col-sm-6 lefto">
+                                    <label for="title" class="form-label">Feature * </label>
+                                    @foreach($feature_data as $key)
+                                    <div class="checkbox">
+                                      <label class="checkbox-inline" ><input type="checkbox" name="feature_name[]"  value={{$key->fe_id}} required /> {{$key->fe_name}}</label>
+                                    </div>
+                                    @endforeach
+                                </div>
+                                <div class="col-sm-6 lefto">
+                                    <label for="title" class="form-label">Tags * </label>
+                                    
+                                    @foreach($tag_data as $key)
+                                    <div class="checkbox">
+                                      <label class="checkbox-inline" ><input type="checkbox" name="tag_name[]"  value={{$key->tg_id}} required /> {{$key->tg_name}}</label>
+                                    </div>
+                                    @endforeach
+                                </div>
                             <?php $a=0; ?>
                                  @foreach($attribute_data as $key)
                                  <div class="col-sm-6 lefto">

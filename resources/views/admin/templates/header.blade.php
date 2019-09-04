@@ -8,7 +8,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('dashboard/img/apple-icon.png') }}" >
   <link rel="icon" type="image/png"  href="{{ asset('dashboard/img/favicon.png') }}" >
   <title>
-    Gawadar Hub
+    VisitPakistan
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
@@ -27,6 +27,6 @@
  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'> </script>  -->
   <!-- CSS Files
  
-  <!-- CSS Just for demo purpose, don't include it in your project -->
+   CSS Just for demo purpose, don't include it in your project -->
  
 </head>

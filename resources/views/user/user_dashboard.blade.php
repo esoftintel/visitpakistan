@@ -1,7 +1,7 @@
-
 @include('user.metadata')
+@include('user.metadata1')
 
-@include('user.menu')
+@include('user.menu_user_dashbord')
 
 
 <div class="bg_image_holder" style="background-image: url(&quot;img/breadcrumb1.jpg&quot;); opacity: 1;"><img src="{{asset('images/user')}}/{{$user_record->u_banner}}" alt="img/breadcrumb1.jpg"></div>
@@ -443,4 +443,4 @@ if (arr.indexOf(name) == -1) {
 </script>
 
 
-@include('user.footer')
+@include('user.new_footer')

@@ -28,7 +28,7 @@
                         <th>Id</th>
                         <th>Name</th>
                         <th>Status</th>
-                        <th>Subcategory Name</th>
+                        <th>Category Name</th>
                         <th>Created</th>
                         <th class="text-center">Action</th>
                       </tr>
@@ -39,7 +39,7 @@
                         <td> {{$key->at_id}} </td>
                         <td>{{$key->at_name}}</td>
                         <td>{{$key->status}}</td>
-                        <td>{{$key->st_name}}</td>
+                        <td>{{$key->ct_name}}</td>
                       
                         <td>{{$key->created_at}}</td>
                          <td class="text-center">

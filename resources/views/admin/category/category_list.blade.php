@@ -50,7 +50,7 @@
                         <td class="text-center">
                            <a class="btn btn-primary btn-sm" href="{{url('/category_edit',$key->ct_id)}}" role="button">Update</a>
                            <a class="btn btn-danger btn-sm" href="{{url('category_delete',$key->ct_id)}}" role="button">Delete</a>
-                           <a class="btn btn-success btn-sm" href="{{url('sub_categories',$key->ct_id)}}" role="button">SubCat</a> 
+                           <a class="btn btn-success btn-sm" href="{{url('sub_attributes',$key->ct_id)}}" role="button">Attributes</a> 
                          </td>
                       </tr>
                       @endforeach

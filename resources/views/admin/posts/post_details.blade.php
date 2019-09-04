@@ -43,13 +43,11 @@
               
               <h4 class="card-title"><i class="tim-icons text-primary"></i><b class='text-center'> Created at : </b><i class='text-center'>{{$post[0]->created_at}}</i></h4>
               <h4 class="card-title"><i class="tim-icons  text-primary"></i><b class='text-center'>User Name :  </b> {{$post[0]->name}}</h4>
-              <h4 class="card-title"><i class="tim-icons  text-primary"></i><b class='text-center'>User Address : </b> {{$post[0]->name}}</h4>
+              <h4 class="card-title"><i class="tim-icons  text-primary"></i><b class='text-center'>User Address : </b> {{$post[0]->ps_address}}</h4>
               <h4 class="card-title"><i class="tim-icons  text-primary"></i><b class='text-center'>Post Title : </b> {{$post[0]->ps_title}}</h4>
               <h4 class="card-title"><i class="tim-icons  text-primary"></i><b class='text-center'>Post Details :</b> {{$post[0]->ps_detail}}</h4>
-              <h4 class="card-title"><i class="tim-icons  text-primary"></i><b class='text-center'>Price : </b> {{$post[0]->ps_detail}}</h4>
               <h4 class="card-title"><i class="tim-icons  text-primary"></i><b class='text-center'>Type : </b> {{$post[0]->ps_type}}</h4>
               <h4 class="card-title"><i class="tim-icons  text-primary"></i><b class='text-center'>Category : </b>  {{$post[0]->ct_name}}</h4>
-              <h4 class="card-title"><i class="tim-icons  text-primary"></i><b class='text-center'> Details :</b></h4>
                
                 </div>
               </div>

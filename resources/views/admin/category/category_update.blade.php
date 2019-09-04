@@ -42,7 +42,7 @@
                     <div class="form-group">
                         <label>Old Icon (Green) </label>
                         
-                        <img src="{{URL::to('/')}}/images/{{$category_data->ct_icon}}" class="img-thumbnail" width="50">
+                        <img src="{{asset('images')}}/{{$category_data->ct_icone}}" class="img-thumbnail" width="50">
                     </div>
                     
                 
@@ -68,7 +68,7 @@
                         <div class="form-group">
                         <label>Old Image (Banner) </label>
                         
-                        <img src="{{URL::to('/')}}/images/{{$category_data->ct_image}}" class="img-thumbnail" width="50">
+                        <img src="{{asset('images')}}/{{$category_data->ct_image}}" class="img-thumbnail" width="50">
                     </div>
                     
             
