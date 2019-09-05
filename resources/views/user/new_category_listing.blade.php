@@ -83,8 +83,8 @@
                     <div class="resort-text">
                         <h4>Experience the worlds exotic</h4>
                         <h3>
-                            hOTELS<br />
-                            & RESORTS
+                            {{$ctimg->ct_name}}
+        
                         </h3>
                         
                     </div>
@@ -162,102 +162,20 @@
                         <div class="col-sm-12">
                             <div class="row">
                                 <div class="owl-carousel owl-theme">
+                                @foreach($post_data as $key)
+                                
+                                @foreach($key['user_comments'] as $key1)
                                     <div class="item">
-                                        <div class="pep-review-detail">
-                                            <span><img src="images/pep-review-img-1.png" /></span>
-                                            <h3>Johanna Gross</h3>
+                                       <div class="pep-review-detail">
+                                            <span><img class="user_dp" src="{{asset('images/user')}}/{{$key1->u_image}}" /></span>
+                                            <h3>{{$key1->name}}</h3>
                                             <span><i class="fas fa-quote-left"></i></span>
-                                            <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
+                                            <p>{{$key1->cm_comment}}</p>
                                         </div>
                                     </div>
-                                    <div class="item">
-                                        <div class="pep-review-detail">
-                                            <span><img src="images/pep-review-img-1.png" /></span>
-                                            <h3>Johanna Gross</h3>
-                                            <span><i class="fas fa-quote-left"></i></span>
-                                            <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="pep-review-detail">
-                                            <span><img src="images/pep-review-img-1.png" /></span>
-                                            <h3>Johanna Gross</h3>
-                                            <span><i class="fas fa-quote-left"></i></span>
-                                            <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="pep-review-detail">
-                                            <span><img src="images/pep-review-img-1.png" /></span>
-                                            <h3>Johanna Gross</h3>
-                                            <span><i class="fas fa-quote-left"></i></span>
-                                            <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="pep-review-detail">
-                                            <span><img src="images/pep-review-img-1.png" /></span>
-                                            <h3>Johanna Gross</h3>
-                                            <span><i class="fas fa-quote-left"></i></span>
-                                            <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="pep-review-detail">
-                                            <span><img src="images/pep-review-img-1.png" /></span>
-                                            <h3>Johanna Gross</h3>
-                                            <span><i class="fas fa-quote-left"></i></span>
-                                            <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="pep-review-detail">
-                                            <span><img src="images/pep-review-img-1.png" /></span>
-                                            <h3>Johanna Gross</h3>
-                                            <span><i class="fas fa-quote-left"></i></span>
-                                            <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="pep-review-detail">
-                                            <span><img src="images/pep-review-img-1.png" /></span>
-                                            <h3>Johanna Gross</h3>
-                                            <span><i class="fas fa-quote-left"></i></span>
-                                            <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="pep-review-detail">
-                                            <span><img src="images/pep-review-img-1.png" /></span>
-                                            <h3>Johanna Gross</h3>
-                                            <span><i class="fas fa-quote-left"></i></span>
-                                            <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="pep-review-detail">
-                                            <span><img src="images/pep-review-img-1.png" /></span>
-                                            <h3>Johanna Gross</h3>
-                                            <span><i class="fas fa-quote-left"></i></span>
-                                            <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="pep-review-detail">
-                                            <span><img src="images/pep-review-img-1.png" /></span>
-                                            <h3>Johanna Gross</h3>
-                                            <span><i class="fas fa-quote-left"></i></span>
-                                            <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="pep-review-detail">
-                                            <span><img src="images/pep-review-img-1.png" /></span>
-                                            <h3>Johanna Gross</h3>
-                                            <span><i class="fas fa-quote-left"></i></span>
-                                            <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                        </div>
-                                    </div>
+                                @endforeach    
+                                @endforeach    
+                                   
                                 </div>
                             </div>
                         </div>

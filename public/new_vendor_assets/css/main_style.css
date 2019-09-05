@@ -1748,10 +1748,13 @@ body {
 .vp-top-head-3 {
     overflow-x: hidden;
     background-image: url(../images/bg/hol-banner-bg.png);
-    background-repeat: no-repeat;
+    background-repeat: no-repeat !important;
     background-position: left;
-    background-size: cover;
-    height: 800px;
+    background-size: cover !important;
+    height:800px;
+}
+.head-height2{
+    height:175px;
 }
 
 .hol-banner-text h3 {
@@ -1837,6 +1840,13 @@ body {
     margin-bottom: 20px;
 }
 
+.user_dp{
+    height: 70px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+}
+
 .hotels-resorts {
     background-image: url('../images/bg/hotel-resorts-bg.png');
     background-position: left;
@@ -1890,11 +1900,16 @@ body {
     width: 86%;
 }
 
-    .resort-img-text h3 {
+    .resort-img-text h3 a {
         font-size: 11px;
         font-weight: 500;
+        color: #000;
         font-family: 'Montserrat', sans-serif;
         float: left;
+    }
+    img.lst_featimg {
+        height: 200px;
+        object-fit: cover;
     }
 
     .resort-img-text span i {
@@ -2400,7 +2415,7 @@ body {
 
 .comment-section {
     background-image: url('../images/comment-bg.png');
-    margin-bottom: 30%;
+    /* margin-bottom: 30%; */
     padding-bottom: 90px;
 }
 

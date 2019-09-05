@@ -6,7 +6,11 @@
                     <div class="col-md-4 col-sm-12">
                         <div class="review">
                             <h3>Customer Review</h3>
-                            <div id="myCarousel" class="carousel slide f-caro" data-ride="carousel">
+
+
+
+
+                            <div id="myCarousel" class="carousel" data-ride="carousel">
                                 <div class="carousel-inner mx-auto">
                                     <div class="carousel-item active">
                                         <div class="card">
@@ -52,108 +56,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="carousel-item ">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <ul>
-                                                    <li>
-                                                        <div class="review-box">
-                                                            <img class="rounded-circle" src="{{ asset('new_vendor_assets/images/review-icon.png') }}" />
-                                                            <h3>John Doe</h3>
-                                                            <span class="star-icon">
-                                                                <span><i class="far fa-star checked"></i></span>
-                                                                <span><i class="far fa-star checked"></i></span>
-                                                                <span><i class="far fa-star"></i></span>
-                                                            </span>
-                                                            <span class="review-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="review-box">
-                                                            <img class="rounded-circle" src="{{ asset('new_vendor_assets/images/review-icon.png') }}" />
-                                                            <h3>John Doe</h3>
-                                                            <span class="star-icon">
-                                                                <span><i class="far fa-star checked"></i></span>
-                                                                <span><i class="far fa-star checked"></i></span>
-                                                                <span><i class="far fa-star"></i></span>
-                                                            </span>
-                                                            <span class="review-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="review-box">
-                                                            <img class="rounded-circle" src="{{ asset('new_vendor_assets/images/review-icon.png') }}" />
-                                                            <h3>John Doe</h3>
-                                                            <span class="star-icon">
-                                                                <span><i class="far fa-star checked"></i></span>
-                                                                <span><i class="far fa-star checked"></i></span>
-                                                                <span><i class="far fa-star"></i></span>
-                                                            </span>
-                                                            <span class="review-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item ">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <ul>
-                                                    <li>
-                                                        <div class="review-box">
-                                                            <img class="rounded-circle" src="{{ asset('new_vendor_assets/images/review-icon.png') }}" />
-                                                            <h3>John Doe</h3>
-                                                            <span class="star-icon">
-                                                                <span><i class="far fa-star checked"></i></span>
-                                                                <span><i class="far fa-star checked"></i></span>
-                                                                <span><i class="far fa-star"></i></span>
-                                                            </span>
-                                                            <span class="review-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="review-box">
-                                                            <img class="rounded-circle" src="{{ asset('new_vendor_assets/images/review-icon.png') }}" />
-                                                            <h3>John Doe</h3>
-                                                            <span class="star-icon">
-                                                                <span><i class="far fa-star checked"></i></span>
-                                                                <span><i class="far fa-star checked"></i></span>
-                                                                <span><i class="far fa-star"></i></span>
-                                                            </span>
-                                                            <span class="review-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="review-box">
-                                                            <img class="rounded-circle" src="{{ asset('new_vendor_assets/images/review-icon.png') }}" />
-                                                            <h3>John Doe</h3>
-                                                            <span class="star-icon">
-                                                                <span><i class="far fa-star checked"></i></span>
-                                                                <span><i class="far fa-star checked"></i></span>
-                                                                <span><i class="far fa-star"></i></span>
-                                                            </span>
-                                                            <span class="review-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
+                                   
+                                  
 
                                 </div>
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-12 text-center mt-4">
-                                            <a class="btn btn-outline-secondary mx-1 prev" href="javascript:void(0)" title="Previous">
-                                                <i class="fa fa-lg fa-chevron-left"></i>
-                                            </a>
-                                            <a class="btn btn-outline-secondary mx-1 next" href="javascript:void(0)" title="Next">
-                                                <i class="fa fa-lg fa-chevron-right"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                               
                             </div>
                         </div>
                     </div>
@@ -363,49 +270,7 @@
     
 
 
-
-    <script>
-        (function ($) {
-            "use strict";
-            // Auto-scroll
-            $('#myCarousel').carousel({
-                interval: 5000
-            });
-
-            // Control buttons
-            $('.next').click(function () {
-                $('.carousel').carousel('next');
-                return false;
-            });
-            $('.prev').click(function () {
-                $('.carousel').carousel('prev');
-                return false;
-            });
-
-            // On carousel scroll
-            $("#myCarousel").on("slide.bs.carousel", function (e) {
-                var $e = $(e.relatedTarget);
-                var idx = $e.index();
-                var itemsPerSlide = 3;
-                var totalItems = $(".carousel-item").length;
-                if (idx >= totalItems - (itemsPerSlide - 1)) {
-                    var it = itemsPerSlide -
-                        (totalItems - idx);
-                    for (var i = 0; i < it; i++) {
-                        // append slides to end
-                        if (e.direction == "left") {
-                            $(
-                                ".carousel-item").eq(i).appendTo(".carousel-inner");
-                        } else {
-                            $(".carousel-item").eq(0).appendTo(".carousel-inner");
-                        }
-                    }
-                }
-            });
-        })
-            (jQuery);
-
-    </script>
+ 
     <script>
         $('.btn-toggle').click(function () {
             $(this).find('.btn').toggleClass('active');

@@ -52,7 +52,7 @@
             <div class="row">
                 <div class="col-md-4 border-vertical">
                     <div class="profile-hdetail">
-                        <span><img src="{{asset('images/user')}}/{{$post_data['create_by']->u_image}}" /></span>
+                        <span><img class="user_dp" src="{{asset('images/user')}}/{{$post_data['create_by']->u_image}}" /></span>
                         <div class="pheading">
                             <h3>{{$post_data['create_by']->name}}</h3>
                             <p>{{$post_data['create_by']->u_about}}</p>
@@ -266,7 +266,7 @@
                                             <div class="comment-box">
                                                 <div class="row">
                                                     <div class="col-2">
-                                                        <img src="images/comment-img-thumb.jpg" />
+                                                        <img class="user_dp" src="{{asset('images/user')}}/{{$key->u_image}}" />
                                                     </div>
                                                     <div class="col-9">
                                                         <h4>{{$key->name}}</h4>
@@ -317,6 +317,10 @@
 
     @include('user.new_footer')
     
+    <script>
+    var elem = document.getElementById('category_img');
+    elem.classList.add('head-height2');
+    </script>
    
     <script>
         var owl = $('.owl-carousel');
