@@ -1,5 +1,5 @@
 @include('user.metadata')
-@include('user.menu')
+@include('user.menu_user_dashbord')
 <div class="bg_image_holder" style="background-image: url('../img/breadcrumb.png'); opacity: 1;"><img src="../img/breadcrumb.png" alt="img/breadcrumb1.jpg"></div>
 
 <div class="breadcrumb-wrapper content_above">

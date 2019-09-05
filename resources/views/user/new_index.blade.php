@@ -194,6 +194,9 @@
     </section>
     <!-- Section Business Trip End -->
 
-
+    <script>
+    var elem = document.getElementById('category_img');
+    elem.classList.add('head-height2');
+    </script>
    
 @include('user.new_footer')

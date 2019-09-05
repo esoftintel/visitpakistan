@@ -41,6 +41,7 @@
         </ul>
     </nav>-->
     <!-- Scroll Menu End -->
+    
     <section id="section1" class="header">
         <div class="vp-top-head-3 " id="category_img">
             <div class="container-fluid">
@@ -92,28 +93,75 @@
 							</ul>
 						</div>
 					</div> -->
-                    <div class="col-2">
+                    <!-- <div class="col-2">
 						<div class="admin-login">
 							<ul>
 								<li class="nav-item dropdown">
-            <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up" role="button">
-              <span class="avatar avatar-online">
-                <img class="img-fluid" src="images/icons/sm-thumb.JPG" alt="Thumb">
-                <i></i>
-              </span>
-            </a>
-            <div class="dropdown-menu" role="menu">
-              <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-user" aria-hidden="true"></i> Profile</a>
-              <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-payment" aria-hidden="true"></i> Billing</a>
-              <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-settings" aria-hidden="true"></i> Settings</a>
-              <div class="dropdown-divider" role="presentation"></div>
-              <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Logout</a>
-            </div>
-          </li>
+                                <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up" role="button">
+                                <span class="avatar avatar-online">
+                                    <img class="img-fluid" src="images/icons/sm-thumb.JPG" alt="Thumb">
+                                    <i></i>
+                                </span>
+                                </a>
+                                <div class="dropdown-menu" role="menu">
+                                <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-user" aria-hidden="true"></i> Profile</a>
+                                <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-payment" aria-hidden="true"></i> Billing</a>
+                                <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-settings" aria-hidden="true"></i> Settings</a>
+                                <div class="dropdown-divider" role="presentation"></div>
+                                <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Logout</a>
+                                </div>
+                            </li>
 							</ul>
 						</div>
 					</div>
-                </div>
+                </div>-->
+                <style>
+                    .author-area .author__access_area li a {margin-right: 10px; color: #6f6f6f;}
+                    .author-area .author__access_area li span { font-size: 14px; color: #6f6f6f;}
+                </style>
+                <div class="author-area" style="height: 10px; font-size: 38px;">
+                    <div class="author__access_area" style="margin-top: 20px;">
+                        <ul class="d-flex list-unstyled align-items-center">
+                            
+                        @if (session('user_data'))
+                            <?php $d = DB::table('users')->where('id',session('user_data'))->first(); ?>
+                            <li> <a  href="{{url('category_show')}}" class="btn btn-xs btn-gradient btn-gradient-two">
+                                    <span class="la la-plus"></span> Add Listing
+                                </a></li>
+                                <li class="dropdown has_dropdown">
+                            <a onclick="toggleMenu()" class="profile_icon dropdown-toggle" id="drop4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{session('user_image')?asset('images').'/user/'.session('user_image'):asset('img/profile-placeholder.png')  }}" /> <i class="la la-angle-down"></i></a>
+                            
+                            <div class="custom-drop" id="myDiv">
+                                    <div class="welcome_txt">
+                                    <div class="textes">
+                                            <p>Hello!</p>
+                                            <p><strong>{{session('user')}}</strong></p>
+                                            <a  id="profile-tab"  href="{{url('user_dashboard')}}" role="tab" aria-controls="profile" aria-selected="false">View / Edit Profile</a>
+                                    </div>
+                                    </div> <hr>
+                                    <ul class="" aria-labelledby="drop4">
+                                        <li><a href="/user_dashboard"><i class="la la-file-text"></i> My Ads</a></li>
+                                        <li><a href="#"><i class="la la-credit-card"></i> My Orders & Billings</a></li>
+                                        <li><a href="#"><i class="la la-info-circle"></i> Help</a></li>
+                                        <li><a href="#"><i class="la la-gear"></i> Settings</a></li>
+                                        <li><a href="{{url('/userlogout')}}"> Logout</a></li>
+                                
+                                    </ul>
+
+                                    </div>
+                            </li>
+                                @else
+                                <li><a href="" class="access-link" data-toggle="modal" data-target="#login_modal">Add Listing</a></li>
+                                <li>
+                                <a href="" class="access-link" data-toggle="modal" data-target="#login_modal">Login</a>
+                                <span>or</span>
+                                <a href="" class="access-link" data-toggle="modal" data-target="#signup_modal">Register</a>
+                            </li>
+                            @endif 
+                            
+                        </ul>
+                    </div>
+                  </div>
                 <div class="row">
                     <div class="main-navbar">
                         <div class="container">

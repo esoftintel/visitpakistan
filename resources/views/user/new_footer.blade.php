@@ -152,6 +152,75 @@
                     </div>
                 </div>
             </div>
+            <section class="container-fluid footer_sec">
+	<div class="d-flex  container">
+		<div class=" row justify-contentr" >
+
+			<div class="col-md-4" style="color: white">
+				<div class="row">
+					<div class="col-md-4 ft-logo">
+               			<img src="{{asset('new_vendor_assets/images/logo.png')}}" alt="banner 3" class="img-fluid auto rounded-circle"> 
+               		</div>
+
+               		<div class="col-md-8 ft-text-one">
+                			<p> LETS GO TRAVELLER 2 </p> 
+               			   <span>The one and only stop for every traveller</span>
+               		</div>
+                </div>
+			</div>
+
+
+
+
+			<div class="col-md-3 ft-globe">
+				<div class="row" style="color: white;">
+						<div class="col-md-2">
+						<i class="fas fa-globe fa-2x" >
+							
+						</i> 
+						</div>
+
+						<div class="col-md-10">
+						<p>WE HAD WORLDWIDE TRAVEL OPERATORS </p>
+						</div>
+
+				</div>
+			</div>
+
+
+				<div class="col-md-2 ft-ship">
+				<div class="row" style="color: white;">
+						<div class="col-md-3">
+						<i class="fas fa-box fa-2x"></i> 
+						</div>
+
+						<div class="col-md-9">
+						<p>FREE SHIPPING</p>
+						</div>
+
+				</div>
+				</div>
+
+
+
+				<div class="col-md-3 ft-cp">
+				<div class="row" style="color: white;">
+						<div class="col-md-3">
+						<i class="fas fa-arrow-circle-left fa-2x"></i>
+						</div>
+
+						<div class="col-md-9">
+							<p> HASSLE FREE CANCEL </p>
+							<p>POLICIES</p>
+						</div>
+
+				</div>
+			    </div>
+
+
+</div>
+</div>
+</section>
             <!--<div class="container clearfix">
                 <div class="sub-footer">
                     <div class="col-md-4">
