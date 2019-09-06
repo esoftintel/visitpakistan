@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,16 +17,23 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/register', '\App\Http\Controllers\API\test_api@add_user');
-Route::post('/login', '\App\Http\Controllers\API\test_api@login');
+// Route::post('/register', '\App\Http\Controllers\API\test_api@add_user');
+// Route::post('/login', '\App\Http\Controllers\API\test_api@login');
 
 /// passport auth_api routes
-Route::post('login', 'API\auth_api@login');
-Route::post('register', 'API\auth_api@register');
+Route::post('login', 'APIs\authController@login');
+Route::post('register', 'APIs\authController@register');
 Route::group(['middleware' => 'auth:api'], function(){
-    Route::post('details', 'API\auth_api@details');
+    Route::post('details', 'APIs\authController@details');
     });
-
+Route::group(['middleware' => 'auth:api'], function(){
+    Route::get('frontpage','APIs\frontController@pakistan');
+    Route::get('users','APIs\frontController@allUsers');
+    Route::get('allCategories','APIs\frontController@allCategories');
+    Route::get('/ctPosts/{id}', 'APIs\frontController@categoryListings')->name('categoryListings');
+    Route::get('/postdetail1/{id}', 'APIs\frontController@postDetails')->name('postDetails'); 
+    
+    });
 Route::group(['middleware' => 'auth:api'], function(){
     Route::get('users','API\auth_api@getAllUsers');
     });

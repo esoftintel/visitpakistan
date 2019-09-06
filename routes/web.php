@@ -18,10 +18,6 @@ Route::post('/sender', function () {
 });
 
 Route::get('/', 'FrontController@pakistan')->name('visitpakistan');  
-
-
-
-
 Auth::routes(['verify' => true]);
 Route::get('profile', function () {
     // Only verified users may enter...
