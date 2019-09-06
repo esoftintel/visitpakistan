@@ -936,12 +936,7 @@ class FrontController extends Controller
 
     public function pakistan()
     {
- 
-      
-        $post_data = category::get();
-        
-
-                         
+        $post_data = category::get();         
         foreach ($post_data as $key) {
 
           $key->post_record =  post::where('ps_status','active')
