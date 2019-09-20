@@ -49,18 +49,7 @@
                 </div><!-- ends: .col-lg-10 -->
 
                 <!--Manan Work end Here-->
-
-
-
-
-
-
-
-             
-            
-              
-                
-            
+ 
             </div>
         </div>
     </section><!-- ends: .add-listing-wrapper -->

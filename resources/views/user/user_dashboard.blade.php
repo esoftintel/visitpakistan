@@ -47,7 +47,7 @@
                                 </li>
                             </ul>
                             <div class="nav_button">
-                            <a href="{{url('/category_show')}}" class="btn btn-primary"><span class="la la-plus"></span> Add Forum</a>
+                            <a href="{{url('/post_forum')}}" class="btn btn-primary"><span class="la la-plus"></span> Add Forum</a>
                                 <a href="{{url('/category_show')}}" class="btn btn-primary"><span class="la la-plus"></span> Add Listing</a>
                                 <a href="" class="btn btn-secondary">Log Out</a>
                             </div>

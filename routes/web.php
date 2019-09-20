@@ -164,5 +164,9 @@ Route::post('/comment', 'CommentController@store')->name('comment');
 
 
 Route::get('/new_category_listing/{id}', 'FrontController@new_categorylisting')->name('new_category_listing');  
+//////////////////////////forum//////////////
+Route::get('/post_forum', 'FrontController@post_forum')->name('post_forum');
+Route::post('/forum_submit', 'FrontController@forum_store')->name('forum_submit');
+
 
 

@@ -325,6 +325,7 @@ class FrontController extends Controller
     
     }
 
+
     
     public function post_store(Request $request)
     {
@@ -1161,4 +1162,84 @@ class FrontController extends Controller
         return view('user.new_category_listing',['post_data'=>$post_data,'category_data'=>$category_data,'location'=>$location , 'ctid'=>$id , 'ctimg'=>$ctimg]) ; 
 
     }
+
+
+    public function post_forum()
+    {
+
+        $data['user_data'] =User::find(session('user_data'));
+        $data['category'] =category::get(); 
+      
+        return view('user.post.post_forum_create',$data) ; //->with('category',$data);
+    
+    }
+
+    public function forum_store(Request $request)
+    {
+        $uu  = Auth::user();
+
+        $data=$request->input();
+       
+        $attribute=$request->input('attribute');
+        $tag     = $request->input('tag_name');
+        $feature = $request->input('feature_name');
+        $attribute_value=$request->input('attribute_value');
+    //    print_r($attribute);
+    //    exit;
+        $data = array(
+                        "ps_title"   => $request->input('title'),
+                        "ps_detail"  => $request->input('detail'),
+                        "ps_price"   => $request->input('price'),
+                        "ps_address" => $request->input('address'),
+                        "ps_ct_id"   => $request->input('ctid'),
+                       // "ps_st_id"   => $request->input('sctid'),
+                        "ps_ur_id"   => $uu->id,
+                        "ps_lati"    => $request->input('state'),
+                        "ps_longi"   => $request->input('city'),
+                     );
+                       
+                    $d =  post::create($data);
+                  $i=0;
+                  if($attribute)
+                  {
+                      
+                   foreach($attribute as $key)
+                   {
+                       $at = array(
+                                      "pt_title" =>$key,
+                                      "pt_value" =>$attribute_value[$i++],
+                                      "pt_ps_id" =>$d->ps_id,
+                                    );
+                                   
+                                    post_attribute::create($at);
+                   }
+                  if($feature)
+                  {
+                    foreach($feature as $key)
+                    {
+                        $at = array(
+                                        "pf_fe_id" =>$key,
+                                        "pf_ps_id" =>$d->ps_id,
+                                        );
+                                    
+                                        post_feature::create($at);
+                    }
+                  }
+                  if($tag)
+                  {
+                    foreach($tag as $key)
+                    {
+                        $at = array(
+                                    "pt_tg_id" =>$key,
+                                    "pt_ps_id" =>$d->ps_id,
+                                    );
+                       post_tag::create($at);
+                    }
+                  }
+                  }
+                   $request->session()->put('post_id', $d->ps_id); 
+                   return redirect()->to('image_post/'.$d->ps_id);
+
+    }
+
 }
