@@ -30,6 +30,7 @@ class CreatePostsTable extends Migration
 
             $table->biginteger('ps_st_id')->unsigned();
             $table->foreign('ps_st_id')->references('st_id')->on('subcategories');
+            $table->biginteger('ps_views');
 
             $table->biginteger('ps_ur_id')->unsigned();
 

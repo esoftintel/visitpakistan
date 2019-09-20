@@ -21,12 +21,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // Route::post('/login', '\App\Http\Controllers\API\test_api@login');
 
 /// passport auth_api routes
-Route::post('login', 'APIs\authController@login');
-Route::post('register', 'APIs\authController@register');
-Route::group(['middleware' => 'auth:api'], function(){
+    Route::post('login', 'APIs\authController@login');
+    Route::post('register', 'APIs\authController@register');
+    Route::group(['middleware' => 'auth:api'], function()
+    {
     Route::post('details', 'APIs\authController@details');
     });
-Route::group(['middleware' => 'auth:api'], function(){
+    Route::group(['middleware' => 'auth:api'], function(){
+    Route::get('topviewdposts','APIs\frontController@topView');
     Route::get('frontpage','APIs\frontController@pakistan');
     Route::get('users','APIs\frontController@allUsers');
     Route::get('allCategories','APIs\frontController@allCategories');
@@ -34,7 +36,9 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/postdetail1/{id}', 'APIs\frontController@postDetails')->name('postDetails'); 
     
     });
-Route::group(['middleware' => 'auth:api'], function(){
+
+
+    Route::group(['middleware' => 'auth:api'], function(){
     Route::get('users','API\auth_api@getAllUsers');
     });
     
